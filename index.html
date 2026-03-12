@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SpiritTree Marketplace — AI Tools & Services</title>
+  <meta name="description" content="Battle-tested AI tools, templates, and consulting from SpiritTree. Digital products and services that compound." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            bg: '#0a0a0c',
+            surface: '#111114',
+            border: '#1e1e24',
+            accent: '#00ff88',
+            'accent-dim': '#00cc6e',
+            muted: '#6b7280',
+            text: '#e8e8ed',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          borderRadius: {
+            btn: '8px',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    body { background-color: #0a0a0c; color: #e8e8ed; font-family: 'Inter', system-ui, sans-serif; }
+    
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0a0a0c; }
+    ::-webkit-scrollbar-thumb { background: #1e1e24; border-radius: 3px; }
+    
+    /* Product card gradient patterns */
+    .grad-blueprint   { background: linear-gradient(135deg, #0d1f0f 0%, #0a3320 40%, #001a0d 100%); }
+    .grad-content     { background: linear-gradient(135deg, #0a0a1f 0%, #0d1535 40%, #080820 100%); }
+    .grad-safespace   { background: linear-gradient(135deg, #1a0a00 0%, #2d1200 40%, #180800 100%); }
+    .grad-optimizer   { background: linear-gradient(135deg, #100020 0%, #1a0035 40%, #0d0018 100%); }
+    .grad-roadmap     { background: linear-gradient(135deg, #001a10 0%, #003020 40%, #001810 100%); }
+    .grad-build       { background: linear-gradient(135deg, #001020 0%, #002040 40%, #001018 100%); }
+    .grad-deploy      { background: linear-gradient(135deg, #150020 0%, #280038 40%, #100018 100%); }
+    .grad-saas        { background: linear-gradient(135deg, #1a0010 0%, #300018 40%, #150008 100%); }
+    .grad-myco        { background: linear-gradient(135deg, #0a0f00 0%, #151f00 40%, #080c00 100%); }
+
+    .card-pattern {
+      position: relative;
+      overflow: hidden;
+    }
+    .card-pattern::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle at 30% 20%, rgba(0,255,136,0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(0,255,136,0.04) 0%, transparent 40%);
+    }
+    .card-pattern::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(
+        0deg, transparent, transparent 39px, rgba(0,255,136,0.04) 39px, rgba(0,255,136,0.04) 40px
+      ), repeating-linear-gradient(
+        90deg, transparent, transparent 39px, rgba(0,255,136,0.04) 39px, rgba(0,255,136,0.04) 40px
+      );
+    }
+
+    .product-card {
+      background: #111114;
+      border: 1px solid #1e1e24;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(0,255,136,0.3);
+      box-shadow: 0 8px 32px rgba(0,255,136,0.08);
+    }
+    .product-card.hidden-card { display: none; }
+
+    .btn-primary {
+      display: inline-block;
+      background: #00ff88;
+      color: #0a0a0c;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: background 0.2s ease, transform 0.1s ease;
+      text-align: center;
+      width: 100%;
+    }
+    .btn-primary:hover { background: #00cc6e; transform: scale(1.01); }
+
+    .btn-outline {
+      display: inline-block;
+      background: transparent;
+      color: #00ff88;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.875rem;
+      border: 1px solid rgba(0,255,136,0.4);
+      transition: background 0.2s ease, border-color 0.2s ease;
+      text-align: center;
+      width: 100%;
+    }
+    .btn-outline:hover { background: rgba(0,255,136,0.08); border-color: #00ff88; }
+
+    .btn-coming-soon {
+      display: inline-block;
+      background: #1e1e24;
+      color: #6b7280;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      text-align: center;
+      width: 100%;
+      cursor: not-allowed;
+    }
+
+    .filter-tab {
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      border: 1px solid #1e1e24;
+      background: transparent;
+      color: #6b7280;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .filter-tab:hover { color: #e8e8ed; border-color: #3a3a44; }
+    .filter-tab.active { background: rgba(0,255,136,0.1); color: #00ff88; border-color: rgba(0,255,136,0.3); }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 10px;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .badge-digital { background: rgba(0,255,136,0.12); color: #00ff88; }
+    .badge-consulting { background: rgba(100,100,255,0.12); color: #8888ff; }
+    .badge-service { background: rgba(255,160,50,0.12); color: #ffaa33; }
+    .badge-coming { background: rgba(107,114,128,0.15); color: #6b7280; }
+
+    .search-input {
+      background: #111114;
+      border: 1px solid #1e1e24;
+      border-radius: 8px;
+      color: #e8e8ed;
+      padding: 10px 16px 10px 40px;
+      font-size: 0.875rem;
+      font-family: 'Inter', sans-serif;
+      width: 100%;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    .search-input:focus { border-color: rgba(0,255,136,0.4); }
+    .search-input::placeholder { color: #6b7280; }
+
+    .nav-link {
+      color: #6b7280;
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-link:hover { color: #e8e8ed; }
+
+    .price-tag {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #e8e8ed;
+      line-height: 1;
+    }
+    .price-tag span {
+      font-size: 0.875rem;
+      font-weight: 400;
+      color: #6b7280;
+      margin-left: 2px;
+    }
+
+    /* Noise texture overlay */
+    .noise-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,255,136,0.06) 0%, transparent 70%);
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    #empty-state { display: none; }
+    #empty-state.visible { display: block; }
+
+    .card-img-wrapper {
+      height: 140px;
+      position: relative;
+    }
+
+    .icon-wrap {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(0,255,136,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body class="min-h-screen">
+  <div class="noise-overlay"></div>
+
+  <!-- NAV -->
+  <nav style="position: sticky; top: 0; z-index: 50; background: rgba(10,10,12,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid #1e1e24;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
+      <div style="display: flex; align-items: center; justify-content: space-between; height: 60px;">
+        <a href="/" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
+          <span style="font-size: 1.25rem; font-weight: 800; color: #e8e8ed; letter-spacing: -0.02em;">
+            Spirit<span style="color: #00ff88;">Tree</span>
+          </span>
+          <span style="font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #6b7280; background: #1e1e24; padding: 2px 8px; border-radius: 4px;">Market</span>
+        </a>
+        <div style="display: flex; align-items: center; gap: 24px;">
+          <a href="about.html" class="nav-link">About</a>
+          <a href="https://spirittree.dev" class="nav-link" target="_blank" rel="noopener">spirittree.dev ↗</a>
+          <a href="#products" class="btn-primary" style="width: auto; padding: 8px 18px;">Browse →</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section style="position: relative; padding: 80px 24px 60px; text-align: center; overflow: hidden;">
+    <div class="hero-glow"></div>
+    <div style="position: relative; z-index: 1; max-width: 700px; margin: 0 auto;">
+      <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(0,255,136,0.08); border: 1px solid rgba(0,255,136,0.2); border-radius: 999px; padding: 4px 14px; margin-bottom: 24px;">
+        <span style="width: 7px; height: 7px; border-radius: 50%; background: #00ff88; display: inline-block; animation: pulse 2s infinite;"></span>
+        <span style="font-size: 0.75rem; font-weight: 600; color: #00ff88; letter-spacing: 0.04em;">Battle-tested tools from real operations</span>
+      </div>
+      <h1 style="font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; margin: 0 0 20px; color: #e8e8ed;">
+        AI infrastructure that<br /><span style="color: #00ff88;">compounds.</span>
+      </h1>
+      <p style="font-size: 1.1rem; color: #6b7280; line-height: 1.7; max-width: 560px; margin: 0 auto 36px;">
+        Digital products, templates, and consulting from SpiritTree — built from real deployments, not demos. Ship faster. Own your stack.
+      </p>
+      <a href="#products" class="btn-primary" style="width: auto; display: inline-block; padding: 12px 28px; font-size: 1rem;">
+        Browse Products →
+      </a>
+    </div>
+  </section>
+
+  <!-- PRODUCTS SECTION -->
+  <section id="products" style="max-width: 1200px; margin: 0 auto; padding: 0 24px 80px;">
+    
+    <!-- Search + Filter Row -->
+    <div style="margin-bottom: 32px;">
+      <!-- Search -->
+      <div style="position: relative; margin-bottom: 20px;">
+        <svg style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: #6b7280;" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+        </svg>
+        <input
+          type="search"
+          class="search-input"
+          id="search"
+          placeholder="Search products..."
+          aria-label="Search products"
+          oninput="filterProducts()"
+        />
+      </div>
+      <!-- Filter Tabs -->
+      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <button class="filter-tab active" data-filter="all" onclick="setFilter('all', this)">All</button>
+        <button class="filter-tab" data-filter="digital" onclick="setFilter('digital', this)">Digital Products</button>
+        <button class="filter-tab" data-filter="consulting" onclick="setFilter('consulting', this)">Consulting</button>
+        <button class="filter-tab" data-filter="service" onclick="setFilter('service', this)">Services</button>
+      </div>
+    </div>
+
+    <!-- Section: Digital Products -->
+    <div class="product-section" data-section="digital">
+      <div style="margin-bottom: 20px; display: flex; align-items: center; gap: 12px;">
+        <h2 style="font-size: 1.125rem; font-weight: 700; color: #e8e8ed; margin: 0;">Digital Products</h2>
+        <div style="flex: 1; height: 1px; background: #1e1e24;"></div>
+      </div>
+      <div class="product-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-bottom: 48px;">
+
+        <!-- Agent Blueprint DIY Kit -->
+        <article class="product-card" data-category="digital" data-name="agent blueprint diy kit" data-desc="build your own ai agent system from scratch">
+          <div class="card-img-wrapper grad-blueprint card-pattern">
+            <div class="icon-wrap">🤖</div>
+          </div>
+          <div style="padding: 20px;">
+            <div style="margin-bottom: 10px;"><span class="badge badge-digital">Digital</span></div>
+            <h3 style="font-size: 1rem; font-weight: 700; color: #e8e8ed; margin: 0 0 8px; line-height: 1.3;">Agent Blueprint DIY Kit</h3>
+            <p style="font-size: 0.8rem; color: #6b7280; line-height: 1.6; margin: 0 0 16px;">
+              Build your own multi-agent AI system from scratch. Prompts, architecture patterns, and step-by-step playbooks from real SpiritTree deployments.
+            </p>
+            <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 16px;">
+              <div class="price-tag">$49</div>
+              <span style="font-size: 0.75rem; color: #6b7280;">Instant download</span>
+            </div>
+            <a href="https://buy.stripe.com/7sY00c2qE5Rf1dJacL2Nq07" class="btn-primary" target="_blank" rel="noopener">Buy Now →</a>
+          </div>
+        </article>
+
+        <!-- Content Pipeline Templates -->
+        <article class="product-card" data-category="digital" data-name="content pipeline templates" data-desc="multi-agent writing pipeline content marketing">
+          <div class="card-img-wrapper grad-content card-pattern">
+            <div class="icon-wrap">📝</div>
+          </div>
+          <div style="padding: 20px;">
+            <div style="margin-bottom: 10px;"><span class="badge badge-digital">Digital</span></div>
+            <h3 style="font-size: 1rem; font-weight: 700; color: #e8e8ed; margin: 0 0 8px; line-height: 1.3;">Content Pipeline Templates</h3>
+            <p style="font-size: 0.8rem; color: #6b7280; line-height: 1.6; margin: 0 0 16px;">
+              Multi-agent writing pipeline — research, draft, edit, publish. Brand voice system included. Built for operators who ship content at scale.
+            </p>
+            <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 16px;">
+              <div class="price-tag">$79</div>
+              <span style="font-size: 0.75rem; color: #6b7280;">Instant download</span>
+            </div>
+            <a href="https://buy.stripe.com/6oUbIU2qEa7vf4zet12Nq0a" class="btn-primary" target="_blank" rel="noopener">Buy Now →</a>
+          </div>
+        </article>
+
+        <!-- SafeSpace Civic Toolkit -->
+        <article class="product-card" data-category="digital" data-name="safespace civic toolkit" data-desc="civic tech anonymous reporting landlord accountability renter protection">
+          <div class="card-img-wrapper grad-safespace card-pattern">
+            <div class="icon-wrap">🛡️</div>
+          </div>
+          <div style="padding: 20px;">
+            <div style="margin-bottom: 10px;"><span class="badge badge-digital">Digital</span></div>
+            <h3 style="font-size: 1rem; font-weight: 700; color: #e8e8ed; margin: 0 0 8px; line-height: 1.3;">SafeSpace Civic Toolkit</h3>
+            <p style="font-size: 0.8rem; color: #6b7280; line-height: 1.6; margin: 0 0 16px;">
+              AI-assisted civic tech toolkit for anonymous reporting, landlord accountability, and renter protection campaigns. Inspired by real Boulder advocacy work.
+            </p>
+            <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 16px;">
+              <div class="price-tag">$99</div>
+              <span style="font-size: 0.75rem; color: #6b7280;">Instant download</span>
+            </div>
+            <a href="https://buy.stripe.com/aFa4gsc1eenL6y3et12Nq08" class="btn-primary" target="_blank" rel="noopener">Buy Now →</a>
+          </div>
+        </article>
+
+        <!-- AI Cost Optimizer -->
+        <article class="product-card" data-category="digital" data-name="ai cost optimizer" data-desc="reduce api spend llm cost optimization token efficiency">
+          <div class="card-img-wrapper grad-optimizer card-pattern">
+            <div class="icon-wrap">⚡</div>
+          </div>
+          <div style="padding: 20px;">
+            <div style="margin-bottom: 10px;"><span class="badge badge-digital">Digital</span></div>
+            <h3 style="font-size: 1rem; font-weight: 700; color: #e8e8ed; margin: 0 0 8px; line-height: 1.3;">AI Cost Optimizer</h3>
+            <p style="font-size: 0.8rem; color: #6b7280; line-height: 1.6; margin: 0 0 16px;">
+              Slash your LLM API spend without sacrificing quality. Token efficiency patterns, model routing strategies, and prompt compression guides from real production ops.
+            </p>
+            <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 16px;">
+              <div class="price-tag">$149</div>
+              <span style="font-size: 0.75rem; color: #6b7280;">Instant download</span>
+            </div>
+            <a href="https://buy.stripe.com/eVqeV63uI7ZnaOj5Wv2Nq09" class="btn-primary" target="_blank" rel="noopener">Buy Now →</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- Section: Consulting -->
+    <div class="product-section" data-section="consulting">
+      <div style="margin-bottom: 20px; display: flex; align-items: center; gap: 12px;">
+        <h2 style="font-size: 1.125rem; font-weight: 700; color: #e8e8ed; margin: 0;">Consulting</h2>
+        <div style="flex: 1; height: 1px; background: #1e1e24;"></div>
+      </div>
+      <div class="product-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-bottom: 48px;">
+
+        <!-- AI Roadmap Session -->
+        <article class="product-card" data-category="consulting" data-name="ai roadmap session" data-desc="strategy consulting roadmap planning">
+          <div class="card-img-wrapper grad-roadmap card-pattern">
+            <div class="icon-wrap">🗺️</div>
+          </div>
+          <div style="padding: 20px;">
+            <div style="margin-bottom: 10px;"><span class="badge badge-consulting">Consulting</span></div>
+            <h3 style="font-size: 1rem; font-weight: 700; color: #e8e8ed; margin: 0 0 8px; line-height: 1.3;">AI Roadmap Session</h3>
+            <p style="font-size: 0.8rem; color: #6b7280; line-height: 1.6; margin: 0 0 16px;">
+              90-minute deep-dive to map your AI automation opportunities, prioritize high-leverage use cases, and build a 90-day execution plan.
+            </p>
+            <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 16px;">
+              <div class="price-tag">$497</div>
+              <span style="font-size: 0.75rem; color: #6b7280;">1:1 session</span>
+            </div>
+            <a href="https://buy.stripe.com/00wfZa2qE1AZ09F70z2Nq01" class="btn-primary" target="_blank" rel="noopener">Book Now →</a>
+          </div>
+        </article>
+
+        <!-- Roadmap + Build -->
+        <article class="product-card" data-category="consulting" data-name="roadmap plus build" data-desc="consulting build implementation deployment">
+          <div class="card-img-wrapper grad-build card-pattern">
+            <div class="icon-wrap">🔧</div>
+          </div>
+          <div style="padding: 20px;">
+            <div style="margin-bottom: 10px;"><span class="badge badge-consulting">Consulting</span></div>
+            <h3 style="font-size: 1rem; font-weight: 700; color: #e8e8ed; margin: 0 0 8px; line-height: 1.3;">Roadmap + Build</h3>
+            <p style="font-size: 0.8rem; color: #6b7280; line-height: 1.6; margin: 0 0 16px;">
+              Strategy session plus hands-on build. We scope, plan, and I implement your first AI automation or agent system. Includes code, docs, and handoff walkthrough.
+            </p>
+            <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 16px;">
+              <div class="price-tag">$997</div>
+              <span style="font-size: 0.75rem; color: #6b7280;">Session + build</span>
+            </div>
+            <a href="https://buy.stripe.com/9B63co8P2a7v3lRfx52Nq02" class="btn-primary" target="_blank" rel="noopener">Book Now →</a>
+          </div>
+        </article>
+
+        <!-- Full Operations Deploy -->
+        <article class="product-card" data-category="consulting" data-name="full operations deploy" data-desc="full deployment ai operations system build">
+          <div class="card-img-wrapper grad-deploy card-pattern">
+            <div class="icon-wrap">🚀</div>
+          </div>
+          <div style="padding: 20px;">
+            <div style="margin-bottom: 10px;"><span class="badge badge-consulting">Consulting</span></div>
+            <h3 style="font-size: 1rem; font-weight: 700; color: #e8e8ed; margin: 0 0 8px; line-height: 1.3;">Full Operations Deploy</h3>
+            <p style="font-size: 0.8rem; color: #6b7280; line-height: 1.6; margin: 0 0 16px;">
+              Full-stack AI operations deployment. We build your agent network end-to-end — from architecture to live production with monitoring, memory, and tooling configured.
+            </p>
+            <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 16px;">
+              <div class="price-tag">$1,997</div>
+              <span style="font-size: 0.75rem; color: #6b7280;">Full deployment</span>
+            </div>
+            <a href="https://buy.stripe.com/6oU00c0iw2F3aOj2Kj2Nq03" class="btn-primary" target="_blank" rel="noopener">Book Now →</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- Section: Services -->
+    <div class="product-section" data-section="service">
+      <div style="margin-bottom: 20px; display: flex; align-items: center; gap: 12px;">
+        <h2 style="font-size: 1.125rem; font-weight: 700; color: #e8e8ed; margin: 0;">Services</h2>
+        <div style="flex: 1; height: 1px; background: #1e1e24;"></div>
+      </div>
+      <div class="product-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-bottom: 48px;">
+
+        <!-- SaaS Killer Audit -->
+        <article class="product-card" data-category="service" data-name="saas killer audit" data-desc="saas audit replace software tools custom build">
+          <div class="card-img-wrapper grad-saas card-pattern">
+            <div class="icon-wrap">🗡️</div>
+          </div>
+          <div style="padding: 20px;">
+            <div style="margin-bottom: 10px;"><span class="badge badge-service">Service</span></div>
+            <h3 style="font-size: 1rem; font-weight: 700; color: #e8e8ed; margin: 0 0 8px; line-height: 1.3;">SaaS Killer Audit</h3>
+            <p style="font-size: 0.8rem; color: #6b7280; line-height: 1.6; margin: 0 0 16px;">
+              Audit your SaaS stack and identify what to kill, replace, or build custom. Most businesses can cut 60–80% of tool spend with targeted AI automation.
+            </p>
+            <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 16px;">
+              <div style="font-size: 0.875rem; font-weight: 600; color: #00ff88;">Custom pricing</div>
+              <span style="font-size: 0.75rem; color: #6b7280;">Discovery call</span>
+            </div>
+            <a href="https://spirittree.dev/saas-killer.html" class="btn-outline" target="_blank" rel="noopener">Learn More →</a>
+          </div>
+        </article>
+
+        <!-- MycoMaps Business Listing -->
+        <article class="product-card" data-category="service" data-name="mycomaps business listing" data-desc="mycomaps mushroom fungi map directory listing">
+          <div class="card-img-wrapper grad-myco card-pattern">
+            <div class="icon-wrap">🍄</div>
+          </div>
+          <div style="padding: 20px;">
+            <div style="display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap;">
+              <span class="badge badge-service">Service</span>
+              <span class="badge badge-coming">Coming Soon</span>
+            </div>
+            <h3 style="font-size: 1rem; font-weight: 700; color: #e8e8ed; margin: 0 0 8px; line-height: 1.3;">MycoMaps Business Listing</h3>
+            <p style="font-size: 0.8rem; color: #6b7280; line-height: 1.6; margin: 0 0 16px;">
+              Get your mycology business, farm, or foraging tour listed on MycoMaps — the emerging directory for the fungi economy. Early access slots limited.
+            </p>
+            <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 16px;">
+              <div style="font-size: 0.875rem; font-weight: 600; color: #6b7280;">TBA</div>
+              <span style="font-size: 0.75rem; color: #6b7280;">Early access</span>
+            </div>
+            <div class="btn-coming-soon">Coming Soon</div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- Empty state -->
+    <div id="empty-state" style="text-align: center; padding: 60px 24px;">
+      <div style="font-size: 2rem; margin-bottom: 12px;">🔍</div>
+      <p style="color: #6b7280; font-size: 1rem;">No products match your search.</p>
+    </div>
+
+  </section>
+
+  <!-- VALUE PROPS STRIP -->
+  <section style="border-top: 1px solid #1e1e24; border-bottom: 1px solid #1e1e24; background: #111114;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 40px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px;">
+      <div>
+        <div style="font-size: 1.5rem; margin-bottom: 8px;">🌿</div>
+        <h3 style="font-size: 0.9rem; font-weight: 700; color: #e8e8ed; margin: 0 0 6px;">Built from real ops</h3>
+        <p style="font-size: 0.8rem; color: #6b7280; line-height: 1.6; margin: 0;">Every product shipped from actual SpiritTree deployments — not demos or theoretical guides.</p>
+      </div>
+      <div>
+        <div style="font-size: 1.5rem; margin-bottom: 8px;">⚡</div>
+        <h3 style="font-size: 0.9rem; font-weight: 700; color: #e8e8ed; margin: 0 0 6px;">Instant access</h3>
+        <p style="font-size: 0.8rem; color: #6b7280; line-height: 1.6; margin: 0;">Digital products delivered immediately. No waitlists, no drip campaigns — just download and ship.</p>
+      </div>
+      <div>
+        <div style="font-size: 1.5rem; margin-bottom: 8px;">🔓</div>
+        <h3 style="font-size: 0.9rem; font-weight: 700; color: #e8e8ed; margin: 0 0 6px;">Own your stack</h3>
+        <p style="font-size: 0.8rem; color: #6b7280; line-height: 1.6; margin: 0;">No subscriptions, no lock-in. You get the files, the patterns, the playbooks — they're yours forever.</p>
+      </div>
+      <div>
+        <div style="font-size: 1.5rem; margin-bottom: 8px;">🤝</div>
+        <h3 style="font-size: 0.9rem; font-weight: 700; color: #e8e8ed; margin: 0 0 6px;">Operator-to-operator</h3>
+        <p style="font-size: 0.8rem; color: #6b7280; line-height: 1.6; margin: 0;">This isn't consulting theater. Landon builds this stuff daily — you're buying from someone in the same trenches.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section style="text-align: center; padding: 72px 24px;">
+    <div style="max-width: 560px; margin: 0 auto;">
+      <h2 style="font-size: clamp(1.5rem, 4vw, 2.25rem); font-weight: 800; letter-spacing: -0.03em; margin: 0 0 16px; color: #e8e8ed;">
+        Not sure where to start?
+      </h2>
+      <p style="color: #6b7280; font-size: 1rem; line-height: 1.7; margin: 0 0 28px;">
+        Book a Roadmap Session and get a personalized AI automation plan in 90 minutes.
+      </p>
+      <a href="https://buy.stripe.com/00wfZa2qE1AZ09F70z2Nq01" class="btn-primary" style="display: inline-block; width: auto; padding: 14px 32px; font-size: 1rem;" target="_blank" rel="noopener">
+        Book AI Roadmap Session — $497
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="border-top: 1px solid #1e1e24; padding: 32px 24px;">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 1rem; font-weight: 800; color: #e8e8ed;">Spirit<span style="color: #00ff88;">Tree</span></span>
+          <span style="color: #3a3a44;">·</span>
+          <span style="font-size: 0.75rem; color: #6b7280;">Nourish first. Decompose second.</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+          <a href="https://spirittree.dev" class="nav-link" target="_blank" rel="noopener">spirittree.dev</a>
+          <a href="https://spirittree.substack.com" class="nav-link" target="_blank" rel="noopener">Substack</a>
+          <a href="https://x.com/sedim3nt" class="nav-link" target="_blank" rel="noopener">X @sedim3nt</a>
+          <a href="about.html" class="nav-link">About</a>
+        </div>
+      </div>
+      <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #1e1e24; text-align: center;">
+        <p style="font-size: 0.75rem; color: #6b7280; margin: 0;">© 2026 SpiritTree. Built with care in Boulder, CO.</p>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+  </style>
+
+  <script>
+    let activeFilter = 'all';
+
+    function setFilter(filter, el) {
+      activeFilter = filter;
+      document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+      el.classList.add('active');
+      filterProducts();
+    }
+
+    function filterProducts() {
+      const query = document.getElementById('search').value.toLowerCase().trim();
+      const cards = document.querySelectorAll('.product-card');
+      let anyVisible = false;
+
+      cards.forEach(card => {
+        const cat = card.dataset.category;
+        const name = (card.dataset.name || '').toLowerCase();
+        const desc = (card.dataset.desc || '').toLowerCase();
+        const matchesFilter = activeFilter === 'all' || cat === activeFilter;
+        const matchesSearch = !query || name.includes(query) || desc.includes(query);
+        const visible = matchesFilter && matchesSearch;
+        card.style.display = visible ? '' : 'none';
+        if (visible) anyVisible = true;
+      });
+
+      // Show/hide section headers
+      document.querySelectorAll('.product-section').forEach(section => {
+        const sectionCat = section.dataset.section;
+        const sectionFilterMatch = activeFilter === 'all' || activeFilter === sectionCat;
+        const visibleCards = section.querySelectorAll('.product-card:not([style*="display: none"])');
+        section.style.display = (sectionFilterMatch && visibleCards.length > 0) ? '' : 'none';
+      });
+
+      document.getElementById('empty-state').classList.toggle('visible', !anyVisible);
+    }
+  </script>
+</body>
+</html>
