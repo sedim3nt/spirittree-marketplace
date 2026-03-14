@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Browse All Products — SpiritTree</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #06162B;
+    --deep-blue: #0E2F52;
+    --teal: #2A5E7D;
+    --orange: #B56A3A;
+    --cream: #F1E8DD;
+    --white: #FFFFFF;
+  }
+  body { font-family: ui-sans-serif, system-ui, sans-serif; background: var(--cream); color: var(--deep-blue); line-height: 1.6; }
+
+  nav {
+    background: var(--navy);
+    padding: 0 40px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .nav-brand { font-family: 'Fraunces', Georgia, serif; font-size: 22px; font-weight: 700; color: var(--white); text-decoration: none; }
+  .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+  .nav-links a { color: var(--white); text-decoration: none; font-size: 15px; opacity: 0.85; transition: opacity 0.2s; }
+  .nav-links a:hover { opacity: 1; }
+  .nav-cta { background: var(--orange); color: var(--white) !important; opacity: 1 !important; padding: 8px 20px; border-radius: 8px; font-weight: 600; transition: background 0.2s !important; }
+  .nav-cta:hover { background: #9f5c2f !important; }
+  .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+  .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+
+  .page-header {
+    background: var(--navy);
+    color: var(--white);
+    padding: 64px 40px 56px;
+  }
+  .page-header-inner { max-width: 1200px; margin: 0 auto; }
+  .page-header h1 { font-family: 'Fraunces', Georgia, serif; font-size: clamp(32px, 5vw, 48px); font-weight: 700; margin-bottom: 12px; }
+  .page-header p { font-size: 17px; opacity: 0.75; max-width: 560px; }
+
+  .section { padding: 72px 40px; max-width: 1200px; margin: 0 auto; }
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .section-label h2 { font-family: 'Fraunces', Georgia, serif; font-size: 26px; font-weight: 700; color: var(--navy); }
+  .section-label-line { flex: 1; height: 1px; background: rgba(6,22,43,0.12); }
+
+  .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .card {
+    background: var(--white);
+    border: 1px solid rgba(6,22,43,0.08);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.12); transform: translateY(-2px); }
+  .card-tag { display: inline-block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--teal); background: rgba(42,94,125,0.08); padding: 4px 10px; border-radius: 20px; margin-bottom: 12px; align-self: flex-start; }
+  .card h3 { font-family: 'Fraunces', Georgia, serif; font-size: 20px; font-weight: 600; color: var(--navy); margin-bottom: 10px; line-height: 1.3; }
+  .card p { font-size: 14px; color: var(--deep-blue); line-height: 1.6; flex: 1; margin-bottom: 20px; }
+  .card-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: auto; }
+  .price { font-family: 'Fraunces', Georgia, serif; font-size: 24px; font-weight: 700; color: var(--orange); }
+  .price-free { font-family: 'Fraunces', Georgia, serif; font-size: 20px; font-weight: 600; color: var(--teal); }
+  .btn-card { background: var(--orange); color: var(--white); padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; transition: background 0.2s; white-space: nowrap; }
+  .btn-card:hover { background: #9f5c2f; }
+  .btn-card-secondary { background: transparent; color: var(--teal); padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; border: 2px solid var(--teal); transition: background 0.2s, color 0.2s; white-space: nowrap; }
+  .btn-card-secondary:hover { background: var(--teal); color: var(--white); }
+
+  .section-divider { height: 1px; background: rgba(6,22,43,0.08); max-width: 1200px; margin: 0 auto; }
+
+  footer { background: var(--navy); color: var(--white); padding: 40px; border-top: 1px solid rgba(255,255,255,0.08); }
+  .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+  .footer-brand { font-family: 'Fraunces', Georgia, serif; font-size: 18px; font-weight: 700; color: var(--white); text-decoration: none; }
+  .footer-copy { font-size: 13px; opacity: 0.6; }
+  .footer-links { display: flex; gap: 24px; list-style: none; }
+  .footer-links a { color: var(--white); text-decoration: none; font-size: 14px; opacity: 0.7; transition: opacity 0.2s; }
+  .footer-links a:hover { opacity: 1; }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; flex-direction: column; gap: 16px; position: absolute; top: 64px; left: 0; right: 0; background: var(--navy); padding: 24px 20px; }
+    .nav-links.open { display: flex; }
+    .nav-toggle { display: flex; }
+    .page-header { padding: 48px 20px 40px; }
+    .section { padding: 48px 20px; }
+    .cards-grid { grid-template-columns: 1fr; }
+    footer { padding: 32px 20px; }
+    .footer-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+  }
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .cards-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand">SpiritTree</a>
+  <button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="browse.html">Browse</a></li>
+    <li><a href="consulting.html">Consulting</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="tools.html">Tools</a></li>
+    <li><a href="consulting.html" class="nav-cta">Get Started →</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <h1>Browse All Products</h1>
+    <p>Everything we ship — consulting, digital guides, security resources, and free tools.</p>
+  </div>
+</div>
+
+<!-- CONSULTING -->
+<section class="section">
+  <div class="section-label">
+    <h2>Consulting</h2>
+    <div class="section-label-line"></div>
+  </div>
+  <div class="cards-grid">
+    <div class="card">
+      <span class="card-tag">Consulting</span>
+      <h3>Agent Blueprint Roadmap</h3>
+      <p>90-minute strategy session, custom AI roadmap, and a 30-day execution plan tailored to your operation.</p>
+      <div class="card-footer">
+        <span class="price">$497</span>
+        <a href="https://buy.stripe.com/00wfZa2qE1AZ09F70z2Nq01" class="btn-card" target="_blank" rel="noopener">Buy Now</a>
+      </div>
+    </div>
+    <div class="card">
+      <span class="card-tag">Consulting</span>
+      <h3>Roadmap + Build</h3>
+      <p>Everything in the Roadmap tier, plus we roll up our sleeves and build your core AI infrastructure alongside you.</p>
+      <div class="card-footer">
+        <span class="price">$997</span>
+        <a href="https://buy.stripe.com/9B63co8P2a7v3lRfx52Nq02" class="btn-card" target="_blank" rel="noopener">Buy Now</a>
+      </div>
+    </div>
+    <div class="card">
+      <span class="card-tag">Consulting</span>
+      <h3>Full Operations</h3>
+      <p>Full-stack engagement: roadmap, build, and ongoing operational support including monitoring and iteration.</p>
+      <div class="card-footer">
+        <span class="price">$1,997</span>
+        <a href="https://buy.stripe.com/6oU00c0iw2F3aOj2Kj2Nq03" class="btn-card" target="_blank" rel="noopener">Buy Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- DIGITAL -->
+<section class="section">
+  <div class="section-label">
+    <h2>Digital Products</h2>
+    <div class="section-label-line"></div>
+  </div>
+  <div class="cards-grid">
+    <div class="card">
+      <span class="card-tag">Digital</span>
+      <h3>CEO Stack</h3>
+      <p>The complete AI toolkit for operators and founders. Everything you need to run a lean AI-powered business.</p>
+      <div class="card-footer">
+        <span class="price">$149</span>
+        <a href="https://buy.stripe.com/eVqeV63uI7ZnaOj5Wv2Nq09" class="btn-card" target="_blank" rel="noopener">Buy Now</a>
+      </div>
+    </div>
+    <div class="card">
+      <span class="card-tag">Digital</span>
+      <h3>Content Pipeline</h3>
+      <p>Automated content workflows for AI-assisted writing, publishing, and distribution across platforms.</p>
+      <div class="card-footer">
+        <span class="price">$79</span>
+        <a href="https://buy.stripe.com/6oUbIU2qEa7vf4zet12Nq0a" class="btn-card" target="_blank" rel="noopener">Buy Now</a>
+      </div>
+    </div>
+    <div class="card">
+      <span class="card-tag">Digital</span>
+      <h3>DIY AI Setup Guide</h3>
+      <p>Self-guided AI system setup for operators who want to build independently with expert-level documentation.</p>
+      <div class="card-footer">
+        <span class="price">$49</span>
+        <a href="https://buy.stripe.com/7sY00c2qE5Rf1dJacL2Nq07" class="btn-card" target="_blank" rel="noopener">Buy Now</a>
+      </div>
+    </div>
+    <div class="card">
+      <span class="card-tag">Digital</span>
+      <h3>SafeSpace Template</h3>
+      <p>Deploy your own anonymous reporting system. Full source template with setup guide and customization instructions.</p>
+      <div class="card-footer">
+        <span class="price">$99</span>
+        <a href="https://buy.stripe.com/aFa4gsc1eenL6y3et12Nq08" class="btn-card" target="_blank" rel="noopener">Buy Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SECURITY -->
+<section class="section">
+  <div class="section-label">
+    <h2>Security</h2>
+    <div class="section-label-line"></div>
+  </div>
+  <div class="cards-grid">
+    <div class="card">
+      <span class="card-tag">Security</span>
+      <h3>AI System Hardening Guide</h3>
+      <p>Step-by-step security hardening for AI deployments. Covers model access, data exposure, and ops hygiene.</p>
+      <div class="card-footer">
+        <span class="price">$49</span>
+        <a href="https://buy.stripe.com/8x25kwaXaa7v3lRacL2Nq0g" class="btn-card" target="_blank" rel="noopener">Buy Now</a>
+      </div>
+    </div>
+    <div class="card">
+      <span class="card-tag">Security</span>
+      <h3>Done-For-You Security Audit</h3>
+      <p>We audit your AI systems and deliver a full security report with prioritized remediation steps.</p>
+      <div class="card-footer">
+        <span class="price">$297</span>
+        <a href="https://buy.stripe.com/6oUdR21mA3J709FckT2Nq0h" class="btn-card" target="_blank" rel="noopener">Buy Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- BUNDLE -->
+<section class="section">
+  <div class="section-label">
+    <h2>Bundles</h2>
+    <div class="section-label-line"></div>
+  </div>
+  <div class="cards-grid">
+    <div class="card">
+      <span class="card-tag">Bundle</span>
+      <h3>AI Mastery Bundle</h3>
+      <p>Curated collection of essential AI operator resources at a steep discount. Best value for getting started fast.</p>
+      <div class="card-footer">
+        <span class="price">$29</span>
+        <a href="https://buy.stripe.com/bJe6oA6GUfrPf4zgB92Nq0f" class="btn-card" target="_blank" rel="noopener">Buy Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- FREE -->
+<section class="section">
+  <div class="section-label">
+    <h2>Free Tools</h2>
+    <div class="section-label-line"></div>
+  </div>
+  <div class="cards-grid">
+    <div class="card">
+      <span class="card-tag">Tool</span>
+      <h3>SkillScan</h3>
+      <p>Assess your AI readiness and identify skill gaps. Know exactly where to invest your learning time.</p>
+      <div class="card-footer">
+        <span class="price-free">Free</span>
+        <a href="https://github.com/sedim3nt" class="btn-card-secondary" target="_blank" rel="noopener">View on GitHub</a>
+      </div>
+    </div>
+    <div class="card">
+      <span class="card-tag">Public Good</span>
+      <h3>SafeSpace</h3>
+      <p>Anonymous reporting system for renters and community members. Privacy-first civic infrastructure.</p>
+      <div class="card-footer">
+        <span class="price-free">Free</span>
+        <a href="https://safespace.spirittree.dev" class="btn-card-secondary" target="_blank" rel="noopener">Launch App</a>
+      </div>
+    </div>
+    <div class="card">
+      <span class="card-tag">Public Good</span>
+      <h3>MycoMaps</h3>
+      <p>Community-sourced mushroom and fungi mapping tool. Open data for foragers and mycology researchers.</p>
+      <div class="card-footer">
+        <span class="price-free">Free</span>
+        <a href="https://mycomaps.spirittree.dev" class="btn-card-secondary" target="_blank" rel="noopener">Launch App</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="index.html" class="footer-brand">SpiritTree</a>
+      <p class="footer-copy" style="margin-top:6px;">© 2026 Nrvana LLC</p>
+    </div>
+    <ul class="footer-links">
+      <li><a href="browse.html">Browse</a></li>
+      <li><a href="consulting.html">Consulting</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="tools.html">Tools</a></li>
+      <li><a href="https://sedim3nt.substack.com" target="_blank" rel="noopener">Substack</a></li>
+      <li><a href="https://x.com/sedim3nt" target="_blank" rel="noopener">X</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
