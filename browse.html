@@ -9,6 +9,9 @@
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:ui-sans-serif,system-ui,sans-serif;background:#F5F5F5;color:#1D3557}
 a{text-decoration:none;color:inherit}
+h1{font-family:'Cormorant Unicase','Cormorant',Georgia,serif!important;font-weight:600!important}
+h2{font-family:'Cormorant Infant','Cormorant',Georgia,serif!important;font-weight:600!important}
+h3{font-family:'Cormorant Upright','Cormorant',Georgia,serif!important;font-weight:600!important}
 
 /* NAV */
 nav{background:#1D3557;padding:16px 32px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.2)}
@@ -26,7 +29,7 @@ nav{background:#1D3557;padding:16px 32px;position:sticky;top:0;z-index:100;box-s
 
 /* PAGE HEADER */
 .page-header{background:#1D3557;padding:64px 32px 56px;text-align:center}
-.page-header h1{font-family:'Cormorant Garamond','Cormorant',Georgia,serif;font-size:clamp(28px,4vw,48px);font-weight:600;color:#FFFFFF;margin-bottom:12px}
+.page-header h1{font-size:clamp(28px,4vw,48px);font-weight:600;color:#FFFFFF;margin-bottom:12px}
 .page-header p{color:#FFFFFF;opacity:0.65;font-size:1.05rem}
 
 /* FILTERS */
@@ -38,17 +41,26 @@ nav{background:#1D3557;padding:16px 32px;position:sticky;top:0;z-index:100;box-s
 /* SECTION */
 .browse-section{padding:48px 32px 16px}
 .browse-inner{max-width:1200px;margin:0 auto}
-.section-title{font-family:'Cormorant Garamond','Cormorant',Georgia,serif;font-size:1.3rem;font-weight:600;color:#1D3557;margin-bottom:24px;padding-bottom:12px;border-bottom:2px solid rgba(29,53,87,0.1)}
+.section-title{font-family:'Cormorant Infant','Cormorant',Georgia,serif;font-size:1.5rem;font-weight:600;color:#1D3557;margin-bottom:24px;padding-bottom:12px;border-bottom:2px solid rgba(29,53,87,0.1)}
 .card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.card{background:#FFFFFF;border:1px solid rgba(29,53,87,0.08);box-shadow:0 1px 3px rgba(0,0,0,0.1);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:12px}
-.card-price{font-size:2rem;font-weight:600;color:#C8A27A}
-.card-title{font-family:'Cormorant Garamond','Cormorant',Georgia,serif;font-size:1.375rem;font-weight:600;color:#1D3557}
-.card-desc{font-size:0.875rem;color:#1D3557;opacity:0.65;line-height:1.5;flex:1}
-.card-badge{display:inline-block;background:#6EA8DA;color:#1D3557;font-size:0.75rem;font-weight:600;padding:4px 10px;border-radius:20px;width:fit-content}
-.card-btn{display:inline-block;background:#2C6CB0;color:#FFFFFF;font-weight:600;padding:11px 20px;border-radius:8px;font-size:0.875rem;text-align:center;margin-top:4px;transition:opacity 0.2s}
-.card-btn:hover{opacity:0.9}
+
+/* NEW CARD LAYOUT */
+.card{background:#FFFFFF;border-radius:16px;box-shadow:0 2px 8px rgba(29,53,87,0.08);padding:24px;display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:box-shadow 0.2s;border:1px solid rgba(29,53,87,0.06)}
+.card:hover{box-shadow:0 4px 20px rgba(29,53,87,0.14)}
+.card-top{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px}
+.card-icon{width:48px;height:48px;border-radius:12px;background:#1D3557;color:#FFFFFF;font-weight:700;font-size:1.25rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Cormorant Unicase','Cormorant',Georgia,serif}
+.card-name-wrap{flex:1;min-width:0}
+.card-name{font-weight:700;color:#1D3557;font-size:1rem;line-height:1.25;margin-bottom:3px}
+.card-subtitle{font-size:0.8rem;color:rgba(29,53,87,0.6);line-height:1.4}
+.card-price-pill{background:#2C6CB0;color:#FFFFFF;font-size:0.82rem;font-weight:600;padding:6px 14px;border-radius:999px;white-space:nowrap;flex-shrink:0;align-self:flex-start}
+.card-price-pill.free{background:#6EA8DA;color:#1D3557}
+.card-desc{color:#1D3557;font-size:0.875rem;line-height:1.5;margin-bottom:16px;flex:1}
+.card-badge{display:inline-block;border:1px solid #6EA8DA;color:#1D3557;padding:4px 12px;border-radius:999px;font-size:0.8rem;width:fit-content;margin-bottom:16px}
+.card-bottom{border-top:1px solid rgba(29,53,87,0.08);padding-top:16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.card-creator{font-size:0.82rem;color:rgba(29,53,87,0.7)}
+.card-btn{background:#2C6CB0;color:#FFFFFF;border-radius:8px;padding:8px 20px;font-weight:600;font-size:0.82rem;transition:opacity 0.2s;white-space:nowrap;flex-shrink:0}
+.card-btn:hover{opacity:0.85}
 .card-btn.free{background:#6EA8DA;color:#1D3557}
-.card-btn.free:hover{opacity:0.9}
 
 /* SPACER */
 .spacer{padding-bottom:64px}
@@ -76,10 +88,6 @@ footer{background:#1D3557;color:#FFFFFF;padding:48px 32px}
   .card-grid{grid-template-columns:1fr}
   .footer-inner{flex-direction:column}
 }
-
-h1{font-family:'Cormorant Unicase','Cormorant',Georgia,serif!important;font-weight:600!important}
-h2{font-family:'Cormorant Infant','Cormorant',Georgia,serif!important;font-weight:600!important}
-h3{font-family:'Cormorant Upright','Cormorant',Georgia,serif!important;font-weight:600!important}
 </style>
 </head>
 <body>
@@ -126,27 +134,58 @@ h3{font-family:'Cormorant Upright','Cormorant',Georgia,serif!important;font-weig
   <div class="browse-inner">
     <div class="section-title">Consulting</div>
     <div class="card-grid">
-      <div class="card">
-        <div class="card-price">$497</div>
-        <div class="card-title">Roadmap</div>
-        <div class="card-desc">90-minute strategy session + custom AI operations roadmap + 30-day action plan</div>
+
+      <a href="products/roadmap.html" class="card">
+        <div class="card-top">
+          <div class="card-icon">A</div>
+          <div class="card-name-wrap">
+            <div class="card-name">Agent Blueprint Roadmap</div>
+            <div class="card-subtitle">90-min strategy session + custom AI ops roadmap</div>
+          </div>
+          <div class="card-price-pill">$497</div>
+        </div>
+        <div class="card-desc">90-minute strategy session + custom AI operations roadmap + 30-day action plan with specific tools, configurations, and milestones.</div>
         <div class="card-badge">Consulting</div>
-        <a href="https://buy.stripe.com/00wfZa2qE1AZ09F70z2Nq01" class="card-btn" target="_blank">Book Now →</a>
-      </div>
-      <div class="card">
-        <div class="card-price">$997</div>
-        <div class="card-title">Roadmap + Build</div>
-        <div class="card-desc">Strategy session + we build your core AI infrastructure</div>
+        <div class="card-bottom">
+          <span class="card-creator">SpiritTree</span>
+          <span class="card-btn">Book Now →</span>
+        </div>
+      </a>
+
+      <a href="products/roadmap-build.html" class="card">
+        <div class="card-top">
+          <div class="card-icon">R</div>
+          <div class="card-name-wrap">
+            <div class="card-name">Roadmap + Build</div>
+            <div class="card-subtitle">Strategy + we build your core AI infrastructure</div>
+          </div>
+          <div class="card-price-pill">$997</div>
+        </div>
+        <div class="card-desc">Everything in Roadmap, plus we configure your agent, set up memory systems, deploy monitoring, and hand you a working system — not just a plan.</div>
         <div class="card-badge">Consulting</div>
-        <a href="https://buy.stripe.com/9B63co8P2a7v3lRfx52Nq02" class="card-btn" target="_blank">Book Now →</a>
-      </div>
-      <div class="card">
-        <div class="card-price">$1,997</div>
-        <div class="card-title">Full Operations</div>
-        <div class="card-desc">Strategy + build + ongoing operations, monitoring, and optimization</div>
+        <div class="card-bottom">
+          <span class="card-creator">SpiritTree</span>
+          <span class="card-btn">Book Now →</span>
+        </div>
+      </a>
+
+      <a href="products/full-ops.html" class="card">
+        <div class="card-top">
+          <div class="card-icon">F</div>
+          <div class="card-name-wrap">
+            <div class="card-name">Full Operations</div>
+            <div class="card-subtitle">Strategy, build, and ongoing ops support</div>
+          </div>
+          <div class="card-price-pill">$1,997</div>
+        </div>
+        <div class="card-desc">The complete package. Strategy, build, and ongoing operations support. We build your entire AI ops stack and stay on to monitor and optimize it.</div>
         <div class="card-badge">Consulting</div>
-        <a href="https://buy.stripe.com/6oU00c0iw2F3aOj2Kj2Nq03" class="card-btn" target="_blank">Book Now →</a>
-      </div>
+        <div class="card-bottom">
+          <span class="card-creator">SpiritTree</span>
+          <span class="card-btn">Book Now →</span>
+        </div>
+      </a>
+
     </div>
   </div>
 </div>
@@ -156,34 +195,75 @@ h3{font-family:'Cormorant Upright','Cormorant',Georgia,serif!important;font-weig
   <div class="browse-inner">
     <div class="section-title">Digital Products</div>
     <div class="card-grid">
-      <div class="card">
-        <div class="card-price">$149</div>
-        <div class="card-title">CEO Operations Stack</div>
-        <div class="card-desc">Complete autonomous AI operations configuration</div>
-        <div class="card-badge">Digital</div>
-        <a href="https://buy.stripe.com/eVqeV63uI7ZnaOj5Wv2Nq09" class="card-btn" target="_blank">Buy Now →</a>
-      </div>
-      <div class="card">
-        <div class="card-price">$99</div>
-        <div class="card-title">SafeSpace Template</div>
-        <div class="card-desc">Tenant rights portal template for any jurisdiction</div>
-        <div class="card-badge">Digital</div>
-        <a href="https://buy.stripe.com/aFa4gsc1eenL6y3et12Nq08" class="card-btn" target="_blank">Buy Now →</a>
-      </div>
-      <div class="card">
-        <div class="card-price">$79</div>
-        <div class="card-title">Content Pipeline</div>
-        <div class="card-desc">Multi-agent content production pipeline</div>
-        <div class="card-badge">Digital</div>
-        <a href="https://buy.stripe.com/6oUbIU2qEa7vf4zet12Nq0a" class="card-btn" target="_blank">Buy Now →</a>
-      </div>
-      <div class="card">
-        <div class="card-price">$49</div>
-        <div class="card-title">DIY Setup Guide</div>
-        <div class="card-desc">Step-by-step OpenClaw setup guide</div>
-        <div class="card-badge">Digital</div>
-        <a href="https://buy.stripe.com/7sY00c2qE5Rf1dJacL2Nq07" class="card-btn" target="_blank">Buy Now →</a>
-      </div>
+
+      <a href="products/ceo-stack.html" class="card">
+        <div class="card-top">
+          <div class="card-icon">C</div>
+          <div class="card-name-wrap">
+            <div class="card-name">CEO Operations Stack</div>
+            <div class="card-subtitle">Complete autonomous AI ops configuration</div>
+          </div>
+          <div class="card-price-pill">$149</div>
+        </div>
+        <div class="card-desc">The complete autonomous AI operations configuration used to run SpiritTree — a real zero-employee company. Production-tested over 3+ months.</div>
+        <div class="card-badge">Digital Product</div>
+        <div class="card-bottom">
+          <span class="card-creator">SpiritTree</span>
+          <span class="card-btn">Buy Now →</span>
+        </div>
+      </a>
+
+      <a href="products/safespace-template.html" class="card">
+        <div class="card-top">
+          <div class="card-icon">S</div>
+          <div class="card-name-wrap">
+            <div class="card-name">SafeSpace Template</div>
+            <div class="card-subtitle">Launch a tenant rights portal for any city</div>
+          </div>
+          <div class="card-price-pill">$99</div>
+        </div>
+        <div class="card-desc">Launch a tenant rights portal for any city. Full codebase, Supabase schema, city config template, and deployment guide. 16 cities served.</div>
+        <div class="card-badge">Digital Product</div>
+        <div class="card-bottom">
+          <span class="card-creator">SpiritTree</span>
+          <span class="card-btn">Buy Now →</span>
+        </div>
+      </a>
+
+      <a href="products/content-pipeline.html" class="card">
+        <div class="card-top">
+          <div class="card-icon">C</div>
+          <div class="card-name-wrap">
+            <div class="card-name">Content Pipeline System</div>
+            <div class="card-subtitle">Multi-agent content production pipeline</div>
+          </div>
+          <div class="card-price-pill">$79</div>
+        </div>
+        <div class="card-desc">Multi-agent content production pipeline. Research → Draft → Edit → Publish across Substack, X/Twitter, Facebook, and Instagram.</div>
+        <div class="card-badge">Digital Product</div>
+        <div class="card-bottom">
+          <span class="card-creator">SpiritTree</span>
+          <span class="card-btn">Buy Now →</span>
+        </div>
+      </a>
+
+      <a href="products/diy-setup.html" class="card">
+        <div class="card-top">
+          <div class="card-icon">D</div>
+          <div class="card-name-wrap">
+            <div class="card-name">DIY Setup Guide</div>
+            <div class="card-subtitle">From zero to a working AI agent in one afternoon</div>
+          </div>
+          <div class="card-price-pill">$49</div>
+        </div>
+        <div class="card-desc">Step-by-step OpenClaw setup guide. Installation, configuration, first skills, memory setup, and basic automations — all in one afternoon.</div>
+        <div class="card-badge">Digital Product</div>
+        <div class="card-bottom">
+          <span class="card-creator">SpiritTree</span>
+          <span class="card-btn">Buy Now →</span>
+        </div>
+      </a>
+
     </div>
   </div>
 </div>
@@ -193,20 +273,41 @@ h3{font-family:'Cormorant Upright','Cormorant',Georgia,serif!important;font-weig
   <div class="browse-inner">
     <div class="section-title">Security</div>
     <div class="card-grid">
-      <div class="card">
-        <div class="card-price">$49</div>
-        <div class="card-title">Hardening Guide</div>
-        <div class="card-desc">13,000-word security hardening guide for AI agent deployments</div>
+
+      <a href="products/hardening-guide.html" class="card">
+        <div class="card-top">
+          <div class="card-icon">H</div>
+          <div class="card-name-wrap">
+            <div class="card-name">OpenClaw Hardening Guide</div>
+            <div class="card-subtitle">13,000-word production security guide</div>
+          </div>
+          <div class="card-price-pill">$49</div>
+        </div>
+        <div class="card-desc">13,000-word security hardening guide for AI agent deployments. 10 critical domains. Written from real attack scenarios, not theory.</div>
         <div class="card-badge">Security</div>
-        <a href="https://buy.stripe.com/8x25kwaXaa7v3lRacL2Nq0g" class="card-btn" target="_blank">Buy Now →</a>
-      </div>
-      <div class="card">
-        <div class="card-price">$297</div>
-        <div class="card-title">DFY Security Audit</div>
-        <div class="card-desc">Done-for-you security audit of your AI agent deployment</div>
-        <div class="card-badge">Security</div>
-        <a href="https://buy.stripe.com/6oUdR21mA3J709FckT2Nq0h" class="card-btn" target="_blank">Book Now →</a>
-      </div>
+        <div class="card-bottom">
+          <span class="card-creator">SpiritTree</span>
+          <span class="card-btn">Buy Now →</span>
+        </div>
+      </a>
+
+      <a href="products/dfy-audit.html" class="card">
+        <div class="card-top">
+          <div class="card-icon">D</div>
+          <div class="card-name-wrap">
+            <div class="card-name">Done-For-You Security Audit</div>
+            <div class="card-subtitle">We audit your full AI agent deployment</div>
+          </div>
+          <div class="card-price-pill">$297</div>
+        </div>
+        <div class="card-desc">We audit your AI agent deployment against OWASP Agentic Security standards. Detailed vulnerability report + prioritized fix-it instructions.</div>
+        <div class="card-badge">Service</div>
+        <div class="card-bottom">
+          <span class="card-creator">SpiritTree</span>
+          <span class="card-btn">Book Now →</span>
+        </div>
+      </a>
+
     </div>
   </div>
 </div>
@@ -216,13 +317,24 @@ h3{font-family:'Cormorant Upright','Cormorant',Georgia,serif!important;font-weig
   <div class="browse-inner">
     <div class="section-title">Bundle</div>
     <div class="card-grid">
-      <div class="card">
-        <div class="card-price">$29</div>
-        <div class="card-title">OpenClaw Mastery Bundle</div>
-        <div class="card-desc">10 PDF guides covering agent operations from zero to production</div>
+
+      <a href="products/mastery-bundle.html" class="card">
+        <div class="card-top">
+          <div class="card-icon">M</div>
+          <div class="card-name-wrap">
+            <div class="card-name">OpenClaw Mastery Bundle</div>
+            <div class="card-subtitle">10 PDF guides from zero to production</div>
+          </div>
+          <div class="card-price-pill">$29</div>
+        </div>
+        <div class="card-desc">10 PDF guides covering AI agent operations from zero to production. Memory, security, content, automation, multi-agent orchestration, and more.</div>
         <div class="card-badge">Bundle</div>
-        <a href="https://buy.stripe.com/bJe6oA6GUfrPf4zgB92Nq0f" class="card-btn" target="_blank">Buy Now →</a>
-      </div>
+        <div class="card-bottom">
+          <span class="card-creator">SpiritTree</span>
+          <span class="card-btn">Buy Now →</span>
+        </div>
+      </a>
+
     </div>
   </div>
 </div>
@@ -230,29 +342,60 @@ h3{font-family:'Cormorant Upright','Cormorant',Georgia,serif!important;font-weig
 <!-- FREE TOOLS -->
 <div class="browse-section spacer">
   <div class="browse-inner">
-    <div class="section-title">Free Tools</div>
+    <div class="section-title">Free Tools &amp; Public Goods</div>
     <div class="card-grid">
-      <div class="card">
-        <div class="card-price">Free</div>
-        <div class="card-title">SkillScan</div>
-        <div class="card-desc">Scan skill files for prompt injection, credential theft, and 8 other threat categories</div>
+
+      <a href="products/skillscan.html" class="card">
+        <div class="card-top">
+          <div class="card-icon">S</div>
+          <div class="card-name-wrap">
+            <div class="card-name">SkillScan</div>
+            <div class="card-subtitle">Security scanner for AI agent skill files</div>
+          </div>
+          <div class="card-price-pill free">Free</div>
+        </div>
+        <div class="card-desc">Scan skill files for prompt injection, credential theft, and 8 more threat categories. 50+ detection patterns, CLI with JSON output.</div>
         <div class="card-badge">Tool</div>
-        <a href="https://github.com/sedim3nt" class="card-btn free" target="_blank">Try Free →</a>
-      </div>
-      <div class="card">
-        <div class="card-price">Free</div>
-        <div class="card-title">SafeSpace</div>
-        <div class="card-desc">Tenant rights information for renters</div>
+        <div class="card-bottom">
+          <span class="card-creator">SpiritTree</span>
+          <span class="card-btn free">Try Free →</span>
+        </div>
+      </a>
+
+      <a href="products/safespace-free.html" class="card">
+        <div class="card-top">
+          <div class="card-icon">S</div>
+          <div class="card-name-wrap">
+            <div class="card-name">SafeSpace</div>
+            <div class="card-subtitle">Tenant rights information for renters</div>
+          </div>
+          <div class="card-price-pill free">Free</div>
+        </div>
+        <div class="card-desc">Free tenant rights information portal for renters. 16 cities across 6 states. Know-your-rights guides, complaint filing, legal aid.</div>
         <div class="card-badge">Public Good</div>
-        <a href="https://safespace.spirittree.dev" class="card-btn free" target="_blank">Visit →</a>
-      </div>
-      <div class="card">
-        <div class="card-price">Free</div>
-        <div class="card-title">MycoMaps</div>
-        <div class="card-desc">Mushroom retailer directory</div>
-        <div class="card-badge">Tool</div>
-        <a href="https://mycomaps.spirittree.dev" class="card-btn free" target="_blank">Visit →</a>
-      </div>
+        <div class="card-bottom">
+          <span class="card-creator">SpiritTree</span>
+          <span class="card-btn free">Visit →</span>
+        </div>
+      </a>
+
+      <a href="products/mycomaps.html" class="card">
+        <div class="card-top">
+          <div class="card-icon">M</div>
+          <div class="card-name-wrap">
+            <div class="card-name">MycoMaps</div>
+            <div class="card-subtitle">Mushroom retailer directory</div>
+          </div>
+          <div class="card-price-pill free">Free</div>
+        </div>
+        <div class="card-desc">Mushroom retailer directory. 100+ businesses across legal jurisdictions. Free for consumers forever. Dispensaries, delivery, product makers.</div>
+        <div class="card-badge">Public Good</div>
+        <div class="card-bottom">
+          <span class="card-creator">SpiritTree</span>
+          <span class="card-btn free">Visit →</span>
+        </div>
+      </a>
+
     </div>
   </div>
 </div>
