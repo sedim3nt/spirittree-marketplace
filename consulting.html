@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent Blueprint Consulting — SpiritTree</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #06162B;
+    --deep-blue: #0E2F52;
+    --teal: #2A5E7D;
+    --orange: #B56A3A;
+    --cream: #F1E8DD;
+    --white: #FFFFFF;
+  }
+  body { font-family: ui-sans-serif, system-ui, sans-serif; background: var(--cream); color: var(--deep-blue); line-height: 1.6; }
+
+  nav { background: var(--navy); padding: 0 40px; height: 64px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+  .nav-brand { font-family: 'Fraunces', Georgia, serif; font-size: 22px; font-weight: 700; color: var(--white); text-decoration: none; }
+  .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+  .nav-links a { color: var(--white); text-decoration: none; font-size: 15px; opacity: 0.85; transition: opacity 0.2s; }
+  .nav-links a:hover { opacity: 1; }
+  .nav-cta { background: var(--orange); color: var(--white) !important; opacity: 1 !important; padding: 8px 20px; border-radius: 8px; font-weight: 600; transition: background 0.2s !important; }
+  .nav-cta:hover { background: #9f5c2f !important; }
+  .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+  .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+
+  .page-header {
+    background: var(--navy);
+    color: var(--white);
+    padding: 80px 40px 72px;
+    text-align: center;
+  }
+  .page-header h1 { font-family: 'Fraunces', Georgia, serif; font-size: clamp(32px, 5vw, 52px); font-weight: 700; margin-bottom: 16px; }
+  .page-header p { font-size: 18px; opacity: 0.75; max-width: 580px; margin: 0 auto; line-height: 1.7; }
+
+  .tiers-section {
+    padding: 80px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .tiers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    align-items: start;
+  }
+
+  .tier-card {
+    background: var(--white);
+    border: 1px solid rgba(6,22,43,0.08);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-radius: 16px;
+    padding: 36px 28px;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .tier-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.12); transform: translateY(-2px); }
+  .tier-card.featured {
+    border: 2px solid var(--orange);
+    box-shadow: 0 4px 24px rgba(181,106,58,0.18);
+    position: relative;
+  }
+  .featured-badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--orange);
+    color: var(--white);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 4px 16px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .tier-name {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .tier-price {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--orange);
+    margin-bottom: 24px;
+    line-height: 1;
+  }
+  .tier-desc {
+    font-size: 14px;
+    color: var(--deep-blue);
+    margin-bottom: 28px;
+    line-height: 1.6;
+  }
+  .tier-features {
+    list-style: none;
+    margin-bottom: 32px;
+    flex: 1;
+  }
+  .tier-features li {
+    font-size: 14px;
+    color: var(--deep-blue);
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(6,22,43,0.06);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .tier-features li:last-child { border-bottom: none; }
+  .tier-features li::before {
+    content: '';
+    display: block;
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    background: var(--orange);
+    border-radius: 50%;
+    margin-top: 2px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M3 8l3.5 3.5L13 4' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-size: 12px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .btn-tier {
+    display: block;
+    background: var(--orange);
+    color: var(--white);
+    padding: 14px 24px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    transition: background 0.2s;
+    margin-top: auto;
+  }
+  .btn-tier:hover { background: #9f5c2f; }
+  .btn-tier-outline {
+    display: block;
+    background: transparent;
+    color: var(--teal);
+    padding: 14px 24px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    border: 2px solid var(--teal);
+    transition: background 0.2s, color 0.2s;
+    margin-top: auto;
+  }
+  .btn-tier-outline:hover { background: var(--teal); color: var(--white); }
+
+  .calendly-section {
+    background: var(--white);
+    padding: 80px 40px;
+    text-align: center;
+  }
+  .calendly-inner { max-width: 640px; margin: 0 auto; }
+  .calendly-section h2 { font-family: 'Fraunces', Georgia, serif; font-size: 32px; font-weight: 700; color: var(--navy); margin-bottom: 16px; }
+  .calendly-section p { font-size: 16px; color: var(--deep-blue); opacity: 0.8; margin-bottom: 32px; line-height: 1.7; }
+  .btn-calendly {
+    display: inline-block;
+    background: var(--orange);
+    color: var(--white);
+    padding: 16px 36px;
+    border-radius: 10px;
+    font-size: 17px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .btn-calendly:hover { background: #9f5c2f; }
+
+  .process-section {
+    padding: 80px 40px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .process-section h2 { font-family: 'Fraunces', Georgia, serif; font-size: 32px; font-weight: 700; color: var(--navy); margin-bottom: 48px; text-align: center; }
+  .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .process-step { text-align: center; }
+  .step-num { width: 48px; height: 48px; background: var(--orange); color: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Fraunces', Georgia, serif; font-size: 20px; font-weight: 700; margin: 0 auto 16px; }
+  .process-step h4 { font-family: 'Fraunces', Georgia, serif; font-size: 16px; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+  .process-step p { font-size: 13px; color: var(--deep-blue); opacity: 0.75; line-height: 1.5; }
+
+  footer { background: var(--navy); color: var(--white); padding: 40px; border-top: 1px solid rgba(255,255,255,0.08); }
+  .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+  .footer-brand { font-family: 'Fraunces', Georgia, serif; font-size: 18px; font-weight: 700; color: var(--white); text-decoration: none; }
+  .footer-copy { font-size: 13px; opacity: 0.6; }
+  .footer-links { display: flex; gap: 24px; list-style: none; }
+  .footer-links a { color: var(--white); text-decoration: none; font-size: 14px; opacity: 0.7; transition: opacity 0.2s; }
+  .footer-links a:hover { opacity: 1; }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; flex-direction: column; gap: 16px; position: absolute; top: 64px; left: 0; right: 0; background: var(--navy); padding: 24px 20px; }
+    .nav-links.open { display: flex; }
+    .nav-toggle { display: flex; }
+    .page-header { padding: 56px 20px 48px; }
+    .tiers-section { padding: 56px 20px; }
+    .tiers-grid { grid-template-columns: 1fr; }
+    .tier-card.featured { margin-top: 16px; }
+    .calendly-section { padding: 56px 20px; }
+    .process-section { padding: 56px 20px; }
+    .process-steps { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+    footer { padding: 32px 20px; }
+    .footer-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+  }
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .tiers-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand">SpiritTree</a>
+  <button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="browse.html">Browse</a></li>
+    <li><a href="consulting.html">Consulting</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="tools.html">Tools</a></li>
+    <li><a href="consulting.html" class="nav-cta">Get Started →</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <h1>Agent Blueprint Consulting</h1>
+  <p>We help operators build AI systems that run in production — not just demos. Three tiers, one outcome: you ship.</p>
+</div>
+
+<section class="tiers-section">
+  <div class="tiers-grid">
+
+    <div class="tier-card">
+      <div class="tier-name">Roadmap</div>
+      <div class="tier-price">$497</div>
+      <p class="tier-desc">The strategy session for operators who know they need AI but aren't sure where to start — or restart.</p>
+      <ul class="tier-features">
+        <li>90-minute strategy session</li>
+        <li>Custom AI roadmap for your business</li>
+        <li>30-day execution plan</li>
+        <li>Tool and stack recommendations</li>
+        <li>Written follow-up summary</li>
+      </ul>
+      <a href="https://buy.stripe.com/00wfZa2qE1AZ09F70z2Nq01" class="btn-tier-outline" target="_blank" rel="noopener">Get Roadmap →</a>
+    </div>
+
+    <div class="tier-card featured">
+      <div class="featured-badge">Most Popular</div>
+      <div class="tier-name">Roadmap + Build</div>
+      <div class="tier-price">$997</div>
+      <p class="tier-desc">Everything in Roadmap — plus we build core infrastructure alongside you so you actually launch.</p>
+      <ul class="tier-features">
+        <li>Everything in Roadmap</li>
+        <li>We build your core AI infrastructure</li>
+        <li>Live working sessions</li>
+        <li>Configuration files and documentation</li>
+        <li>1 week of async support post-build</li>
+      </ul>
+      <a href="https://buy.stripe.com/9B63co8P2a7v3lRfx52Nq02" class="btn-tier" target="_blank" rel="noopener">Get Roadmap + Build →</a>
+    </div>
+
+    <div class="tier-card">
+      <div class="tier-name">Full Operations</div>
+      <div class="tier-price">$1,997</div>
+      <p class="tier-desc">Full-service engagement for operators who want to move fast without breaking things.</p>
+      <ul class="tier-features">
+        <li>Everything in Roadmap + Build</li>
+        <li>Ongoing operations support</li>
+        <li>System monitoring setup</li>
+        <li>Monthly check-ins and iteration</li>
+        <li>Priority async access</li>
+      </ul>
+      <a href="https://buy.stripe.com/6oU00c0iw2F3aOj2Kj2Nq03" class="btn-tier-outline" target="_blank" rel="noopener">Get Full Ops →</a>
+    </div>
+
+  </div>
+</section>
+
+<section class="process-section">
+  <h2>How Consulting Works</h2>
+  <div class="process-steps">
+    <div class="process-step">
+      <div class="step-num">1</div>
+      <h4>Book a Call</h4>
+      <p>Schedule a free 15-minute intro via Calendly to make sure we're the right fit.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">2</div>
+      <h4>Strategy Session</h4>
+      <p>Deep dive into your operation, goals, and current AI stack or lack thereof.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">3</div>
+      <h4>Get Your Roadmap</h4>
+      <p>We deliver a custom roadmap and 30-day plan within 48 hours of your session.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num">4</div>
+      <h4>Ship</h4>
+      <p>Execute with support, or on your own. Either way, you leave with a clear path forward.</p>
+    </div>
+  </div>
+</section>
+
+<section class="calendly-section">
+  <div class="calendly-inner">
+    <h2>Not sure which tier?</h2>
+    <p>Book a free 15-minute intro call. We'll figure out the right engagement together — no pressure, no pitch.</p>
+    <a href="https://calendly.com/terraloam-eye/agent-consulting" class="btn-calendly" target="_blank" rel="noopener">Book a Free Intro Call →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="index.html" class="footer-brand">SpiritTree</a>
+      <p class="footer-copy" style="margin-top:6px;">© 2026 Nrvana LLC</p>
+    </div>
+    <ul class="footer-links">
+      <li><a href="browse.html">Browse</a></li>
+      <li><a href="consulting.html">Consulting</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="tools.html">Tools</a></li>
+      <li><a href="https://sedim3nt.substack.com" target="_blank" rel="noopener">Substack</a></li>
+      <li><a href="https://x.com/sedim3nt" target="_blank" rel="noopener">X</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
