@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Tools — SpiritTree</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #06162B;
+    --deep-blue: #0E2F52;
+    --teal: #2A5E7D;
+    --orange: #B56A3A;
+    --cream: #F1E8DD;
+    --white: #FFFFFF;
+  }
+  body { font-family: ui-sans-serif, system-ui, sans-serif; background: var(--cream); color: var(--deep-blue); line-height: 1.6; }
+
+  nav { background: var(--navy); padding: 0 40px; height: 64px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+  .nav-brand { font-family: 'Fraunces', Georgia, serif; font-size: 22px; font-weight: 700; color: var(--white); text-decoration: none; }
+  .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+  .nav-links a { color: var(--white); text-decoration: none; font-size: 15px; opacity: 0.85; transition: opacity 0.2s; }
+  .nav-links a:hover { opacity: 1; }
+  .nav-cta { background: var(--orange); color: var(--white) !important; opacity: 1 !important; padding: 8px 20px; border-radius: 8px; font-weight: 600; transition: background 0.2s !important; }
+  .nav-cta:hover { background: #9f5c2f !important; }
+  .nav-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+  .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--white); border-radius: 2px; }
+
+  .page-header {
+    background: var(--navy);
+    color: var(--white);
+    padding: 72px 40px 64px;
+  }
+  .page-header-inner { max-width: 1200px; margin: 0 auto; }
+  .page-header h1 { font-family: 'Fraunces', Georgia, serif; font-size: clamp(36px, 5vw, 52px); font-weight: 700; margin-bottom: 12px; }
+  .page-header p { font-size: 17px; opacity: 0.75; max-width: 520px; line-height: 1.7; }
+
+  .section { padding: 80px 40px; max-width: 1100px; margin: 0 auto; }
+
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .tool-card {
+    background: var(--white);
+    border: 1px solid rgba(6,22,43,0.08);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-radius: 16px;
+    padding: 36px 28px;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .tool-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.12); transform: translateY(-2px); }
+
+  .tool-icon {
+    width: 56px;
+    height: 56px;
+    background: var(--cream);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .tool-icon svg { width: 28px; height: 28px; stroke: var(--orange); fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+
+  .tool-tag { display: inline-block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--teal); background: rgba(42,94,125,0.08); padding: 4px 10px; border-radius: 20px; margin-bottom: 12px; align-self: flex-start; }
+  .tool-card h3 { font-family: 'Fraunces', Georgia, serif; font-size: 24px; font-weight: 700; color: var(--navy); margin-bottom: 12px; line-height: 1.2; }
+  .tool-card p { font-size: 15px; color: var(--deep-blue); line-height: 1.7; flex: 1; margin-bottom: 28px; }
+
+  .tool-badge {
+    display: inline-block;
+    background: rgba(42,94,125,0.1);
+    color: var(--teal);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    align-self: flex-start;
+  }
+
+  .btn-tool {
+    display: block;
+    background: var(--orange);
+    color: var(--white);
+    padding: 14px 24px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    transition: background 0.2s;
+    margin-top: auto;
+  }
+  .btn-tool:hover { background: #9f5c2f; }
+  .btn-tool-outline {
+    display: block;
+    background: transparent;
+    color: var(--teal);
+    padding: 14px 24px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    text-align: center;
+    border: 2px solid var(--teal);
+    transition: background 0.2s, color 0.2s;
+    margin-top: auto;
+  }
+  .btn-tool-outline:hover { background: var(--teal); color: var(--white); }
+
+  .tool-features {
+    list-style: none;
+    margin-bottom: 28px;
+  }
+  .tool-features li {
+    font-size: 14px;
+    color: var(--deep-blue);
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(6,22,43,0.06);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .tool-features li:last-child { border-bottom: none; }
+  .tool-features li::before {
+    content: '';
+    display: block;
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    background: var(--teal);
+    border-radius: 50%;
+    margin-top: 2px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none'%3E%3Cpath d='M3 8l3.5 3.5L13 4' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-size: 12px;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .mission-bar {
+    background: var(--deep-blue);
+    padding: 64px 40px;
+    text-align: center;
+  }
+  .mission-bar-inner { max-width: 640px; margin: 0 auto; }
+  .mission-bar h2 { font-family: 'Fraunces', Georgia, serif; font-size: 28px; font-weight: 700; color: var(--white); margin-bottom: 16px; }
+  .mission-bar p { font-size: 16px; color: rgba(255,255,255,0.75); line-height: 1.7; }
+
+  footer { background: var(--navy); color: var(--white); padding: 40px; border-top: 1px solid rgba(255,255,255,0.08); }
+  .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+  .footer-brand { font-family: 'Fraunces', Georgia, serif; font-size: 18px; font-weight: 700; color: var(--white); text-decoration: none; }
+  .footer-copy { font-size: 13px; opacity: 0.6; }
+  .footer-links { display: flex; gap: 24px; list-style: none; }
+  .footer-links a { color: var(--white); text-decoration: none; font-size: 14px; opacity: 0.7; transition: opacity 0.2s; }
+  .footer-links a:hover { opacity: 1; }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; flex-direction: column; gap: 16px; position: absolute; top: 64px; left: 0; right: 0; background: var(--navy); padding: 24px 20px; }
+    .nav-links.open { display: flex; }
+    .nav-toggle { display: flex; }
+    .page-header { padding: 48px 20px 40px; }
+    .section { padding: 56px 20px; }
+    .tools-grid { grid-template-columns: 1fr; }
+    .mission-bar { padding: 48px 20px; }
+    footer { padding: 32px 20px; }
+    .footer-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
+  }
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .tools-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand">SpiritTree</a>
+  <button class="nav-toggle" aria-label="Toggle menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links">
+    <li><a href="browse.html">Browse</a></li>
+    <li><a href="consulting.html">Consulting</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="tools.html">Tools</a></li>
+    <li><a href="consulting.html" class="nav-cta">Get Started →</a></li>
+  </ul>
+</nav>
+
+<div class="page-header">
+  <div class="page-header-inner">
+    <h1>Free Tools</h1>
+    <p>Public infrastructure built because it should exist. No paywalls, no accounts required — just useful tools.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="tools-grid">
+
+    <div class="tool-card">
+      <div class="tool-icon">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </div>
+      <span class="tool-tag">Assessment Tool</span>
+      <span class="tool-badge">Free</span>
+      <h3>SkillScan</h3>
+      <p>Assess your AI readiness across key competency areas. Identify gaps, prioritize your learning, and get a clear picture of where you stand as an AI operator.</p>
+      <ul class="tool-features">
+        <li>AI competency self-assessment</li>
+        <li>Gap analysis and prioritization</li>
+        <li>Skill map for operators and teams</li>
+        <li>No account required</li>
+      </ul>
+      <a href="https://github.com/sedim3nt" class="btn-tool-outline" target="_blank" rel="noopener">View on GitHub →</a>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+      </div>
+      <span class="tool-tag">Civic Tech</span>
+      <span class="tool-badge">Free</span>
+      <h3>SafeSpace</h3>
+      <p>Anonymous reporting infrastructure for renters, tenants, and community members. Built privacy-first so people can report landlord violations and housing issues without fear.</p>
+      <ul class="tool-features">
+        <li>Anonymous report submission</li>
+        <li>No login or personal info required</li>
+        <li>End-to-end privacy architecture</li>
+        <li>Open source</li>
+      </ul>
+      <a href="https://safespace.spirittree.dev" class="btn-tool" target="_blank" rel="noopener">Launch SafeSpace →</a>
+    </div>
+
+    <div class="tool-card">
+      <div class="tool-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+      </div>
+      <span class="tool-tag">Community Science</span>
+      <span class="tool-badge">Free</span>
+      <h3>MycoMaps</h3>
+      <p>Community-sourced mushroom and fungi mapping for foragers and mycology researchers. Add sightings, explore regional data, and contribute to open ecological knowledge.</p>
+      <ul class="tool-features">
+        <li>Interactive fungi sighting map</li>
+        <li>Community-contributed data</li>
+        <li>Regional species filtering</li>
+        <li>Open data export</li>
+      </ul>
+      <a href="https://mycomaps.spirittree.dev" class="btn-tool" target="_blank" rel="noopener">Launch MycoMaps →</a>
+    </div>
+
+  </div>
+</section>
+
+<section class="mission-bar">
+  <div class="mission-bar-inner">
+    <h2>Built Because It Should Exist</h2>
+    <p>Some things shouldn't be behind a paywall. These tools exist because the infrastructure matters — for renters, for researchers, for operators trying to figure out where they stand. Use them freely.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="index.html" class="footer-brand">SpiritTree</a>
+      <p class="footer-copy" style="margin-top:6px;">© 2026 Nrvana LLC</p>
+    </div>
+    <ul class="footer-links">
+      <li><a href="browse.html">Browse</a></li>
+      <li><a href="consulting.html">Consulting</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="tools.html">Tools</a></li>
+      <li><a href="https://sedim3nt.substack.com" target="_blank" rel="noopener">Substack</a></li>
+      <li><a href="https://x.com/sedim3nt" target="_blank" rel="noopener">X</a></li>
+    </ul>
+  </div>
+</footer>
+
+</body>
+</html>
