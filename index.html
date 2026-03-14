@@ -77,15 +77,16 @@
 
     .product-card {
       background: #ffffff;
-      border: 1px solid #ccfbf1;
+      border: 1px solid #E2E8F0;
       border-radius: 12px;
       overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
       transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     }
     .product-card:hover {
       transform: translateY(-3px);
-      border-color: rgba(13,148,136,0.4);
-      box-shadow: 0 8px 24px rgba(13,148,136,0.1);
+      border-color: rgba(13,148,136,0.45);
+      box-shadow: 0 8px 24px rgba(13,148,136,0.12);
     }
 
     /* Bundle hero card */
@@ -120,8 +121,9 @@
     /* Mastery guide compact card */
     .mastery-card {
       background: #ffffff;
-      border: 1px solid #ccfbf1;
-      border-radius: 8px;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
       padding: 16px;
       transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
       display: flex;
@@ -131,7 +133,7 @@
     .mastery-card:hover {
       transform: translateY(-2px);
       border-color: rgba(13,148,136,0.4);
-      box-shadow: 0 4px 16px rgba(13,148,136,0.1);
+      box-shadow: 0 6px 18px rgba(13,148,136,0.1);
     }
 
     /* Vendor section */
@@ -287,16 +289,18 @@
     }
 
     .card-img-wrapper {
-      height: 120px;
+      height: 110px;
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
     }
     .icon-wrap {
       font-size: 2.5rem;
       position: relative;
       z-index: 1;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.08));
     }
 
     .mastery-num {
@@ -475,7 +479,7 @@
 
       <!-- Individual Guides Grid -->
       <p style="font-size: 0.85rem; color: #64748b; margin: 0 0 16px;">Or get individual guides — <strong style="color: #1e293b;">$29 each</strong></p>
-      <div class="mastery-grid product-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 48px;">
+      <div class="mastery-grid product-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 48px;">
 
         <!-- Guide 1 -->
         <article class="mastery-card product-card" data-category="mastery" data-name="foundation setup openclaw mastery guide 1" data-desc="openclaw installation setup foundation configuration">
@@ -619,9 +623,9 @@
             <p style="font-size: 0.8rem; color: #64748b; line-height: 1.6; margin: 0 0 16px;">
               The exact setup guide for running a production-grade AI agent on your own hardware. Multi-channel, multi-agent, memory-backed — ready to ship.
             </p>
-            <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 16px;">
-              <div class="price-tag">$49</div>
-              <span style="font-size: 0.75rem; color: #64748b;">Instant download</span>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding: 10px 12px; background: #f0fdfa; border-radius: 8px; border: 1px solid #ccfbf1;">
+              <div class="price-tag" style="font-size: 1.75rem; color: #0d9488;">$49</div>
+              <span style="font-size: 0.72rem; color: #64748b; font-weight: 500;">Instant download</span>
             </div>
             <a href="https://buy.stripe.com/7sYfZaaXa7Zn6y3cxX2Nq07" class="btn-primary" target="_blank" rel="noopener">Buy Now →</a>
           </div>
@@ -638,9 +642,9 @@
             <p style="font-size: 0.8rem; color: #64748b; line-height: 1.6; margin: 0 0 16px;">
               Multi-agent writing pipeline — research, draft, edit, publish. Brand voice system included. Built for operators who ship content at scale.
             </p>
-            <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 16px;">
-              <div class="price-tag">$79</div>
-              <span style="font-size: 0.75rem; color: #64748b;">Instant download</span>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding: 10px 12px; background: #f0fdfa; border-radius: 8px; border: 1px solid #ccfbf1;">
+              <div class="price-tag" style="font-size: 1.75rem; color: #0d9488;">$79</div>
+              <span style="font-size: 0.72rem; color: #64748b; font-weight: 500;">Instant download</span>
             </div>
             <a href="https://buy.stripe.com/6oUbIU2qEa7vf4zet12Nq0a" class="btn-primary" target="_blank" rel="noopener">Buy Now →</a>
           </div>
@@ -657,9 +661,9 @@
             <p style="font-size: 0.8rem; color: #64748b; line-height: 1.6; margin: 0 0 16px;">
               AI-assisted civic tech toolkit for anonymous reporting, landlord accountability, and renter protection campaigns. Inspired by real Boulder advocacy work.
             </p>
-            <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 16px;">
-              <div class="price-tag">$99</div>
-              <span style="font-size: 0.75rem; color: #64748b;">Instant download</span>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding: 10px 12px; background: #f0fdfa; border-radius: 8px; border: 1px solid #ccfbf1;">
+              <div class="price-tag" style="font-size: 1.75rem; color: #0d9488;">$99</div>
+              <span style="font-size: 0.72rem; color: #64748b; font-weight: 500;">Instant download</span>
             </div>
             <a href="https://buy.stripe.com/aFa4gsc1eenL6y3et12Nq08" class="btn-primary" target="_blank" rel="noopener">Buy Now →</a>
           </div>
@@ -676,9 +680,9 @@
             <p style="font-size: 0.8rem; color: #64748b; line-height: 1.6; margin: 0 0 16px;">
               Slash your LLM API spend without sacrificing quality. Token efficiency patterns, model routing strategies, and prompt compression guides from real production ops.
             </p>
-            <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 16px;">
-              <div class="price-tag">$149</div>
-              <span style="font-size: 0.75rem; color: #64748b;">Instant download</span>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding: 10px 12px; background: #f0fdfa; border-radius: 8px; border: 1px solid #ccfbf1;">
+              <div class="price-tag" style="font-size: 1.75rem; color: #0d9488;">$149</div>
+              <span style="font-size: 0.72rem; color: #64748b; font-weight: 500;">Instant download</span>
             </div>
             <a href="https://buy.stripe.com/eVqeV63uI7ZnaOj5Wv2Nq09" class="btn-primary" target="_blank" rel="noopener">Buy Now →</a>
           </div>
@@ -706,9 +710,9 @@
             <p style="font-size: 0.8rem; color: #64748b; line-height: 1.6; margin: 0 0 16px;">
               90-minute deep-dive to map your AI automation opportunities, prioritize high-leverage use cases, and build a 90-day execution plan.
             </p>
-            <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 16px;">
-              <div class="price-tag">$497</div>
-              <span style="font-size: 0.75rem; color: #64748b;">1:1 session</span>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding: 10px 12px; background: #eff6ff; border-radius: 8px; border: 1px solid #bfdbfe;">
+              <div class="price-tag" style="font-size: 1.75rem; color: #2563EB;">$497</div>
+              <span style="font-size: 0.72rem; color: #64748b; font-weight: 500;">1:1 session</span>
             </div>
             <a href="https://buy.stripe.com/00wfZa2qE1AZ09F70z2Nq01" class="btn-primary" target="_blank" rel="noopener">Book Now →</a>
           </div>
@@ -725,9 +729,9 @@
             <p style="font-size: 0.8rem; color: #64748b; line-height: 1.6; margin: 0 0 16px;">
               Strategy session plus hands-on build. We scope, plan, and I implement your first AI automation or agent system. Includes code, docs, and handoff walkthrough.
             </p>
-            <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 16px;">
-              <div class="price-tag">$997</div>
-              <span style="font-size: 0.75rem; color: #64748b;">Session + build</span>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding: 10px 12px; background: #eff6ff; border-radius: 8px; border: 1px solid #bfdbfe;">
+              <div class="price-tag" style="font-size: 1.75rem; color: #2563EB;">$997</div>
+              <span style="font-size: 0.72rem; color: #64748b; font-weight: 500;">Session + build</span>
             </div>
             <a href="https://buy.stripe.com/9B63co8P2a7v3lRfx52Nq02" class="btn-primary" target="_blank" rel="noopener">Book Now →</a>
           </div>
@@ -744,9 +748,9 @@
             <p style="font-size: 0.8rem; color: #64748b; line-height: 1.6; margin: 0 0 16px;">
               Full-stack AI operations deployment. We build your agent network end-to-end — from architecture to live production with monitoring, memory, and tooling configured.
             </p>
-            <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 16px;">
-              <div class="price-tag">$1,997</div>
-              <span style="font-size: 0.75rem; color: #64748b;">Full deployment</span>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding: 10px 12px; background: #eff6ff; border-radius: 8px; border: 1px solid #bfdbfe;">
+              <div class="price-tag" style="font-size: 1.75rem; color: #2563EB;">$1,997</div>
+              <span style="font-size: 0.72rem; color: #64748b; font-weight: 500;">Full deployment</span>
             </div>
             <a href="https://buy.stripe.com/6oU00c0iw2F3aOj2Kj2Nq03" class="btn-primary" target="_blank" rel="noopener">Book Now →</a>
           </div>
@@ -774,9 +778,9 @@
             <p style="font-size: 0.8rem; color: #64748b; line-height: 1.6; margin: 0 0 16px;">
               Audit your SaaS stack and identify what to kill, replace, or build custom. Most businesses can cut 60–80% of tool spend with targeted AI automation.
             </p>
-            <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 16px;">
-              <div style="font-size: 0.875rem; font-weight: 600; color: #0d9488;">Custom pricing</div>
-              <span style="font-size: 0.75rem; color: #64748b;">Discovery call</span>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding: 10px 12px; background: #f0fdfa; border-radius: 8px; border: 1px solid #ccfbf1;">
+              <div style="font-size: 1.1rem; font-weight: 700; color: #0d9488;">Custom pricing</div>
+              <span style="font-size: 0.72rem; color: #64748b; font-weight: 500;">Discovery call</span>
             </div>
             <a href="https://spirittree.dev/saas-killer.html" class="btn-outline" target="_blank" rel="noopener">Learn More →</a>
           </div>
@@ -796,9 +800,9 @@
             <p style="font-size: 0.8rem; color: #64748b; line-height: 1.6; margin: 0 0 16px;">
               Get your mycology business, farm, or foraging tour listed on MycoMaps — the emerging directory for the fungi economy. Early access slots limited.
             </p>
-            <div style="display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 16px;">
-              <div style="font-size: 0.875rem; font-weight: 600; color: #94a3b8;">TBA</div>
-              <span style="font-size: 0.75rem; color: #64748b;">Early access</span>
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; padding: 10px 12px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
+              <div style="font-size: 1.1rem; font-weight: 700; color: #94a3b8;">TBA</div>
+              <span style="font-size: 0.72rem; color: #64748b; font-weight: 500;">Early access</span>
             </div>
             <div class="btn-coming-soon">Coming Soon</div>
           </div>
