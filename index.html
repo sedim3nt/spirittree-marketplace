@@ -25,8 +25,8 @@ nav{background:#1D3557;padding:16px 32px;position:sticky;top:0;z-index:100;box-s
 .mobile-menu .nav-cta{display:inline-block;width:fit-content}
 
 /* HERO */
-.hero{background:#F5F5F5;padding:96px 32px 80px;text-align:left}
-.hero-inner{max-width:1200px;margin:0 auto}
+.hero{background:#FFFFFF;padding:96px 32px 80px;text-align:left}
+.hero-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:64px}
 .hero h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(36px,5vw,56px);font-weight:700;color:#1D3557;line-height:1.1;margin-bottom:20px}
 .hero p{font-size:1.1rem;color:#1D3557;opacity:0.75;line-height:1.65;max-width:580px;margin:0 0 36px}
 .hero-btns{display:flex;gap:16px;justify-content:flex-start;flex-wrap:wrap}
@@ -111,6 +111,17 @@ footer{background:#1D3557;color:#FFFFFF;padding:48px 32px}
   .value-grid>.value-card:last-child{grid-column:span 1}
   .footer-inner{flex-direction:column}
 }
+
+.hero-left{flex:1;min-width:0}
+.hero-right{flex:0 0 280px;display:flex;flex-direction:column;gap:24px}
+.hero-vp{padding:20px 24px;background:#F5F5F5;border-radius:12px}
+.hero-vp h3{font-family:'Fraunces',Georgia,serif;font-size:1rem;font-weight:700;color:#1D3557;margin:0 0 6px}
+.hero-vp p{font-size:0.875rem;color:#1D3557;opacity:0.7;margin:0;line-height:1.5}
+
+@media(max-width:768px){
+.hero-inner{flex-direction:column;gap:32px}
+.hero-right{flex:none;width:100%}
+}
 </style>
 </head>
 <body>
@@ -138,6 +149,7 @@ footer{background:#1D3557;color:#FFFFFF;padding:48px 32px}
 
 <section class="hero">
   <div class="hero-inner">
+    <div class="hero-left">
     <h1>AI Operations.<br>Built to Ship.</h1>
     <p>Production-tested AI configurations, security tools, and consulting — from operators who run real AI systems.</p>
     <div class="hero-btns">
@@ -147,25 +159,7 @@ footer{background:#1D3557;color:#FFFFFF;padding:48px 32px}
   </div>
 </section>
 
-<section class="value-props">
-  <div class="value-props-inner">
-    <div class="section-label">Why SpiritTree</div>
-    <div class="value-grid">
-      <div class="value-card">
-        <h3>Production-Tested</h3>
-        <p>Configs from real 24/7 AI operations</p>
-      </div>
-      <div class="value-card">
-        <h3>Security-First</h3>
-        <p>Built with OWASP agentic security standards</p>
-      </div>
-      <div class="value-card">
-        <h3>Expert Support</h3>
-        <p>Direct access to multi-agent system operators</p>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 <section class="products">
   <div class="products-inner">
