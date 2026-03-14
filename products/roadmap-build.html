@@ -4,185 +4,83 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Roadmap + Build — SpiritTree</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Cormorant+Infant:wght@600&family=Cormorant+SC:wght@600&family=Cormorant+Upright:wght@600&family=Cormorant+Unicase:wght@600&display=swap" rel="stylesheet">
 <style>
-
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:ui-sans-serif,system-ui,sans-serif;background:#F5F5F5;color:#1D3557}
+body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#faf8f5;color:#1a1a2e}
 a{text-decoration:none;color:inherit}
-h1{font-family:'Cormorant Unicase','Cormorant',Georgia,serif!important;font-weight:600!important}
-h2{font-family:'Cormorant Infant','Cormorant',Georgia,serif!important;font-weight:600!important}
-h3{font-family:'Cormorant Upright','Cormorant',Georgia,serif!important;font-weight:600!important}
-
-/* NAV */
-nav{background:#1D3557;padding:16px 32px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.2)}
-.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:32px}
-.brand{font-family:'Cormorant Garamond','Cormorant',Georgia,serif;font-weight:600;font-size:1.75rem;color:#FFFFFF;margin-right:auto}
-.nav-links{display:flex;gap:24px}
-.nav-links a{color:#FFFFFF;font-size:0.95rem;opacity:0.9;transition:opacity 0.2s}
-.nav-links a:hover{opacity:1}
-.nav-cta{background:#C8A27A;color:#1D3557;font-weight:600;padding:10px 20px;border-radius:8px;font-size:0.9rem;white-space:nowrap;transition:opacity 0.2s}
-.nav-cta:hover{opacity:0.9}
-.hamburger{display:none;background:none;border:none;color:#FFFFFF;font-size:1.875rem;cursor:pointer;margin-left:auto}
-.mobile-menu{display:none;background:#1D3557;padding:16px 32px;flex-direction:column;gap:16px}
-.mobile-menu a{color:#FFFFFF;font-size:1rem;opacity:0.9}
-.mobile-menu .nav-cta{display:inline-block;width:fit-content}
-
-/* FOOTER */
-footer{background:#1D3557;color:#FFFFFF;padding:48px 32px}
-.footer-inner{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start;justify-content:space-between}
-.footer-brand{font-family:'Cormorant Garamond','Cormorant',Georgia,serif;font-size:1.75rem;font-weight:600}
-.footer-links{display:flex;flex-wrap:wrap;gap:20px}
-.footer-links a{color:#FFFFFF;opacity:0.75;font-size:0.9rem;transition:opacity 0.2s}
-.footer-links a:hover{opacity:1}
-.footer-copy{color:#FFFFFF;opacity:0.45;font-size:0.8rem;width:100%;margin-top:8px}
-
-/* DETAIL PAGE */
-.detail-wrap{max-width:1200px;margin:0 auto;padding:48px 32px;display:grid;grid-template-columns:60fr 40fr;gap:48px;align-items:start}
-.detail-left{}
-.back-link{display:inline-flex;align-items:center;gap:6px;color:rgba(29,53,87,0.6);font-size:0.875rem;margin-bottom:24px;transition:color 0.2s}
-.back-link:hover{color:#2C6CB0}
-.detail-left h1{font-size:clamp(30px,4vw,50px);color:#1D3557;line-height:1.1;margin-bottom:12px}
-.detail-subtitle{font-size:1.1rem;color:rgba(29,53,87,0.65);margin-bottom:20px;line-height:1.5}
-.detail-badge{display:inline-block;border:1px solid #6EA8DA;color:#1D3557;padding:5px 14px;border-radius:999px;font-size:0.82rem;margin-bottom:36px}
-.detail-section{margin-bottom:40px}
-.detail-section h2{font-size:clamp(20px,2.5vw,28px);color:#1D3557;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid rgba(29,53,87,0.08)}
-.detail-section p{color:#1D3557;line-height:1.65;margin-bottom:14px;font-size:0.95rem}
-.detail-section ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:10px}
-.detail-section ul li{display:flex;align-items:flex-start;gap:10px;color:#1D3557;font-size:0.95rem;line-height:1.5}
-.detail-section ul li::before{content:"✓";color:#2C6CB0;font-weight:700;flex-shrink:0;margin-top:1px}
-.version-entry{background:#FFFFFF;border-radius:12px;padding:20px 24px;border:1px solid rgba(29,53,87,0.08)}
-.version-tag{font-weight:700;color:#1D3557;margin-bottom:8px;font-size:0.95rem}
-.version-entry p{color:rgba(29,53,87,0.7);font-size:0.875rem;margin:0}
-
-/* PURCHASE CARD */
-.detail-right{position:sticky;top:88px}
-.purchase-card{background:#FFFFFF;border-radius:16px;box-shadow:0 4px 24px rgba(29,53,87,0.1);padding:32px;border:1px solid rgba(29,53,87,0.06)}
-.purchase-price{font-family:'Cormorant Unicase','Cormorant',Georgia,serif;font-size:3rem;font-weight:600;color:#C8A27A;line-height:1;margin-bottom:4px}
-.purchase-label{font-size:0.82rem;color:rgba(29,53,87,0.55);margin-bottom:24px}
-.buy-now-btn{display:block;width:100%;background:#2C6CB0;color:#FFFFFF;font-weight:700;padding:14px;border-radius:8px;text-align:center;font-size:1rem;margin-bottom:28px;transition:opacity 0.2s}
-.buy-now-btn:hover{opacity:0.88}
-.buy-now-btn.free-btn{background:#6EA8DA;color:#1D3557}
-.details-list{border-top:1px solid rgba(29,53,87,0.08);padding-top:20px;display:flex;flex-direction:column;gap:12px}
-.detail-row{display:flex;justify-content:space-between;align-items:center;font-size:0.875rem}
-.detail-row dt{color:rgba(29,53,87,0.55);font-weight:normal}
-.detail-row dd{color:#1D3557;font-weight:600;text-align:right}
-
-/* RESPONSIVE */
-@media(max-width:768px){
-  .nav-links,.nav-cta{display:none}
-  .hamburger{display:block}
-  .mobile-menu.open{display:flex}
-  footer{padding:40px 20px}
-  .detail-wrap{grid-template-columns:1fr;gap:32px;padding:32px 20px}
-  .detail-right{position:static}
-  .detail-left h1{font-size:clamp(26px,7vw,42px)}
-}
-
+:root{--sand-50:#faf8f5;--white:#fff;--ink-900:#1a1a2e;--ink-700:#2d2d44;--ink-600:#4a4a5a;--ink-500:#6b6b7a;--tide-600:#0d9488;--tide-700:#0f766e;--border-subtle:rgba(26,26,46,0.05);--border-card:rgba(26,26,46,0.1);--tide-light:rgba(13,148,136,0.1);--shadow-card:0 1px 3px rgba(26,26,46,0.08);--radius:4px;--max-w:1152px}
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:rgba(250,248,245,0.8);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.nw{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
+@media(min-width:640px){.nw{padding:16px 24px}}
+.nb{font-size:1.25rem;font-weight:700;color:var(--ink-900)}
+.nl{display:none;align-items:center;gap:24px;font-size:.875rem;font-weight:500;color:var(--ink-700)}
+@media(min-width:768px){.nl{display:flex}}
+.nl a:hover{color:var(--ink-900)}
+.nli{border:1px solid rgba(26,26,46,.15);padding:6px 12px;border-radius:var(--radius);font-size:.875rem;font-weight:600;color:var(--ink-900)}
+.nli:hover{background:var(--ink-900);color:var(--white)}
+.hb{display:flex;background:none;border:none;color:var(--ink-900);font-size:1.5rem;cursor:pointer}
+@media(min-width:768px){.hb{display:none}}
+.mm{display:none;flex-direction:column;gap:16px;padding:16px 24px;background:var(--sand-50);border-bottom:1px solid var(--border-subtle)}
+.mm.open{display:flex}
+.mm a{font-size:1rem;color:var(--ink-700);font-weight:500}
+.pp{max-width:var(--max-w);margin:0 auto;padding:48px 24px 80px;display:grid;grid-template-columns:1fr 340px;gap:40px;align-items:start}
+.pm h1{font-size:1.75rem;font-weight:800;color:var(--ink-900);margin-bottom:8px}
+.pm .cat{font-size:.8125rem;color:var(--tide-600);font-weight:600;margin-bottom:24px}
+.pm h2{font-size:1.125rem;font-weight:700;color:var(--ink-900);margin:28px 0 12px}
+.pm p{font-size:.9375rem;color:var(--ink-600);line-height:1.7;margin-bottom:16px}
+.pm ul{margin:0 0 16px 20px;color:var(--ink-600);font-size:.9375rem;line-height:1.7}
+.pm li{margin-bottom:6px}
+.pc{position:sticky;top:100px;background:var(--white);border:1px solid var(--border-subtle);border-radius:var(--radius);box-shadow:var(--shadow-card);padding:28px 24px;display:flex;flex-direction:column;gap:16px}
+.pc .price{font-size:2rem;font-weight:800;color:var(--ink-900)}
+.pc .lbl{font-size:.8125rem;color:var(--ink-600)}
+.pbtn{display:block;background:var(--tide-600);color:var(--white);font-weight:600;padding:14px 20px;border-radius:var(--radius);font-size:1rem;text-align:center;transition:background .2s}
+.pbtn:hover{background:var(--tide-700)}
+.pc .cr{font-size:.8125rem;color:var(--ink-500);text-align:center}
+.bl{display:inline-block;font-size:.875rem;color:var(--tide-600);font-weight:500;margin-bottom:20px}
+.bl:hover{color:var(--tide-700)}
+footer{border-top:1px solid var(--border-subtle);background:var(--white)}
+.fi{max-width:var(--max-w);margin:0 auto;padding:40px 24px}
+.fg{display:grid;gap:40px;grid-template-columns:1fr 1fr}
+.fc p.fb{font-size:.875rem;font-weight:700;color:var(--ink-900);margin-bottom:12px}
+.fc nav{display:flex;flex-direction:column;gap:8px}
+.fc nav a{font-size:.875rem;color:var(--ink-600)}
+.fc nav a:hover{color:var(--ink-900)}
+.fbot{margin-top:32px;border-top:1px solid var(--border-subtle);padding-top:24px}
+.fbot p{font-size:.8125rem;color:var(--ink-500)}
+@media(max-width:768px){.pp{grid-template-columns:1fr}.pc{position:static}}
+@media(max-width:600px){.fg{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
+<header><div class="nw"><a class="nb" href="../index.html">SpiritTree</a><nav class="nl"><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a><a href="../about.html">About</a><a href="../blog.html">Blog</a><a href="../tools.html">Tools</a><a href="../login.html" class="nli">Login / Sign Up</a></nav><button class="hb" onclick="document.querySelector('.mm').classList.toggle('open')" aria-label="Menu">&#9776;</button></div></header>
+<div class="mm"><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a><a href="../about.html">About</a><a href="../blog.html">Blog</a><a href="../tools.html">Tools</a><a href="../login.html">Login / Sign Up</a></div>
 
-<nav>
-  <div class="nav-inner">
-    <a href="../index.html" class="brand">SpiritTree</a>
-    <div class="nav-links">
-      <a href="../browse.html">Browse</a>
-      <a href="../consulting.html">Consulting</a>
-      <a href="../blog.html">Blog</a>
-      <a href="../tools.html">Tools</a>
-    </div>
-    <a href="../consulting.html" class="nav-cta">Get Started →</a>
-    <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">&#9776;</button>
-  </div>
-</nav>
-<div class="mobile-menu">
-  <a href="../browse.html">Browse</a>
-  <a href="../consulting.html">Consulting</a>
-  <a href="../blog.html">Blog</a>
-  <a href="../tools.html">Tools</a>
-  <a href="../consulting.html" class="nav-cta">Get Started →</a>
-</div>
-
-<div class="detail-wrap">
-  <div class="detail-left">
-    <a href="../browse.html" class="back-link">← Back to marketplace</a>
+<div class="pp">
+  <div class="pm">
+    <a href="../browse.html" class="bl">&larr; Back to Browse</a>
     <h1>Roadmap + Build</h1>
-    <p class="detail-subtitle">Strategy session + we build your core AI infrastructure</p>
-    <span class="detail-badge">Consulting</span>
-
-    <div class="detail-section">
-      <h2>About</h2>
-      <p>The Roadmap + Build tier takes you from strategy to execution in one engagement. Everything in the Roadmap tier — the audit, the plan, the transcript — plus we actually build it.</p>
-<p>We configure your core agent infrastructure: OpenClaw or equivalent setup, memory architecture, skill configurations, monitoring hooks, and integration testing against your existing tools. When we hand it off, it's running.</p>
-<p>This tier is designed for operators who don't want to spend weeks translating a strategy document into working code. You get the thinking and the execution. We configure your agent roster, set up daily and long-term memory systems, and deploy basic cron automations.</p>
-<p>Two weeks of email support post-delivery so you can ask questions as you start using the system in production.</p>
-    </div>
-
-    <div class="detail-section">
-      <h2>What's Included</h2>
-      <ul>
-        <li>Everything in Roadmap</li>
-<li>Core infrastructure built & deployed</li>
-<li>Agent configurations set up</li>
-<li>Memory system architecture</li>
-<li>Integration testing</li>
-<li>2 weeks email support</li>
-      </ul>
-    </div>
-
-    <div class="detail-section">
-      <h2>Version History</h2>
-      <div class="version-entry">
-        <div class="version-tag">Version 1 · March 2026</div>
-        <p>Initial release. Build scope covers OpenClaw v1.x deployments. Updated to include multi-agent roster configuration as a standard deliverable.</p>
-      </div>
-    </div>
+    <div class="cat">Consulting</div>
+    <p>Everything in the Roadmap tier, plus we actually build your core AI infrastructure. You get a working system — not just a plan.</p>
+    <h2>What's included</h2>
+    <ul>
+      <li>Everything in the Roadmap tier</li>
+      <li>Core infrastructure built and configured for you</li>
+      <li>Agent configurations deployed</li>
+      <li>Memory architecture setup</li>
+      <li>Integration testing</li>
+      <li>2 weeks of email support post-delivery</li>
+    </ul>
+    <h2>Who this is for</h2>
+    <p>Teams and founders who want hands-on help getting their AI operations stack running. You know what you need — you want someone who's done it before to build it right the first time.</p>
   </div>
-
-  <div class="detail-right">
-    <div class="purchase-card">
-      <div class="purchase-price">$997</div>
-      <div class="purchase-label">One-time purchase</div>
-      <a href="https://buy.stripe.com/9B63co8P2a7v3lRfx52Nq02" class="buy-now-btn" target="_blank">
-        Book Now →
-      </a>
-      <dl class="details-list">
-        <div class="detail-row">
-          <dt>Type</dt>
-          <dd>Consulting</dd>
-        </div>
-        <div class="detail-row">
-          <dt>Category</dt>
-          <dd>Consulting</dd>
-        </div>
-        <div class="detail-row">
-          <dt>Price</dt>
-          <dd>$997</dd>
-        </div>
-        <div class="detail-row">
-          <dt>License</dt>
-          <dd>Single deployment</dd>
-        </div>
-      </dl>
-    </div>
+  <div class="pc">
+    <div class="price">$997</div>
+    <div class="lbl">One-time payment</div>
+    <a href="https://buy.stripe.com/9B63co8P2a7v3lRfx52Nq02" class="pbtn" target="_blank">Book Now</a>
+    <div class="cr">by SpiritTree</div>
   </div>
 </div>
 
-<footer>
-  <div class="footer-inner">
-    <div class="footer-brand">SpiritTree</div>
-    <div class="footer-links">
-      <a href="../browse.html">Browse</a>
-      <a href="../consulting.html">Consulting</a>
-      <a href="../blog.html">Blog</a>
-      <a href="../tools.html">Tools</a>
-      <a href="https://sedim3nt.substack.com" target="_blank">Substack</a>
-      <a href="https://x.com/sedim3nt" target="_blank">X</a>
-    </div>
-    <div class="footer-copy">© 2026 Nrvana LLC</div>
-  </div>
-</footer>
-
+<footer><div class="fi"><div class="fg"><div class="fc"><p class="fb">SpiritTree</p><nav><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a><a href="../about.html">About</a><a href="../blog.html">Blog</a><a href="../tools.html">Tools</a></nav></div><div class="fc"><p class="fb">Connect</p><nav><a href="https://sedim3nt.substack.com" target="_blank">Substack</a><a href="https://x.com/sedim3nt" target="_blank">X / Twitter</a></nav></div></div><div class="fbot"><p>&copy; 2026 Nrvana LLC</p></div></div></footer>
 </body>
 </html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login — SpiritTree</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#faf8f5;color:#1a1a2e;min-height:100vh;display:flex;flex-direction:column}
+a{text-decoration:none;color:inherit}
+:root{
+  --sand-50:#faf8f5;--white:#ffffff;--ink-900:#1a1a2e;--ink-700:#2d2d44;--ink-600:#4a4a5a;--ink-500:#6b6b7a;
+  --tide-600:#0d9488;--tide-700:#0f766e;--border-subtle:rgba(26,26,46,0.05);--border-card:rgba(26,26,46,0.1);
+  --tide-light:rgba(13,148,136,0.1);--shadow-card:0 1px 3px rgba(26,26,46,0.08);
+  --shadow-card-hover:0 4px 16px rgba(26,26,46,0.12);--radius:4px;--max-w:1152px;
+}
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:rgba(250,248,245,0.8);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.nav-wrap{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
+@media(min-width:640px){.nav-wrap{padding:16px 24px}}
+.nav-brand{font-size:1.25rem;font-weight:700;color:var(--ink-900)}
+.nav-links{display:none;align-items:center;gap:24px;font-size:0.875rem;font-weight:500;color:var(--ink-700)}
+@media(min-width:768px){.nav-links{display:flex}}
+.nav-links a:hover{color:var(--ink-900)}
+.nav-login{border:1px solid rgba(26,26,46,0.15);padding:6px 12px;border-radius:var(--radius);font-size:0.875rem;font-weight:600;color:var(--ink-900)}
+.nav-login:hover{background:var(--ink-900);color:var(--white)}
+.hamburger{display:flex;background:none;border:none;color:var(--ink-900);font-size:1.5rem;cursor:pointer}
+@media(min-width:768px){.hamburger{display:none}}
+.mobile-menu{display:none;flex-direction:column;gap:16px;padding:16px 24px;background:var(--sand-50);border-bottom:1px solid var(--border-subtle)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:1rem;color:var(--ink-700);font-weight:500}
+
+/* LOGIN */
+.login-page{flex:1;display:flex;align-items:center;justify-content:center;padding:48px 24px}
+.login-card{background:var(--white);border:1px solid var(--border-subtle);border-radius:var(--radius);box-shadow:var(--shadow-card);padding:40px 32px;width:100%;max-width:400px}
+.login-card h1{font-size:1.5rem;font-weight:800;color:var(--ink-900);margin-bottom:4px;text-align:center}
+.login-card .subtitle{font-size:0.875rem;color:var(--ink-600);text-align:center;margin-bottom:32px}
+.form-group{margin-bottom:20px}
+.form-group label{display:block;font-size:0.8125rem;font-weight:600;color:var(--ink-700);margin-bottom:6px}
+.form-group input{width:100%;border:1px solid var(--border-card);padding:10px 12px;border-radius:var(--radius);font-size:0.875rem;outline:none;font-family:inherit;color:var(--ink-900)}
+.form-group input:focus{border-color:var(--tide-600)}
+.forgot{display:block;text-align:right;font-size:0.8125rem;color:var(--tide-600);font-weight:500;margin-top:8px}
+.forgot:hover{color:var(--tide-700)}
+.login-btn{display:block;width:100%;background:var(--tide-600);color:var(--white);font-weight:600;padding:12px 20px;border-radius:var(--radius);font-size:0.9375rem;border:none;cursor:pointer;text-align:center;margin-top:28px;font-family:inherit;transition:background 0.2s}
+.login-btn:hover{background:var(--tide-700)}
+.login-footer{margin-top:24px;text-align:center;font-size:0.8125rem;color:var(--ink-600)}
+.login-footer a{color:var(--tide-600);font-weight:500}
+.login-footer a:hover{color:var(--tide-700)}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border-subtle);background:var(--white)}
+.footer-inner{max-width:var(--max-w);margin:0 auto;padding:40px 24px}
+.footer-bottom p{font-size:0.8125rem;color:var(--ink-500);text-align:center}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a class="nav-brand" href="index.html">SpiritTree</a>
+    <nav class="nav-links">
+      <a href="browse.html">Browse</a>
+      <a href="consulting.html">Consulting</a>
+      <a href="about.html">About</a>
+      <a href="blog.html">Blog</a>
+      <a href="tools.html">Tools</a>
+      <a href="login.html" class="nav-login">Login / Sign Up</a>
+    </nav>
+    <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+  </div>
+</header>
+<div class="mobile-menu">
+  <a href="browse.html">Browse</a>
+  <a href="consulting.html">Consulting</a>
+  <a href="about.html">About</a>
+  <a href="blog.html">Blog</a>
+  <a href="tools.html">Tools</a>
+  <a href="login.html">Login / Sign Up</a>
+</div>
+
+<main class="login-page">
+  <div class="login-card">
+    <h1>Account access</h1>
+    <p class="subtitle">One account for buyers and creators</p>
+    <form onsubmit="return false;">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="you@example.com" autocomplete="email">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Your password" autocomplete="current-password">
+        <a href="#" class="forgot">Forgot password?</a>
+      </div>
+      <button type="submit" class="login-btn">Sign In</button>
+    </form>
+    <div class="login-footer">
+      Looking for products? <a href="browse.html">Browse marketplace</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <p>&copy; 2026 Nrvana LLC</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

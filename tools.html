@@ -4,93 +4,87 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Free Tools — SpiritTree</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Cormorant+Infant:wght@600&family=Cormorant+SC:wght@600&family=Cormorant+Upright:wght@600&family=Cormorant+Unicase:wght@600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:ui-sans-serif,system-ui,sans-serif;background:#F5F5F5;color:#1D3557}
+body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#faf8f5;color:#1a1a2e}
 a{text-decoration:none;color:inherit}
-
-/* NAV */
-nav{background:#1D3557;padding:16px 32px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.2)}
-.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:32px}
-.brand{font-family:'Cormorant Garamond','Cormorant',Georgia,serif;font-weight:600;font-size:1.75rem;color:#FFFFFF;margin-right:auto}
-.nav-links{display:flex;gap:24px}
-.nav-links a{color:#FFFFFF;font-size:0.95rem;opacity:0.9;transition:opacity 0.2s}
-.nav-links a:hover{opacity:1}
-.nav-cta{background:#C8A27A;color:#1D3557;font-weight:600;padding:10px 20px;border-radius:8px;font-size:0.9rem;white-space:nowrap;transition:opacity 0.2s}
-.nav-cta:hover{opacity:0.9}
-.hamburger{display:none;background:none;border:none;color:#FFFFFF;font-size:1.875rem;cursor:pointer;margin-left:auto}
-.mobile-menu{display:none;background:#1D3557;padding:16px 32px;flex-direction:column;gap:16px}
-.mobile-menu a{color:#FFFFFF;font-size:1rem;opacity:0.9}
-.mobile-menu .nav-cta{display:inline-block;width:fit-content}
+:root{
+  --sand-50:#faf8f5;--white:#ffffff;--ink-900:#1a1a2e;--ink-700:#2d2d44;--ink-600:#4a4a5a;--ink-500:#6b6b7a;
+  --tide-600:#0d9488;--tide-700:#0f766e;--border-subtle:rgba(26,26,46,0.05);--border-card:rgba(26,26,46,0.1);
+  --tide-light:rgba(13,148,136,0.1);--shadow-card:0 1px 3px rgba(26,26,46,0.08);
+  --shadow-card-hover:0 4px 16px rgba(26,26,46,0.12);--radius:4px;--max-w:1152px;
+}
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:rgba(250,248,245,0.8);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.nav-wrap{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
+@media(min-width:640px){.nav-wrap{padding:16px 24px}}
+.nav-brand{font-size:1.25rem;font-weight:700;color:var(--ink-900)}
+.nav-links{display:none;align-items:center;gap:24px;font-size:0.875rem;font-weight:500;color:var(--ink-700)}
+@media(min-width:768px){.nav-links{display:flex}}
+.nav-links a:hover{color:var(--ink-900)}
+.nav-login{border:1px solid rgba(26,26,46,0.15);padding:6px 12px;border-radius:var(--radius);font-size:0.875rem;font-weight:600;color:var(--ink-900)}
+.nav-login:hover{background:var(--ink-900);color:var(--white)}
+.hamburger{display:flex;background:none;border:none;color:var(--ink-900);font-size:1.5rem;cursor:pointer}
+@media(min-width:768px){.hamburger{display:none}}
+.mobile-menu{display:none;flex-direction:column;gap:16px;padding:16px 24px;background:var(--sand-50);border-bottom:1px solid var(--border-subtle)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:1rem;color:var(--ink-700);font-weight:500}
 
 /* PAGE HEADER */
-.page-header{background:#1D3557;padding:72px 32px 64px;text-align:center}
-.page-header h1{font-family:'Cormorant Garamond','Cormorant',Georgia,serif;font-size:clamp(28px,4vw,48px);font-weight:600;color:#FFFFFF;margin-bottom:12px}
-.page-header p{color:#FFFFFF;opacity:0.65;font-size:1.05rem}
+.page-header{padding:48px 24px 40px;background:var(--white);text-align:center;border-bottom:1px solid var(--border-subtle)}
+.page-header h1{font-size:clamp(1.5rem,4vw,2.5rem);font-weight:800;color:var(--ink-900);margin-bottom:8px}
+.page-header p{color:var(--ink-600);font-size:0.9375rem}
 
 /* TOOLS */
-.tools-section{padding:72px 32px 96px}
-.tools-inner{max-width:1100px;margin:0 auto}
-.tool-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
-.tool-card{background:#FFFFFF;border:1px solid rgba(29,53,87,0.08);box-shadow:0 1px 3px rgba(0,0,0,0.1);border-radius:16px;padding:32px 28px;display:flex;flex-direction:column;gap:16px}
-.tool-free{font-size:0.8rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#2C6CB0}
-.tool-title{font-family:'Cormorant Garamond','Cormorant',Georgia,serif;font-size:1.35rem;font-weight:600;color:#1D3557}
-.tool-desc{font-size:0.9rem;color:#1D3557;opacity:0.65;line-height:1.6;flex:1}
-.tool-badge{display:inline-block;background:#6EA8DA;color:#1D3557;font-size:0.75rem;font-weight:600;padding:4px 10px;border-radius:20px;width:fit-content}
-.tool-btn{display:inline-block;background:#2C6CB0;color:#FFFFFF;font-weight:600;padding:12px 24px;border-radius:8px;font-size:0.9rem;text-align:center;transition:opacity 0.2s;margin-top:4px}
-.tool-btn:hover{opacity:0.9}
+.tools-section{padding:48px 24px 80px}
+.tools-inner{max-width:var(--max-w);margin:0 auto}
+.tool-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.tool-card{background:var(--white);border:1px solid var(--border-subtle);box-shadow:var(--shadow-card);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:12px;transition:box-shadow 0.2s}
+.tool-card:hover{box-shadow:var(--shadow-card-hover)}
+.tool-free{font-size:0.75rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--tide-600)}
+.tool-title{font-size:1.125rem;font-weight:700;color:var(--ink-900)}
+.tool-badge{display:inline-block;background:var(--tide-light);color:var(--tide-700);font-size:0.75rem;font-weight:600;padding:3px 8px;border-radius:var(--radius);width:fit-content}
+.tool-desc{font-size:0.875rem;color:var(--ink-600);line-height:1.6;flex:1}
+.tool-btn{display:inline-block;background:var(--tide-600);color:var(--white);font-weight:600;padding:10px 20px;border-radius:var(--radius);font-size:0.875rem;text-align:center;transition:background 0.2s;margin-top:4px}
+.tool-btn:hover{background:var(--tide-700)}
 
 /* FOOTER */
-footer{background:#1D3557;color:#FFFFFF;padding:48px 32px}
-.footer-inner{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start;justify-content:space-between}
-.footer-brand{font-family:'Cormorant Garamond','Cormorant',Georgia,serif;font-size:1.75rem;font-weight:600}
-.footer-links{display:flex;flex-wrap:wrap;gap:20px}
-.footer-links a{color:#FFFFFF;opacity:0.75;font-size:0.9rem;transition:opacity 0.2s}
-.footer-links a:hover{opacity:1}
-.footer-copy{color:#FFFFFF;opacity:0.45;font-size:0.8rem;width:100%;margin-top:8px}
+footer{border-top:1px solid var(--border-subtle);background:var(--white)}
+.footer-inner{max-width:var(--max-w);margin:0 auto;padding:40px 24px}
+.footer-grid{display:grid;gap:40px;grid-template-columns:1fr 1fr}
+.footer-col p.footer-brand{font-size:0.875rem;font-weight:700;color:var(--ink-900);margin-bottom:12px}
+.footer-col nav{display:flex;flex-direction:column;gap:8px}
+.footer-col nav a{font-size:0.875rem;color:var(--ink-600);transition:color 0.2s}
+.footer-col nav a:hover{color:var(--ink-900)}
+.footer-bottom{margin-top:32px;border-top:1px solid var(--border-subtle);padding-top:24px}
+.footer-bottom p{font-size:0.8125rem;color:var(--ink-500)}
 
-/* RESPONSIVE */
 @media(max-width:900px){.tool-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:768px){
-  .nav-links,.nav-cta{display:none}
-  .hamburger{display:block}
-  .mobile-menu.open{display:flex}
-  .page-header{padding:48px 20px}
-  .tools-section{padding:48px 20px 72px}
-  footer{padding:40px 20px}
-}
-@media(max-width:600px){
-  .tool-grid{grid-template-columns:1fr}
-  .footer-inner{flex-direction:column}
-}
-
-h1{font-family:'Cormorant Unicase','Cormorant',Georgia,serif!important;font-weight:600!important}
-h2{font-family:'Cormorant Infant','Cormorant',Georgia,serif!important;font-weight:600!important}
-h3{font-family:'Cormorant Upright','Cormorant',Georgia,serif!important;font-weight:600!important}
+@media(max-width:600px){.tool-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-inner">
-    <a href="index.html" class="brand">SpiritTree</a>
-    <div class="nav-links">
+<header>
+  <div class="nav-wrap">
+    <a class="nav-brand" href="index.html">SpiritTree</a>
+    <nav class="nav-links">
       <a href="browse.html">Browse</a>
       <a href="consulting.html">Consulting</a>
+      <a href="about.html">About</a>
       <a href="blog.html">Blog</a>
       <a href="tools.html">Tools</a>
-    </div>
-    <a href="consulting.html" class="nav-cta">Get Started →</a>
+      <a href="login.html" class="nav-login">Login / Sign Up</a>
+    </nav>
     <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">&#9776;</button>
   </div>
-</nav>
+</header>
 <div class="mobile-menu">
   <a href="browse.html">Browse</a>
   <a href="consulting.html">Consulting</a>
+  <a href="about.html">About</a>
   <a href="blog.html">Blog</a>
   <a href="tools.html">Tools</a>
-  <a href="consulting.html" class="nav-cta">Get Started →</a>
+  <a href="login.html">Login / Sign Up</a>
 </div>
 
 <div class="page-header">
@@ -107,7 +101,7 @@ h3{font-family:'Cormorant Upright','Cormorant',Georgia,serif!important;font-weig
         <div class="tool-title">SkillScan</div>
         <div class="tool-badge">Security</div>
         <div class="tool-desc">Security scanner for OpenClaw skill files. Detects prompt injection, credential theft, file system abuse, and 7 more threat categories. 50+ patterns. CLI + JSON output.</div>
-        <a href="https://github.com/sedim3nt" class="tool-btn" target="_blank">View on GitHub →</a>
+        <a href="https://github.com/sedim3nt" class="tool-btn" target="_blank">View on GitHub</a>
       </div>
 
       <div class="tool-card">
@@ -115,7 +109,7 @@ h3{font-family:'Cormorant Upright','Cormorant',Georgia,serif!important;font-weig
         <div class="tool-title">SafeSpace</div>
         <div class="tool-badge">Public Good</div>
         <div class="tool-desc">Free tenant rights information portal. Know-your-rights guides, complaint filing, emergency resources. Currently serving Boulder, CO + 15 more cities.</div>
-        <a href="https://safespace.spirittree.dev" class="tool-btn" target="_blank">Visit SafeSpace →</a>
+        <a href="https://safespace.spirittree.dev" class="tool-btn" target="_blank">Visit SafeSpace</a>
       </div>
 
       <div class="tool-card">
@@ -123,7 +117,7 @@ h3{font-family:'Cormorant Upright','Cormorant',Georgia,serif!important;font-weig
         <div class="tool-title">MycoMaps</div>
         <div class="tool-badge">Directory</div>
         <div class="tool-desc">Mushroom retailer directory. 100+ businesses across legal jurisdictions. Free for consumers forever.</div>
-        <a href="https://mycomaps.spirittree.dev" class="tool-btn" target="_blank">Visit MycoMaps →</a>
+        <a href="https://mycomaps.spirittree.dev" class="tool-btn" target="_blank">Visit MycoMaps</a>
       </div>
 
     </div>
@@ -132,16 +126,29 @@ h3{font-family:'Cormorant Upright','Cormorant',Georgia,serif!important;font-weig
 
 <footer>
   <div class="footer-inner">
-    <div class="footer-brand">SpiritTree</div>
-    <div class="footer-links">
-      <a href="browse.html">Browse</a>
-      <a href="consulting.html">Consulting</a>
-      <a href="blog.html">Blog</a>
-      <a href="tools.html">Tools</a>
-      <a href="https://sedim3nt.substack.com" target="_blank">Substack</a>
-      <a href="https://x.com/sedim3nt" target="_blank">X</a>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <p class="footer-brand">SpiritTree</p>
+        <nav>
+          <a href="browse.html">Browse</a>
+          <a href="consulting.html">Consulting</a>
+          <a href="about.html">About</a>
+          <a href="blog.html">Blog</a>
+          <a href="tools.html">Tools</a>
+          <a href="login.html">Login / Sign Up</a>
+        </nav>
+      </div>
+      <div class="footer-col">
+        <p class="footer-brand">Connect</p>
+        <nav>
+          <a href="https://sedim3nt.substack.com" target="_blank">Substack</a>
+          <a href="https://x.com/sedim3nt" target="_blank">X / Twitter</a>
+        </nav>
+      </div>
     </div>
-    <div class="footer-copy">© 2026 Nrvana LLC</div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Nrvana LLC</p>
+    </div>
   </div>
 </footer>
 

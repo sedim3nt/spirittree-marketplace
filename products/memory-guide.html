@@ -2,105 +2,85 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AI Agent Memory Architecture Guide | SpiritTree</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Cormorant+Infant:wght@600&family=Cormorant+Upright:wght@600&family=Cormorant+Unicase:wght@600&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Agent Memory Architecture Guide — SpiritTree</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#F5F5F5;color:#1D3557;font-family:ui-sans-serif,system-ui,sans-serif;line-height:1.6}
-h1{font-family:'Cormorant Unicase','Cormorant',Georgia,serif!important;font-weight:600!important;font-size:2.2rem}
-h2{font-family:'Cormorant Infant','Cormorant',Georgia,serif!important;font-weight:600!important;font-size:1.8rem}
-h3{font-family:'Cormorant Upright','Cormorant',Georgia,serif!important;font-weight:600!important;font-size:1.4rem}
-a{color:#2C6CB0;text-decoration:none}
-a:hover{opacity:0.8}
-.nav{background:#1D3557;padding:16px 32px;position:sticky;top:0;z-index:100}
-.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:32px}
-.nav-brand{font-family:'Cormorant Unicase',Georgia,serif;font-size:1.4rem;font-weight:600;color:#FFFFFF}
-.nav-links{display:flex;gap:24px;margin-left:auto}
-.nav-links a{color:#FFFFFF;font-size:0.9rem}
-.nav-cta{background:#C8A27A;color:#1D3557;padding:8px 20px;border-radius:8px;font-weight:600;font-size:0.9rem}
-.container{max-width:1200px;margin:0 auto;padding:40px 32px}
-.back{display:inline-block;margin-bottom:24px;font-size:0.9rem}
-.layout{display:flex;gap:40px}
-.left{flex:0 0 60%}
-.right{flex:0 0 36%}
-.purchase-card{background:#FFFFFF;border-radius:16px;padding:32px;box-shadow:0 1px 3px rgba(0,0,0,0.1);position:sticky;top:100px}
-.price{font-family:'Cormorant Garamond',Georgia,serif;font-size:2.5rem;font-weight:600;color:#C8A27A;margin-bottom:8px}
-.price-label{font-size:0.9rem;opacity:0.6;margin-bottom:24px}
-.buy-btn{display:block;background:#2C6CB0;color:#FFFFFF;text-align:center;padding:14px;border-radius:8px;font-weight:600;font-size:1rem;width:100%;margin-bottom:16px}
-.buy-btn:hover{opacity:0.9}
-.free-btn{background:#6EA8DA}
-.details-list{list-style:none;padding:0}
-.details-list li{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(29,53,87,0.08);font-size:0.9rem}
-.details-list li:last-child{border:none}
-.badge{display:inline-block;border:1px solid #6EA8DA;color:#1D3557;padding:4px 12px;border-radius:999px;font-size:0.8rem;margin:12px 0}
-.section{margin:32px 0}
-.section h2{margin-bottom:16px}
-.section p{margin-bottom:12px;opacity:0.85}
-.checklist{list-style:none;padding:0}
-.checklist li{padding:8px 0;padding-left:28px;position:relative}
-.checklist li::before{content:"✓";position:absolute;left:0;color:#2C6CB0;font-weight:600}
-.footer{background:#1D3557;color:#FFFFFF;padding:48px 32px;margin-top:64px}
-.footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between}
-.footer a{color:#6EA8DA}
-@media(max-width:768px){.layout{flex-direction:column}.left,.right{flex:none;width:100%}.purchase-card{position:static}}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#faf8f5;color:#1a1a2e}
+a{text-decoration:none;color:inherit}
+:root{--sand-50:#faf8f5;--white:#fff;--ink-900:#1a1a2e;--ink-700:#2d2d44;--ink-600:#4a4a5a;--ink-500:#6b6b7a;--tide-600:#0d9488;--tide-700:#0f766e;--border-subtle:rgba(26,26,46,0.05);--border-card:rgba(26,26,46,0.1);--tide-light:rgba(13,148,136,0.1);--shadow-card:0 1px 3px rgba(26,26,46,0.08);--radius:4px;--max-w:1152px}
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:rgba(250,248,245,0.8);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.nw{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
+@media(min-width:640px){.nw{padding:16px 24px}}
+.nb{font-size:1.25rem;font-weight:700;color:var(--ink-900)}
+.nl{display:none;align-items:center;gap:24px;font-size:.875rem;font-weight:500;color:var(--ink-700)}
+@media(min-width:768px){.nl{display:flex}}
+.nl a:hover{color:var(--ink-900)}
+.nli{border:1px solid rgba(26,26,46,.15);padding:6px 12px;border-radius:var(--radius);font-size:.875rem;font-weight:600;color:var(--ink-900)}
+.nli:hover{background:var(--ink-900);color:var(--white)}
+.hb{display:flex;background:none;border:none;color:var(--ink-900);font-size:1.5rem;cursor:pointer}
+@media(min-width:768px){.hb{display:none}}
+.mm{display:none;flex-direction:column;gap:16px;padding:16px 24px;background:var(--sand-50);border-bottom:1px solid var(--border-subtle)}
+.mm.open{display:flex}
+.mm a{font-size:1rem;color:var(--ink-700);font-weight:500}
+.pp{max-width:var(--max-w);margin:0 auto;padding:48px 24px 80px;display:grid;grid-template-columns:1fr 340px;gap:40px;align-items:start}
+.pm h1{font-size:1.75rem;font-weight:800;color:var(--ink-900);margin-bottom:8px}
+.pm .cat{font-size:.8125rem;color:var(--tide-600);font-weight:600;margin-bottom:24px}
+.pm h2{font-size:1.125rem;font-weight:700;color:var(--ink-900);margin:28px 0 12px}
+.pm p{font-size:.9375rem;color:var(--ink-600);line-height:1.7;margin-bottom:16px}
+.pm ul{margin:0 0 16px 20px;color:var(--ink-600);font-size:.9375rem;line-height:1.7}
+.pm li{margin-bottom:6px}
+.pc{position:sticky;top:100px;background:var(--white);border:1px solid var(--border-subtle);border-radius:var(--radius);box-shadow:var(--shadow-card);padding:28px 24px;display:flex;flex-direction:column;gap:16px}
+.pc .price{font-size:2rem;font-weight:800;color:var(--ink-900)}
+.pc .lbl{font-size:.8125rem;color:var(--ink-600)}
+.pbtn{display:block;background:var(--tide-600);color:var(--white);font-weight:600;padding:14px 20px;border-radius:var(--radius);font-size:1rem;text-align:center;transition:background .2s}
+.pbtn:hover{background:var(--tide-700)}
+.pc .cr{font-size:.8125rem;color:var(--ink-500);text-align:center}
+.bl{display:inline-block;font-size:.875rem;color:var(--tide-600);font-weight:500;margin-bottom:20px}
+.bl:hover{color:var(--tide-700)}
+footer{border-top:1px solid var(--border-subtle);background:var(--white)}
+.fi{max-width:var(--max-w);margin:0 auto;padding:40px 24px}
+.fg{display:grid;gap:40px;grid-template-columns:1fr 1fr}
+.fc p.fb{font-size:.875rem;font-weight:700;color:var(--ink-900);margin-bottom:12px}
+.fc nav{display:flex;flex-direction:column;gap:8px}
+.fc nav a{font-size:.875rem;color:var(--ink-600)}
+.fc nav a:hover{color:var(--ink-900)}
+.fbot{margin-top:32px;border-top:1px solid var(--border-subtle);padding-top:24px}
+.fbot p{font-size:.8125rem;color:var(--ink-500)}
+@media(max-width:768px){.pp{grid-template-columns:1fr}.pc{position:static}}
+@media(max-width:600px){.fg{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<nav class="nav"><div class="nav-inner">
-<a href="/index.html" class="nav-brand">SpiritTree</a>
-<div class="nav-links">
-<a href="/browse.html">Browse</a>
-<a href="/consulting.html">Consulting</a>
-<a href="/blog.html">Blog</a>
-<a href="/tools.html">Tools</a>
-<a href="/browse.html" class="nav-cta">Get Started →</a>
-</div></div></nav>
-<div class="container">
-<a href="/browse.html" class="back">← Back to marketplace</a>
-<div class="layout">
-<div class="left">
-<h1>AI Agent Memory Architecture Guide</h1>
-<span class="badge">Knowledge Base</span>
-<div class="section"><h2>About</h2>
-<p>The complete guide to AI agent memory — every solution ranked from production experience. Covers 16 memory systems from native filesystem to graph databases, with specific configuration examples and the decision framework for choosing the right stack.</p>
-<p>Built from real operational experience running multi-agent AI systems 24/7. Not a README roundup — this is a practitioner's field guide with opinionated rankings and the 80/20 rule most teams skip.</p>
-<p>Includes the memory solutions compendium (16 solutions ranked), VelvetShark's 3 rules, the four-layer memory model, cross-agent coordination patterns, and specific OpenClaw configuration examples.</p>
+<header><div class="nw"><a class="nb" href="../index.html">SpiritTree</a><nav class="nl"><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a><a href="../about.html">About</a><a href="../blog.html">Blog</a><a href="../tools.html">Tools</a><a href="../login.html" class="nli">Login / Sign Up</a></nav><button class="hb" onclick="document.querySelector('.mm').classList.toggle('open')" aria-label="Menu">&#9776;</button></div></header>
+<div class="mm"><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a><a href="../about.html">About</a><a href="../blog.html">Blog</a><a href="../tools.html">Tools</a><a href="../login.html">Login / Sign Up</a></div>
+
+<div class="pp">
+  <div class="pm">
+    <a href="../browse.html" class="bl">&larr; Back to Browse</a>
+    <h1>AI Agent Memory Architecture Guide</h1>
+    <div class="cat">Knowledge Base</div>
+    <p>Complete guide to AI agent memory with 16 solutions ranked from production experience. Covers native filesystem to graph databases with specific configuration examples.</p>
+    <h2>What's covered</h2>
+    <ul>
+      <li>Memory solutions compendium (16 ranked)</li>
+      <li>VelvetShark's 3 rules of AI memory</li>
+      <li>Four-layer memory model</li>
+      <li>Cross-agent coordination patterns</li>
+      <li>OpenClaw configuration examples</li>
+      <li>Production cost analysis</li>
+    </ul>
+    <h2>Format</h2>
+    <p>Published on Substack. Free to read, no account required.</p>
+  </div>
+  <div class="pc">
+    <div class="price">Free</div>
+    <div class="lbl">Free to read</div>
+    <a href="https://sedim3nt.substack.com/p/the-complete-guide-to-ai-agent-memory-87f" class="pbtn" target="_blank">Read Free</a>
+    <div class="cr">by SpiritTree</div>
+  </div>
 </div>
-<div class="section"><h2>What's Included</h2>
-<ul class="checklist">
-<li>16 memory solutions ranked and analyzed (Tier 1-4)</li>
-<li>Native OpenClaw memory optimization guide</li>
-<li>MuninnDB setup and MCP integration walkthrough</li>
-<li>Mem0 self-hosted configuration</li>
-<li>VelvetShark's 3 rules for memory that survives compaction</li>
-<li>Pre-compaction flush tuning (softThresholdTokens)</li>
-<li>Cross-agent memory coordination patterns</li>
-<li>BULLETIN.md protocol for multi-agent announcements</li>
-<li>Status file protocol (JSON per agent)</li>
-<li>Decision framework: when to use what</li>
-<li>The 80/20 rule — discipline vs infrastructure</li>
-</ul></div>
-<div class="section"><h2>Version History</h2>
-<p><strong>Version 1</strong> · March 2026</p>
-<p>Initial release covering 16 memory solutions with production rankings, cross-agent coordination patterns, and the complete decision framework.</p>
-</div>
-</div>
-<div class="right">
-<div class="purchase-card">
-<div class="price">Free</div>
-<div class="price-label">Read on Substack</div>
-<a href="https://sedim3nt.substack.com/p/the-complete-guide-to-ai-agent-memory-87f" class="buy-btn free-btn">Read Free →</a>
-<ul class="details-list">
-<li><span>Type</span><span>Knowledge Base</span></li>
-<li><span>Category</span><span>Memory</span></li>
-<li><span>Price</span><span>Free</span></li>
-<li><span>Format</span><span>Substack Article</span></li>
-</ul>
-</div></div>
-</div></div>
-<footer class="footer"><div class="footer-inner">
-<div><strong>SpiritTree</strong><br>© 2026 Nrvana LLC</div>
-<div><a href="https://sedim3nt.substack.com">Substack</a> · <a href="https://x.com/sedim3nt">X</a></div>
-</div></footer>
-</body></html>
+
+<footer><div class="fi"><div class="fg"><div class="fc"><p class="fb">SpiritTree</p><nav><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a><a href="../about.html">About</a><a href="../blog.html">Blog</a><a href="../tools.html">Tools</a></nav></div><div class="fc"><p class="fb">Connect</p><nav><a href="https://sedim3nt.substack.com" target="_blank">Substack</a><a href="https://x.com/sedim3nt" target="_blank">X / Twitter</a></nav></div></div><div class="fbot"><p>&copy; 2026 Nrvana LLC</p></div></div></footer>
+</body>
+</html>

@@ -4,104 +4,99 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Consulting — SpiritTree</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Cormorant+Infant:wght@600&family=Cormorant+SC:wght@600&family=Cormorant+Upright:wght@600&family=Cormorant+Unicase:wght@600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:ui-sans-serif,system-ui,sans-serif;background:#F5F5F5;color:#1D3557}
+body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#faf8f5;color:#1a1a2e}
 a{text-decoration:none;color:inherit}
-
-/* NAV */
-nav{background:#1D3557;padding:16px 32px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.2)}
-.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:32px}
-.brand{font-family:'Cormorant Garamond','Cormorant',Georgia,serif;font-weight:600;font-size:1.75rem;color:#FFFFFF;margin-right:auto}
-.nav-links{display:flex;gap:24px}
-.nav-links a{color:#FFFFFF;font-size:0.95rem;opacity:0.9;transition:opacity 0.2s}
-.nav-links a:hover{opacity:1}
-.nav-cta{background:#C8A27A;color:#1D3557;font-weight:600;padding:10px 20px;border-radius:8px;font-size:0.9rem;white-space:nowrap;transition:opacity 0.2s}
-.nav-cta:hover{opacity:0.9}
-.hamburger{display:none;background:none;border:none;color:#FFFFFF;font-size:1.875rem;cursor:pointer;margin-left:auto}
-.mobile-menu{display:none;background:#1D3557;padding:16px 32px;flex-direction:column;gap:16px}
-.mobile-menu a{color:#FFFFFF;font-size:1rem;opacity:0.9}
-.mobile-menu .nav-cta{display:inline-block;width:fit-content}
+:root{
+  --sand-50:#faf8f5;--white:#ffffff;--ink-900:#1a1a2e;--ink-700:#2d2d44;--ink-600:#4a4a5a;--ink-500:#6b6b7a;
+  --tide-600:#0d9488;--tide-700:#0f766e;--border-subtle:rgba(26,26,46,0.05);--border-card:rgba(26,26,46,0.1);
+  --tide-light:rgba(13,148,136,0.1);--shadow-card:0 1px 3px rgba(26,26,46,0.08);
+  --shadow-card-hover:0 4px 16px rgba(26,26,46,0.12);--radius:4px;--max-w:1152px;
+}
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:rgba(250,248,245,0.8);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.nav-wrap{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
+@media(min-width:640px){.nav-wrap{padding:16px 24px}}
+.nav-brand{font-size:1.25rem;font-weight:700;color:var(--ink-900)}
+.nav-links{display:none;align-items:center;gap:24px;font-size:0.875rem;font-weight:500;color:var(--ink-700)}
+@media(min-width:768px){.nav-links{display:flex}}
+.nav-links a:hover{color:var(--ink-900)}
+.nav-login{border:1px solid rgba(26,26,46,0.15);padding:6px 12px;border-radius:var(--radius);font-size:0.875rem;font-weight:600;color:var(--ink-900)}
+.nav-login:hover{background:var(--ink-900);color:var(--white)}
+.hamburger{display:flex;background:none;border:none;color:var(--ink-900);font-size:1.5rem;cursor:pointer}
+@media(min-width:768px){.hamburger{display:none}}
+.mobile-menu{display:none;flex-direction:column;gap:16px;padding:16px 24px;background:var(--sand-50);border-bottom:1px solid var(--border-subtle)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:1rem;color:var(--ink-700);font-weight:500}
 
 /* PAGE HEADER */
-.page-header{background:#1D3557;padding:72px 32px 64px;text-align:center}
-.page-header h1{font-family:'Cormorant Garamond','Cormorant',Georgia,serif;font-size:clamp(28px,4vw,48px);font-weight:600;color:#FFFFFF;margin-bottom:12px}
-.page-header p{color:#FFFFFF;opacity:0.65;font-size:1.05rem;max-width:560px;margin:0 auto;line-height:1.6}
+.page-header{padding:48px 24px 40px;background:var(--white);text-align:center;border-bottom:1px solid var(--border-subtle)}
+.page-header h1{font-size:clamp(1.5rem,4vw,2.5rem);font-weight:800;color:var(--ink-900);margin-bottom:8px}
+.page-header p{color:var(--ink-600);font-size:0.9375rem;max-width:520px;margin:0 auto;line-height:1.6}
 
 /* TIERS */
-.tiers{padding:72px 32px}
-.tiers-inner{max-width:1100px;margin:0 auto}
+.tiers{padding:64px 24px}
+.tiers-inner{max-width:var(--max-w);margin:0 auto}
 .tier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
-
-.tier-card{background:#FFFFFF;border:1px solid rgba(29,53,87,0.08);box-shadow:0 1px 3px rgba(0,0,0,0.1);border-radius:16px;padding:32px 28px;display:flex;flex-direction:column;gap:16px;position:relative}
-.tier-card.popular{border:2px solid #2C6CB0;box-shadow:0 4px 24px rgba(44,108,176,0.18)}
-.popular-badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:#2C6CB0;color:#FFFFFF;font-size:0.75rem;font-weight:600;padding:4px 16px;border-radius:20px;white-space:nowrap;letter-spacing:0.05em;text-transform:uppercase}
-
-.tier-badge{display:inline-block;background:#6EA8DA;color:#1D3557;font-size:0.8rem;font-weight:600;padding:5px 12px;border-radius:20px;width:fit-content}
-.tier-price{font-size:2.2rem;font-weight:600;color:#C8A27A;font-family:'Cormorant Garamond','Cormorant',Georgia,serif}
-.tier-title{font-family:'Cormorant Garamond','Cormorant',Georgia,serif;font-size:1.3rem;font-weight:600;color:#1D3557}
+.tier-card{background:var(--white);border:1px solid var(--border-card);box-shadow:var(--shadow-card);border-radius:var(--radius);padding:28px 24px;display:flex;flex-direction:column;gap:16px;position:relative}
+.tier-card.popular{border:2px solid var(--tide-600);box-shadow:0 4px 24px rgba(13,148,136,0.15)}
+.popular-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--tide-600);color:var(--white);font-size:0.75rem;font-weight:600;padding:4px 14px;border-radius:var(--radius);white-space:nowrap;letter-spacing:0.04em;text-transform:uppercase}
+.tier-badge{display:inline-block;background:var(--tide-light);color:var(--tide-700);font-size:0.8rem;font-weight:600;padding:4px 10px;border-radius:var(--radius);width:fit-content}
+.tier-price{font-size:2rem;font-weight:800;color:var(--ink-900)}
+.tier-title{font-size:1.125rem;font-weight:700;color:var(--ink-900)}
 .tier-features{list-style:none;display:flex;flex-direction:column;gap:10px;flex:1}
-.tier-features li{font-size:0.9rem;color:#1D3557;opacity:0.75;display:flex;align-items:flex-start;gap:10px;line-height:1.45}
-.tier-features li::before{content:'';display:inline-block;width:16px;height:16px;min-width:16px;background:#6EA8DA;border-radius:50%;margin-top:2px}
-.tier-btn{display:block;background:#2C6CB0;color:#FFFFFF;font-weight:600;padding:14px 24px;border-radius:8px;font-size:0.95rem;text-align:center;margin-top:8px;transition:opacity 0.2s}
-.tier-btn:hover{opacity:0.9}
-.tier-card.popular .tier-btn{background:#C8A27A;color:#1D3557}
+.tier-features li{font-size:0.875rem;color:var(--ink-600);display:flex;align-items:flex-start;gap:10px;line-height:1.45}
+.tier-features li::before{content:'';display:inline-block;width:14px;height:14px;min-width:14px;background:var(--tide-600);border-radius:var(--radius);margin-top:3px}
+.tier-btn{display:block;background:var(--tide-600);color:var(--white);font-weight:600;padding:12px 20px;border-radius:var(--radius);font-size:0.9375rem;text-align:center;margin-top:8px;transition:background 0.2s}
+.tier-btn:hover{background:var(--tide-700)}
+.tier-card.popular .tier-btn{background:var(--ink-900)}
+.tier-card.popular .tier-btn:hover{opacity:0.9}
 
-/* CALL CTA */
-.call-cta{background:#1D3557;padding:72px 32px;text-align:center}
-.call-cta h2{font-family:'Cormorant Garamond','Cormorant',Georgia,serif;font-size:clamp(22px,3vw,34px);font-weight:600;color:#FFFFFF;margin-bottom:12px}
-.call-cta p{color:#FFFFFF;opacity:0.65;font-size:1rem;margin-bottom:32px}
-.btn-gold{background:#C8A27A;color:#1D3557;font-weight:600;padding:14px 28px;border-radius:8px;font-size:1rem;transition:opacity 0.2s;display:inline-block}
-.btn-gold:hover{opacity:0.9}
+/* CTA */
+.call-cta{background:var(--ink-900);padding:64px 24px;text-align:center}
+.call-cta h2{font-size:1.5rem;font-weight:700;color:var(--white);margin-bottom:8px}
+.call-cta p{color:rgba(255,255,255,0.65);font-size:0.9375rem;margin-bottom:24px}
+.call-cta .btn{background:var(--tide-600);color:var(--white);font-weight:600;padding:12px 24px;border-radius:var(--radius);font-size:0.9375rem;display:inline-block;transition:background 0.2s}
+.call-cta .btn:hover{background:var(--tide-700)}
 
 /* FOOTER */
-footer{background:#1D3557;color:#FFFFFF;padding:48px 32px}
-.footer-inner{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start;justify-content:space-between}
-.footer-brand{font-family:'Cormorant Garamond','Cormorant',Georgia,serif;font-size:1.75rem;font-weight:600}
-.footer-links{display:flex;flex-wrap:wrap;gap:20px}
-.footer-links a{color:#FFFFFF;opacity:0.75;font-size:0.9rem;transition:opacity 0.2s}
-.footer-links a:hover{opacity:1}
-.footer-copy{color:#FFFFFF;opacity:0.45;font-size:0.8rem;width:100%;margin-top:8px}
+footer{border-top:1px solid var(--border-subtle);background:var(--white)}
+.footer-inner{max-width:var(--max-w);margin:0 auto;padding:40px 24px}
+.footer-grid{display:grid;gap:40px;grid-template-columns:1fr 1fr}
+.footer-col p.footer-brand{font-size:0.875rem;font-weight:700;color:var(--ink-900);margin-bottom:12px}
+.footer-col nav{display:flex;flex-direction:column;gap:8px}
+.footer-col nav a{font-size:0.875rem;color:var(--ink-600);transition:color 0.2s}
+.footer-col nav a:hover{color:var(--ink-900)}
+.footer-bottom{margin-top:32px;border-top:1px solid var(--border-subtle);padding-top:24px}
+.footer-bottom p{font-size:0.8125rem;color:var(--ink-500)}
 
-/* RESPONSIVE */
-@media(max-width:900px){.tier-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto}}
-@media(max-width:768px){
-  .nav-links,.nav-cta{display:none}
-  .hamburger{display:block}
-  .mobile-menu.open{display:flex}
-  .page-header{padding:48px 20px}
-  .tiers,.call-cta{padding:48px 20px}
-  footer{padding:40px 20px}
-}
-@media(max-width:600px){.footer-inner{flex-direction:column}}
-
-h1{font-family:'Cormorant Unicase','Cormorant',Georgia,serif!important;font-weight:600!important}
-h2{font-family:'Cormorant Infant','Cormorant',Georgia,serif!important;font-weight:600!important}
-h3{font-family:'Cormorant Upright','Cormorant',Georgia,serif!important;font-weight:600!important}
+@media(max-width:900px){.tier-grid{grid-template-columns:1fr;max-width:420px;margin:0 auto}}
+@media(max-width:600px){.footer-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-inner">
-    <a href="index.html" class="brand">SpiritTree</a>
-    <div class="nav-links">
+<header>
+  <div class="nav-wrap">
+    <a class="nav-brand" href="index.html">SpiritTree</a>
+    <nav class="nav-links">
       <a href="browse.html">Browse</a>
       <a href="consulting.html">Consulting</a>
+      <a href="about.html">About</a>
       <a href="blog.html">Blog</a>
       <a href="tools.html">Tools</a>
-    </div>
-    <a href="consulting.html" class="nav-cta">Get Started →</a>
+      <a href="login.html" class="nav-login">Login / Sign Up</a>
+    </nav>
     <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">&#9776;</button>
   </div>
-</nav>
+</header>
 <div class="mobile-menu">
   <a href="browse.html">Browse</a>
   <a href="consulting.html">Consulting</a>
+  <a href="about.html">About</a>
   <a href="blog.html">Blog</a>
   <a href="tools.html">Tools</a>
-  <a href="consulting.html" class="nav-cta">Get Started →</a>
+  <a href="login.html">Login / Sign Up</a>
 </div>
 
 <div class="page-header">
@@ -113,7 +108,6 @@ h3{font-family:'Cormorant Upright','Cormorant',Georgia,serif!important;font-weig
   <div class="tiers-inner">
     <div class="tier-grid">
 
-      <!-- CARD 1 -->
       <div class="tier-card">
         <div class="tier-badge">Strategy</div>
         <div class="tier-price">$497</div>
@@ -125,10 +119,9 @@ h3{font-family:'Cormorant Upright','Cormorant',Georgia,serif!important;font-weig
           <li>Tool + model recommendations</li>
           <li>Recording + transcript</li>
         </ul>
-        <a href="https://buy.stripe.com/00wfZa2qE1AZ09F70z2Nq01" class="tier-btn" target="_blank">Book Roadmap →</a>
+        <a href="https://buy.stripe.com/00wfZa2qE1AZ09F70z2Nq01" class="tier-btn" target="_blank">Book Roadmap</a>
       </div>
 
-      <!-- CARD 2 — POPULAR -->
       <div class="tier-card popular">
         <div class="popular-badge">Most Popular</div>
         <div class="tier-badge">Strategy + Build</div>
@@ -141,10 +134,9 @@ h3{font-family:'Cormorant Upright','Cormorant',Georgia,serif!important;font-weig
           <li>Integration testing</li>
           <li>2 weeks email support</li>
         </ul>
-        <a href="https://buy.stripe.com/9B63co8P2a7v3lRfx52Nq02" class="tier-btn" target="_blank">Book Roadmap + Build →</a>
+        <a href="https://buy.stripe.com/9B63co8P2a7v3lRfx52Nq02" class="tier-btn" target="_blank">Book Roadmap + Build</a>
       </div>
 
-      <!-- CARD 3 -->
       <div class="tier-card">
         <div class="tier-badge">Full Deploy</div>
         <div class="tier-price">$1,997</div>
@@ -156,7 +148,7 @@ h3{font-family:'Cormorant Upright','Cormorant',Georgia,serif!important;font-weig
           <li>Monthly optimization reviews</li>
           <li>Priority support channel</li>
         </ul>
-        <a href="https://buy.stripe.com/6oU00c0iw2F3aOj2Kj2Nq03" class="tier-btn" target="_blank">Book Full Operations →</a>
+        <a href="https://buy.stripe.com/6oU00c0iw2F3aOj2Kj2Nq03" class="tier-btn" target="_blank">Book Full Operations</a>
       </div>
 
     </div>
@@ -166,21 +158,34 @@ h3{font-family:'Cormorant Upright','Cormorant',Georgia,serif!important;font-weig
 <section class="call-cta">
   <h2>Not sure which tier?</h2>
   <p>Book a free 20-minute call. We'll figure out the right fit together.</p>
-  <a href="https://calendly.com/terraloam-eye/agent-consulting" class="btn-gold" target="_blank">Schedule a Free Call →</a>
+  <a href="https://calendly.com/terraloam-eye/agent-consulting" class="btn" target="_blank">Schedule a Free Call</a>
 </section>
 
 <footer>
   <div class="footer-inner">
-    <div class="footer-brand">SpiritTree</div>
-    <div class="footer-links">
-      <a href="browse.html">Browse</a>
-      <a href="consulting.html">Consulting</a>
-      <a href="blog.html">Blog</a>
-      <a href="tools.html">Tools</a>
-      <a href="https://sedim3nt.substack.com" target="_blank">Substack</a>
-      <a href="https://x.com/sedim3nt" target="_blank">X</a>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <p class="footer-brand">SpiritTree</p>
+        <nav>
+          <a href="browse.html">Browse</a>
+          <a href="consulting.html">Consulting</a>
+          <a href="about.html">About</a>
+          <a href="blog.html">Blog</a>
+          <a href="tools.html">Tools</a>
+          <a href="login.html">Login / Sign Up</a>
+        </nav>
+      </div>
+      <div class="footer-col">
+        <p class="footer-brand">Connect</p>
+        <nav>
+          <a href="https://sedim3nt.substack.com" target="_blank">Substack</a>
+          <a href="https://x.com/sedim3nt" target="_blank">X / Twitter</a>
+        </nav>
+      </div>
     </div>
-    <div class="footer-copy">© 2026 Nrvana LLC</div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Nrvana LLC</p>
+    </div>
   </div>
 </footer>
 

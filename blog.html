@@ -3,102 +3,96 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Insights — SpiritTree</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Cormorant+Infant:wght@600&family=Cormorant+SC:wght@600&family=Cormorant+Upright:wght@600&family=Cormorant+Unicase:wght@600&display=swap" rel="stylesheet">
+<title>Blog — SpiritTree</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:ui-sans-serif,system-ui,sans-serif;background:#F5F5F5;color:#1D3557}
+body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#faf8f5;color:#1a1a2e}
 a{text-decoration:none;color:inherit}
-
-/* NAV */
-nav{background:#1D3557;padding:16px 32px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.2)}
-.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:32px}
-.brand{font-family:'Cormorant Garamond','Cormorant',Georgia,serif;font-weight:600;font-size:1.75rem;color:#FFFFFF;margin-right:auto}
-.nav-links{display:flex;gap:24px}
-.nav-links a{color:#FFFFFF;font-size:0.95rem;opacity:0.9;transition:opacity 0.2s}
-.nav-links a:hover{opacity:1}
-.nav-cta{background:#C8A27A;color:#1D3557;font-weight:600;padding:10px 20px;border-radius:8px;font-size:0.9rem;white-space:nowrap;transition:opacity 0.2s}
-.nav-cta:hover{opacity:0.9}
-.hamburger{display:none;background:none;border:none;color:#FFFFFF;font-size:1.875rem;cursor:pointer;margin-left:auto}
-.mobile-menu{display:none;background:#1D3557;padding:16px 32px;flex-direction:column;gap:16px}
-.mobile-menu a{color:#FFFFFF;font-size:1rem;opacity:0.9}
-.mobile-menu .nav-cta{display:inline-block;width:fit-content}
+:root{
+  --sand-50:#faf8f5;--white:#ffffff;--ink-900:#1a1a2e;--ink-700:#2d2d44;--ink-600:#4a4a5a;--ink-500:#6b6b7a;
+  --tide-600:#0d9488;--tide-700:#0f766e;--border-subtle:rgba(26,26,46,0.05);--border-card:rgba(26,26,46,0.1);
+  --tide-light:rgba(13,148,136,0.1);--shadow-card:0 1px 3px rgba(26,26,46,0.08);
+  --shadow-card-hover:0 4px 16px rgba(26,26,46,0.12);--radius:4px;--max-w:1152px;
+}
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:rgba(250,248,245,0.8);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.nav-wrap{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
+@media(min-width:640px){.nav-wrap{padding:16px 24px}}
+.nav-brand{font-size:1.25rem;font-weight:700;color:var(--ink-900)}
+.nav-links{display:none;align-items:center;gap:24px;font-size:0.875rem;font-weight:500;color:var(--ink-700)}
+@media(min-width:768px){.nav-links{display:flex}}
+.nav-links a:hover{color:var(--ink-900)}
+.nav-login{border:1px solid rgba(26,26,46,0.15);padding:6px 12px;border-radius:var(--radius);font-size:0.875rem;font-weight:600;color:var(--ink-900)}
+.nav-login:hover{background:var(--ink-900);color:var(--white)}
+.hamburger{display:flex;background:none;border:none;color:var(--ink-900);font-size:1.5rem;cursor:pointer}
+@media(min-width:768px){.hamburger{display:none}}
+.mobile-menu{display:none;flex-direction:column;gap:16px;padding:16px 24px;background:var(--sand-50);border-bottom:1px solid var(--border-subtle)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:1rem;color:var(--ink-700);font-weight:500}
 
 /* PAGE HEADER */
-.page-header{background:#1D3557;padding:72px 32px 64px;text-align:center}
-.page-header h1{font-family:'Cormorant Garamond','Cormorant',Georgia,serif;font-size:clamp(28px,4vw,48px);font-weight:600;color:#FFFFFF;margin-bottom:12px}
-.page-header p{color:#FFFFFF;opacity:0.65;font-size:1.05rem}
+.page-header{padding:48px 24px 40px;background:var(--white);text-align:center;border-bottom:1px solid var(--border-subtle)}
+.page-header h1{font-size:clamp(1.5rem,4vw,2.5rem);font-weight:800;color:var(--ink-900);margin-bottom:8px}
+.page-header p{color:var(--ink-600);font-size:0.9375rem}
 
 /* ARTICLES */
-.articles{padding:72px 32px}
-.articles-inner{max-width:1200px;margin:0 auto}
-.article-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.article-card{background:#FFFFFF;border:1px solid rgba(29,53,87,0.08);box-shadow:0 1px 3px rgba(0,0,0,0.1);border-radius:16px;padding:28px 24px;display:flex;flex-direction:column;gap:12px;transition:box-shadow 0.2s}
-.article-card:hover{box-shadow:0 4px 16px rgba(29,53,87,0.12)}
-.article-meta{font-size:0.8rem;color:#1D3557;opacity:0.55;font-weight:600;letter-spacing:0.02em}
-.article-title{font-family:'Cormorant Garamond','Cormorant',Georgia,serif;font-size:1.375rem;font-weight:600;color:#1D3557;line-height:1.35;flex:1}
-.article-read{display:inline-block;color:#2C6CB0;font-size:0.875rem;font-weight:600;margin-top:4px;transition:opacity 0.2s}
-.article-read:hover{opacity:0.75}
-.article-divider{width:32px;height:2px;background:#6EA8DA;border-radius:2px}
+.articles{padding:48px 24px 80px}
+.articles-inner{max-width:var(--max-w);margin:0 auto}
+.article-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.article-card{background:var(--white);border:1px solid var(--border-subtle);box-shadow:var(--shadow-card);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:12px;transition:box-shadow 0.2s}
+.article-card:hover{box-shadow:var(--shadow-card-hover)}
+.article-meta{font-size:0.8125rem;color:var(--ink-500);font-weight:500}
+.article-divider{width:32px;height:2px;background:var(--tide-600);border-radius:var(--radius)}
+.article-title{font-size:1.125rem;font-weight:700;color:var(--ink-900);line-height:1.35;flex:1}
+.article-desc{font-size:0.875rem;color:var(--ink-600);line-height:1.6}
+.article-read{display:inline-block;color:var(--tide-600);font-size:0.875rem;font-weight:600;transition:color 0.2s}
+.article-read:hover{color:var(--tide-700)}
 
 /* NEWSLETTER */
-.newsletter{background:#1D3557;padding:72px 32px;text-align:center}
-.newsletter-inner{max-width:560px;margin:0 auto}
-.newsletter h2{font-family:'Cormorant Garamond','Cormorant',Georgia,serif;font-size:clamp(22px,3vw,34px);font-weight:600;color:#FFFFFF;margin-bottom:12px}
-.newsletter p{color:#FFFFFF;opacity:0.65;font-size:1rem;margin-bottom:32px;line-height:1.6}
-.btn-gold{background:#C8A27A;color:#1D3557;font-weight:600;padding:14px 28px;border-radius:8px;font-size:1rem;transition:opacity 0.2s;display:inline-block}
-.btn-gold:hover{opacity:0.9}
+.newsletter{padding:64px 24px;background:var(--white);border-top:1px solid var(--border-subtle);text-align:center}
+.newsletter-inner{max-width:480px;margin:0 auto}
+.newsletter h2{font-size:1.5rem;font-weight:700;color:var(--ink-900);margin-bottom:8px}
+.newsletter p{font-size:0.875rem;color:var(--ink-600);line-height:1.6;margin-bottom:24px}
+.btn-primary{background:var(--tide-600);color:var(--white);font-weight:600;padding:12px 24px;border-radius:var(--radius);font-size:0.875rem;display:inline-block;transition:background 0.2s}
+.btn-primary:hover{background:var(--tide-700)}
 
 /* FOOTER */
-footer{background:#1D3557;color:#FFFFFF;padding:48px 32px;border-top:1px solid rgba(255,255,255,0.08)}
-.footer-inner{max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;gap:32px;align-items:flex-start;justify-content:space-between}
-.footer-brand{font-family:'Cormorant Garamond','Cormorant',Georgia,serif;font-size:1.75rem;font-weight:600}
-.footer-links{display:flex;flex-wrap:wrap;gap:20px}
-.footer-links a{color:#FFFFFF;opacity:0.75;font-size:0.9rem;transition:opacity 0.2s}
-.footer-links a:hover{opacity:1}
-.footer-copy{color:#FFFFFF;opacity:0.45;font-size:0.8rem;width:100%;margin-top:8px}
+footer{border-top:1px solid var(--border-subtle);background:var(--white)}
+.footer-inner{max-width:var(--max-w);margin:0 auto;padding:40px 24px}
+.footer-grid{display:grid;gap:40px;grid-template-columns:1fr 1fr}
+.footer-col p.footer-brand{font-size:0.875rem;font-weight:700;color:var(--ink-900);margin-bottom:12px}
+.footer-col nav{display:flex;flex-direction:column;gap:8px}
+.footer-col nav a{font-size:0.875rem;color:var(--ink-600);transition:color 0.2s}
+.footer-col nav a:hover{color:var(--ink-900)}
+.footer-bottom{margin-top:32px;border-top:1px solid var(--border-subtle);padding-top:24px}
+.footer-bottom p{font-size:0.8125rem;color:var(--ink-500)}
 
-/* RESPONSIVE */
 @media(max-width:900px){.article-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:768px){
-  .nav-links,.nav-cta{display:none}
-  .hamburger{display:block}
-  .mobile-menu.open{display:flex}
-  .page-header{padding:48px 20px}
-  .articles,.newsletter{padding:48px 20px}
-  footer{padding:40px 20px}
-}
-@media(max-width:600px){
-  .article-grid{grid-template-columns:1fr}
-  .footer-inner{flex-direction:column}
-}
-
-h1{font-family:'Cormorant Unicase','Cormorant',Georgia,serif!important;font-weight:600!important}
-h2{font-family:'Cormorant Infant','Cormorant',Georgia,serif!important;font-weight:600!important}
-h3{font-family:'Cormorant Upright','Cormorant',Georgia,serif!important;font-weight:600!important}
+@media(max-width:600px){.article-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-inner">
-    <a href="index.html" class="brand">SpiritTree</a>
-    <div class="nav-links">
+<header>
+  <div class="nav-wrap">
+    <a class="nav-brand" href="index.html">SpiritTree</a>
+    <nav class="nav-links">
       <a href="browse.html">Browse</a>
       <a href="consulting.html">Consulting</a>
+      <a href="about.html">About</a>
       <a href="blog.html">Blog</a>
       <a href="tools.html">Tools</a>
-    </div>
-    <a href="consulting.html" class="nav-cta">Get Started →</a>
+      <a href="login.html" class="nav-login">Login / Sign Up</a>
+    </nav>
     <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">&#9776;</button>
   </div>
-</nav>
+</header>
 <div class="mobile-menu">
   <a href="browse.html">Browse</a>
   <a href="consulting.html">Consulting</a>
+  <a href="about.html">About</a>
   <a href="blog.html">Blog</a>
   <a href="tools.html">Tools</a>
-  <a href="consulting.html" class="nav-cta">Get Started →</a>
+  <a href="login.html">Login / Sign Up</a>
 </div>
 
 <div class="page-header">
@@ -109,54 +103,54 @@ h3{font-family:'Cormorant Upright','Cormorant',Georgia,serif!important;font-weig
 <section class="articles">
   <div class="articles-inner">
     <div class="article-grid">
+
       <div class="article-card">
         <div class="article-meta">March 2026 &middot; 10 min read</div>
         <div class="article-divider"></div>
         <div class="article-title">The Complete Guide to AI Agent Memory in 2026 — What Actually Works</div>
-        <a href="https://sedim3nt.substack.com/p/the-complete-guide-to-ai-agent-memory" class="article-read" target="_blank">Read article →</a>
+        <a href="https://sedim3nt.substack.com/p/the-complete-guide-to-ai-agent-memory" class="article-read" target="_blank">Read article &rarr;</a>
       </div>
-
 
       <div class="article-card">
         <div class="article-meta">March 2026 &middot; 8 min read</div>
         <div class="article-divider"></div>
         <div class="article-title">GPT-5.4 Changed the Game — But Not How You Think</div>
-        <a href="https://sedim3nt.substack.com/p/gpt-54-changed-the-game-but-not-how" class="article-read" target="_blank">Read article →</a>
+        <a href="https://sedim3nt.substack.com/p/gpt-54-changed-the-game-but-not-how" class="article-read" target="_blank">Read article &rarr;</a>
       </div>
 
       <div class="article-card">
         <div class="article-meta">March 2026 &middot; 7 min read</div>
         <div class="article-divider"></div>
         <div class="article-title">The AI Skills Premium Is 23% — Your Move</div>
-        <a href="https://sedim3nt.substack.com/p/the-ai-skills-premium-is-23-your" class="article-read" target="_blank">Read article →</a>
+        <a href="https://sedim3nt.substack.com/p/the-ai-skills-premium-is-23-your" class="article-read" target="_blank">Read article &rarr;</a>
       </div>
 
       <div class="article-card">
         <div class="article-meta">March 2026 &middot; 8 min read</div>
         <div class="article-divider"></div>
         <div class="article-title">The 5 Problems Every AI Agent Operator Hits First</div>
-        <a href="https://sedim3nt.substack.com/p/the-5-problems-every-ai-agent-operator" class="article-read" target="_blank">Read article →</a>
+        <a href="https://sedim3nt.substack.com/p/the-5-problems-every-ai-agent-operator" class="article-read" target="_blank">Read article &rarr;</a>
       </div>
 
       <div class="article-card">
         <div class="article-meta">March 2026 &middot; 9 min read</div>
         <div class="article-divider"></div>
         <div class="article-title">I Replaced My Entire Team With AI Agents</div>
-        <a href="https://sedim3nt.substack.com/p/i-replaced-my-entire-team-with-ai" class="article-read" target="_blank">Read article →</a>
+        <a href="https://sedim3nt.substack.com/p/i-replaced-my-entire-team-with-ai" class="article-read" target="_blank">Read article &rarr;</a>
       </div>
 
       <div class="article-card">
         <div class="article-meta">March 2026 &middot; 7 min read</div>
         <div class="article-divider"></div>
         <div class="article-title">The Zero-Employee Company Is Here</div>
-        <a href="https://sedim3nt.substack.com/p/the-zero-employee-company-is-here" class="article-read" target="_blank">Read article →</a>
+        <a href="https://sedim3nt.substack.com/p/the-zero-employee-company-is-here" class="article-read" target="_blank">Read article &rarr;</a>
       </div>
 
       <div class="article-card">
         <div class="article-meta">March 2026 &middot; 10 min read</div>
         <div class="article-divider"></div>
         <div class="article-title">Your AI Can See Your Data. But Can You?</div>
-        <a href="https://sedim3nt.substack.com/p/your-ai-can-see-your-data-but-can" class="article-read" target="_blank">Read article →</a>
+        <a href="https://sedim3nt.substack.com/p/your-ai-can-see-your-data-but-can" class="article-read" target="_blank">Read article &rarr;</a>
       </div>
 
     </div>
@@ -167,22 +161,35 @@ h3{font-family:'Cormorant Upright','Cormorant',Georgia,serif!important;font-weig
   <div class="newsletter-inner">
     <h2>SpiritTree Intel</h2>
     <p>Weekly AI operations intelligence. Macro trends, agent techniques, security updates. Free.</p>
-    <a href="https://sedim3nt.substack.com" class="btn-gold" target="_blank">Subscribe on Substack →</a>
+    <a href="https://sedim3nt.substack.com" class="btn-primary" target="_blank">Subscribe on Substack</a>
   </div>
 </section>
 
 <footer>
   <div class="footer-inner">
-    <div class="footer-brand">SpiritTree</div>
-    <div class="footer-links">
-      <a href="browse.html">Browse</a>
-      <a href="consulting.html">Consulting</a>
-      <a href="blog.html">Blog</a>
-      <a href="tools.html">Tools</a>
-      <a href="https://sedim3nt.substack.com" target="_blank">Substack</a>
-      <a href="https://x.com/sedim3nt" target="_blank">X</a>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <p class="footer-brand">SpiritTree</p>
+        <nav>
+          <a href="browse.html">Browse</a>
+          <a href="consulting.html">Consulting</a>
+          <a href="about.html">About</a>
+          <a href="blog.html">Blog</a>
+          <a href="tools.html">Tools</a>
+          <a href="login.html">Login / Sign Up</a>
+        </nav>
+      </div>
+      <div class="footer-col">
+        <p class="footer-brand">Connect</p>
+        <nav>
+          <a href="https://sedim3nt.substack.com" target="_blank">Substack</a>
+          <a href="https://x.com/sedim3nt" target="_blank">X / Twitter</a>
+        </nav>
+      </div>
     </div>
-    <div class="footer-copy">© 2026 Nrvana LLC</div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Nrvana LLC</p>
+    </div>
   </div>
 </footer>
 
