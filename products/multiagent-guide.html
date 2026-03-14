@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Multi-Agent Communication Architecture Guide | SpiritTree</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Cormorant+Infant:wght@600&family=Cormorant+Upright:wght@600&family=Cormorant+Unicase:wght@600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#F5F5F5;color:#1D3557;font-family:ui-sans-serif,system-ui,sans-serif;line-height:1.6}
+h1{font-family:'Cormorant Unicase','Cormorant',Georgia,serif!important;font-weight:600!important;font-size:2.2rem}
+h2{font-family:'Cormorant Infant','Cormorant',Georgia,serif!important;font-weight:600!important;font-size:1.8rem}
+h3{font-family:'Cormorant Upright','Cormorant',Georgia,serif!important;font-weight:600!important;font-size:1.4rem}
+a{color:#2C6CB0;text-decoration:none}
+a:hover{opacity:0.8}
+.nav{background:#1D3557;padding:16px 32px;position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:32px}
+.nav-brand{font-family:'Cormorant Unicase',Georgia,serif;font-size:1.4rem;font-weight:600;color:#FFFFFF}
+.nav-links{display:flex;gap:24px;margin-left:auto}
+.nav-links a{color:#FFFFFF;font-size:0.9rem}
+.nav-cta{background:#C8A27A;color:#1D3557;padding:8px 20px;border-radius:8px;font-weight:600;font-size:0.9rem}
+.container{max-width:1200px;margin:0 auto;padding:40px 32px}
+.back{display:inline-block;margin-bottom:24px;font-size:0.9rem}
+.layout{display:flex;gap:40px}
+.left{flex:0 0 60%}
+.right{flex:0 0 36%}
+.purchase-card{background:#FFFFFF;border-radius:16px;padding:32px;box-shadow:0 1px 3px rgba(0,0,0,0.1);position:sticky;top:100px}
+.price{font-family:'Cormorant Garamond',Georgia,serif;font-size:2.5rem;font-weight:600;color:#C8A27A;margin-bottom:8px}
+.price-label{font-size:0.9rem;opacity:0.6;margin-bottom:24px}
+.buy-btn{display:block;background:#2C6CB0;color:#FFFFFF;text-align:center;padding:14px;border-radius:8px;font-weight:600;font-size:1rem;width:100%;margin-bottom:16px}
+.buy-btn:hover{opacity:0.9}
+.free-btn{background:#6EA8DA}
+.details-list{list-style:none;padding:0}
+.details-list li{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(29,53,87,0.08);font-size:0.9rem}
+.details-list li:last-child{border:none}
+.badge{display:inline-block;border:1px solid #6EA8DA;color:#1D3557;padding:4px 12px;border-radius:999px;font-size:0.8rem;margin:12px 0}
+.section{margin:32px 0}
+.section h2{margin-bottom:16px}
+.section p{margin-bottom:12px;opacity:0.85}
+.checklist{list-style:none;padding:0}
+.checklist li{padding:8px 0;padding-left:28px;position:relative}
+.checklist li::before{content:"✓";position:absolute;left:0;color:#2C6CB0;font-weight:600}
+.footer{background:#1D3557;color:#FFFFFF;padding:48px 32px;margin-top:64px}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between}
+.footer a{color:#6EA8DA}
+@media(max-width:768px){.layout{flex-direction:column}.left,.right{flex:none;width:100%}.purchase-card{position:static}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="nav-inner">
+<a href="/index.html" class="nav-brand">SpiritTree</a>
+<div class="nav-links">
+<a href="/browse.html">Browse</a>
+<a href="/consulting.html">Consulting</a>
+<a href="/blog.html">Blog</a>
+<a href="/tools.html">Tools</a>
+<a href="/browse.html" class="nav-cta">Get Started →</a>
+</div></div></nav>
+<div class="container">
+<a href="/browse.html" class="back">← Back to marketplace</a>
+<div class="layout">
+<div class="left">
+<h1>Multi-Agent Communication Architecture Guide</h1>
+<span class="badge">Architecture</span>
+<div class="section"><h2>About</h2>
+<p>Three architecture patterns for scaling from a single AI agent to a coordinated multi-agent system. Includes the token relay tax analysis, cross-agent memory coordination protocols, and a decision framework for choosing the right pattern.</p>
+<p>Covers the CEO model (single agent), topic threads (isolated contexts per domain), and separate bots (maximum isolation). With real cost math showing when each pattern makes sense.</p>
+<p>Built from production experience running 8 agents across coding, research, content, ops, and blockchain workstreams. Not theory — tested coordination patterns with specific failure modes and mitigations documented.</p>
+</div>
+<div class="section"><h2>What's Included</h2>
+<ul class="checklist">
+<li>3 architecture patterns with diagrams and trade-offs</li>
+<li>Token relay tax analysis with real cost math</li>
+<li>BULLETIN.md cross-agent announcement protocol</li>
+<li>Status file protocol (JSON per agent)</li>
+<li>Shared workspace layout with handoffs/ and entities/</li>
+<li>OpenClaw topic thread configuration examples</li>
+<li>Decision framework: when to use each pattern</li>
+<li>3-month migration path from single to multi-agent</li>
+<li>Model-per-topic cost optimization strategy</li>
+<li>Race condition mitigations for shared workspaces</li>
+<li>Cron job targeting by topic/domain</li>
+</ul></div>
+<div class="section"><h2>Version History</h2>
+<p><strong>Version 1</strong> · March 2026</p>
+<p>Initial release covering three architecture patterns, token economics, cross-agent coordination, and the migration framework.</p>
+</div>
+</div>
+<div class="right">
+<div class="purchase-card">
+<div class="price">Free</div>
+<div class="price-label">Read on Substack</div>
+<a href="https://sedim3nt.substack.com/p/your-ai-agent-is-a-bottleneck-here" class="buy-btn free-btn">Read Free →</a>
+<ul class="details-list">
+<li><span>Type</span><span>Architecture Guide</span></li>
+<li><span>Category</span><span>Multi-Agent</span></li>
+<li><span>Price</span><span>Free</span></li>
+<li><span>Format</span><span>Substack Article</span></li>
+</ul>
+</div></div>
+</div></div>
+<footer class="footer"><div class="footer-inner">
+<div><strong>SpiritTree</strong><br>© 2026 Nrvana LLC</div>
+<div><a href="https://sedim3nt.substack.com">Substack</a> · <a href="https://x.com/sedim3nt">X</a></div>
+</div></footer>
+</body></html>
