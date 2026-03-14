@@ -25,11 +25,11 @@ nav{background:#1D3557;padding:16px 32px;position:sticky;top:0;z-index:100;box-s
 .mobile-menu .nav-cta{display:inline-block;width:fit-content}
 
 /* HERO */
-.hero{background:#F5F5F5;padding:96px 32px 80px;text-align:center}
-.hero-inner{max-width:720px;margin:0 auto}
+.hero{background:#F5F5F5;padding:96px 32px 80px;text-align:left}
+.hero-inner{max-width:1200px;margin:0 auto}
 .hero h1{font-family:'Fraunces',Georgia,serif;font-size:clamp(36px,5vw,56px);font-weight:700;color:#1D3557;line-height:1.1;margin-bottom:20px}
-.hero p{font-size:1.1rem;color:#1D3557;opacity:0.75;line-height:1.65;max-width:580px;margin:0 auto 36px}
-.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.hero p{font-size:1.1rem;color:#1D3557;opacity:0.75;line-height:1.65;max-width:580px;margin:0 0 36px}
+.hero-btns{display:flex;gap:16px;justify-content:flex-start;flex-wrap:wrap}
 .btn-primary{background:#2C6CB0;color:#FFFFFF;font-weight:700;padding:14px 28px;border-radius:8px;font-size:1rem;transition:opacity 0.2s}
 .btn-primary:hover{opacity:0.9}
 .btn-outline{border:2px solid #2C6CB0;color:#2C6CB0;font-weight:700;padding:12px 28px;border-radius:8px;font-size:1rem;background:transparent;transition:all 0.2s}
@@ -41,8 +41,8 @@ nav{background:#1D3557;padding:16px 32px;position:sticky;top:0;z-index:100;box-s
 .section-label{text-align:center;font-size:0.8rem;font-weight:700;letter-spacing:0.1em;color:#2C6CB0;text-transform:uppercase;margin-bottom:12px}
 .value-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:40px}
 .value-card{text-align:center;padding:32px 24px}
-.value-icon{width:56px;height:56px;border-radius:50%;background:#F5F5F5;border:2px solid #6EA8DA;margin:0 auto 20px;display:flex;align-items:center;justify-content:center}
-.value-icon svg{width:24px;height:24px;stroke:#2C6CB0;fill:none;stroke-width:2}
+
+
 .value-card h3{font-family:'Fraunces',Georgia,serif;font-size:1.2rem;font-weight:700;color:#1D3557;margin-bottom:8px}
 .value-card p{font-size:0.9rem;color:#1D3557;opacity:0.65;line-height:1.5}
 
@@ -152,23 +152,14 @@ footer{background:#1D3557;color:#FFFFFF;padding:48px 32px}
     <div class="section-label">Why SpiritTree</div>
     <div class="value-grid">
       <div class="value-card">
-        <div class="value-icon">
-          <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        </div>
         <h3>Production-Tested</h3>
         <p>Configs from real 24/7 AI operations</p>
       </div>
       <div class="value-card">
-        <div class="value-icon">
-          <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"/></svg>
-        </div>
         <h3>Security-First</h3>
         <p>Built with OWASP agentic security standards</p>
       </div>
       <div class="value-card">
-        <div class="value-icon">
-          <svg viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
-        </div>
         <h3>Expert Support</h3>
         <p>Direct access to multi-agent system operators</p>
       </div>
