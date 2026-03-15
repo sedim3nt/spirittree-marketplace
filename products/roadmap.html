@@ -3,21 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Agent Blueprint Roadmap — SpiritTree</title>
+<title>Strategy Session — SpiritTree</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@600&family=Cormorant+Unicase:wght@600&family=Cormorant+Upright:wght@600&display=swap" rel="stylesheet">
 <style>
+h1{font-family:'Cormorant Unicase',Georgia,serif;font-weight:600;font-size:clamp(3.125rem,7.5vw,5.5rem)}
+h2{font-family:'Cormorant Infant',Georgia,serif;font-weight:600;font-size:2.35rem}
+h3{font-family:'Cormorant Upright',Georgia,serif;font-weight:600;font-size:1.72rem}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#faf8f5;color:#1a1a2e}
+body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#f6f7f8;color:#1a1a2e}
 a{text-decoration:none;color:inherit}
-:root{--sand-50:#faf8f5;--white:#fff;--ink-900:#1a1a2e;--ink-700:#2d2d44;--ink-600:#4a4a5a;--ink-500:#6b6b7a;--tide-600:#0d9488;--tide-700:#0f766e;--border-subtle:rgba(26,26,46,0.05);--border-card:rgba(26,26,46,0.1);--tide-light:rgba(13,148,136,0.1);--shadow-card:0 1px 3px rgba(26,26,46,0.08);--radius:4px;--max-w:1152px}
-header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:rgba(250,248,245,0.8);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+:root{--sand-50:#f6f7f8;--white:#fff;--ink-900:#1a1a2e;--ink-700:#2d2d44;--ink-600:#4a4a5a;--ink-500:#6b6b7a;--tide-600:#006ca5;--tide-700:#005a8a;--border-subtle:rgba(26,26,46,0.05);--border-card:rgba(26,26,46,0.1);--tide-light:rgba(0,108,165,0.1);--shadow-card:0 1px 3px rgba(26,26,46,0.08);--radius:4px;--max-w:1152px}
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:#ffffff}
 .nw{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
 @media(min-width:640px){.nw{padding:16px 24px}}
 .nb{font-size:1.25rem;font-weight:700;color:var(--ink-900)}
 .nl{display:none;align-items:center;gap:24px;font-size:.875rem;font-weight:500;color:var(--ink-700)}
 @media(min-width:768px){.nl{display:flex}}
 .nl a:hover{color:var(--ink-900)}
-.nli{border:1px solid rgba(26,26,46,.15);padding:6px 12px;border-radius:var(--radius);font-size:.875rem;font-weight:600;color:var(--ink-900)}
-.nli:hover{background:var(--ink-900);color:var(--white)}
+.nli{border:1px solid rgba(26,26,46,.4);padding:6px 12px;border-radius:var(--radius);font-size:.875rem;font-weight:600;color:var(--ink-900)}
+.nli:hover{border-color:var(--ink-900)}
 .hb{display:flex;background:none;border:none;color:var(--ink-900);font-size:1.5rem;cursor:pointer}
 @media(min-width:768px){.hb{display:none}}
 .mm{display:none;flex-direction:column;gap:16px;padding:16px 24px;background:var(--sand-50);border-bottom:1px solid var(--border-subtle)}
@@ -26,7 +30,7 @@ header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-sub
 .pp{max-width:var(--max-w);margin:0 auto;padding:48px 24px 80px;display:grid;grid-template-columns:1fr 340px;gap:40px;align-items:start}
 .pm h1{font-size:1.75rem;font-weight:800;color:var(--ink-900);margin-bottom:8px}
 .pm .cat{font-size:.8125rem;color:var(--tide-600);font-weight:600;margin-bottom:24px}
-.pm h2{font-size:1.125rem;font-weight:700;color:var(--ink-900);margin:28px 0 12px}
+.pm h2{font-size:1.125rem;font-weight:700;color:var(--ink-900);margin:28px 0 12px;font-family:ui-sans-serif,system-ui,sans-serif}
 .pm p{font-size:.9375rem;color:var(--ink-600);line-height:1.7;margin-bottom:16px}
 .pm ul{margin:0 0 16px 20px;color:var(--ink-600);font-size:.9375rem;line-height:1.7}
 .pm li{margin-bottom:6px}
@@ -36,6 +40,7 @@ header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-sub
 .pbtn{display:block;background:var(--tide-600);color:var(--white);font-weight:600;padding:14px 20px;border-radius:var(--radius);font-size:1rem;text-align:center;transition:background .2s}
 .pbtn:hover{background:var(--tide-700)}
 .pc .cr{font-size:.8125rem;color:var(--ink-500);text-align:center}
+.pc .note{font-size:.8125rem;color:var(--tide-600);text-align:center;font-weight:500}
 .bl{display:inline-block;font-size:.875rem;color:var(--tide-600);font-weight:500;margin-bottom:20px}
 .bl:hover{color:var(--tide-700)}
 footer{border-top:1px solid var(--border-subtle);background:var(--white)}
@@ -57,29 +62,41 @@ footer{border-top:1px solid var(--border-subtle);background:var(--white)}
 
 <div class="pp">
   <div class="pm">
-    <a href="../browse.html" class="bl">&larr; Back to Browse</a>
-    <h1>Agent Blueprint Roadmap</h1>
+    <a href="../consulting.html" class="bl">&larr; Back to Consulting</a>
+    <h1>Strategy Session</h1>
     <div class="cat">Consulting</div>
-    <p>90-minute strategy session where we audit your current operations, identify the highest-ROI automation opportunities, and build a custom AI operations roadmap tailored to your business.</p>
-    <h2>What's included</h2>
+    <p>60-minute strategy call where we audit your current operations, identify the highest-ROI automation opportunities, and build a custom AI operations roadmap tailored to your business. This isn't a generic playbook — it's a focused session with an operator who runs this stack in production every day.</p>
+
+    <h2>Before the call</h2>
+    <p>When you book, we send a short workflow questionnaire (5 questions). This means we show up to the call already understanding your business, your tools, and your bottlenecks — so we spend zero time on basic discovery and all 60 minutes on strategy.</p>
+
+    <h2>What you get</h2>
     <ul>
-      <li>90-minute deep-dive strategy session</li>
-      <li>Custom AI operations roadmap</li>
-      <li>30-day implementation plan with specific tools, configurations, and milestones</li>
-      <li>Tool and model recommendations</li>
-      <li>Full recording + transcript</li>
+      <li>60-minute deep-dive strategy session on Zoom, recorded</li>
+      <li>Written roadmap delivered within 48 hours</li>
+      <li>Current state audit — where you are and what's costing you time</li>
+      <li>Top 5 automation opportunities ranked by ROI</li>
+      <li>Phased implementation plan (week 1, month 1, month 3)</li>
+      <li>Tool and model recommendations specific to your stack</li>
+      <li>Full recording and transcript of the session</li>
+      <li>2 weeks of email follow-up for questions about the roadmap</li>
     </ul>
+
     <h2>Who this is for</h2>
-    <p>Founders, operators, and technical leads who want to understand where AI agents can replace manual workflows, reduce SaaS costs, and create compounding operational leverage — but need a clear roadmap to get there.</p>
+    <p>Founders, solopreneurs, and operators who know AI can save them serious time but need a clear map to get there. You're drowning in content, email, admin, or ops work — and you want someone who's done it to tell you exactly what to automate first and how.</p>
+
+    <h2>What happens next</h2>
+    <p>The roadmap itself often becomes the sales tool for the next step. When you see "Phase 1: Set up content automation pipeline — estimated 8 hours of configuration," you'll know whether you want to build it yourself or have us do it. If you upgrade to Roadmap + Build or Full Operations, your $500 is credited toward the setup cost.</p>
   </div>
   <div class="pc">
-    <div class="price">$497</div>
+    <div class="price">$500</div>
     <div class="lbl">One-time payment</div>
-    <a href="https://buy.stripe.com/00wfZa2qE1AZ09F70z2Nq01" class="pbtn" target="_blank">Book Now</a>
+    <a href="https://calendly.com/terraloam-eye/agent-consulting" class="pbtn" target="_blank">Book Strategy Session</a>
+    <div class="note">$500 credited if you upgrade to Build or Full Ops</div>
     <div class="cr">by SpiritTree</div>
   </div>
 </div>
 
-<footer><div class="fi"><div class="fg"><div class="fc"><p class="fb">SpiritTree</p><nav><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a><a href="../about.html">About</a><a href="../blog.html">Blog</a><a href="../tools.html">Tools</a></nav></div><div class="fc"><p class="fb">Connect</p><nav><a href="https://sedim3nt.substack.com" target="_blank">Substack</a><a href="https://x.com/sedim3nt" target="_blank">X / Twitter</a></nav></div></div><div class="fbot"><p>&copy; 2026 Nrvana LLC</p></div></div></footer>
+<footer><div class="fi"><div class="fg"><div class="fc"><p class="fb">SpiritTree</p><nav><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a><a href="../about.html">About</a><a href="../blog.html">Blog</a><a href="../tools.html">Tools</a></nav></div><div class="fc"><p class="fb">Connect</p><nav><a href="https://sedim3nt.substack.com" target="_blank">Substack</a><a href="https://x.com/sedim3nt" target="_blank">X / Twitter</a><a href="mailto:hello@spirittree.dev">hello@spirittree.dev</a></nav></div></div><div class="fbot"><p>&copy; 2026 Nrvana LLC</p></div></div></footer>
 </body>
 </html>

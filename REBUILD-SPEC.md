@@ -173,9 +173,9 @@ Add data-category attributes to each section div.
 ## SPIRITTREE PRODUCTS (keep all existing)
 
 ### Consulting
-- Agent Blueprint Roadmap — $497 (link: https://buy.stripe.com/00wfZa2qE1AZ09F70z2Nq01)
-- Roadmap + Build — $997 (link: https://buy.stripe.com/9B63co8P2a7v3lRfx52Nq02)
-- Full Operations — $1,997 (link: https://buy.stripe.com/6oU00c0iw2F3aOj2Kj2Nq03)
+- Strategy Session — $500 (book via Calendly, $500 credited toward Build/Full Ops)
+- Roadmap + Build — $1,000 (optional $200/mo support retainer)
+- Full Operations — $2,000 setup + $500/mo managed (month-to-month, zero lock-in)
 
 ### Digital Products
 - Agent Blueprint DIY Kit — $49 (link: https://buy.stripe.com/7sY00c2qE5Rf1dJacL2Nq07)

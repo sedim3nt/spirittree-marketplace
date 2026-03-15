@@ -4,20 +4,24 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Roadmap + Build — SpiritTree</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@600&family=Cormorant+Unicase:wght@600&family=Cormorant+Upright:wght@600&display=swap" rel="stylesheet">
 <style>
+h1{font-family:'Cormorant Unicase',Georgia,serif;font-weight:600;font-size:clamp(3.125rem,7.5vw,5.5rem)}
+h2{font-family:'Cormorant Infant',Georgia,serif;font-weight:600;font-size:2.35rem}
+h3{font-family:'Cormorant Upright',Georgia,serif;font-weight:600;font-size:1.72rem}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#faf8f5;color:#1a1a2e}
+body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#f6f7f8;color:#1a1a2e}
 a{text-decoration:none;color:inherit}
-:root{--sand-50:#faf8f5;--white:#fff;--ink-900:#1a1a2e;--ink-700:#2d2d44;--ink-600:#4a4a5a;--ink-500:#6b6b7a;--tide-600:#0d9488;--tide-700:#0f766e;--border-subtle:rgba(26,26,46,0.05);--border-card:rgba(26,26,46,0.1);--tide-light:rgba(13,148,136,0.1);--shadow-card:0 1px 3px rgba(26,26,46,0.08);--radius:4px;--max-w:1152px}
-header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:rgba(250,248,245,0.8);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+:root{--sand-50:#f6f7f8;--white:#fff;--ink-900:#1a1a2e;--ink-700:#2d2d44;--ink-600:#4a4a5a;--ink-500:#6b6b7a;--tide-600:#006ca5;--tide-700:#005a8a;--border-subtle:rgba(26,26,46,0.05);--border-card:rgba(26,26,46,0.1);--tide-light:rgba(0,108,165,0.1);--shadow-card:0 1px 3px rgba(26,26,46,0.08);--radius:4px;--max-w:1152px}
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:#ffffff}
 .nw{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
 @media(min-width:640px){.nw{padding:16px 24px}}
 .nb{font-size:1.25rem;font-weight:700;color:var(--ink-900)}
 .nl{display:none;align-items:center;gap:24px;font-size:.875rem;font-weight:500;color:var(--ink-700)}
 @media(min-width:768px){.nl{display:flex}}
 .nl a:hover{color:var(--ink-900)}
-.nli{border:1px solid rgba(26,26,46,.15);padding:6px 12px;border-radius:var(--radius);font-size:.875rem;font-weight:600;color:var(--ink-900)}
-.nli:hover{background:var(--ink-900);color:var(--white)}
+.nli{border:1px solid rgba(26,26,46,.4);padding:6px 12px;border-radius:var(--radius);font-size:.875rem;font-weight:600;color:var(--ink-900)}
+.nli:hover{border-color:var(--ink-900)}
 .hb{display:flex;background:none;border:none;color:var(--ink-900);font-size:1.5rem;cursor:pointer}
 @media(min-width:768px){.hb{display:none}}
 .mm{display:none;flex-direction:column;gap:16px;padding:16px 24px;background:var(--sand-50);border-bottom:1px solid var(--border-subtle)}
@@ -26,7 +30,7 @@ header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-sub
 .pp{max-width:var(--max-w);margin:0 auto;padding:48px 24px 80px;display:grid;grid-template-columns:1fr 340px;gap:40px;align-items:start}
 .pm h1{font-size:1.75rem;font-weight:800;color:var(--ink-900);margin-bottom:8px}
 .pm .cat{font-size:.8125rem;color:var(--tide-600);font-weight:600;margin-bottom:24px}
-.pm h2{font-size:1.125rem;font-weight:700;color:var(--ink-900);margin:28px 0 12px}
+.pm h2{font-size:1.125rem;font-weight:700;color:var(--ink-900);margin:28px 0 12px;font-family:ui-sans-serif,system-ui,sans-serif}
 .pm p{font-size:.9375rem;color:var(--ink-600);line-height:1.7;margin-bottom:16px}
 .pm ul{margin:0 0 16px 20px;color:var(--ink-600);font-size:.9375rem;line-height:1.7}
 .pm li{margin-bottom:6px}
@@ -36,6 +40,7 @@ header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-sub
 .pbtn{display:block;background:var(--tide-600);color:var(--white);font-weight:600;padding:14px 20px;border-radius:var(--radius);font-size:1rem;text-align:center;transition:background .2s}
 .pbtn:hover{background:var(--tide-700)}
 .pc .cr{font-size:.8125rem;color:var(--ink-500);text-align:center}
+.pc .note{font-size:.8125rem;color:var(--tide-600);text-align:center;font-weight:500}
 .bl{display:inline-block;font-size:.875rem;color:var(--tide-600);font-weight:500;margin-bottom:20px}
 .bl:hover{color:var(--tide-700)}
 footer{border-top:1px solid var(--border-subtle);background:var(--white)}
@@ -57,30 +62,48 @@ footer{border-top:1px solid var(--border-subtle);background:var(--white)}
 
 <div class="pp">
   <div class="pm">
-    <a href="../browse.html" class="bl">&larr; Back to Browse</a>
+    <a href="../consulting.html" class="bl">&larr; Back to Consulting</a>
     <h1>Roadmap + Build</h1>
-    <div class="cat">Consulting</div>
-    <p>Everything in the Roadmap tier, plus we actually build your core AI infrastructure. You get a working system — not just a plan.</p>
+    <div class="cat">Consulting — Most Popular</div>
+    <p>Everything in the Strategy Session, plus we actually build your highest-priority automation system and deploy it on your infrastructure. You get a working system — not just a plan.</p>
+
+    <h2>How it works</h2>
+    <p>We start with the Strategy Session — the same 60-minute deep dive and written roadmap. Then we take the #1 automation opportunity from your roadmap and build it end-to-end. You provide access to your infrastructure (or we help you spin up a VPS), and we configure, test, and deploy a working system within 7 business days.</p>
+
+    <h2>What we build</h2>
+    <p>One primary automation system with up to 3 connected workflows. This could be a content pipeline (research, write, publish), an email triage system, a customer support flow, an ops automation — whatever ranked highest on your roadmap. One system, working end-to-end, with real data flowing through it.</p>
+
     <h2>What's included</h2>
     <ul>
-      <li>Everything in the Roadmap tier</li>
-      <li>Core infrastructure built and configured for you</li>
-      <li>Agent configurations deployed</li>
-      <li>Memory architecture setup</li>
-      <li>Integration testing</li>
-      <li>2 weeks of email support post-delivery</li>
+      <li>Everything in the Strategy Session ($500 value)</li>
+      <li>One primary automation system built and deployed</li>
+      <li>Up to 3 connected workflows configured</li>
+      <li>Agent configurations and memory architecture</li>
+      <li>Integration testing with your actual tools and data</li>
+      <li>Deployed on your infrastructure (we help you set up if needed)</li>
+      <li>30-minute recorded handoff walkthrough</li>
+      <li>14-day bug fix warranty</li>
+      <li>Delivered within 7 business days of strategy call</li>
     </ul>
+
+    <h2>Your infrastructure</h2>
+    <p>We deploy on your machine or a VPS you own. If you don't have a server, we help you spin up a $20-40/mo VPS on Hetzner or DigitalOcean during the build. You own it, you control it, it's yours. You'll also need a Claude Code subscription ($100-200/mo depending on usage).</p>
+
     <h2>Who this is for</h2>
-    <p>Teams and founders who want hands-on help getting their AI operations stack running. You know what you need — you want someone who's done it before to build it right the first time.</p>
+    <p>Startup founders and small teams who want hands-on help getting their AI operations running. You've seen what's possible — you want someone who's done it before to build it right the first time instead of spending weeks figuring it out yourself.</p>
+
+    <h2>After delivery</h2>
+    <p>14 days of bug fixes are included. After that, you can add an optional $200/mo support retainer for ongoing monitoring, fixes, and a monthly check-in call. Or you can run it yourself — we hand over everything and you're fully self-sufficient.</p>
   </div>
   <div class="pc">
-    <div class="price">$997</div>
+    <div class="price">$1,000</div>
     <div class="lbl">One-time payment</div>
-    <a href="https://buy.stripe.com/9B63co8P2a7v3lRfx52Nq02" class="pbtn" target="_blank">Book Now</a>
+    <a href="https://calendly.com/terraloam-eye/agent-consulting" class="pbtn" target="_blank">Book Roadmap + Build</a>
+    <div class="note">Optional: $200/mo support retainer after delivery</div>
     <div class="cr">by SpiritTree</div>
   </div>
 </div>
 
-<footer><div class="fi"><div class="fg"><div class="fc"><p class="fb">SpiritTree</p><nav><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a><a href="../about.html">About</a><a href="../blog.html">Blog</a><a href="../tools.html">Tools</a></nav></div><div class="fc"><p class="fb">Connect</p><nav><a href="https://sedim3nt.substack.com" target="_blank">Substack</a><a href="https://x.com/sedim3nt" target="_blank">X / Twitter</a></nav></div></div><div class="fbot"><p>&copy; 2026 Nrvana LLC</p></div></div></footer>
+<footer><div class="fi"><div class="fg"><div class="fc"><p class="fb">SpiritTree</p><nav><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a><a href="../about.html">About</a><a href="../blog.html">Blog</a><a href="../tools.html">Tools</a></nav></div><div class="fc"><p class="fb">Connect</p><nav><a href="https://sedim3nt.substack.com" target="_blank">Substack</a><a href="https://x.com/sedim3nt" target="_blank">X / Twitter</a><a href="mailto:hello@spirittree.dev">hello@spirittree.dev</a></nav></div></div><div class="fbot"><p>&copy; 2026 Nrvana LLC</p></div></div></footer>
 </body>
 </html>

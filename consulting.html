@@ -4,14 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Consulting — SpiritTree</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@600&family=Cormorant+Unicase:wght@600&family=Cormorant+Upright:wght@600&display=swap" rel="stylesheet"><style>h1{font-family:'Cormorant Unicase',Georgia,serif;font-weight:600;font-size:clamp(3.125rem,7.5vw,5.5rem)}h2{font-family:'Cormorant Infant',Georgia,serif;font-weight:600;font-size:2.35rem}h3{font-family:'Cormorant Upright',Georgia,serif;font-weight:600;font-size:1.72rem}
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@600&family=Cormorant+Unicase:wght@600&family=Cormorant+Upright:wght@600&display=swap" rel="stylesheet">
+<style>
+h1{font-family:'Cormorant Unicase',Georgia,serif;font-weight:600;font-size:clamp(3.125rem,7.5vw,5.5rem)}
+h2{font-family:'Cormorant Infant',Georgia,serif;font-weight:600;font-size:2.35rem}
+h3{font-family:'Cormorant Upright',Georgia,serif;font-weight:600;font-size:1.72rem}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#f6f7f8;color:#1a1a2e}
 a{text-decoration:none;color:inherit}
 :root{
   --sand-50:#f6f7f8;--white:#ffffff;--ink-900:#1a1a2e;--ink-700:#2d2d44;--ink-600:#4a4a5a;--ink-500:#6b6b7a;
   --tide-600:#006ca5;--tide-700:#005a8a;--border-subtle:rgba(26,26,46,0.05);--border-card:rgba(26,26,46,0.1);
-  --tide-light:rgba(13,148,136,0.1);--shadow-card:0 1px 3px rgba(26,26,46,0.08);
+  --tide-light:rgba(0,108,165,0.1);--shadow-card:0 1px 3px rgba(26,26,46,0.08);
   --shadow-card-hover:0 4px 16px rgba(26,26,46,0.12);--radius:4px;--max-w:1152px;
 }
 header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:#ffffff}
@@ -29,21 +33,21 @@ header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-sub
 .mobile-menu.open{display:flex}
 .mobile-menu a{font-size:1rem;color:var(--ink-700);font-weight:500}
 
-/* PAGE HEADER */
 .page-header{padding:48px 24px 40px;background:var(--white);text-align:center;border-bottom:1px solid var(--border-subtle)}
-.page-header h1{font-size:clamp(1.5rem,4vw,2.5rem);font-weight:800;color:var(--ink-900);margin-bottom:8px}
-.page-header p{color:var(--ink-600);font-size:0.9375rem;max-width:520px;margin:0 auto;line-height:1.6}
+.page-header p{color:var(--ink-600);font-size:0.9375rem;max-width:560px;margin:0 auto;line-height:1.6}
 
 /* TIERS */
 .tiers{padding:64px 24px}
 .tiers-inner{max-width:var(--max-w);margin:0 auto}
 .tier-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
 .tier-card{background:var(--white);border:1px solid var(--border-card);box-shadow:var(--shadow-card);border-radius:var(--radius);padding:28px 24px;display:flex;flex-direction:column;gap:16px;position:relative}
-.tier-card.popular{border:2px solid var(--tide-600);box-shadow:0 4px 24px rgba(13,148,136,0.15)}
+.tier-card.popular{border:2px solid var(--tide-600);box-shadow:0 4px 24px rgba(0,108,165,0.15)}
 .popular-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--tide-600);color:var(--white);font-size:0.75rem;font-weight:600;padding:4px 14px;border-radius:var(--radius);white-space:nowrap;letter-spacing:0.04em;text-transform:uppercase}
 .tier-badge{display:inline-block;background:var(--tide-light);color:var(--tide-700);font-size:0.8rem;font-weight:600;padding:4px 10px;border-radius:var(--radius);width:fit-content}
 .tier-price{font-size:2rem;font-weight:800;color:var(--ink-900)}
+.tier-price .mo{font-size:1rem;font-weight:500;color:var(--ink-600)}
 .tier-title{font-size:1.125rem;font-weight:700;color:var(--ink-900)}
+.tier-desc{font-size:0.875rem;color:var(--ink-600);line-height:1.6}
 .tier-features{list-style:none;display:flex;flex-direction:column;gap:10px;flex:1}
 .tier-features li{font-size:0.875rem;color:var(--ink-600);display:flex;align-items:flex-start;gap:10px;line-height:1.45}
 .tier-features li::before{content:'';display:inline-block;width:14px;height:14px;min-width:14px;background:var(--tide-600);border-radius:var(--radius);margin-top:3px}
@@ -51,15 +55,37 @@ header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-sub
 .tier-btn:hover{background:var(--tide-700)}
 .tier-card.popular .tier-btn{background:var(--ink-900)}
 .tier-card.popular .tier-btn:hover{opacity:0.9}
+.tier-note{font-size:0.8125rem;color:var(--ink-500);text-align:center;margin-top:4px}
+
+/* HOW IT WORKS */
+.how-section{padding:64px 24px;background:var(--white);border-top:1px solid var(--border-subtle)}
+.how-inner{max-width:var(--max-w);margin:0 auto;text-align:center}
+.how-inner h2{margin-bottom:40px}
+.how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center}
+.how-step .num{width:40px;height:40px;border-radius:var(--radius);background:var(--tide-light);color:var(--tide-600);font-weight:700;font-size:1.125rem;display:flex;align-items:center;justify-content:center;margin:0 auto 12px}
+.how-step h3{font-size:1.1rem;margin-bottom:8px}
+.how-step p{font-size:0.8125rem;color:var(--ink-600);line-height:1.5}
+
+/* FAQ */
+.faq-section{padding:64px 24px}
+.faq-inner{max-width:720px;margin:0 auto}
+.faq-inner h2{text-align:center;margin-bottom:32px}
+.faq-item{border-bottom:1px solid var(--border-subtle);padding:20px 0}
+.faq-item h3{font-size:1rem;font-weight:600;color:var(--ink-900);margin-bottom:8px;font-family:ui-sans-serif,system-ui,-apple-system,sans-serif}
+.faq-item p{font-size:0.875rem;color:var(--ink-600);line-height:1.6}
+
+/* GUARANTEE */
+.guarantee{padding:48px 24px;background:var(--white);border-top:1px solid var(--border-subtle);text-align:center}
+.guarantee h2{margin-bottom:12px}
+.guarantee p{font-size:0.9375rem;color:var(--ink-600);max-width:600px;margin:0 auto;line-height:1.6}
 
 /* CTA */
 .call-cta{background:var(--ink-900);padding:64px 24px;text-align:center}
-.call-cta h2{font-size:1.5rem;font-weight:700;color:var(--white);margin-bottom:8px}
+.call-cta h2{color:var(--white);margin-bottom:8px}
 .call-cta p{color:rgba(255,255,255,0.65);font-size:0.9375rem;margin-bottom:24px}
 .call-cta .btn{background:var(--tide-600);color:var(--white);font-weight:600;padding:12px 24px;border-radius:var(--radius);font-size:0.9375rem;display:inline-block;transition:background 0.2s}
 .call-cta .btn:hover{background:var(--tide-700)}
 
-/* FOOTER */
 footer{border-top:1px solid var(--border-subtle);background:var(--white)}
 .footer-inner{max-width:var(--max-w);margin:0 auto;padding:40px 24px}
 .footer-grid{display:grid;gap:40px;grid-template-columns:1fr 1fr}
@@ -70,8 +96,8 @@ footer{border-top:1px solid var(--border-subtle);background:var(--white)}
 .footer-bottom{margin-top:32px;border-top:1px solid var(--border-subtle);padding-top:24px}
 .footer-bottom p{font-size:0.8125rem;color:var(--ink-500)}
 
-@media(max-width:900px){.tier-grid{grid-template-columns:1fr;max-width:420px;margin:0 auto}}
-@media(max-width:600px){.footer-grid{grid-template-columns:1fr}}
+@media(max-width:900px){.tier-grid{grid-template-columns:1fr;max-width:420px;margin:0 auto}.how-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.footer-grid{grid-template-columns:1fr}.how-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -100,8 +126,8 @@ footer{border-top:1px solid var(--border-subtle);background:var(--white)}
 </div>
 
 <div class="page-header">
-  <h1>Agent Blueprint Consulting</h1>
-  <p>We build your AI operations infrastructure. Strategy, deployment, ongoing support.</p>
+  <h1>Consulting</h1>
+  <p>We build AI operations for real businesses. Strategy, deployment, and ongoing support from operators who run this stack in production every day.</p>
 </div>
 
 <section class="tiers">
@@ -110,54 +136,142 @@ footer{border-top:1px solid var(--border-subtle);background:var(--white)}
 
       <div class="tier-card">
         <div class="tier-badge">Strategy</div>
-        <div class="tier-price">$497</div>
-        <div class="tier-title">Roadmap</div>
+        <div class="tier-price">$500</div>
+        <div class="tier-title">Strategy Session</div>
+        <div class="tier-desc">60-minute strategy call where we audit your operations, identify the highest-ROI automation opportunities, and build a custom roadmap for your business.</div>
         <ul class="tier-features">
-          <li>90-minute deep-dive session</li>
-          <li>Custom AI operations roadmap</li>
-          <li>30-day implementation plan</li>
-          <li>Tool + model recommendations</li>
-          <li>Recording + transcript</li>
+          <li>Pre-call workflow questionnaire</li>
+          <li>60-minute recorded Zoom session</li>
+          <li>Written roadmap delivered in 48 hours</li>
+          <li>Top 5 automation opportunities ranked by ROI</li>
+          <li>Phased implementation plan (week 1, month 1, month 3)</li>
+          <li>Tool and model recommendations</li>
+          <li>2 weeks email follow-up for questions</li>
         </ul>
-        <a href="https://buy.stripe.com/00wfZa2qE1AZ09F70z2Nq01" class="tier-btn" target="_blank">Book Roadmap</a>
+        <a href="https://calendly.com/terraloam-eye/agent-consulting" class="tier-btn" target="_blank">Book Strategy Session</a>
+        <div class="tier-note">$500 credited toward Build or Full Ops if you upgrade</div>
       </div>
 
       <div class="tier-card popular">
         <div class="popular-badge">Most Popular</div>
         <div class="tier-badge">Strategy + Build</div>
-        <div class="tier-price">$997</div>
+        <div class="tier-price">$1,000</div>
         <div class="tier-title">Roadmap + Build</div>
+        <div class="tier-desc">Everything in the Strategy Session, plus we build your highest-priority automation system and deploy it on your infrastructure. You get a working system — not just a plan.</div>
         <ul class="tier-features">
-          <li>Everything in Roadmap</li>
-          <li>Core infrastructure built for you</li>
-          <li>Agent configurations deployed</li>
-          <li>Integration testing</li>
-          <li>2 weeks email support</li>
+          <li>Everything in Strategy Session</li>
+          <li>One primary automation system built end-to-end</li>
+          <li>Up to 3 connected workflows</li>
+          <li>Deployed on your infrastructure (we help you set up)</li>
+          <li>30-minute recorded handoff walkthrough</li>
+          <li>14-day bug fix warranty</li>
+          <li>Delivered within 7 business days</li>
         </ul>
-        <a href="https://buy.stripe.com/9B63co8P2a7v3lRfx52Nq02" class="tier-btn" target="_blank">Book Roadmap + Build</a>
+        <a href="https://calendly.com/terraloam-eye/agent-consulting" class="tier-btn" target="_blank">Book Roadmap + Build</a>
+        <div class="tier-note">Optional: $200/mo support retainer after delivery</div>
       </div>
 
       <div class="tier-card">
-        <div class="tier-badge">Full Deploy</div>
-        <div class="tier-price">$1,997</div>
+        <div class="tier-badge">Managed Operations</div>
+        <div class="tier-price">$2,000 <span class="mo">+ $500/mo</span></div>
         <div class="tier-title">Full Operations</div>
+        <div class="tier-desc">The complete package. We build your entire AI operations stack, host it on dedicated infrastructure, and actively improve it every month. You get the employee. We handle everything else.</div>
         <ul class="tier-features">
           <li>Everything in Roadmap + Build</li>
-          <li>Ongoing operations support</li>
-          <li>System monitoring + alerts</li>
-          <li>Monthly optimization reviews</li>
-          <li>Priority support channel</li>
+          <li>Up to 5 automation systems in initial build</li>
+          <li>Hosted on dedicated infrastructure (included)</li>
+          <li>Active monthly improvement and optimization</li>
+          <li>Monthly 30-minute strategy call</li>
+          <li>8-hour response time for critical issues</li>
+          <li>Shared Telegram or Slack channel</li>
+          <li>Month-to-month — no contract, cancel anytime</li>
         </ul>
-        <a href="https://buy.stripe.com/6oU00c0iw2F3aOj2Kj2Nq03" class="tier-btn" target="_blank">Book Full Operations</a>
+        <a href="https://calendly.com/terraloam-eye/agent-consulting" class="tier-btn" target="_blank">Book Full Operations</a>
+        <div class="tier-note">You own everything. Leave anytime with all configs and files.</div>
       </div>
 
     </div>
   </div>
 </section>
 
+<section class="how-section">
+  <div class="how-inner">
+    <h2>How It Works</h2>
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="num">1</div>
+        <h3>Book a Call</h3>
+        <p>Pick a time that works. We send you a short questionnaire so we show up prepared.</p>
+      </div>
+      <div class="how-step">
+        <div class="num">2</div>
+        <h3>Strategy Session</h3>
+        <p>60-minute deep dive into your operations. We map your workflows and identify the highest-ROI automations.</p>
+      </div>
+      <div class="how-step">
+        <div class="num">3</div>
+        <h3>We Build It</h3>
+        <p>For Build and Full Ops tiers, we configure your AI system, test everything, and deploy it within 7 days.</p>
+      </div>
+      <div class="how-step">
+        <div class="num">4</div>
+        <h3>You Ship</h3>
+        <p>Your AI operations go live. For Full Ops, we keep improving it every month while you focus on your business.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq-section">
+  <div class="faq-inner">
+    <h2>Questions</h2>
+
+    <div class="faq-item">
+      <h3>What makes this different from setting up AI myself?</h3>
+      <p>Same difference as buying a server vs. hiring a sysadmin. We've spent months running an AI-operated business in production. You get battle-tested configurations, a working memory system, and the expertise to avoid the mistakes that take most people weeks to debug.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>What do I need to provide?</h3>
+      <p>A Claude Code subscription ($100-200/mo, depending on your usage) and answers to our intake questionnaire. We handle everything else — configuration, deployment, testing, and handoff.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>How fast can my system be live?</h3>
+      <p>Strategy Session delivers a written roadmap within 48 hours. Build tiers go live within 7 business days of the strategy call. Some simpler automations ship in 48 hours.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>What does the $500/mo cover on Full Operations?</h3>
+      <p>Hosting on dedicated infrastructure, monitoring, bug fixes, active improvement, and a monthly strategy call. We don't just keep the lights on — we make your system better every month based on your feedback and everything we learn across our operations.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Can I cancel Full Operations?</h3>
+      <p>Month-to-month. No contract. If you leave, we hand over every file, every config, every piece of the system. Zero lock-in. We believe people stay because the service is good, not because they're trapped.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Is my data safe?</h3>
+      <p>Full Ops clients run on isolated infrastructure. Your API keys are encrypted environment variables. Your business data flows through your system's runtime but is never logged, stored, or accessed by us. We maintain the AI layer — you own the data.</p>
+    </div>
+
+    <div class="faq-item">
+      <h3>Can the $500 Strategy Session fee be applied to a higher tier?</h3>
+      <p>Yes. If you upgrade to Roadmap + Build or Full Operations, your $500 is credited toward the setup cost.</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="guarantee">
+  <h2>Zero Lock-In Guarantee</h2>
+  <p>You own everything we build. Every configuration file, every workflow, every piece of your system comes with you if you leave. We don't hold your data hostage. We earn your business every month.</p>
+</section>
+
 <section class="call-cta">
   <h2>Not sure which tier?</h2>
-  <p>Book a free 20-minute call. We'll figure out the right fit together.</p>
+  <p>Book a free 20-minute intro call. No pitch, no pressure — we'll figure out the right fit together.</p>
   <a href="https://calendly.com/terraloam-eye/agent-consulting" class="btn" target="_blank">Schedule a Free Call</a>
 </section>
 
@@ -172,7 +286,6 @@ footer{border-top:1px solid var(--border-subtle);background:var(--white)}
           <a href="about.html">About</a>
           <a href="blog.html">Blog</a>
           <a href="tools.html">Tools</a>
-          <a href="login.html">Login / Sign Up</a>
         </nav>
       </div>
       <div class="footer-col">
@@ -180,6 +293,7 @@ footer{border-top:1px solid var(--border-subtle);background:var(--white)}
         <nav>
           <a href="https://sedim3nt.substack.com" target="_blank">Substack</a>
           <a href="https://x.com/sedim3nt" target="_blank">X / Twitter</a>
+          <a href="mailto:hello@spirittree.dev">hello@spirittree.dev</a>
         </nav>
       </div>
     </div>
