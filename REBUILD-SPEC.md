@@ -209,6 +209,15 @@ Add data-category attributes to each section div.
 7. All files in products/ directory
 8. CREATE: login.html
 
+## TYPOGRAPHY — Cormorant Family (Semibold 600)
+- **h1** → Cormorant Unicase (semibold 600), `clamp(2.5rem, 6vw, 4.375rem)`
+- **h2** → Cormorant Infant (semibold 600), `1.875rem`
+- **h3** → Cormorant Upright (semibold 600), `1.375rem`
+- Fallback stack: `Georgia, serif`
+- All sizes bumped ~25% from base
+- Body text remains system sans-serif
+- Google Fonts loaded via `<link>` before `<style>` block
+
 ## CSS APPROACH
 Since this is static HTML (GitHub Pages), use inline `<style>` in each file. Define a shared CSS design system at the top of each file matching ClawMart's patterns but with 4px border-radius override.
 
