@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Account — SpiritTree</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#faf8f5;color:#1a1a2e;min-height:100vh;display:flex;flex-direction:column}
+a{text-decoration:none;color:inherit}
+:root{
+  --sand-50:#faf8f5;--white:#ffffff;--ink-900:#1a1a2e;--ink-700:#2d2d44;--ink-600:#4a4a5a;--ink-500:#6b6b7a;
+  --tide-600:#0d9488;--tide-700:#0f766e;--border-subtle:rgba(26,26,46,0.05);--border-card:rgba(26,26,46,0.1);
+  --tide-light:rgba(13,148,136,0.1);--shadow-card:0 1px 3px rgba(26,26,46,0.08);
+  --shadow-card-hover:0 4px 16px rgba(26,26,46,0.12);--radius:4px;--max-w:1152px;
+}
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:rgba(250,248,245,0.8);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.nav-wrap{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
+@media(min-width:640px){.nav-wrap{padding:16px 24px}}
+.nav-brand{font-size:1.25rem;font-weight:700;color:var(--ink-900)}
+.nav-links{display:none;align-items:center;gap:24px;font-size:0.875rem;font-weight:500;color:var(--ink-700)}
+@media(min-width:768px){.nav-links{display:flex}}
+.nav-links a:hover{color:var(--ink-900)}
+.nav-login{border:1px solid var(--tide-600);padding:6px 12px;border-radius:var(--radius);font-size:0.875rem;font-weight:600;color:var(--tide-600)}
+.nav-login:hover{background:var(--tide-600);color:var(--white)}
+.hamburger{display:flex;background:none;border:none;color:var(--ink-900);font-size:1.5rem;cursor:pointer}
+@media(min-width:768px){.hamburger{display:none}}
+.mobile-menu{display:none;flex-direction:column;gap:16px;padding:16px 24px;background:var(--sand-50);border-bottom:1px solid var(--border-subtle)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:1rem;color:var(--ink-700);font-weight:500}
+
+/* ACCOUNT */
+.account-page{flex:1;padding:48px 24px}
+.account-inner{max-width:600px;margin:0 auto}
+.account-card{background:var(--white);border:1px solid var(--border-subtle);border-radius:var(--radius);box-shadow:var(--shadow-card);padding:32px;margin-bottom:24px}
+.account-card h2{font-size:1.25rem;font-weight:700;color:var(--ink-900);margin-bottom:16px}
+.account-card h3{font-size:1rem;font-weight:600;color:var(--ink-900);margin-bottom:8px}
+.info-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border-subtle)}
+.info-row:last-child{border-bottom:none}
+.info-label{font-size:0.8125rem;font-weight:600;color:var(--ink-600)}
+.info-value{font-size:0.875rem;color:var(--ink-900)}
+.btn-primary{background:var(--tide-600);color:var(--white);font-weight:600;padding:10px 20px;border-radius:var(--radius);font-size:0.875rem;border:none;cursor:pointer;font-family:inherit;transition:background 0.2s}
+.btn-primary:hover{background:var(--tide-700)}
+.btn-outline{background:transparent;color:var(--ink-900);font-weight:600;padding:10px 20px;border-radius:var(--radius);font-size:0.875rem;border:1px solid var(--border-card);cursor:pointer;font-family:inherit;transition:all 0.2s}
+.btn-outline:hover{border-color:var(--ink-900)}
+.btn-danger{background:#ef4444;color:white;font-weight:600;padding:10px 20px;border-radius:var(--radius);font-size:0.875rem;border:none;cursor:pointer;font-family:inherit;transition:background 0.2s}
+.btn-danger:hover{background:#dc2626}
+.empty-state{text-align:center;padding:32px;color:var(--ink-600);font-size:0.875rem}
+
+footer{border-top:1px solid var(--border-subtle);background:var(--white);margin-top:auto}
+.footer-inner{max-width:var(--max-w);margin:0 auto;padding:40px 24px}
+.footer-bottom p{font-size:0.8125rem;color:var(--ink-500);text-align:center}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a class="nav-brand" href="index.html">SpiritTree</a>
+    <nav class="nav-links">
+      <a href="browse.html">Browse</a>
+      <a href="consulting.html">Consulting</a>
+      <a href="about.html">About</a>
+      <a href="blog.html">Blog</a>
+      <a href="tools.html">Tools</a>
+      <a href="account.html" class="nav-login">Account</a>
+    </nav>
+    <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+  </div>
+</header>
+<div class="mobile-menu">
+  <a href="browse.html">Browse</a>
+  <a href="consulting.html">Consulting</a>
+  <a href="about.html">About</a>
+  <a href="blog.html">Blog</a>
+  <a href="tools.html">Tools</a>
+  <a href="account.html">Account</a>
+</div>
+
+<main class="account-page">
+  <div class="account-inner">
+    <div class="account-card">
+      <h2>Your Account</h2>
+      <div class="info-row">
+        <span class="info-label">Email</span>
+        <span class="info-value" id="user-email">Loading...</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Member since</span>
+        <span class="info-value" id="user-created">—</span>
+      </div>
+    </div>
+
+    <div class="account-card">
+      <h3>Your Purchases</h3>
+      <div class="empty-state" id="purchases-empty">
+        No purchases yet. <a href="browse.html" style="color:var(--tide-600)">Browse products →</a>
+      </div>
+      <div id="purchases-list" style="display:none"></div>
+    </div>
+
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px">
+      <button class="btn-outline" onclick="signOut()">Sign Out</button>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-bottom">
+      <p>&copy; 2026 Nrvana LLC</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const SUPABASE_URL = 'https://gnhmveamzymuxlsymsuw.supabase.co';
+  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImduaG12ZWFtenltdXhsc3ltc3V3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1MzcwMjEsImV4cCI6MjA4OTExMzAyMX0.cliTxwWBMJXP6U-B-BtFkaUAY857D819f4ekXbkRgpY';
+  const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  (async () => {
+    const { data: { session } } = await sb.auth.getSession();
+    if (!session) {
+      window.location.href = 'login.html';
+      return;
+    }
+    const user = session.user;
+    document.getElementById('user-email').textContent = user.email;
+    document.getElementById('user-created').textContent = new Date(user.created_at).toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
+  })();
+
+  async function signOut() {
+    await sb.auth.signOut();
+    window.location.href = 'index.html';
+  }
+</script>
+
+</body>
+</html>

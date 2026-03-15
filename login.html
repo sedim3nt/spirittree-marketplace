@@ -81,21 +81,105 @@ footer{border-top:1px solid var(--border-subtle);background:var(--white)}
   <div class="login-card">
     <h1>Account access</h1>
     <p class="subtitle">One account for buyers and creators</p>
-    <form onsubmit="return false;">
+    <div id="auth-message" style="display:none;padding:10px 12px;border-radius:var(--radius);font-size:0.8125rem;margin-bottom:16px;text-align:center"></div>
+
+    <!-- Sign In / Sign Up Tabs -->
+    <div style="display:flex;gap:0;margin-bottom:24px;border:1px solid var(--border-card);border-radius:var(--radius);overflow:hidden">
+      <button id="tab-signin" onclick="showTab('signin')" style="flex:1;padding:8px;font-size:0.8125rem;font-weight:600;border:none;cursor:pointer;background:var(--tide-600);color:white;font-family:inherit">Sign In</button>
+      <button id="tab-signup" onclick="showTab('signup')" style="flex:1;padding:8px;font-size:0.8125rem;font-weight:600;border:none;cursor:pointer;background:var(--white);color:var(--ink-700);font-family:inherit">Create Account</button>
+    </div>
+
+    <form id="auth-form" onsubmit="handleAuth(event)">
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" id="email" placeholder="you@example.com" autocomplete="email">
+        <input type="email" id="email" placeholder="you@example.com" autocomplete="email" required>
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" id="password" placeholder="Your password" autocomplete="current-password">
-        <a href="#" class="forgot">Forgot password?</a>
+        <input type="password" id="password" placeholder="••••••••" autocomplete="current-password" required minlength="6">
+        <a href="forgot-password.html" class="forgot" id="forgot-link">Forgot password?</a>
       </div>
-      <button type="submit" class="login-btn">Sign In</button>
+      <button type="submit" class="login-btn" id="auth-btn">Sign In</button>
     </form>
     <div class="login-footer">
       Looking for products? <a href="browse.html">Browse marketplace</a>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+      const SUPABASE_URL = 'https://gnhmveamzymuxlsymsuw.supabase.co';
+      const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImduaG12ZWFtenltdXhsc3ltc3V3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzM1MzcwMjEsImV4cCI6MjA4OTExMzAyMX0.cliTxwWBMJXP6U-B-BtFkaUAY857D819f4ekXbkRgpY';
+      const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+      let mode = 'signin';
+
+      function showTab(tab) {
+        mode = tab;
+        const si = document.getElementById('tab-signin');
+        const su = document.getElementById('tab-signup');
+        const btn = document.getElementById('auth-btn');
+        const forgot = document.getElementById('forgot-link');
+        if (tab === 'signin') {
+          si.style.background = 'var(--tide-600)'; si.style.color = 'white';
+          su.style.background = 'var(--white)'; su.style.color = 'var(--ink-700)';
+          btn.textContent = 'Sign In';
+          forgot.style.display = '';
+        } else {
+          su.style.background = 'var(--tide-600)'; su.style.color = 'white';
+          si.style.background = 'var(--white)'; si.style.color = 'var(--ink-700)';
+          btn.textContent = 'Create Account';
+          forgot.style.display = 'none';
+        }
+        hideMessage();
+      }
+
+      function showMessage(text, isError) {
+        const el = document.getElementById('auth-message');
+        el.style.display = 'block';
+        el.textContent = text;
+        el.style.background = isError ? '#fef2f2' : '#f0fdf4';
+        el.style.color = isError ? '#991b1b' : '#166534';
+        el.style.border = isError ? '1px solid #fecaca' : '1px solid #bbf7d0';
+      }
+
+      function hideMessage() {
+        document.getElementById('auth-message').style.display = 'none';
+      }
+
+      async function handleAuth(e) {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const btn = document.getElementById('auth-btn');
+        btn.disabled = true;
+        btn.textContent = mode === 'signin' ? 'Signing in...' : 'Creating account...';
+
+        try {
+          if (mode === 'signup') {
+            const { data, error } = await sb.auth.signUp({ email, password });
+            if (error) throw error;
+            showMessage('Check your email to confirm your account.', false);
+            btn.textContent = 'Create Account';
+          } else {
+            const { data, error } = await sb.auth.signInWithPassword({ email, password });
+            if (error) throw error;
+            showMessage('Signed in! Redirecting...', false);
+            setTimeout(() => window.location.href = 'account.html', 1000);
+            return;
+          }
+        } catch (err) {
+          showMessage(err.message || 'Something went wrong', true);
+          btn.textContent = mode === 'signin' ? 'Sign In' : 'Create Account';
+        }
+        btn.disabled = false;
+      }
+
+      // Check if already logged in
+      (async () => {
+        const { data: { session } } = await sb.auth.getSession();
+        if (session) window.location.href = 'account.html';
+      })();
+    </script>
   </div>
 </main>
 
