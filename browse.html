@@ -29,44 +29,40 @@ header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-sub
 .mobile-menu.open{display:flex}
 .mobile-menu a{font-size:1rem;color:var(--ink-700);font-weight:500}
 
-/* PAGE HEADER */
 .page-header{padding:48px 24px 40px;background:var(--white);text-align:center;border-bottom:1px solid var(--border-subtle)}
 .page-header h1{font-size:clamp(1.5rem,4vw,2.5rem);font-weight:800;color:var(--ink-900);margin-bottom:8px}
 .page-header p{color:var(--ink-600);font-size:0.9375rem}
 
-/* FILTERS */
 .filters{padding:24px 24px 0;background:var(--sand-50)}
 .filters-inner{max-width:var(--max-w);margin:0 auto;display:flex;flex-wrap:wrap;gap:8px}
 .filter-pill{background:var(--white);color:var(--ink-700);border:1px solid var(--border-card);padding:6px 16px;border-radius:var(--radius);font-size:0.8125rem;font-weight:600;cursor:pointer;transition:all 0.2s;user-select:none}
 .filter-pill:hover,.filter-pill.active{background:var(--tide-600);color:var(--white);border-color:var(--tide-600)}
 
-/* SECTIONS */
 .browse-section{padding:40px 24px 16px}
 .browse-inner{max-width:var(--max-w);margin:0 auto}
-.section-title{font-size:1.25rem;font-weight:700;color:var(--ink-900);margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border-subtle)}
+.section-title{font-size:1.25rem;font-weight:700;color:var(--ink-900);margin-bottom:4px;padding-bottom:12px;border-bottom:1px solid var(--border-subtle)}
+.section-desc{font-size:0.875rem;color:var(--ink-600);margin-bottom:20px;padding-top:8px}
 .card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 
-/* CARD */
 .card{display:flex;flex-direction:column;border:1px solid var(--border-subtle);background:var(--white);padding:20px;border-radius:var(--radius);box-shadow:var(--shadow-card);transition:box-shadow 0.2s}
 .card:hover{box-shadow:var(--shadow-card-hover)}
 .card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
-.card-info{display:flex;align-items:center;gap:12px}
-.card-icon{display:none}
-.card-name{font-weight:600;color:var(--ink-900);font-size:1.5rem;line-height:1}
-.card-cat{font-size:0.8125rem;color:var(--ink-600)}
-.card-price{font-size:1.125rem;font-weight:700;color:var(--ink-900);white-space:nowrap}
-.card-price.free{background:#e0f2fe;color:#0369a1}
-.card-desc{margin-top:16px;font-size:0.875rem;line-height:1.6;color:var(--ink-600);flex:1}
-.card-tags{margin-top:16px;display:flex;flex-wrap:wrap;gap:6px}
-.card-tag{background:var(--sand-50);border:1px solid var(--border-subtle);padding:2px 8px;border-radius:var(--radius);font-size:0.75rem;font-weight:500;color:var(--ink-700)}
-.card-bottom{margin-top:20px;border-top:1px solid var(--border-subtle);padding-top:16px;display:flex;align-items:center;justify-content:space-between}
-.card-creator{display:none;font-size:0.75rem;color:var(--ink-500);background:var(--sand-50);border:1px solid var(--border-subtle);border-radius:var(--radius);padding:3px 8px;white-space:nowrap;flex-shrink:0}
+.card-info{display:flex;align-items:flex-start;gap:0;flex-direction:column}
+.card-name{font-weight:600;color:var(--ink-900);font-size:1.25rem;line-height:1.2}
+.card-meta{display:flex;align-items:center;gap:8px;margin-top:4px}
+.card-cat{font-size:0.75rem;color:var(--ink-500)}
+.card-level{font-size:0.75rem;color:var(--ink-500)}
+.card-price{font-size:1.125rem;font-weight:700;color:var(--ink-900);white-space:nowrap;flex-shrink:0}
+.card-price.free{color:#0369a1;background:#e0f2fe;padding:2px 8px;border-radius:var(--radius);font-size:0.875rem}
+.card-desc{margin-top:12px;font-size:0.875rem;line-height:1.6;color:var(--ink-600);flex:1}
+.card-bottom{margin-top:16px;border-top:1px solid var(--border-subtle);padding-top:14px;display:flex;align-items:center;justify-content:space-between}
 .card-btn{background:var(--tide-600);color:var(--white);border-radius:var(--radius);padding:6px 14px;font-weight:600;font-size:0.8125rem;transition:background 0.2s}
 .card-btn:hover{background:var(--tide-700)}
+.card-btn.free{background:#0369a1}
+.card-btn.free:hover{background:#0284c7}
 
 .spacer{padding-bottom:64px}
 
-/* FOOTER */
 footer{border-top:1px solid var(--border-subtle);background:var(--white)}
 .footer-inner{max-width:var(--max-w);margin:0 auto;padding:40px 24px}
 .footer-grid{display:grid;gap:40px;grid-template-columns:1fr 1fr}
@@ -91,8 +87,8 @@ footer{border-top:1px solid var(--border-subtle);background:var(--white)}
     <nav class="nav-links">
       <a href="browse.html">Browse</a>
       <a href="consulting.html">Consulting</a>
-<a href="blog.html">Blog</a>
-<a href="login.html" class="nav-login">Login / Sign Up</a>
+      <a href="blog.html">Blog</a>
+      <a href="login.html" class="nav-login">Login / Sign Up</a>
     </nav>
     <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">&#9776;</button>
   </div>
@@ -100,8 +96,8 @@ footer{border-top:1px solid var(--border-subtle);background:var(--white)}
 <div class="mobile-menu">
   <a href="browse.html">Browse</a>
   <a href="consulting.html">Consulting</a>
-<a href="blog.html">Blog</a>
-<a href="login.html">Login / Sign Up</a>
+  <a href="blog.html">Blog</a>
+  <a href="login.html">Login / Sign Up</a>
 </div>
 
 <div class="page-header">
@@ -111,161 +107,364 @@ footer{border-top:1px solid var(--border-subtle);background:var(--white)}
 
 <div class="filters">
   <div class="filters-inner">
-    <span class="filter-pill active">All</span>
-    <span class="filter-pill">Consulting</span>
-    <span class="filter-pill">Digital</span>
-    <span class="filter-pill">Security</span>
-    <span class="filter-pill">Tools</span>
-    <span class="filter-pill">Free</span>
+    <span class="filter-pill active" data-filter="all">All</span>
+    <span class="filter-pill" data-filter="personas">Personas</span>
+    <span class="filter-pill" data-filter="skills">Skills</span>
+    <span class="filter-pill" data-filter="guides">Guides</span>
+    <span class="filter-pill" data-filter="services">Services</span>
   </div>
 </div>
 
-<!-- CONSULTING -->
-<div class="browse-section" data-category="consulting">
+<!-- PERSONAS -->
+<div class="browse-section" data-category="personas">
   <div class="browse-inner">
-    <div class="section-title">Consulting</div>
-    <div class="card-grid">
-
-      <a href="products/roadmap.html" class="card">
-        <div class="card-top">
-          <div class="card-info"><div class="card-icon">A</div><div><h3 class="card-name">Strategy Session</h3><div class="card-cat">Consulting</div></div></div>
-          <span class="card-creator">AgentOrchard</span></div><p class="card-desc">60-minute strategy call + written roadmap in 48 hours. Top 5 automation opportunities ranked by ROI. $500 credited if you upgrade.</p>
-        <div class="card-tags"><span class="card-tag">Consulting</span></div>
-        <div class="card-bottom"><span class="card-price">$500</span><span class="card-btn">Book</span></div>
-      </a>
-
-      <a href="products/roadmap-build.html" class="card">
-        <div class="card-top">
-          <div class="card-info"><div class="card-icon">R</div><div><h3 class="card-name">Roadmap + Build</h3><div class="card-cat">Consulting</div></div></div>
-          <span class="card-creator">AgentOrchard</span></div><p class="card-desc">Everything in Roadmap, plus we configure your agent, set up memory systems, deploy monitoring, and hand you a working system — not just a plan.</p>
-        <div class="card-tags"><span class="card-tag">Consulting</span></div>
-        <div class="card-bottom"><span class="card-price">$1,000</span><span class="card-btn">Book</span></div>
-      </a>
-
-      <a href="products/full-ops.html" class="card">
-        <div class="card-top">
-          <div class="card-info"><div class="card-icon">F</div><div><h3 class="card-name">Full Operations</h3><div class="card-cat">Consulting</div></div></div>
-          <span class="card-creator">AgentOrchard</span></div><p class="card-desc">The complete package. Strategy, build, and ongoing operations support. We build your entire AI ops stack and stay on to monitor and optimize it.</p>
-        <div class="card-tags"><span class="card-tag">Consulting</span></div>
-        <div class="card-bottom"><span class="card-price">$2,000</span><span class="card-btn">Book</span></div>
-      </a>
-
-    </div>
-  </div>
-</div>
-
-<!-- DIGITAL PRODUCTS -->
-<div class="browse-section" data-category="digital">
-  <div class="browse-inner">
-    <div class="section-title">Digital Products</div>
+    <div class="section-title">Personas</div>
+    <div class="section-desc">Complete agent identities — drop in and run</div>
     <div class="card-grid">
 
       <a href="products/ceo-stack.html" class="card">
         <div class="card-top">
-          <div class="card-info"><div class="card-icon">C</div><div><h3 class="card-name">CEO Operations Stack</h3><div class="card-cat">Digital Product</div></div></div>
-          <span class="card-creator">AgentOrchard</span></div><p class="card-desc">The complete autonomous AI operations configuration used to run AgentOrchard — a real zero-employee company. Production-tested over 3+ months.</p>
-        <div class="card-tags"><span class="card-tag">Digital Product</span></div>
-        <div class="card-bottom"><span class="card-price">$150</span><span class="card-btn">Buy</span></div>
+          <div class="card-info">
+            <h3 class="card-name">CEO Operations Stack</h3>
+            <div class="card-meta"><span class="card-cat">Persona</span><span class="card-level">🟡 Intermediate</span></div>
+          </div>
+          <span class="card-price">$79</span>
+        </div>
+        <p class="card-desc">Complete autonomous AI operations configuration. 5 workspace files, 8 agent roles, Blueprint pattern, heartbeat monitoring. Production-tested over 3+ months.</p>
+        <div class="card-bottom"><span></span><span class="card-btn">Buy</span></div>
+      </a>
+
+      <a href="products/research-analyst.html" class="card">
+        <div class="card-top">
+          <div class="card-info">
+            <h3 class="card-name">The Research Analyst</h3>
+            <div class="card-meta"><span class="card-cat">Persona</span><span class="card-level">🟡 Intermediate</span></div>
+          </div>
+          <span class="card-price">$49</span>
+        </div>
+        <p class="card-desc">Complete research agent persona. Wake up to intelligence reports every morning. YouTube monitor, daily briefing cron, source synthesis workflow.</p>
+        <div class="card-bottom"><span></span><span class="card-btn">Buy</span></div>
+      </a>
+
+      <a href="products/content-engine.html" class="card">
+        <div class="card-top">
+          <div class="card-info">
+            <h3 class="card-name">The Content Engine</h3>
+            <div class="card-meta"><span class="card-cat">Persona</span><span class="card-level">🟡 Intermediate</span></div>
+          </div>
+          <span class="card-price">$49</span>
+        </div>
+        <p class="card-desc">Content agent that handles research-to-publish across 5 platforms. Substack, X, Bluesky, Facebook — one agent handles the entire pipeline.</p>
+        <div class="card-bottom"><span></span><span class="card-btn">Buy</span></div>
+      </a>
+
+      <a href="products/ops-monitor.html" class="card">
+        <div class="card-top">
+          <div class="card-info">
+            <h3 class="card-name">The Ops Monitor</h3>
+            <div class="card-meta"><span class="card-cat">Persona</span><span class="card-level">🟡 Intermediate</span></div>
+          </div>
+          <span class="card-price">$39</span>
+        </div>
+        <p class="card-desc">DevOps agent that monitors your services 24/7. Heartbeat checks, gateway watchdog, deploy verification. Your infrastructure stays up while you sleep.</p>
+        <div class="card-bottom"><span></span><span class="card-btn">Buy</span></div>
+      </a>
+
+      <a href="products/coding-agent.html" class="card">
+        <div class="card-top">
+          <div class="card-info">
+            <h3 class="card-name">The Coding Agent</h3>
+            <div class="card-meta"><span class="card-cat">Persona</span><span class="card-level">🟡 Intermediate</span></div>
+          </div>
+          <span class="card-price">$49</span>
+        </div>
+        <p class="card-desc">Coding agent with the Blueprint pattern baked in. 8-step build cycle, Ralph loop configs, tmux persistence, Git workflow templates.</p>
+        <div class="card-bottom"><span></span><span class="card-btn">Buy</span></div>
+      </a>
+
+      <a href="products/orchestration-kit.html" class="card">
+        <div class="card-top">
+          <div class="card-info">
+            <h3 class="card-name">Multi-Agent Orchestration Kit</h3>
+            <div class="card-meta"><span class="card-cat">Persona</span><span class="card-level">🔴 Advanced</span></div>
+          </div>
+          <span class="card-price">$99</span>
+        </div>
+        <p class="card-desc">Complete 6-agent team architecture from a system running 24/7 in production. Role definitions, memory system, BULLETIN.md coordination, failure model docs.</p>
+        <div class="card-bottom"><span></span><span class="card-btn">Buy</span></div>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<div class="browse-section" data-category="skills">
+  <div class="browse-inner">
+    <div class="section-title">Skills</div>
+    <div class="section-desc">Single-purpose tools and automations</div>
+    <div class="card-grid">
+
+      <a href="products/memory-blueprint.html" class="card">
+        <div class="card-top">
+          <div class="card-info">
+            <h3 class="card-name">Memory Architecture Blueprint</h3>
+            <div class="card-meta"><span class="card-cat">Skill</span><span class="card-level">🟡 Intermediate</span></div>
+          </div>
+          <span class="card-price">$39</span>
+        </div>
+        <p class="card-desc">The complete memory system based on testing 15 solutions. 80/20 guide: 80% of memory quality comes from discipline, 20% from infrastructure.</p>
+        <div class="card-bottom"><span></span><span class="card-btn">Buy</span></div>
       </a>
 
       <a href="products/content-pipeline.html" class="card">
         <div class="card-top">
-          <div class="card-info"><div class="card-icon">C</div><div><h3 class="card-name">Content Pipeline System</h3><div class="card-cat">Digital Product</div></div></div>
-          <span class="card-creator">AgentOrchard</span></div><p class="card-desc">Multi-agent content production pipeline. Research, Draft, Edit, Publish across Substack, X/Twitter, Facebook, and Instagram.</p>
-        <div class="card-tags"><span class="card-tag">Digital Product</span></div>
-        <div class="card-bottom"><span class="card-price">$80</span><span class="card-btn">Buy</span></div>
+          <div class="card-info">
+            <h3 class="card-name">Content Pipeline System</h3>
+            <div class="card-meta"><span class="card-cat">Skill</span><span class="card-level">🟡 Intermediate</span></div>
+          </div>
+          <span class="card-price">$49</span>
+        </div>
+        <p class="card-desc">Multi-agent content production pipeline. Research, draft, edit, publish across Substack, X/Twitter, Facebook, Bluesky, and Instagram.</p>
+        <div class="card-bottom"><span></span><span class="card-btn">Buy</span></div>
+      </a>
+
+      <a href="products/cron-toolkit.html" class="card">
+        <div class="card-top">
+          <div class="card-info">
+            <h3 class="card-name">Cron &amp; Automation Toolkit</h3>
+            <div class="card-meta"><span class="card-cat">Skill</span><span class="card-level">🟢 Beginner</span></div>
+          </div>
+          <span class="card-price">$29</span>
+        </div>
+        <p class="card-desc">15 production cron templates for the automations that actually matter. Copy, paste, customize. Every template includes the exact cron expression and prompt.</p>
+        <div class="card-bottom"><span></span><span class="card-btn">Buy</span></div>
+      </a>
+
+      <a href="products/playoff-method.html" class="card">
+        <div class="card-top">
+          <div class="card-info">
+            <h3 class="card-name">The Playoff Method</h3>
+            <div class="card-meta"><span class="card-cat">Skill</span><span class="card-level">🟢 Beginner</span></div>
+          </div>
+          <span class="card-price">$19</span>
+        </div>
+        <p class="card-desc">Eliminate blind spots in any AI output. Three competing personas critique, debate, and converge on a single Golden Path result. 6 ready-to-use template sets.</p>
+        <div class="card-bottom"><span></span><span class="card-btn">Buy</span></div>
+      </a>
+
+      <a href="products/research-briefing.html" class="card">
+        <div class="card-top">
+          <div class="card-info">
+            <h3 class="card-name">Daily Research Briefing System</h3>
+            <div class="card-meta"><span class="card-cat">Skill</span><span class="card-level">🟢 Beginner</span></div>
+          </div>
+          <span class="card-price">$29</span>
+        </div>
+        <p class="card-desc">Automated daily intelligence delivered to Telegram, Discord, or email. Configure topics, set cron, wake up to reports every morning without touching it.</p>
+        <div class="card-bottom"><span></span><span class="card-btn">Buy</span></div>
+      </a>
+
+      <a href="products/social-automation.html" class="card">
+        <div class="card-top">
+          <div class="card-info">
+            <h3 class="card-name">Social Media Automation Pack</h3>
+            <div class="card-meta"><span class="card-cat">Skill</span><span class="card-level">🟢 Beginner</span></div>
+          </div>
+          <span class="card-price">$29</span>
+        </div>
+        <p class="card-desc">Post to X, Bluesky, Facebook, and Substack from your AI agent. Production scripts for each platform, n8n workflow templates, complete cross-posting workflow.</p>
+        <div class="card-bottom"><span></span><span class="card-btn">Buy</span></div>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<!-- GUIDES -->
+<div class="browse-section" data-category="guides">
+  <div class="browse-inner">
+    <div class="section-title">Guides</div>
+    <div class="section-desc">Knowledge products and frameworks</div>
+    <div class="card-grid">
+
+      <a href="products/quick-start.html" class="card">
+        <div class="card-top">
+          <div class="card-info">
+            <h3 class="card-name">Agent Quick Start</h3>
+            <div class="card-meta"><span class="card-cat">Guide</span><span class="card-level">🟢 Beginner</span></div>
+          </div>
+          <span class="card-price free">Free</span>
+        </div>
+        <p class="card-desc">Zero to working AI agent in 30 minutes. 12 steps from nothing to a working AI assistant on your machine. The fastest on-ramp that exists.</p>
+        <div class="card-bottom"><span></span><span class="card-btn free">Free</span></div>
       </a>
 
       <a href="products/diy-setup.html" class="card">
         <div class="card-top">
-          <div class="card-info"><div class="card-icon">D</div><div><h3 class="card-name">DIY Setup Guide</h3><div class="card-cat">Digital Product</div></div></div>
-          <span class="card-creator">AgentOrchard</span></div><p class="card-desc">Step-by-step OpenClaw setup guide. Installation, configuration, first skills, memory setup, and basic automations — all in one afternoon.</p>
-        <div class="card-tags"><span class="card-tag">Digital Product</span></div>
-        <div class="card-bottom"><span class="card-price">$50</span><span class="card-btn">Buy</span></div>
+          <div class="card-info">
+            <h3 class="card-name">DIY Agent Setup Guide</h3>
+            <div class="card-meta"><span class="card-cat">Guide</span><span class="card-level">🟢 Beginner</span></div>
+          </div>
+          <span class="card-price">$19</span>
+        </div>
+        <p class="card-desc">Stand up a personal AI agent in one afternoon. Installation, configuration, memory, Telegram, skills, and first 5 automations worth building.</p>
+        <div class="card-bottom"><span></span><span class="card-btn">Buy</span></div>
+      </a>
+
+      <a href="products/hardening-guide.html" class="card">
+        <div class="card-top">
+          <div class="card-info">
+            <h3 class="card-name">OpenClaw Hardening Guide</h3>
+            <div class="card-meta"><span class="card-cat">Guide</span><span class="card-level">🟡 Intermediate</span></div>
+          </div>
+          <span class="card-price">$49</span>
+        </div>
+        <p class="card-desc">13,000-word security hardening guide for AI agent deployments. 12 critical security domains. Written from real attack scenarios, not theory.</p>
+        <div class="card-bottom"><span></span><span class="card-btn">Buy</span></div>
+      </a>
+
+      <a href="products/cost-optimizer.html" class="card">
+        <div class="card-top">
+          <div class="card-info">
+            <h3 class="card-name">AI Cost Optimizer</h3>
+            <div class="card-meta"><span class="card-cat">Guide</span><span class="card-level">🟢 Beginner</span></div>
+          </div>
+          <span class="card-price">$29</span>
+        </div>
+        <p class="card-desc">Stop burning money on AI tokens. Model selection framework, context window management, caching, cron scheduling, and multi-agent token relay tax analysis.</p>
+        <div class="card-bottom"><span></span><span class="card-btn">Buy</span></div>
+      </a>
+
+      <a href="products/mastery-bundle.html" class="card">
+        <div class="card-top">
+          <div class="card-info">
+            <h3 class="card-name">OpenClaw Mastery Bundle</h3>
+            <div class="card-meta"><span class="card-cat">Guide</span><span class="card-level">🟢 Beginner</span></div>
+          </div>
+          <span class="card-price">$29</span>
+        </div>
+        <p class="card-desc">10 PDF guides covering AI agent operations from zero to production. Memory, security, content, automation, multi-agent orchestration, and more.</p>
+        <div class="card-bottom"><span></span><span class="card-btn">Buy</span></div>
+      </a>
+
+      <a href="products/multiagent-comms.html" class="card">
+        <div class="card-top">
+          <div class="card-info">
+            <h3 class="card-name">Multi-Agent Comms Playbook</h3>
+            <div class="card-meta"><span class="card-cat">Guide</span><span class="card-level">🟡 Intermediate</span></div>
+          </div>
+          <span class="card-price">$39</span>
+        </div>
+        <p class="card-desc">Three architecture patterns for scaling from one agent to a coordinated team. Token relay tax analysis with real cost math. BULLETIN.md protocol.</p>
+        <div class="card-bottom"><span></span><span class="card-btn">Buy</span></div>
+      </a>
+
+      <a href="products/stack-assessment.html" class="card">
+        <div class="card-top">
+          <div class="card-info">
+            <h3 class="card-name">Agentic Stack Assessment</h3>
+            <div class="card-meta"><span class="card-cat">Guide</span><span class="card-level">🟡 Intermediate</span></div>
+          </div>
+          <span class="card-price">$29</span>
+        </div>
+        <p class="card-desc">Map your AI system against the 9-layer Agentic Stack framework. 104 primitives checklist. Know exactly where your system is strong and where the gaps are.</p>
+        <div class="card-bottom"><span></span><span class="card-btn">Buy</span></div>
+      </a>
+
+      <a href="products/frontier-ops.html" class="card">
+        <div class="card-top">
+          <div class="card-info">
+            <h3 class="card-name">Frontier Operations Handbook</h3>
+            <div class="card-meta"><span class="card-cat">Guide</span><span class="card-level">🔴 Advanced</span></div>
+          </div>
+          <span class="card-price">$49</span>
+        </div>
+        <p class="card-desc">The 5 skills that separate AI operators from AI users. Boundary sensing, seam design, failure model, capability forecasting, leverage calibration.</p>
+        <div class="card-bottom"><span></span><span class="card-btn">Buy</span></div>
+      </a>
+
+      <a href="products/intent-engineering.html" class="card">
+        <div class="card-top">
+          <div class="card-info">
+            <h3 class="card-name">Intent Engineering for AI Teams</h3>
+            <div class="card-meta"><span class="card-cat">Guide</span><span class="card-level">🟡 Intermediate</span></div>
+          </div>
+          <span class="card-price">$39</span>
+        </div>
+        <p class="card-desc">Turn organizational values into machine-readable instructions. Trade-off matrices, decision boundaries, autonomy ladders. The difference between an AI that follows orders and one that makes good decisions.</p>
+        <div class="card-bottom"><span></span><span class="card-btn">Buy</span></div>
+      </a>
+
+      <a href="products/security-checklist.html" class="card">
+        <div class="card-top">
+          <div class="card-info">
+            <h3 class="card-name">Agent Security Checklist</h3>
+            <div class="card-meta"><span class="card-cat">Guide</span><span class="card-level">🟢 Beginner</span></div>
+          </div>
+          <span class="card-price free">Free</span>
+        </div>
+        <p class="card-desc">10-point security audit you can run in 15 minutes. Free version of our 13,000-word hardening guide. Know your attack surface before someone else finds it.</p>
+        <div class="card-bottom"><span></span><span class="card-btn free">Free</span></div>
       </a>
 
     </div>
   </div>
 </div>
 
-<!-- SECURITY -->
-<div class="browse-section" data-category="security">
+<!-- SERVICES -->
+<div class="browse-section spacer" data-category="services">
   <div class="browse-inner">
-    <div class="section-title">Security</div>
+    <div class="section-title">Services</div>
+    <div class="section-desc">Consulting — we build it for you</div>
     <div class="card-grid">
 
-      <a href="products/hardening-guide.html" class="card">
+      <a href="products/roadmap.html" class="card">
         <div class="card-top">
-          <div class="card-info"><div class="card-icon">H</div><div><h3 class="card-name">OpenClaw Hardening Guide</h3><div class="card-cat">Security</div></div></div>
-          <span class="card-creator">AgentOrchard</span></div><p class="card-desc">13,000-word security hardening guide for AI agent deployments. 10 critical domains. Written from real attack scenarios, not theory.</p>
-        <div class="card-tags"><span class="card-tag">Security</span></div>
-        <div class="card-bottom"><span class="card-price">$50</span><span class="card-btn">Buy</span></div>
+          <div class="card-info">
+            <h3 class="card-name">Strategy Session</h3>
+            <div class="card-meta"><span class="card-cat">Service</span></div>
+          </div>
+          <span class="card-price">$500</span>
+        </div>
+        <p class="card-desc">60-minute strategy call + written roadmap in 48 hours. Top 5 automation opportunities ranked by ROI. $500 credited if you upgrade.</p>
+        <div class="card-bottom"><span></span><span class="card-btn">Book</span></div>
+      </a>
+
+      <a href="products/roadmap-build.html" class="card">
+        <div class="card-top">
+          <div class="card-info">
+            <h3 class="card-name">Roadmap + Build</h3>
+            <div class="card-meta"><span class="card-cat">Service</span></div>
+          </div>
+          <span class="card-price">$1,000</span>
+        </div>
+        <p class="card-desc">Everything in Roadmap, plus we configure your agent, set up memory systems, deploy monitoring, and hand you a working system — not just a plan.</p>
+        <div class="card-bottom"><span></span><span class="card-btn">Book</span></div>
+      </a>
+
+      <a href="products/full-ops.html" class="card">
+        <div class="card-top">
+          <div class="card-info">
+            <h3 class="card-name">Full Operations</h3>
+            <div class="card-meta"><span class="card-cat">Service</span></div>
+          </div>
+          <span class="card-price">$2,000</span>
+        </div>
+        <p class="card-desc">The complete package. Strategy, build, and ongoing operations support. We build your entire AI ops stack and stay on to monitor and optimize it. + $500/mo.</p>
+        <div class="card-bottom"><span></span><span class="card-btn">Book</span></div>
       </a>
 
       <a href="products/dfy-audit.html" class="card">
         <div class="card-top">
-          <div class="card-info"><div class="card-icon">D</div><div><h3 class="card-name">Done-For-You Security Audit</h3><div class="card-cat">Service</div></div></div>
-          <span class="card-creator">AgentOrchard</span></div><p class="card-desc">We audit your AI agent deployment against OWASP Agentic Security standards. Detailed vulnerability report + prioritized fix-it instructions.</p>
-        <div class="card-tags"><span class="card-tag">Security</span><span class="card-tag">Service</span></div>
-        <div class="card-bottom"><span class="card-price">$300</span><span class="card-btn">Book</span></div>
-      </a>
-
-    </div>
-  </div>
-</div>
-
-<!-- BUNDLE -->
-<div class="browse-section" data-category="digital">
-  <div class="browse-inner">
-    <div class="section-title">Bundle</div>
-    <div class="card-grid">
-
-      <a href="products/mastery-bundle.html" class="card">
-        <div class="card-top">
-          <div class="card-info"><div class="card-icon">M</div><div><h3 class="card-name">OpenClaw Mastery Bundle</h3><div class="card-cat">Bundle</div></div></div>
-          <span class="card-creator">AgentOrchard</span></div><p class="card-desc">10 PDF guides covering AI agent operations from zero to production. Memory, security, content, automation, multi-agent orchestration, and more.</p>
-        <div class="card-tags"><span class="card-tag">Bundle</span></div>
-        <div class="card-bottom"><span class="card-price">$30</span><span class="card-btn">Buy</span></div>
-      </a>
-
-    </div>
-  </div>
-</div>
-
-<!-- FREE TOOLS -->
-<div class="browse-section spacer" data-category="free">
-  <div class="browse-inner">
-    <div class="section-title">Free Tools &amp; Public Goods</div>
-    <div class="card-grid">
-
-      <a href="products/skillscan.html" class="card">
-        <div class="card-top">
-          <div class="card-info"><div class="card-icon">S</div><div><h3 class="card-name">SkillScan</h3><div class="card-cat">Tool</div></div></div>
-          <span class="card-price free">Free</span>
+          <div class="card-info">
+            <h3 class="card-name">DFY Security Audit</h3>
+            <div class="card-meta"><span class="card-cat">Service</span></div>
+          </div>
+          <span class="card-price">$297</span>
         </div>
-        <p class="card-desc">Scan skill files for prompt injection, credential theft, and 8 more threat categories. 50+ detection patterns, CLI with JSON output.</p>
-        <div class="card-tags"><span class="card-tag">Tool</span><span class="card-tag">Free</span></div>
-        <div class="card-bottom"><span class="card-price">Free</span><span class="card-btn">Free</span></div>
-      </a>
-
-      <a href="products/memory-guide.html" class="card">
-        <div class="card-top">
-          <div class="card-info"><div class="card-icon">M</div><div><h3 class="card-name">AI Agent Memory Guide</h3><div class="card-cat">Knowledge Base</div></div></div>
-          <span class="card-price free">Free</span>
-        </div>
-        <p class="card-desc">Complete guide to AI agent memory with 16 solutions ranked from production experience. Covers native filesystem to graph databases.</p>
-        <div class="card-tags"><span class="card-tag">Guide</span><span class="card-tag">Free</span></div>
-        <div class="card-bottom"><span class="card-price">Free</span><span class="card-btn">Read</span></div>
-      </a>
-
-      <a href="products/multiagent-guide.html" class="card">
-        <div class="card-top">
-          <div class="card-info"><div class="card-icon">M</div><div><h3 class="card-name">Multi-Agent Architecture Guide</h3><div class="card-cat">Architecture</div></div></div>
-          <span class="card-price free">Free</span>
-        </div>
-        <p class="card-desc">Three architecture patterns for scaling from single agent to coordinated multi-agent system. Real cost math and production failure modes.</p>
-        <div class="card-tags"><span class="card-tag">Architecture</span><span class="card-tag">Free</span></div>
-        <div class="card-bottom"><span class="card-price">Free</span><span class="card-btn">Read</span></div>
+        <p class="card-desc">We audit your AI agent deployment against OWASP Agentic Security standards. Detailed vulnerability report + prioritized fix-it instructions delivered in 5 days.</p>
+        <div class="card-bottom"><span></span><span class="card-btn">Book</span></div>
       </a>
 
     </div>
@@ -280,20 +479,22 @@ footer{border-top:1px solid var(--border-subtle);background:var(--white)}
         <nav>
           <a href="browse.html">Browse</a>
           <a href="consulting.html">Consulting</a>
-<a href="blog.html">Blog</a>
-<a href="login.html">Login / Sign Up</a>
+          <a href="blog.html">Blog</a>
+          <a href="login.html">Login / Sign Up</a>
         </nav>
       </div>
       <div class="footer-col products-col">
         <p class="footer-brand">Products</p>
         <nav>
-          <a href="products/roadmap.html">Strategy Session</a>
-          <a href="products/ceo-stack.html">CEO Operations Stack</a>
+          <a href="products/ceo-stack.html">CEO Ops Stack</a>
+          <a href="products/orchestration-kit.html">Orchestration Kit</a>
           <a href="products/hardening-guide.html">Hardening Guide</a>
           <a href="products/content-pipeline.html">Content Pipeline</a>
+          <a href="products/memory-blueprint.html">Memory Blueprint</a>
+          <a href="products/frontier-ops.html">Frontier Ops</a>
           <a href="products/mastery-bundle.html">Mastery Bundle</a>
-          <a href="products/skillscan.html">SkillScan</a>
-          </nav>
+          <a href="products/quick-start.html">Quick Start (Free)</a>
+        </nav>
       </div>
     </div>
     <div class="footer-bottom">
@@ -307,7 +508,7 @@ document.querySelectorAll('.filter-pill').forEach(function(pill) {
   pill.addEventListener('click', function() {
     document.querySelectorAll('.filter-pill').forEach(function(p) { p.classList.remove('active'); });
     this.classList.add('active');
-    var filter = this.textContent.trim().toLowerCase();
+    var filter = this.dataset.filter;
     document.querySelectorAll('.browse-section').forEach(function(section) {
       if (filter === 'all') {
         section.style.display = '';
