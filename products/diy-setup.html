@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DIY Setup Guide — AgentOrchard</title>
+<title>DIY Agent Setup Guide — AgentOrchard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@600&family=Cormorant+Unicase:wght@600&family=Cormorant+Upright:wght@600&display=swap" rel="stylesheet"><style>h1{font-family:'Cormorant Unicase',Georgia,serif;font-weight:600}h2{font-family:'Cormorant Infant',Georgia,serif;font-weight:600}h3{font-family:'Cormorant Upright',Georgia,serif;font-weight:600}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#f6f7f8;color:#1a1a2e}
@@ -35,6 +35,8 @@ header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-sub
 .pc .lbl{font-size:.8125rem;color:var(--ink-600)}
 .pbtn{display:block;background:var(--tide-600);color:var(--white);font-weight:600;padding:14px 20px;border-radius:var(--radius);font-size:1rem;text-align:center;transition:background .2s}
 .pbtn:hover{background:var(--tide-700)}
+.pbtn.free-btn{background:#0369a1}
+.pbtn.free-btn:hover{background:#0284c7}
 .pc .cr{font-size:.8125rem;color:var(--ink-500);text-align:center}
 .bl{display:inline-block;font-size:.875rem;color:var(--tide-600);font-weight:500;margin-bottom:20px}
 .bl:hover{color:var(--tide-700)}
@@ -52,41 +54,36 @@ footer{border-top:1px solid var(--border-subtle);background:var(--white)}
 </style>
 </head>
 <body>
-<header><div class="nw"><a class="nb" href="../index.html">Agent Orchard</a><nav class="nl"><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a>
-<a href="../blog.html">Blog</a>
-<a href="../login.html" class="nli">Login / Sign Up</a></nav><button class="hb" onclick="document.querySelector('.mm').classList.toggle('open')" aria-label="Menu">&#9776;</button></div></header>
-<div class="mm"><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a>
-<a href="../blog.html">Blog</a>
-<a href="../login.html">Login / Sign Up</a></div>
+<header><div class="nw"><a class="nb" href="../index.html">Agent Orchard</a><nav class="nl"><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a><a href="../blog.html">Blog</a><a href="../login.html" class="nli">Login / Sign Up</a></nav><button class="hb" onclick="document.querySelector('.mm').classList.toggle('open')" aria-label="Menu">&#9776;</button></div></header>
+<div class="mm"><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a><a href="../blog.html">Blog</a><a href="../login.html">Login / Sign Up</a></div>
 
 <div class="pp">
   <div class="pm">
     <a href="../browse.html" class="bl">&larr; Back to Browse</a>
-    <h1>DIY Setup Guide</h1>
-    <div class="cat">Digital Product</div>
-    <p>Step-by-step walkthrough for getting OpenClaw running from scratch. Designed for operators who want to build their own AI operations stack in one afternoon.</p>
-    <h2>What's included</h2>
+    <h1>DIY Agent Setup Guide</h1>
+    <div class="cat">🟢 Beginner Guide</div>
+    <p>Everything you need to stand up a personal AI agent in one afternoon. Covers OpenClaw installation, workspace configuration, your first SOUL.md, memory setup, Telegram integration, skill installation, and the first 5 automations worth building. Step-by-step with screenshots and troubleshooting sections.</p>
+    <h2>What's Included</h2>
     <ul>
-      <li>Complete installation walkthrough</li>
-      <li>Configuration with detailed explanations</li>
-      <li>First 5 skills setup</li>
-      <li>Memory system basics</li>
-      <li>Basic cron automation</li>
-      <li>Troubleshooting guide covering 20 common setup issues</li>
+      <li>Full OpenClaw installation walkthrough</li>
+      <li>Workspace configuration guide</li>
+      <li>SOUL.md starter template (annotated)</li>
+      <li>Memory setup walkthrough</li>
+      <li>Telegram bot connection</li>
+      <li>Skill installation guide</li>
+      <li>First 5 automation templates</li>
+      <li>Common errors and fixes</li>
+      <li>What to build next roadmap</li>
     </ul>
-    <h2>Who this is for</h2>
-    <p>Technical operators who prefer to learn by doing. You want to understand every piece of the stack and configure it yourself.</p>
   </div>
   <div class="pc">
-    <div class="price">$50</div>
+    <div class="price">$19</div>
     <div class="lbl">One-time payment &middot; Instant delivery</div>
-    <a href="https://buy.stripe.com/7sY00c2qE5Rf1dJacL2Nq07" class="pbtn" target="_blank">Buy Now</a>
+    <a href="https://buy.stripe.com/4gMbIU4yM5Rfe0vacL2Nq0A" class="pbtn" target="_blank">Buy Now — $19</a>
     <div class="cr">by AgentOrchard</div>
   </div>
 </div>
 
-<footer><div class="fi"><div class="fg"><div class="fc"><p class="fb">AgentOrchard</p><nav><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a>
-<a href="../blog.html">Blog</a>
-</nav></div><div class="fc"><p class="fb">Connect</p><nav><a href="https://sedim3nt.substack.com" target="_blank">Substack</a><a href="https://x.com/sedim3nt" target="_blank">X / Twitter</a></nav></div></div><div class="fbot"><p>&copy; 2026 Nrvana LLC</p></div></div></footer>
+<footer><div class="fi"><div class="fg"><div class="fc"><p class="fb">AgentOrchard</p><nav><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a><a href="../blog.html">Blog</a></nav></div><div class="fc"><p class="fb">Connect</p><nav><a href="https://sedim3nt.substack.com" target="_blank">Substack</a><a href="https://x.com/sedim3nt" target="_blank">X / Twitter</a></nav></div></div><div class="fbot"><p>&copy; 2026 Nrvana LLC</p></div></div></footer>
 </body>
 </html>
