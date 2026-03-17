@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Discord Multi-Agent Setup — AgentOrchard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@600&family=Cormorant+Unicase:wght@600&family=Cormorant+Upright:wght@600&display=swap" rel="stylesheet"><style>h1{font-family:'Cormorant Unicase',Georgia,serif;font-weight:600}h2{font-family:'Cormorant Infant',Georgia,serif;font-weight:600}h3{font-family:'Cormorant Upright',Georgia,serif;font-weight:600}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#f6f7f8;color:#1a1a2e}
+a{text-decoration:none;color:inherit}
+:root{--sand-50:#f6f7f8;--white:#fff;--ink-900:#1a1a2e;--ink-700:#2d2d44;--ink-600:#4a4a5a;--ink-500:#6b6b7a;--tide-600:#006ca5;--tide-700:#005a8a;--border-subtle:rgba(26,26,46,0.05);--border-card:rgba(26,26,46,0.1);--tide-light:rgba(13,148,136,0.1);--shadow-card:0 1px 3px rgba(26,26,46,0.08);--radius:4px;--max-w:1152px}
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:#ffffff}
+.nw{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
+@media(min-width:640px){.nw{padding:16px 24px}}
+.nb{font-family:'Cormorant Infant',Georgia,serif;font-size:2.5rem;font-weight:600;color:var(--ink-900)}
+.nl{display:none;align-items:center;gap:24px;font-size:.875rem;font-weight:500;color:var(--ink-700)}
+@media(min-width:768px){.nl{display:flex}}
+.nl a:hover{color:var(--ink-900)}
+.nli{border:1px solid rgba(26,26,46,.4);padding:6px 12px;border-radius:var(--radius);font-size:.875rem;font-weight:600;color:var(--ink-900)}
+.nli:hover{border-color:var(--ink-900)}
+.hb{display:flex;background:none;border:none;color:var(--ink-900);font-size:1.5rem;cursor:pointer}
+@media(min-width:768px){.hb{display:none}}
+.mm{display:none;flex-direction:column;gap:16px;padding:16px 24px;background:var(--sand-50);border-bottom:1px solid var(--border-subtle)}
+.mm.open{display:flex}
+.mm a{font-size:1rem;color:var(--ink-700);font-weight:500}
+.pp{max-width:var(--max-w);margin:0 auto;padding:48px 24px 80px;display:grid;grid-template-columns:1fr 340px;gap:40px;align-items:start}
+.pm h1{font-size:2.75rem;font-weight:800;color:var(--ink-900);margin-bottom:8px}
+.pm .sub{font-size:1.125rem;color:var(--ink-600);margin-bottom:12px}
+.pm .cat{font-size:.8125rem;color:var(--tide-600);font-weight:600;margin-bottom:24px}
+.pm h2{font-size:1.125rem;font-weight:700;color:var(--ink-900);margin:28px 0 12px}
+.pm p{font-size:.9375rem;color:var(--ink-600);line-height:1.7;margin-bottom:16px}
+.pm ul{margin:0 0 16px 20px;color:var(--ink-600);font-size:.9375rem;line-height:1.7}
+.pm li{margin-bottom:6px}
+.caps{list-style:none;margin:0 0 16px 0;display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.caps li{font-size:.9375rem;color:var(--ink-600);padding-left:4px}
+.recs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px}
+.rec-card{background:var(--white);border:1px solid var(--border-card);border-radius:var(--radius);padding:14px 16px}
+.rec-card .rn{font-size:.875rem;font-weight:700;color:var(--ink-900);margin-bottom:4px}
+.rec-card .rd{font-size:.8125rem;color:var(--ink-600)}
+.rec-card a{display:block;margin-top:8px;font-size:.8125rem;color:var(--tide-600);font-weight:600}
+.vh{margin:0 0 8px 0}
+.vh li{font-size:.9375rem;color:var(--ink-600);margin-bottom:4px;list-style:none}
+.pc{position:sticky;top:100px;background:var(--white);border:1px solid var(--border-subtle);border-radius:var(--radius);box-shadow:var(--shadow-card);padding:28px 24px;display:flex;flex-direction:column;gap:16px}
+.pc .price{font-size:2rem;font-weight:800;color:var(--ink-900)}
+.pc .lbl{font-size:.8125rem;color:var(--ink-600)}
+.pbtn{display:block;background:var(--tide-600);color:var(--white);font-weight:600;padding:14px 20px;border-radius:var(--radius);font-size:1rem;text-align:center;transition:background .2s}
+.pbtn:hover{background:var(--tide-700)}
+.pc .cr{font-size:.8125rem;color:var(--ink-500);text-align:center}
+.bl{display:inline-block;font-size:.875rem;color:var(--tide-600);font-weight:500;margin-bottom:20px}
+.bl:hover{color:var(--tide-700)}
+footer{border-top:1px solid var(--border-subtle);background:var(--white)}
+.fi{max-width:var(--max-w);margin:0 auto;padding:40px 24px}
+.fg{display:grid;gap:40px;grid-template-columns:1fr 1fr}
+.fc p.fb{font-size:.875rem;font-weight:700;color:var(--ink-900);margin-bottom:12px}
+.fc nav{display:flex;flex-direction:column;gap:8px}
+.fc nav a{font-size:.875rem;color:var(--ink-600)}
+.fc nav a:hover{color:var(--ink-900)}
+.fbot{margin-top:32px;border-top:1px solid var(--border-subtle);padding-top:24px}
+.fbot p{font-size:.8125rem;color:var(--ink-500)}
+@media(max-width:768px){.pp{grid-template-columns:1fr}.pc{position:static}.caps{grid-template-columns:1fr}.recs{grid-template-columns:1fr}}
+@media(max-width:600px){.fg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="nw"><a class="nb" href="../index.html">Agent Orchard</a><nav class="nl"><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a><a href="../blog.html">Blog</a><a href="../login.html" class="nli">Login / Sign Up</a></nav><button class="hb" onclick="document.querySelector('.mm').classList.toggle('open')" aria-label="Menu">&#9776;</button></div></header>
+<div class="mm"><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a><a href="../blog.html">Blog</a><a href="../login.html">Login / Sign Up</a></div>
+
+<div class="pp">
+  <div class="pm">
+    <a href="../browse.html" class="bl">&larr; Back to Browse</a>
+    <h1>Discord Multi-Agent Setup</h1>
+    <p class="sub">Discord as your AI operations center</p>
+    <div class="cat">🤖 Skill &nbsp;·&nbsp; Ops &nbsp;·&nbsp; Engineering &nbsp;·&nbsp; v1.0</div>
+
+    <h2>About</h2>
+    <p>Most people use Discord for communities and gaming. A smaller group has figured out that Discord is the best multi-agent operations interface available right now. Multi-channel routing, thread isolation, pinned artifacts, permission scoping per channel, real-time delivery — it checks every box. This skill shows you how to set it up.</p>
+    <p>The architecture is channel-per-project. Each active project or workflow gets its own Discord channel. Your agent routes outputs to the appropriate channel automatically — research goes to #research, social content goes to #content-queue, competitor intelligence goes to #competitive-intel. Pinned messages hold the most recent key artifacts for each project so you can find things without scrolling through history.</p>
+    <p>This skill is based on analysis of the Alex Finn "You're Using OpenClaw Wrong" workflow — extracted, documented, and productized into a replicable setup guide. The workflow patterns that emerged from that analysis showed how multi-channel agent routing changes the way you interact with AI systems at scale. Instead of one long conversation thread, you have structured channels with appropriate context and appropriate outputs.</p>
+    <p>The bot setup guide walks you through Discord Developer Portal, application creation, bot token configuration, and OpenClaw plugin setup. Permission configuration ensures each channel has the right access scope — your private project channels stay private, your team channels stay accessible to the right people. Cron targeting by channel means your scheduled tasks deliver to the right place automatically.</p>
+    <p>Five automated workflow templates are included: research pipeline (daily intelligence delivered to a specific channel), content approval flow (draft content staged for review before posting), stock/asset research (market monitoring delivered on schedule), competitor monitoring (new content from competitors surfaced automatically), and daily digest (cross-channel summary of the previous day's agent outputs).</p>
+    <p>If you're running multiple workflows and finding that Telegram becomes a firehose, Discord's channel-based organization solves that problem. This is the setup guide you need to make it work cleanly.</p>
+
+    <h2>🎁 What's Included</h2>
+    <ul>
+      <li>Discord bot setup guide (Developer Portal to running bot)</li>
+      <li>Multi-channel architecture template (channel categories and naming)</li>
+      <li>Channel-per-project layout with permission config</li>
+      <li>Research pipeline workflow template</li>
+      <li>Content approval workflow template</li>
+      <li>Stock/asset research channel setup</li>
+      <li>Competitor monitoring channel workflow</li>
+      <li>Daily digest automation (cross-channel summary)</li>
+      <li>Permission configuration guide (role-scoped access)</li>
+      <li>Cron targeting by channel configuration</li>
+    </ul>
+
+    <h2>What Makes This Different</h2>
+    <ul>
+      <li><strong>Based on a documented production workflow.</strong> Extracted from Alex Finn's "You're Using OpenClaw Wrong" — one of the most-referenced multi-agent setups in the community.</li>
+      <li><strong>Channel-per-project architecture.</strong> Structured routing replaces the firehose problem that single-channel setups create.</li>
+      <li><strong>5 workflow templates included.</strong> Not just architecture — working automation templates you can import and run.</li>
+      <li><strong>Permission-scoped access.</strong> Each channel has the right access level. Private work stays private.</li>
+      <li><strong>Cron targeting by channel.</strong> Scheduled tasks deliver to the right channel automatically. No manual routing.</li>
+    </ul>
+
+    <h2>Core Capabilities</h2>
+    <ul class="caps">
+      <li>✓ Discord bot creation and setup</li>
+      <li>✓ Multi-channel agent routing</li>
+      <li>✓ Project channel management</li>
+      <li>✓ Automated research pipelines</li>
+      <li>✓ Content approval workflows</li>
+      <li>✓ Artifact pinning per channel</li>
+      <li>✓ Daily digest generation</li>
+      <li>✓ Competitor monitoring channels</li>
+      <li>✓ Stock research automation</li>
+      <li>✓ Permission-scoped access</li>
+      <li>✓ Channel-specific cron targeting</li>
+      <li>✓ Agent direct messaging</li>
+    </ul>
+
+    <h2>Version History</h2>
+    <ul class="vh">
+      <li><strong>v1.0</strong> — March 2026. Initial release. Bot setup, channel architecture, 5 workflow templates, permission config, cron targeting.</li>
+    </ul>
+
+    <h2>Recommended Products</h2>
+    <div class="recs">
+      <div class="rec-card"><div class="rn">Telegram Handbook</div><div class="rd">Master Telegram as your primary AI operations interface.</div><a href="telegram-handbook.html">View →</a></div>
+      <div class="rec-card"><div class="rn">Multi-Agent Communications</div><div class="rd">Protocols for coordinating multiple AI agents across channels.</div><a href="multiagent-comms.html">View →</a></div>
+      <div class="rec-card"><div class="rn">Orchestration Kit</div><div class="rd">Build agent orchestration systems that route work intelligently.</div><a href="orchestration-kit.html">View →</a></div>
+    </div>
+  </div>
+
+  <div class="pc">
+    <div class="price">$39</div>
+    <div class="lbl">One-time payment &middot; Instant delivery</div>
+    <a href="https://buy.stripe.com/00wbIUc1e2F3e0vbgP2Nq0S" class="pbtn" target="_blank">Buy Now — $39</a>
+    <div class="cr">by AgentOrchard</div>
+  </div>
+</div>
+
+<footer><div class="fi"><div class="fg"><div class="fc"><p class="fb">AgentOrchard</p><nav><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a><a href="../blog.html">Blog</a></nav></div><div class="fc"><p class="fb">Connect</p><nav><a href="https://sedim3nt.substack.com" target="_blank">Substack</a><a href="https://x.com/sedim3nt" target="_blank">X / Twitter</a></nav></div></div><div class="fbot"><p>&copy; 2026 Nrvana LLC</p></div></div></footer>
+</body>
+</html>
