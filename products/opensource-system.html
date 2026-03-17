@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Open Source Contribution System — AgentOrchard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@600&family=Cormorant+Unicase:wght@600&family=Cormorant+Upright:wght@600&display=swap" rel="stylesheet"><style>h1{font-family:'Cormorant Unicase',Georgia,serif;font-weight:600}h2{font-family:'Cormorant Infant',Georgia,serif;font-weight:600}h3{font-family:'Cormorant Upright',Georgia,serif;font-weight:600}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#f6f7f8;color:#1a1a2e}
+a{text-decoration:none;color:inherit}
+:root{--sand-50:#f6f7f8;--white:#fff;--ink-900:#1a1a2e;--ink-700:#2d2d44;--ink-600:#4a4a5a;--ink-500:#6b6b7a;--tide-600:#006ca5;--tide-700:#005a8a;--border-subtle:rgba(26,26,46,0.05);--border-card:rgba(26,26,46,0.1);--tide-light:rgba(13,148,136,0.1);--shadow-card:0 1px 3px rgba(26,26,46,0.08);--radius:4px;--max-w:1152px}
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:#ffffff}
+.nw{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
+@media(min-width:640px){.nw{padding:16px 24px}}
+.nb{font-family:'Cormorant Infant',Georgia,serif;font-size:2.5rem;font-weight:600;color:var(--ink-900)}
+.nl{display:none;align-items:center;gap:24px;font-size:.875rem;font-weight:500;color:var(--ink-700)}
+@media(min-width:768px){.nl{display:flex}}
+.nl a:hover{color:var(--ink-900)}
+.nli{border:1px solid rgba(26,26,46,.4);padding:6px 12px;border-radius:var(--radius);font-size:.875rem;font-weight:600;color:var(--ink-900)}
+.nli:hover{border-color:var(--ink-900)}
+.hb{display:flex;background:none;border:none;color:var(--ink-900);font-size:1.5rem;cursor:pointer}
+@media(min-width:768px){.hb{display:none}}
+.mm{display:none;flex-direction:column;gap:16px;padding:16px 24px;background:var(--sand-50);border-bottom:1px solid var(--border-subtle)}
+.mm.open{display:flex}
+.mm a{font-size:1rem;color:var(--ink-700);font-weight:500}
+.pp{max-width:var(--max-w);margin:0 auto;padding:48px 24px 80px;display:grid;grid-template-columns:1fr 340px;gap:40px;align-items:start}
+.pm h1{font-size:2.75rem;font-weight:800;color:var(--ink-900);margin-bottom:8px}
+.pm .subtitle{font-size:1.125rem;color:var(--ink-600);margin-bottom:12px;font-style:italic}
+.pm .cat{font-size:.8125rem;color:var(--tide-600);font-weight:600;margin-bottom:24px}
+.pm h2{font-size:1.125rem;font-weight:700;color:var(--ink-900);margin:28px 0 12px}
+.pm p{font-size:.9375rem;color:var(--ink-600);line-height:1.7;margin-bottom:16px}
+.pm ul{margin:0 0 16px 20px;color:var(--ink-600);font-size:.9375rem;line-height:1.7}
+.pm li{margin-bottom:6px}
+.pm .caps-list{list-style:none;margin-left:0;display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.pm .caps-list li{padding-left:0;color:var(--ink-600);font-size:.9375rem}
+.pm .caps-list li::before{content:"✓ ";color:var(--tide-600);font-weight:700}
+.pm .diff-list{list-style:none;margin-left:0}
+.pm .diff-list li{padding:10px 14px;background:var(--white);border-left:3px solid var(--tide-600);border-radius:0 var(--radius) var(--radius) 0;margin-bottom:8px;font-size:.9375rem;color:var(--ink-700)}
+.vh-entry{border-left:2px solid var(--border-card);padding-left:16px;margin-bottom:16px}
+.vh-entry .vh-ver{font-size:.8125rem;font-weight:700;color:var(--tide-600)}
+.vh-entry .vh-date{font-size:.8125rem;color:var(--ink-500);margin-bottom:4px}
+.vh-entry p{font-size:.875rem;color:var(--ink-600);margin:0}
+.rec-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px}
+.rec-card{background:var(--white);border:1px solid var(--border-card);border-radius:var(--radius);padding:14px;display:flex;flex-direction:column;gap:6px}
+.rec-card .rc-name{font-size:.875rem;font-weight:700;color:var(--ink-900)}
+.rec-card .rc-price{font-size:.8125rem;color:var(--tide-600);font-weight:600}
+.rec-card a{font-size:.8125rem;color:var(--tide-600);font-weight:500}
+.rec-card a:hover{text-decoration:underline}
+.pc{position:sticky;top:100px;background:var(--white);border:1px solid var(--border-subtle);border-radius:var(--radius);box-shadow:var(--shadow-card);padding:28px 24px;display:flex;flex-direction:column;gap:16px}
+.pc .price{font-size:2rem;font-weight:800;color:var(--ink-900)}
+.pc .lbl{font-size:.8125rem;color:var(--ink-600)}
+.pbtn{display:block;background:var(--tide-600);color:var(--white);font-weight:600;padding:14px 20px;border-radius:var(--radius);font-size:1rem;text-align:center;transition:background .2s}
+.pbtn:hover{background:var(--tide-700)}
+.pc .cr{font-size:.8125rem;color:var(--ink-500);text-align:center}
+.pc-includes{font-size:.8125rem;color:var(--ink-600);line-height:1.6}
+.pc-includes li{list-style:none;padding:3px 0;border-bottom:1px solid var(--border-subtle)}
+.pc-includes li:last-child{border:none}
+.pc-includes li::before{content:"✓ ";color:var(--tide-600)}
+.bl{display:inline-block;font-size:.875rem;color:var(--tide-600);font-weight:500;margin-bottom:20px}
+.bl:hover{color:var(--tide-700)}
+footer{border-top:1px solid var(--border-subtle);background:var(--white)}
+.fi{max-width:var(--max-w);margin:0 auto;padding:40px 24px}
+.fg{display:grid;gap:40px;grid-template-columns:1fr 1fr}
+.fc p.fb{font-size:.875rem;font-weight:700;color:var(--ink-900);margin-bottom:12px}
+.fc nav{display:flex;flex-direction:column;gap:8px}
+.fc nav a{font-size:.875rem;color:var(--ink-600)}
+.fc nav a:hover{color:var(--ink-900)}
+.fbot{margin-top:32px;border-top:1px solid var(--border-subtle);padding-top:24px}
+.fbot p{font-size:.8125rem;color:var(--ink-500)}
+@media(max-width:768px){.pp{grid-template-columns:1fr}.pc{position:static}.pm .caps-list{grid-template-columns:1fr}.rec-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.fg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="nw"><a class="nb" href="../index.html">Agent Orchard</a><nav class="nl"><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a><a href="../blog.html">Blog</a><a href="../login.html" class="nli">Login / Sign Up</a></nav><button class="hb" onclick="document.querySelector('.mm').classList.toggle('open')" aria-label="Menu">&#9776;</button></div></header>
+<div class="mm"><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a><a href="../blog.html">Blog</a><a href="../login.html">Login / Sign Up</a></div>
+
+<div class="pp">
+  <div class="pm">
+    <a href="../browse.html" class="bl">&larr; Back to Browse</a>
+    <h1>Open Source Contribution System</h1>
+    <p class="subtitle">Build reputation that compounds</p>
+    <div class="cat">📘 Guide &nbsp;·&nbsp; Engineering, Growth &nbsp;·&nbsp; v1.0</div>
+
+    <h2>About This Guide</h2>
+    <p>Open source reputation is one of the few assets that compounds without active maintenance. A PR merged six months ago still shows up on your profile. A pattern of contributions across a dozen projects tells a story that no resume can. This guide sets up your AI agent as an active open source contributor — finding issues, evaluating projects, generating PRs, and tracking your growing reputation.</p>
+    <p>The issue finder script uses the GitHub CLI to search across repositories for issues tagged good-first-issue and help-wanted, filtered by language, recency, and activity level. Most of these issues are documentation improvements, small bug fixes, or test coverage additions — exactly the kind of work a coding agent handles well with minimal human review. The script scores each issue on a viability rubric: is the repo active, is the maintainer responsive, is the issue well-specified?</p>
+    <p>Repository evaluation is where most contributors waste time. A repo with 40,000 stars but a maintainer who hasn't merged a PR in 18 months is a dead end. The evaluation framework checks five signals: merge rate on recent PRs, maintainer response time, issue queue health, CI infrastructure quality, and community tone. If a project scores below threshold, skip it — your time is better spent on repos that actually merge contributions.</p>
+    <p>PR generation for documentation improvements is the highest-success entry point. Find a README that's missing an example, a doc page with a broken link, a function with no docstring. Generate the improvement, open the PR with the exact description template included here. Maintainers merge documentation PRs at 3x the rate of code PRs. Start there, build the relationship, then tackle harder issues.</p>
+    <p>Contribution tracking feeds into your reputation metrics dashboard — total PRs opened, merged rate by repo, contribution velocity over time. The blockchain reputation strategy from the broader SpiritTree framework applies: build before monetizing. A developer with 50 merged PRs across active projects has social proof that opens doors no portfolio site can match.</p>
+
+    <h2>🎁 What's Included</h2>
+    <ul>
+      <li>Issue finder script (gh CLI, label-filtered)</li>
+      <li>PR generation workflow</li>
+      <li>Documentation improvement patterns</li>
+      <li>gh CLI automation scripts</li>
+      <li>Contribution tracking system</li>
+      <li>Reputation metrics dashboard template</li>
+      <li>Repository evaluation framework (5-signal rubric)</li>
+      <li>Commit message conventions guide</li>
+      <li>PR description template</li>
+      <li>Maintainer etiquette guide</li>
+    </ul>
+
+    <h2>What Makes This Different</h2>
+    <ul class="diff-list">
+      <li>Based on extensive gh CLI automation — the scripts are real and tested</li>
+      <li>Repository evaluation framework filters out dead repos before you waste time</li>
+      <li>Documentation-first strategy has 3x higher PR merge rate than code contributions</li>
+      <li>Contribution tracking connects to reputation metrics — not just a GitHub activity graph</li>
+      <li>Blockchain reputation philosophy: build before monetizing, in open source and beyond</li>
+    </ul>
+
+    <h2>Core Capabilities</h2>
+    <ul class="caps-list">
+      <li>Issue discovery (gh CLI)</li>
+      <li>Label filtering (good-first-issue)</li>
+      <li>Repository evaluation rubric</li>
+      <li>PR generation workflow</li>
+      <li>Documentation improvement patterns</li>
+      <li>Commit message conventions</li>
+      <li>PR description template</li>
+      <li>Maintainer etiquette guide</li>
+      <li>Contribution tracking system</li>
+      <li>Reputation metrics dashboard</li>
+      <li>Merge rate analysis</li>
+      <li>Maintainer response scoring</li>
+      <li>CI infrastructure check</li>
+      <li>Community tone assessment</li>
+    </ul>
+
+    <h2>Version History</h2>
+    <div class="vh-entry">
+      <div class="vh-ver">v1.0</div>
+      <div class="vh-date">March 2026</div>
+      <p>Initial release. Issue finder, repository evaluation framework, PR generation workflow, contribution tracking, and reputation metrics template.</p>
+    </div>
+
+    <h2>Recommended Products</h2>
+    <div class="rec-grid">
+      <div class="rec-card">
+        <div class="rc-name">GitHub Project Monitor</div>
+        <div class="rc-price">$19</div>
+        <a href="github-monitor.html">View &rarr;</a>
+      </div>
+      <div class="rec-card">
+        <div class="rc-name">The Coding Agent</div>
+        <div class="rc-price">$49</div>
+        <a href="coding-agent.html">View &rarr;</a>
+      </div>
+      <div class="rec-card">
+        <div class="rc-name">Frontier Operations Handbook</div>
+        <div class="rc-price">$49</div>
+        <a href="frontier-ops.html">View &rarr;</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="pc">
+    <div class="price">$19</div>
+    <div class="lbl">One-time payment &middot; Instant delivery</div>
+    <a href="https://buy.stripe.com/fZucMY6GUdjH7C770z2Nq11" class="pbtn" target="_blank">Buy Now — $19</a>
+    <div class="cr">by AgentOrchard</div>
+    <ul class="pc-includes">
+      <li>Issue finder script</li>
+      <li>Repository evaluation rubric</li>
+      <li>PR generation workflow</li>
+      <li>Contribution tracking</li>
+      <li>Reputation metrics template</li>
+      <li>Maintainer etiquette guide</li>
+    </ul>
+  </div>
+</div>
+
+<footer><div class="fi"><div class="fg"><div class="fc"><p class="fb">AgentOrchard</p><nav><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a><a href="../blog.html">Blog</a></nav></div><div class="fc"><p class="fb">Connect</p><nav><a href="https://sedim3nt.substack.com" target="_blank">Substack</a><a href="https://x.com/sedim3nt" target="_blank">X / Twitter</a></nav></div></div><div class="fbot"><p>&copy; 2026 Nrvana LLC</p></div></div></footer>
+</body>
+</html>
