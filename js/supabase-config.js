@@ -43,7 +43,7 @@ const AUTH = {
 
   async resetPassword(email) {
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: 'https://marketplace.spirittree.dev/reset-password.html'
+      redirectTo: 'https://agentorchard.dev/reset-password.html'
     });
     if (error) throw error;
   },
