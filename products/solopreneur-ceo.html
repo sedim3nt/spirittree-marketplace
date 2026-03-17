@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Solopreneur CEO — AgentOrchard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@600&family=Cormorant+Unicase:wght@600&family=Cormorant+Upright:wght@600&display=swap" rel="stylesheet"><style>h1{font-family:'Cormorant Unicase',Georgia,serif;font-weight:600}h2{font-family:'Cormorant Infant',Georgia,serif;font-weight:600}h3{font-family:'Cormorant Upright',Georgia,serif;font-weight:600}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#f6f7f8;color:#1a1a2e}
+a{text-decoration:none;color:inherit}
+:root{--sand-50:#f6f7f8;--white:#fff;--ink-900:#1a1a2e;--ink-700:#2d2d44;--ink-600:#4a4a5a;--ink-500:#6b6b7a;--tide-600:#006ca5;--tide-700:#005a8a;--border-subtle:rgba(26,26,46,0.05);--border-card:rgba(26,26,46,0.1);--tide-light:rgba(13,148,136,0.1);--shadow-card:0 1px 3px rgba(26,26,46,0.08);--radius:4px;--max-w:1152px}
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:#ffffff}
+.nw{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
+@media(min-width:640px){.nw{padding:16px 24px}}
+.nb{font-family:'Cormorant Infant',Georgia,serif;font-size:2.5rem;font-weight:600;color:var(--ink-900)}
+.nl{display:none;align-items:center;gap:24px;font-size:.875rem;font-weight:500;color:var(--ink-700)}
+@media(min-width:768px){.nl{display:flex}}
+.nl a:hover{color:var(--ink-900)}
+.nli{border:1px solid rgba(26,26,46,.4);padding:6px 12px;border-radius:var(--radius);font-size:.875rem;font-weight:600;color:var(--ink-900)}
+.nli:hover{border-color:var(--ink-900)}
+.hb{display:flex;background:none;border:none;color:var(--ink-900);font-size:1.5rem;cursor:pointer}
+@media(min-width:768px){.hb{display:none}}
+.mm{display:none;flex-direction:column;gap:16px;padding:16px 24px;background:var(--sand-50);border-bottom:1px solid var(--border-subtle)}
+.mm.open{display:flex}
+.mm a{font-size:1rem;color:var(--ink-700);font-weight:500}
+.pp{max-width:var(--max-w);margin:0 auto;padding:48px 24px 80px;display:grid;grid-template-columns:1fr 340px;gap:40px;align-items:start}
+.pm h1{font-size:2.75rem;font-weight:800;color:var(--ink-900);margin-bottom:8px}
+.pm .subtitle{font-size:1.25rem;color:var(--ink-600);font-style:italic;margin-bottom:16px}
+.pm .cat{font-size:.8125rem;color:var(--tide-600);font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.tag{display:inline-block;background:rgba(0,108,165,0.08);color:var(--tide-600);font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:2px;border:1px solid rgba(0,108,165,0.2)}
+.version-badge{display:inline-block;background:#f0f9f0;color:#2d6a2d;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:2px;border:1px solid #b8d8b8}
+.pm h2{font-size:1.125rem;font-weight:700;color:var(--ink-900);margin:28px 0 12px}
+.pm p{font-size:.9375rem;color:var(--ink-600);line-height:1.7;margin-bottom:16px}
+.pm ul{margin:0 0 16px 20px;color:var(--ink-600);font-size:.9375rem;line-height:1.7}
+.pm li{margin-bottom:6px}
+.caps-list{margin:0 0 16px 0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.caps-list li{font-size:.9375rem;color:var(--ink-600);padding-left:24px;position:relative}
+.caps-list li::before{content:'✓';position:absolute;left:0;color:#2d6a2d;font-weight:700}
+.diff-list{margin:0 0 16px 0;list-style:none}
+.diff-list li{font-size:.9375rem;color:var(--ink-600);line-height:1.7;margin-bottom:10px;padding-left:20px;position:relative}
+.diff-list li::before{content:'→';position:absolute;left:0;color:var(--tide-600);font-weight:700}
+.pc{position:sticky;top:100px;background:var(--white);border:1px solid var(--border-subtle);border-radius:var(--radius);box-shadow:var(--shadow-card);padding:28px 24px;display:flex;flex-direction:column;gap:16px}
+.pc .price{font-size:2rem;font-weight:800;color:var(--ink-900)}
+.pc .lbl{font-size:.8125rem;color:var(--ink-600)}
+.pbtn{display:block;background:var(--tide-600);color:var(--white);font-weight:600;padding:14px 20px;border-radius:var(--radius);font-size:1rem;text-align:center;transition:background .2s}
+.pbtn:hover{background:var(--tide-700)}
+.pc .cr{font-size:.8125rem;color:var(--ink-500);text-align:center}
+.pc-details{list-style:none;font-size:.8125rem;color:var(--ink-600);display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--border-subtle);padding-top:16px}
+.pc-details li{display:flex;justify-content:space-between}
+.pc-details .dk{color:var(--ink-500)}
+.pc-details .dv{font-weight:600;color:var(--ink-700)}
+.bl{display:inline-block;font-size:.875rem;color:var(--tide-600);font-weight:500;margin-bottom:20px}
+.bl:hover{color:var(--tide-700)}
+.recs{max-width:var(--max-w);margin:0 auto;padding:0 24px 80px}
+.recs h2{font-size:1.125rem;font-weight:700;color:var(--ink-900);margin-bottom:20px}
+.rec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.rec-card{background:var(--white);border:1px solid var(--border-subtle);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow-card);transition:box-shadow .2s}
+.rec-card:hover{box-shadow:0 4px 12px rgba(26,26,46,0.12)}
+.rec-card h3{font-size:1rem;font-weight:700;color:var(--ink-900);margin-bottom:6px}
+.rec-card p{font-size:.875rem;color:var(--ink-600);margin-bottom:12px}
+.rec-link{font-size:.875rem;color:var(--tide-600);font-weight:600}
+footer{border-top:1px solid var(--border-subtle);background:var(--white)}
+.fi{max-width:var(--max-w);margin:0 auto;padding:40px 24px}
+.fg{display:grid;gap:40px;grid-template-columns:1fr 1fr}
+.fc p.fb{font-size:.875rem;font-weight:700;color:var(--ink-900);margin-bottom:12px}
+.fc nav{display:flex;flex-direction:column;gap:8px}
+.fc nav a{font-size:.875rem;color:var(--ink-600)}
+.fc nav a:hover{color:var(--ink-900)}
+.fbot{margin-top:32px;border-top:1px solid var(--border-subtle);padding-top:24px}
+.fbot p{font-size:.8125rem;color:var(--ink-500)}
+@media(max-width:768px){.pp{grid-template-columns:1fr}.pc{position:static}.caps-list{grid-template-columns:1fr}.rec-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.fg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="nw"><a class="nb" href="../index.html">Agent Orchard</a><nav class="nl"><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a><a href="../blog.html">Blog</a><a href="../login.html" class="nli">Login / Sign Up</a></nav><button class="hb" onclick="document.querySelector('.mm').classList.toggle('open')" aria-label="Menu">&#9776;</button></div></header>
+<div class="mm"><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a><a href="../blog.html">Blog</a><a href="../login.html">Login / Sign Up</a></div>
+
+<div class="pp">
+  <div class="pm">
+    <a href="../browse.html" class="bl">&larr; Back to Browse</a>
+    <h1>The Solopreneur CEO</h1>
+    <p class="subtitle">"Your AI runs your entire solo operation"</p>
+    <div class="cat">
+      <span class="tag">Executive</span>
+      <span class="tag">Productivity</span>
+      <span class="tag">Persona</span>
+      <span class="version-badge">Version 1</span>
+    </div>
+
+    <h2>About</h2>
+    <p>Most non-technical founders waste their sharpest morning hours on the wrong things — checking email, wondering what to prioritize, piecing together what happened yesterday. The Solopreneur CEO persona transforms your AI into a full chief of staff that handles the operational scaffolding so you can focus on actual decisions and creative work.</p>
+    <p>The morning brief is designed around decisions needed, not status updates. Every day at 7am you receive a structured document: what requires a choice from you today, what's overdue, what meetings are coming, and what's been accumulating in your open loops. It's the difference between an assistant that reports on things and one that surfaces what actually needs you.</p>
+    <p>Email triage runs every 8 hours using himalaya CLI. The system reads your inbox, categorizes each message against a learned profile of what you handle yourself versus what can be answered with a template, and what genuinely requires your attention. Routine queries get answered with your pre-approved templates. Complex or sensitive threads get forwarded to you with a 2-sentence context summary so you can respond quickly. You never wade through the full inbox for routine messages again.</p>
+    <p>The 7-day First Week Playbook is the piece most people skip in other products and the piece that makes this one actually work. It walks you through customization day by day: Day 1 is identity setup, Day 2 connects email, Day 3 handles calendar integration, Day 4 delivers your first real morning brief, Day 5 sets up the task prioritization system using the Eisenhower matrix adapted for AI workflows, Day 6 runs your first weekly review, and Day 7 hands full autonomy to the system. By the end of the week, the agent is running on your actual context, not a generic template.</p>
+    <p>This was built for solo operators who don't have a team to delegate to — consultants, founders, freelancers, creators. People who are simultaneously CEO, COO, and often the only employee. The persona configuration creates a system that scales your attention rather than demanding more of it. Production-tested with real client workflows, real email volume, and real calendar complexity.</p>
+
+    <h2>🎁 What's Included</h2>
+    <ul>
+      <li><strong>SOUL.md</strong> — Persona configuration file defining the agent's character, tone, and operating principles</li>
+      <li><strong>AGENTS.md</strong> — Orchestration config with roles, decision boundaries, and delegation logic</li>
+      <li><strong>IDENTITY.md</strong> — Agent identity setup including name, avatar, and primary communication channel</li>
+      <li><strong>USER.md</strong> — Human context template: your background, preferences, communication style, and goals</li>
+      <li><strong>HEARTBEAT.md</strong> — Monitoring configuration to track system health and agent uptime</li>
+      <li><strong>First Week Playbook</strong> — 7-day guided setup: one task per day from identity to full autonomy</li>
+      <li><strong>Morning Brief cron</strong> — Scheduled briefing at 7am with decisions needed, overdue items, and open loops</li>
+      <li><strong>Email Triage workflow</strong> — 8-hour inbox scan with auto-response and escalation logic</li>
+      <li><strong>Weekly Review cron</strong> — Friday synthesis surfacing forgotten commitments and stuck projects</li>
+      <li><strong>End-of-Day Summary cron</strong> — Daily log of what happened, decisions made, and next steps</li>
+      <li><strong>Task Prioritization framework</strong> — Eisenhower matrix adapted for AI-native solo operators</li>
+      <li><strong>Meeting Prep template</strong> — Attendee research brief with talking points and questions-to-ask</li>
+    </ul>
+
+    <h2>What Makes This Different</h2>
+    <ul class="diff-list">
+      <li><strong>Decisions, not status reports.</strong> Most AI assistants summarize what happened. This one surfaces what requires you — the difference between a briefing document and an actual chief of staff.</li>
+      <li><strong>7-day onboarding built in.</strong> Other products hand you config files and wish you luck. The First Week Playbook walks you through customization so the system is calibrated to your real work by day 7.</li>
+      <li><strong>Email triage with real templates.</strong> Not "draft a reply" on demand — a standing system that runs every 8 hours and handles your routine inbox without you touching it.</li>
+      <li><strong>Weekly review that actually surfaces stuck items.</strong> The cron doesn't just recap; it cross-references open loops against what was completed to find things that fell through the cracks.</li>
+      <li><strong>Built for solo, not small teams.</strong> The persona assumes you have no one to delegate to. Every system is designed for one person with full operational scope.</li>
+    </ul>
+
+    <h2>Core Capabilities</h2>
+    <ul class="caps-list">
+      <li>Morning briefing at 7am with decisions needed</li>
+      <li>Email triage every 8 hours via himalaya CLI</li>
+      <li>Task prioritization with Eisenhower matrix</li>
+      <li>Meeting prep with attendee research</li>
+      <li>Weekly review with stuck project detection</li>
+      <li>End-of-day summary logging</li>
+      <li>Calendar-aware scheduling assistance</li>
+      <li>Client communication drafting</li>
+      <li>Open loop tracking across projects</li>
+      <li>Invoice reminder system</li>
+      <li>Goal progress tracking</li>
+      <li>Customizable cron schedules</li>
+    </ul>
+
+    <h2>Version History</h2>
+    <p><strong>Version 1 · March 2026</strong> — Initial release. Built and tested over 3+ months of daily production use by a solo operator managing client work, content publishing, and product development simultaneously. Includes the complete persona stack, 7-day playbook, and all scheduled workflows.</p>
+  </div>
+
+  <div class="pc">
+    <div class="price">$79</div>
+    <div class="lbl">One-time purchase · Instant delivery</div>
+    <a href="https://buy.stripe.com/fZubIU0iwbbz3lR3On2Nq0D" class="pbtn" target="_blank">Buy Now — $79</a>
+    <div class="cr">by AgentOrchard</div>
+    <ul class="pc-details">
+      <li><span class="dk">Type</span><span class="dv">Persona</span></li>
+      <li><span class="dk">Category</span><span class="dv">Executive / Ops</span></li>
+      <li><span class="dk">Price</span><span class="dv">$79</span></li>
+      <li><span class="dk">Version</span><span class="dv">1</span></li>
+      <li><span class="dk">License</span><span class="dv">Personal use</span></li>
+    </ul>
+  </div>
+</div>
+
+<div class="recs">
+  <h2>Recommended Products</h2>
+  <div class="rec-grid">
+    <a href="ceo-stack.html" class="rec-card">
+      <h3>CEO Operations Stack</h3>
+      <p>The foundational workspace config: SOUL.md, AGENTS.md, IDENTITY.md, HEARTBEAT.md, USER.md. Start here.</p>
+      <span class="rec-link">View product →</span>
+    </a>
+    <a href="orchestration-kit.html" class="rec-card">
+      <h3>Orchestration Kit</h3>
+      <p>Multi-agent coordination patterns, delegation logic, and sub-agent spawning for complex workflows.</p>
+      <span class="rec-link">View product →</span>
+    </a>
+    <a href="meeting-prep.html" class="rec-card">
+      <h3>The Meeting Prep Agent</h3>
+      <p>Researches every attendee and builds a 1-page brief in 5 minutes. Pairs directly with this persona.</p>
+      <span class="rec-link">View product →</span>
+    </a>
+  </div>
+</div>
+
+<footer><div class="fi"><div class="fg"><div class="fc"><p class="fb">AgentOrchard</p><nav><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a><a href="../blog.html">Blog</a></nav></div><div class="fc"><p class="fb">Connect</p><nav><a href="https://sedim3nt.substack.com" target="_blank">Substack</a><a href="https://x.com/sedim3nt" target="_blank">X / Twitter</a></nav></div></div><div class="fbot"><p>&copy; 2026 Nrvana LLC</p></div></div></footer>
+</body>
+</html>
