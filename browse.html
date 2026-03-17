@@ -4,36 +4,83 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Browse — AgentOrchard</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@600&family=Cormorant+Unicase:wght@600&family=Cormorant+Upright:wght@600&display=swap" rel="stylesheet">
-<style>
-h1{font-family:'Cormorant Unicase',Georgia,serif;font-weight:600}
-h2{font-family:'Cormorant Infant',Georgia,serif;font-weight:600}
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@600&family=Cormorant+Unicase:wght@600&family=Cormorant+Upright:wght@600&display=swap" rel="stylesheet"><style>h1{font-family:'Cormorant Unicase',Georgia,serif;font-weight:600;font-size:clamp(3.125rem,7.5vw,5.5rem)}h2{font-family:'Cormorant Infant',Georgia,serif;font-weight:600;font-size:2.35rem}h3{font-family:'Cormorant Upright',Georgia,serif;font-weight:600;font-size:1.72rem}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#f6f7f8;color:#1a1a2e}
 a{text-decoration:none;color:inherit}
-:root{--sand-50:#f6f7f8;--white:#fff;--ink-900:#1a1a2e;--ink-700:#2d2d44;--ink-600:#4a4a5a;--ink-500:#6b6b7a;--tide-600:#006ca5;--tide-700:#005a8a;--border-subtle:rgba(26,26,46,0.05);--border-card:rgba(26,26,46,0.1);--shadow-card:0 1px 3px rgba(26,26,46,0.08);--radius:4px;--max-w:1152px}
-header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:#fff}
-.nw{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
-@media(min-width:640px){.nw{padding:16px 24px}}
-.nb{font-family:'Cormorant Infant',Georgia,serif;font-size:2.5rem;font-weight:600;color:var(--ink-900)}
-.nl{display:none;align-items:center;gap:24px;font-size:.875rem;font-weight:500;color:var(--ink-700)}
-@media(min-width:768px){.nl{display:flex}}
-.nl a:hover{color:var(--ink-900)}
-.nli{border:1px solid rgba(26,26,46,.4);padding:6px 12px;border-radius:var(--radius);font-size:.875rem;font-weight:600;color:var(--ink-900)}
-.nli:hover{border-color:var(--ink-900)}
-.hb{display:flex;background:none;border:none;color:var(--ink-900);font-size:1.5rem;cursor:pointer}
-@media(min-width:768px){.hb{display:none}}
-.mm{display:none;flex-direction:column;gap:16px;padding:16px 24px;background:var(--sand-50);border-bottom:1px solid var(--border-subtle)}
-.mm.open{display:flex}
-.mm a{font-size:1rem;color:var(--ink-700);font-weight:500}
+img{max-width:100%;display:block}
 
-/* Browse layout */
+/* DESIGN TOKENS */
+:root{
+  --sand-50:#f6f7f8;
+  --white:#ffffff;
+  --ink-900:#1a1a2e;
+  --ink-700:#2d2d44;
+  --ink-600:#4a4a5a;
+  --ink-500:#6b6b7a;
+  --tide-600:#006ca5;
+  --tide-700:#005a8a;
+  --border-subtle:rgba(26,26,46,0.05);
+  --border-card:rgba(26,26,46,0.1);
+  --tide-light:rgba(13,148,136,0.1);
+  --shadow-card:0 1px 3px rgba(26,26,46,0.08);
+  --shadow-card-hover:0 4px 16px rgba(26,26,46,0.12);
+  --radius:4px;
+  --max-w:1152px;
+}
+
+/* NAV */
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:#ffffff}
+.nav-wrap{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
+@media(min-width:640px){.nav-wrap{padding:16px 24px}}
+.nav-brand{font-family:'Cormorant Infant',Georgia,serif;font-size:2.5rem;font-weight:600;color:var(--ink-900)}
+.nav-links{display:none;align-items:center;gap:24px;font-size:0.875rem;font-weight:500;color:var(--ink-700)}
+@media(min-width:768px){.nav-links{display:flex}}
+.nav-links a:hover{color:var(--ink-900)}
+.nav-login{border:1px solid rgba(26,26,46,0.4);padding:6px 12px;border-radius:var(--radius);font-size:0.875rem;font-weight:600;color:var(--ink-900)}
+.nav-login:hover{border-color:var(--ink-900)}
+.hamburger{display:flex;background:none;border:none;color:var(--ink-900);font-size:1.5rem;cursor:pointer}
+@media(min-width:768px){.hamburger{display:none}}
+.mobile-menu{display:none;flex-direction:column;gap:16px;padding:16px 24px;background:var(--sand-50);border-bottom:1px solid var(--border-subtle)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:1rem;color:var(--ink-700);font-weight:500}
+.mobile-menu a:hover{color:var(--ink-900)}
+
+/* PRODUCT CARD */
+.card{display:flex;flex-direction:column;border:1px solid var(--border-subtle);background:var(--white);padding:20px;border-radius:var(--radius);box-shadow:var(--shadow-card);transition:box-shadow 0.2s}
+.card:hover{box-shadow:var(--shadow-card-hover)}
+.card-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.card-info{display:flex;align-items:center;gap:12px}
+.card-icon{display:none}
+.card-name{font-weight:600;color:var(--ink-900);font-size:1.5rem;line-height:1}
+.card-cat{font-size:0.8125rem;color:var(--ink-600)}
+.card-price{font-size:1.125rem;font-weight:700;color:var(--ink-900);white-space:nowrap}
+.card-desc{margin-top:16px;font-size:0.875rem;line-height:1.6;color:var(--ink-600);flex:1}
+.card-tags{margin-top:16px;display:flex;flex-wrap:wrap;gap:6px}
+.card-tag{background:rgba(250,248,245,1);border:1px solid var(--border-subtle);padding:2px 8px;border-radius:var(--radius);font-size:0.75rem;font-weight:500;color:var(--ink-700)}
+.card-bottom{margin-top:20px;border-top:1px solid var(--border-subtle);padding-top:16px;display:flex;align-items:center;justify-content:space-between}
+.card-creator{display:none}
+.card-btn{background:var(--tide-600);color:var(--white);border-radius:var(--radius);padding:6px 14px;font-weight:600;font-size:0.8125rem;transition:background 0.2s}
+.card-btn:hover{background:var(--tide-700)}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border-subtle);background:var(--white)}
+.footer-inner{max-width:var(--max-w);margin:0 auto;padding:40px 24px}
+.footer-grid{display:grid;gap:40px;grid-template-columns:3fr 2fr}
+.footer-col p.footer-brand{font-size:0.875rem;font-weight:700;color:var(--ink-900);margin-bottom:12px}
+.footer-col nav{display:flex;flex-direction:column;gap:8px}
+.footer-col nav a{font-size:0.875rem;color:var(--ink-600);transition:color 0.2s}
+.footer-col nav a:hover{color:var(--ink-900)}
+.footer-bottom{margin-top:32px;border-top:1px solid var(--border-subtle);padding-top:24px}
+.footer-bottom p{font-size:0.8125rem;color:var(--ink-500)}
+
+/* BROWSE LAYOUT */
 .browse-hero{background:var(--white);border-bottom:1px solid var(--border-subtle);padding:40px 24px 32px}
 .browse-hero-inner{max-width:var(--max-w);margin:0 auto}
-.browse-hero h1{font-size:2.25rem;color:var(--ink-900);margin-bottom:8px}
-.browse-hero p{font-size:.9375rem;color:var(--ink-600);margin-bottom:24px}
+.browse-hero h1{font-size:2.25rem;font-family:'Cormorant Infant',Georgia,serif;font-weight:600;color:var(--ink-900);margin-bottom:8px}
+.browse-hero p{font-size:0.9375rem;color:var(--ink-600);margin-bottom:24px}
 .search-bar{display:flex;gap:12px;max-width:560px}
-.search-bar input{flex:1;padding:10px 14px;border:1px solid var(--border-card);border-radius:var(--radius);font-size:.9375rem;color:var(--ink-900);background:var(--sand-50);outline:none}
+.search-bar input{flex:1;padding:10px 14px;border:1px solid var(--border-card);border-radius:var(--radius);font-size:0.9375rem;color:var(--ink-900);background:var(--sand-50);outline:none}
 .search-bar input:focus{border-color:var(--tide-600)}
 
 .browse-controls{background:var(--white);border-bottom:1px solid var(--border-subtle);padding:0 24px}
@@ -41,56 +88,58 @@ header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-sub
 
 /* Type tabs */
 .type-tabs{display:flex;gap:0;border-bottom:1px solid var(--border-subtle)}
-.type-tab{padding:14px 20px;font-size:.875rem;font-weight:600;color:var(--ink-500);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;background:none;border-top:none;border-left:none;border-right:none;white-space:nowrap}
+.type-tab{padding:14px 20px;font-size:0.875rem;font-weight:600;color:var(--ink-500);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;background:none;border-top:none;border-left:none;border-right:none;white-space:nowrap}
 .type-tab:hover{color:var(--ink-900)}
 .type-tab.active{color:var(--tide-600);border-bottom-color:var(--tide-600)}
 
 /* Tag pills */
 .tag-row{display:flex;flex-wrap:wrap;gap:8px;padding:16px 0}
-.tag-pill{padding:5px 12px;font-size:.8125rem;font-weight:500;color:var(--ink-600);background:var(--sand-50);border:1px solid var(--border-card);border-radius:20px;cursor:pointer;white-space:nowrap}
+.tag-pill{padding:5px 12px;font-size:0.8125rem;font-weight:500;color:var(--ink-600);background:var(--sand-50);border:1px solid var(--border-card);border-radius:20px;cursor:pointer;white-space:nowrap}
 .tag-pill:hover{border-color:var(--tide-600);color:var(--tide-600)}
 .tag-pill.active{background:var(--tide-600);color:#fff;border-color:var(--tide-600)}
 
 /* Results bar */
 .results-bar{max-width:var(--max-w);margin:0 auto;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.results-count{font-size:.875rem;color:var(--ink-500)}
-.sort-select{padding:7px 12px;border:1px solid var(--border-card);border-radius:var(--radius);font-size:.875rem;color:var(--ink-700);background:var(--white);cursor:pointer;outline:none}
+.results-count{font-size:0.875rem;color:var(--ink-500)}
+.sort-select{padding:7px 12px;border:1px solid var(--border-card);border-radius:var(--radius);font-size:0.875rem;color:var(--ink-700);background:var(--white);cursor:pointer;outline:none}
 
-/* Product grid */
-.product-grid{max-width:var(--max-w);margin:0 auto;padding:0 24px 80px;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+/* Card grid */
+.card-grid{max-width:var(--max-w);margin:0 auto;padding:0 24px 80px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card.hidden{display:none}
+.no-results{grid-column:1/-1;text-align:center;padding:60px 24px;color:var(--ink-500);font-size:0.9375rem}
 
-.product-card{background:var(--white);border:1px solid var(--border-card);border-radius:var(--radius);box-shadow:var(--shadow-card);padding:20px;display:flex;flex-direction:column;gap:10px;transition:box-shadow .2s;cursor:pointer}
-.product-card:hover{box-shadow:0 4px 12px rgba(26,26,46,0.12)}
-.product-card.hidden{display:none}
-.pc-type{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-500)}
-.pc-type.persona{color:#7c3aed}
-.pc-type.skill{color:#0369a1}
-.pc-type.guide{color:#059669}
-.pc-type.service{color:#b45309}
-.pc-name{font-size:1rem;font-weight:700;color:var(--ink-900);line-height:1.3}
-.pc-tags{display:flex;flex-wrap:wrap;gap:4px}
-.pc-tag{font-size:.75rem;color:var(--ink-500);background:var(--sand-50);padding:2px 8px;border-radius:10px;border:1px solid var(--border-subtle)}
-.pc-price{font-size:1.25rem;font-weight:800;color:var(--ink-900);margin-top:4px}
-.pc-price.free{color:var(--tide-600)}
-.pc-cta{display:block;margin-top:auto;padding:9px 14px;background:var(--tide-600);color:#fff;font-weight:600;font-size:.875rem;text-align:center;border-radius:var(--radius);transition:background .2s}
-.pc-cta:hover{background:var(--tide-700)}
-.no-results{grid-column:1/-1;text-align:center;padding:60px 24px;color:var(--ink-500);font-size:.9375rem}
-
-footer{border-top:1px solid var(--border-subtle);background:var(--white)}
-.fi{max-width:var(--max-w);margin:0 auto;padding:40px 24px}
-.fg{display:grid;gap:40px;grid-template-columns:1fr 1fr}
-.fc p.fb{font-size:.875rem;font-weight:700;color:var(--ink-900);margin-bottom:12px}
-.fc nav{display:flex;flex-direction:column;gap:8px}
-.fc nav a{font-size:.875rem;color:var(--ink-600)}
-.fc nav a:hover{color:var(--ink-900)}
-.fbot{margin-top:32px;border-top:1px solid var(--border-subtle);padding-top:24px}
-.fbot p{font-size:.8125rem;color:var(--ink-500)}
-@media(max-width:600px){.fg{grid-template-columns:1fr}.type-tabs{overflow-x:auto}.product-grid{grid-template-columns:1fr}}
+/* RESPONSIVE */
+@media(max-width:900px){
+  .card-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .card-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .type-tabs{overflow-x:auto}
+}
 </style>
 </head>
 <body>
-<header><div class="nw"><a class="nb" href="index.html">Agent Orchard</a><nav class="nl"><a href="browse.html">Browse</a><a href="consulting.html">Consulting</a><a href="blog.html">Blog</a><a href="login.html" class="nli">Login / Sign Up</a></nav><button class="hb" onclick="document.querySelector('.mm').classList.toggle('open')" aria-label="Menu">&#9776;</button></div></header>
-<div class="mm"><a href="browse.html">Browse</a><a href="consulting.html">Consulting</a><a href="blog.html">Blog</a><a href="login.html">Login / Sign Up</a></div>
+
+<header>
+  <div class="nav-wrap">
+    <a class="nav-brand" href="index.html">Agent Orchard</a>
+    <nav class="nav-links">
+      <a href="browse.html">Browse</a>
+      <a href="consulting.html">Consulting</a>
+      <a href="blog.html">Blog</a>
+      <a href="login.html" class="nav-login">Login / Sign Up</a>
+    </nav>
+    <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+  </div>
+</header>
+<div class="mobile-menu">
+  <a href="browse.html">Browse</a>
+  <a href="consulting.html">Consulting</a>
+  <a href="blog.html">Blog</a>
+  <a href="login.html" class="nav-login" style="width:fit-content">Login / Sign Up</a>
+</div>
 
 <div class="browse-hero">
   <div class="browse-hero-inner">
@@ -127,7 +176,6 @@ footer{border-top:1px solid var(--border-subtle);background:var(--white)}
       <button class="tag-pill" data-tag="sales">Sales</button>
       <button class="tag-pill" data-tag="security">Security</button>
       <button class="tag-pill" data-tag="strategy">Strategy</button>
-      <button class="tag-pill" data-tag="support">Support</button>
     </div>
   </div>
 </div>
@@ -142,449 +190,1208 @@ footer{border-top:1px solid var(--border-subtle);background:var(--white)}
   </select>
 </div>
 
-<div class="product-grid" id="product-grid">
+<div class="card-grid" id="card-grid">
 
   <!-- PERSONAS (14) -->
-  <div class="product-card" data-type="persona" data-tags="executive,productivity" data-price="79" data-name="The Solopreneur CEO" data-order="1">
-    <div class="pc-type persona">Persona</div>
-    <div class="pc-name">The Solopreneur CEO</div>
-    <div class="pc-tags"><span class="pc-tag">Executive</span><span class="pc-tag">Productivity</span></div>
-    <div class="pc-price">$79</div>
-    <a class="pc-cta" href="products/solopreneur-ceo.html">View Product</a>
-  </div>
+  <a href="products/solopreneur-ceo.html" class="card" data-type="persona" data-tags="executive,productivity" data-price="79" data-name="The Solopreneur CEO" data-order="1">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">S</div>
+        <div>
+          <h3 class="card-name">The Solopreneur CEO</h3>
+          <div class="card-cat">Persona</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Your AI runs your entire solo operation. Morning briefs, email triage, task prioritization, weekly reviews.</p>
+    <div class="card-tags">
+      <span class="card-tag">Executive</span>
+      <span class="card-tag">Productivity</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$79</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="persona" data-tags="executive,ops" data-price="79" data-name="CEO Operations Stack" data-order="2">
-    <div class="pc-type persona">Persona</div>
-    <div class="pc-name">CEO Operations Stack</div>
-    <div class="pc-tags"><span class="pc-tag">Executive</span><span class="pc-tag">Ops</span></div>
-    <div class="pc-price">$79</div>
-    <a class="pc-cta" href="products/ceo-stack.html">View Product</a>
-  </div>
+  <a href="products/ceo-stack.html" class="card" data-type="persona" data-tags="executive,ops" data-price="79" data-name="CEO Operations Stack" data-order="2">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">C</div>
+        <div>
+          <h3 class="card-name">CEO Operations Stack</h3>
+          <div class="card-cat">Persona</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Complete autonomous AI operations config. 5 workspace files, 8 agent roles, Blueprint pattern.</p>
+    <div class="card-tags">
+      <span class="card-tag">Executive</span>
+      <span class="card-tag">Ops</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$79</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="persona" data-tags="executive,engineering" data-price="99" data-name="Multi-Agent Orchestration Kit" data-order="3">
-    <div class="pc-type persona">Persona</div>
-    <div class="pc-name">Multi-Agent Orchestration Kit</div>
-    <div class="pc-tags"><span class="pc-tag">Executive</span><span class="pc-tag">Engineering</span></div>
-    <div class="pc-price">$99</div>
-    <a class="pc-cta" href="products/orchestration-kit.html">View Product</a>
-  </div>
+  <a href="products/orchestration-kit.html" class="card" data-type="persona" data-tags="executive,engineering" data-price="99" data-name="Multi-Agent Orchestration Kit" data-order="3">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">M</div>
+        <div>
+          <h3 class="card-name">Multi-Agent Orchestration Kit</h3>
+          <div class="card-cat">Persona</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Complete 6-agent team architecture. Role definitions, memory system, handoff protocols.</p>
+    <div class="card-tags">
+      <span class="card-tag">Executive</span>
+      <span class="card-tag">Engineering</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$99</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="persona" data-tags="research,productivity" data-price="49" data-name="The Research Analyst" data-order="4">
-    <div class="pc-type persona">Persona</div>
-    <div class="pc-name">The Research Analyst</div>
-    <div class="pc-tags"><span class="pc-tag">Research</span><span class="pc-tag">Productivity</span></div>
-    <div class="pc-price">$49</div>
-    <a class="pc-cta" href="products/research-analyst.html">View Product</a>
-  </div>
+  <a href="products/research-analyst.html" class="card" data-type="persona" data-tags="research,productivity" data-price="49" data-name="The Research Analyst" data-order="4">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">R</div>
+        <div>
+          <h3 class="card-name">The Research Analyst</h3>
+          <div class="card-cat">Persona</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Daily briefing agent. YouTube monitor, web research, source synthesis. Wake up to intel.</p>
+    <div class="card-tags">
+      <span class="card-tag">Research</span>
+      <span class="card-tag">Productivity</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$49</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="persona" data-tags="content,marketing" data-price="49" data-name="The Content Engine" data-order="5">
-    <div class="pc-type persona">Persona</div>
-    <div class="pc-name">The Content Engine</div>
-    <div class="pc-tags"><span class="pc-tag">Content</span><span class="pc-tag">Marketing</span></div>
-    <div class="pc-price">$49</div>
-    <a class="pc-cta" href="products/content-engine.html">View Product</a>
-  </div>
+  <a href="products/content-engine.html" class="card" data-type="persona" data-tags="content,marketing" data-price="49" data-name="The Content Engine" data-order="5">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">C</div>
+        <div>
+          <h3 class="card-name">The Content Engine</h3>
+          <div class="card-cat">Persona</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Research-to-publish across 5 platforms. Substack, X, Bluesky, Facebook automation.</p>
+    <div class="card-tags">
+      <span class="card-tag">Content</span>
+      <span class="card-tag">Marketing</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$49</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="persona" data-tags="engineering" data-price="49" data-name="The Coding Agent" data-order="6">
-    <div class="pc-type persona">Persona</div>
-    <div class="pc-name">The Coding Agent</div>
-    <div class="pc-tags"><span class="pc-tag">Engineering</span></div>
-    <div class="pc-price">$49</div>
-    <a class="pc-cta" href="products/coding-agent.html">View Product</a>
-  </div>
+  <a href="products/coding-agent.html" class="card" data-type="persona" data-tags="engineering" data-price="49" data-name="The Coding Agent" data-order="6">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">C</div>
+        <div>
+          <h3 class="card-name">The Coding Agent</h3>
+          <div class="card-cat">Persona</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Blueprint pattern baked in. PRE-FETCH → LLM → TEST → FIX → SUBMIT → SMOKE TEST.</p>
+    <div class="card-tags">
+      <span class="card-tag">Engineering</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$49</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="persona" data-tags="finance,research" data-price="49" data-name="The Financial Analyst" data-order="7">
-    <div class="pc-type persona">Persona</div>
-    <div class="pc-name">The Financial Analyst</div>
-    <div class="pc-tags"><span class="pc-tag">Finance</span><span class="pc-tag">Research</span></div>
-    <div class="pc-price">$49</div>
-    <a class="pc-cta" href="products/financial-analyst.html">View Product</a>
-  </div>
+  <a href="products/financial-analyst.html" class="card" data-type="persona" data-tags="finance,research" data-price="49" data-name="The Financial Analyst" data-order="7">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">F</div>
+        <div>
+          <h3 class="card-name">The Financial Analyst</h3>
+          <div class="card-cat">Persona</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Daily stock research, earnings tracking, macro briefings. Institutional-grade.</p>
+    <div class="card-tags">
+      <span class="card-tag">Finance</span>
+      <span class="card-tag">Research</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$49</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="persona" data-tags="content,marketing" data-price="49" data-name="The Brand Voice Agent" data-order="8">
-    <div class="pc-type persona">Persona</div>
-    <div class="pc-name">The Brand Voice Agent</div>
-    <div class="pc-tags"><span class="pc-tag">Content</span><span class="pc-tag">Marketing</span></div>
-    <div class="pc-price">$49</div>
-    <a class="pc-cta" href="products/brand-voice.html">View Product</a>
-  </div>
+  <a href="products/brand-voice.html" class="card" data-type="persona" data-tags="content,marketing" data-price="49" data-name="The Brand Voice Agent" data-order="8">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">B</div>
+        <div>
+          <h3 class="card-name">The Brand Voice Agent</h3>
+          <div class="card-cat">Persona</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Writes in YOUR voice, not AI voice. Voice profile from 10 samples. De-AI-ify pass.</p>
+    <div class="card-tags">
+      <span class="card-tag">Content</span>
+      <span class="card-tag">Marketing</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$49</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="persona" data-tags="research,growth" data-price="49" data-name="The Competitive Intel Agent" data-order="9">
-    <div class="pc-type persona">Persona</div>
-    <div class="pc-name">The Competitive Intel Agent</div>
-    <div class="pc-tags"><span class="pc-tag">Research</span><span class="pc-tag">Growth</span></div>
-    <div class="pc-price">$49</div>
-    <a class="pc-cta" href="products/competitive-intel.html">View Product</a>
-  </div>
+  <a href="products/competitive-intel.html" class="card" data-type="persona" data-tags="research,growth" data-price="49" data-name="The Competitive Intel Agent" data-order="9">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">C</div>
+        <div>
+          <h3 class="card-name">The Competitive Intel Agent</h3>
+          <div class="card-cat">Persona</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Monitors competitors automatically. YouTube, social, launches, pricing changes.</p>
+    <div class="card-tags">
+      <span class="card-tag">Research</span>
+      <span class="card-tag">Growth</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$49</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="persona" data-tags="finance,productivity" data-price="49" data-name="The Freelancer Ops Agent" data-order="10">
-    <div class="pc-type persona">Persona</div>
-    <div class="pc-name">The Freelancer Ops Agent</div>
-    <div class="pc-tags"><span class="pc-tag">Finance</span><span class="pc-tag">Productivity</span></div>
-    <div class="pc-price">$49</div>
-    <a class="pc-cta" href="products/freelancer-ops.html">View Product</a>
-  </div>
+  <a href="products/freelancer-ops.html" class="card" data-type="persona" data-tags="finance,productivity" data-price="49" data-name="The Freelancer Ops Agent" data-order="10">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">F</div>
+        <div>
+          <h3 class="card-name">The Freelancer Ops Agent</h3>
+          <div class="card-cat">Persona</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Invoicing, time tracking, client comms, tax reminders. Admin work automated.</p>
+    <div class="card-tags">
+      <span class="card-tag">Finance</span>
+      <span class="card-tag">Productivity</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$49</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="persona" data-tags="ops,productivity" data-price="39" data-name="The Email Fortress" data-order="11">
-    <div class="pc-type persona">Persona</div>
-    <div class="pc-name">The Email Fortress</div>
-    <div class="pc-tags"><span class="pc-tag">Ops</span><span class="pc-tag">Productivity</span></div>
-    <div class="pc-price">$39</div>
-    <a class="pc-cta" href="products/email-fortress.html">View Product</a>
-  </div>
+  <a href="products/email-fortress.html" class="card" data-type="persona" data-tags="ops,productivity" data-price="39" data-name="The Email Fortress" data-order="11">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">E</div>
+        <div>
+          <h3 class="card-name">The Email Fortress</h3>
+          <div class="card-cat">Persona</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">AI email with prompt injection protection. Reads, answers, forwards securely.</p>
+    <div class="card-tags">
+      <span class="card-tag">Ops</span>
+      <span class="card-tag">Productivity</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$39</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="persona" data-tags="ops,engineering" data-price="39" data-name="The Ops Monitor" data-order="12">
-    <div class="pc-type persona">Persona</div>
-    <div class="pc-name">The Ops Monitor</div>
-    <div class="pc-tags"><span class="pc-tag">Ops</span><span class="pc-tag">Engineering</span></div>
-    <div class="pc-price">$39</div>
-    <a class="pc-cta" href="products/ops-monitor.html">View Product</a>
-  </div>
+  <a href="products/ops-monitor.html" class="card" data-type="persona" data-tags="ops,engineering" data-price="39" data-name="The Ops Monitor" data-order="12">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">O</div>
+        <div>
+          <h3 class="card-name">The Ops Monitor</h3>
+          <div class="card-cat">Persona</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">24/7 service monitoring. Heartbeats, watchdog, deploy verification.</p>
+    <div class="card-tags">
+      <span class="card-tag">Ops</span>
+      <span class="card-tag">Engineering</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$39</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="persona" data-tags="productivity,executive" data-price="29" data-name="The Meeting Prep Agent" data-order="13">
-    <div class="pc-type persona">Persona</div>
-    <div class="pc-name">The Meeting Prep Agent</div>
-    <div class="pc-tags"><span class="pc-tag">Productivity</span><span class="pc-tag">Executive</span></div>
-    <div class="pc-price">$29</div>
-    <a class="pc-cta" href="products/meeting-prep.html">View Product</a>
-  </div>
+  <a href="products/meeting-prep.html" class="card" data-type="persona" data-tags="productivity,executive" data-price="29" data-name="The Meeting Prep Agent" data-order="13">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">M</div>
+        <div>
+          <h3 class="card-name">The Meeting Prep Agent</h3>
+          <div class="card-cat">Persona</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Researches every attendee, builds 1-page brief. 5 minutes instead of 45.</p>
+    <div class="card-tags">
+      <span class="card-tag">Productivity</span>
+      <span class="card-tag">Executive</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$29</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="persona" data-tags="personal,productivity" data-price="29" data-name="The Learning Agent" data-order="14">
-    <div class="pc-type persona">Persona</div>
-    <div class="pc-name">The Learning Agent</div>
-    <div class="pc-tags"><span class="pc-tag">Personal</span><span class="pc-tag">Productivity</span></div>
-    <div class="pc-price">$29</div>
-    <a class="pc-cta" href="products/learning-agent.html">View Product</a>
-  </div>
+  <a href="products/learning-agent.html" class="card" data-type="persona" data-tags="personal,productivity" data-price="29" data-name="The Learning Agent" data-order="14">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">L</div>
+        <div>
+          <h3 class="card-name">The Learning Agent</h3>
+          <div class="card-cat">Persona</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Any topic → structured learning path. Modules, exercises, progress tracking.</p>
+    <div class="card-tags">
+      <span class="card-tag">Personal</span>
+      <span class="card-tag">Productivity</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$29</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
   <!-- SKILLS (18) -->
-  <div class="product-card" data-type="skill" data-tags="content,marketing" data-price="49" data-name="Content Pipeline System" data-order="15">
-    <div class="pc-type skill">Skill</div>
-    <div class="pc-name">Content Pipeline System</div>
-    <div class="pc-tags"><span class="pc-tag">Content</span><span class="pc-tag">Marketing</span></div>
-    <div class="pc-price">$49</div>
-    <a class="pc-cta" href="products/content-pipeline.html">View Product</a>
-  </div>
+  <a href="products/content-pipeline.html" class="card" data-type="skill" data-tags="content,marketing" data-price="49" data-name="Content Pipeline System" data-order="15">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">C</div>
+        <div>
+          <h3 class="card-name">Content Pipeline System</h3>
+          <div class="card-cat">Skill</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Queue-based publishing across 5 platforms. Cron configs, voice consistency.</p>
+    <div class="card-tags">
+      <span class="card-tag">Content</span>
+      <span class="card-tag">Marketing</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$49</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="skill" data-tags="ops,productivity" data-price="39" data-name="Memory Architecture Blueprint" data-order="16">
-    <div class="pc-type skill">Skill</div>
-    <div class="pc-name">Memory Architecture Blueprint</div>
-    <div class="pc-tags"><span class="pc-tag">Ops</span><span class="pc-tag">Productivity</span></div>
-    <div class="pc-price">$39</div>
-    <a class="pc-cta" href="products/memory-blueprint.html">View Product</a>
-  </div>
+  <a href="products/memory-blueprint.html" class="card" data-type="skill" data-tags="ops,productivity" data-price="39" data-name="Memory Architecture Blueprint" data-order="16">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">M</div>
+        <div>
+          <h3 class="card-name">Memory Architecture Blueprint</h3>
+          <div class="card-cat">Skill</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">15 solutions tested. Native config, MuninnDB, flush tuning, BULLETIN.md.</p>
+    <div class="card-tags">
+      <span class="card-tag">Ops</span>
+      <span class="card-tag">Productivity</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$39</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="skill" data-tags="ops,engineering" data-price="39" data-name="Discord Multi-Agent Setup" data-order="17">
-    <div class="pc-type skill">Skill</div>
-    <div class="pc-name">Discord Multi-Agent Setup</div>
-    <div class="pc-tags"><span class="pc-tag">Ops</span><span class="pc-tag">Engineering</span></div>
-    <div class="pc-price">$39</div>
-    <a class="pc-cta" href="products/discord-setup.html">View Product</a>
-  </div>
+  <a href="products/discord-setup.html" class="card" data-type="skill" data-tags="ops,engineering" data-price="39" data-name="Discord Multi-Agent Setup" data-order="17">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">D</div>
+        <div>
+          <h3 class="card-name">Discord Multi-Agent Setup</h3>
+          <div class="card-cat">Skill</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Discord as AI operations center. Multi-channel workflows, research pipelines.</p>
+    <div class="card-tags">
+      <span class="card-tag">Ops</span>
+      <span class="card-tag">Engineering</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$39</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="skill" data-tags="ops,productivity" data-price="29" data-name="Cron &amp; Automation Toolkit" data-order="18">
-    <div class="pc-type skill">Skill</div>
-    <div class="pc-name">Cron &amp; Automation Toolkit</div>
-    <div class="pc-tags"><span class="pc-tag">Ops</span><span class="pc-tag">Productivity</span></div>
-    <div class="pc-price">$29</div>
-    <a class="pc-cta" href="products/cron-toolkit.html">View Product</a>
-  </div>
+  <a href="products/cron-toolkit.html" class="card" data-type="skill" data-tags="ops,productivity" data-price="29" data-name="Cron &amp; Automation Toolkit" data-order="18">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">C</div>
+        <div>
+          <h3 class="card-name">Cron &amp; Automation Toolkit</h3>
+          <div class="card-cat">Skill</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">15 production cron templates. Briefings, posting, monitoring, backups.</p>
+    <div class="card-tags">
+      <span class="card-tag">Ops</span>
+      <span class="card-tag">Productivity</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$29</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="skill" data-tags="research,productivity" data-price="29" data-name="Daily Research Briefing" data-order="19">
-    <div class="pc-type skill">Skill</div>
-    <div class="pc-name">Daily Research Briefing</div>
-    <div class="pc-tags"><span class="pc-tag">Research</span><span class="pc-tag">Productivity</span></div>
-    <div class="pc-price">$29</div>
-    <a class="pc-cta" href="products/research-briefing.html">View Product</a>
-  </div>
+  <a href="products/research-briefing.html" class="card" data-type="skill" data-tags="research,productivity" data-price="29" data-name="Daily Research Briefing" data-order="19">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">D</div>
+        <div>
+          <h3 class="card-name">Daily Research Briefing</h3>
+          <div class="card-cat">Skill</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Automated daily intelligence. Configurable topics, YouTube monitor.</p>
+    <div class="card-tags">
+      <span class="card-tag">Research</span>
+      <span class="card-tag">Productivity</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$29</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="skill" data-tags="marketing,content" data-price="29" data-name="Social Media Automation Pack" data-order="20">
-    <div class="pc-type skill">Skill</div>
-    <div class="pc-name">Social Media Automation Pack</div>
-    <div class="pc-tags"><span class="pc-tag">Marketing</span><span class="pc-tag">Content</span></div>
-    <div class="pc-price">$29</div>
-    <a class="pc-cta" href="products/social-automation.html">View Product</a>
-  </div>
+  <a href="products/social-automation.html" class="card" data-type="skill" data-tags="marketing,content" data-price="29" data-name="Social Media Automation Pack" data-order="20">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">S</div>
+        <div>
+          <h3 class="card-name">Social Media Automation Pack</h3>
+          <div class="card-cat">Skill</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Post to X, Bluesky, Facebook, Substack. Scripts and n8n workflows.</p>
+    <div class="card-tags">
+      <span class="card-tag">Marketing</span>
+      <span class="card-tag">Content</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$29</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="skill" data-tags="sales,marketing" data-price="29" data-name="Smart Email Outreach" data-order="21">
-    <div class="pc-type skill">Skill</div>
-    <div class="pc-name">Smart Email Outreach</div>
-    <div class="pc-tags"><span class="pc-tag">Sales</span><span class="pc-tag">Marketing</span></div>
-    <div class="pc-price">$29</div>
-    <a class="pc-cta" href="products/smart-outreach.html">View Product</a>
-  </div>
+  <a href="products/smart-outreach.html" class="card" data-type="skill" data-tags="sales,marketing" data-price="29" data-name="Smart Email Outreach" data-order="21">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">S</div>
+        <div>
+          <h3 class="card-name">Smart Email Outreach</h3>
+          <div class="card-cat">Skill</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Research-first cold outreach. Personalized emails, follow-up sequences.</p>
+    <div class="card-tags">
+      <span class="card-tag">Sales</span>
+      <span class="card-tag">Marketing</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$29</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="skill" data-tags="finance,ops" data-price="29" data-name="Stripe Revenue Dashboard" data-order="22">
-    <div class="pc-type skill">Skill</div>
-    <div class="pc-name">Stripe Revenue Dashboard</div>
-    <div class="pc-tags"><span class="pc-tag">Finance</span><span class="pc-tag">Ops</span></div>
-    <div class="pc-price">$29</div>
-    <a class="pc-cta" href="products/stripe-dashboard.html">View Product</a>
-  </div>
+  <a href="products/stripe-dashboard.html" class="card" data-type="skill" data-tags="finance,ops" data-price="29" data-name="Stripe Revenue Dashboard" data-order="22">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">S</div>
+        <div>
+          <h3 class="card-name">Stripe Revenue Dashboard</h3>
+          <div class="card-cat">Skill</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Real-time Stripe tracking. Daily sales, MRR, failed payments, anomalies.</p>
+    <div class="card-tags">
+      <span class="card-tag">Finance</span>
+      <span class="card-tag">Ops</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$29</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="skill" data-tags="engineering,ops" data-price="29" data-name="MCP Server Integration" data-order="23">
-    <div class="pc-type skill">Skill</div>
-    <div class="pc-name">MCP Server Integration</div>
-    <div class="pc-tags"><span class="pc-tag">Engineering</span><span class="pc-tag">Ops</span></div>
-    <div class="pc-price">$29</div>
-    <a class="pc-cta" href="products/mcp-guide.html">View Product</a>
-  </div>
+  <a href="products/mcp-guide.html" class="card" data-type="skill" data-tags="engineering,ops" data-price="29" data-name="MCP Server Integration" data-order="23">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">M</div>
+        <div>
+          <h3 class="card-name">MCP Server Integration</h3>
+          <div class="card-cat">Skill</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Connect any tool via MCP. MuninnDB, Notion, Postgres. 5 server configs.</p>
+    <div class="card-tags">
+      <span class="card-tag">Engineering</span>
+      <span class="card-tag">Ops</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$29</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="skill" data-tags="ops,engineering" data-price="29" data-name="n8n Workflow Recipes" data-order="24">
-    <div class="pc-type skill">Skill</div>
-    <div class="pc-name">n8n Workflow Recipes</div>
-    <div class="pc-tags"><span class="pc-tag">Ops</span><span class="pc-tag">Engineering</span></div>
-    <div class="pc-price">$29</div>
-    <a class="pc-cta" href="products/n8n-recipes.html">View Product</a>
-  </div>
+  <a href="products/n8n-recipes.html" class="card" data-type="skill" data-tags="ops,engineering" data-price="29" data-name="n8n Workflow Recipes" data-order="24">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">N</div>
+        <div>
+          <h3 class="card-name">n8n Workflow Recipes</h3>
+          <div class="card-cat">Skill</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">8 production workflows. Tweet poster, Substack, Instagram, webhooks.</p>
+    <div class="card-tags">
+      <span class="card-tag">Ops</span>
+      <span class="card-tag">Engineering</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$29</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="skill" data-tags="productivity,content" data-price="19" data-name="The Playoff Method" data-order="25">
-    <div class="pc-type skill">Skill</div>
-    <div class="pc-name">The Playoff Method</div>
-    <div class="pc-tags"><span class="pc-tag">Productivity</span><span class="pc-tag">Content</span></div>
-    <div class="pc-price">$19</div>
-    <a class="pc-cta" href="products/playoff-method.html">View Product</a>
-  </div>
+  <a href="products/playoff-method.html" class="card" data-type="skill" data-tags="productivity,content" data-price="19" data-name="The Playoff Method" data-order="25">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">P</div>
+        <div>
+          <h3 class="card-name">The Playoff Method</h3>
+          <div class="card-cat">Skill</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">3 competing personas → Golden Path. Eliminate blind spots in any output.</p>
+    <div class="card-tags">
+      <span class="card-tag">Productivity</span>
+      <span class="card-tag">Content</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$19</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="skill" data-tags="engineering,ops" data-price="19" data-name="GitHub Project Monitor" data-order="26">
-    <div class="pc-type skill">Skill</div>
-    <div class="pc-name">GitHub Project Monitor</div>
-    <div class="pc-tags"><span class="pc-tag">Engineering</span><span class="pc-tag">Ops</span></div>
-    <div class="pc-price">$19</div>
-    <a class="pc-cta" href="products/github-monitor.html">View Product</a>
-  </div>
+  <a href="products/github-monitor.html" class="card" data-type="skill" data-tags="engineering,ops" data-price="19" data-name="GitHub Project Monitor" data-order="26">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">G</div>
+        <div>
+          <h3 class="card-name">GitHub Project Monitor</h3>
+          <div class="card-cat">Skill</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Track issues, PRs, CI runs. Daily digest. Stale PR detection.</p>
+    <div class="card-tags">
+      <span class="card-tag">Engineering</span>
+      <span class="card-tag">Ops</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$19</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="skill" data-tags="research,content" data-price="19" data-name="Blog &amp; RSS Intelligence" data-order="27">
-    <div class="pc-type skill">Skill</div>
-    <div class="pc-name">Blog &amp; RSS Intelligence</div>
-    <div class="pc-tags"><span class="pc-tag">Research</span><span class="pc-tag">Content</span></div>
-    <div class="pc-price">$19</div>
-    <a class="pc-cta" href="products/blog-intel.html">View Product</a>
-  </div>
+  <a href="products/blog-intel.html" class="card" data-type="skill" data-tags="research,content" data-price="19" data-name="Blog &amp; RSS Intelligence" data-order="27">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">B</div>
+        <div>
+          <h3 class="card-name">Blog &amp; RSS Intelligence</h3>
+          <div class="card-cat">Skill</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Monitor any blog/RSS feed. Auto-summarize, extract takeaways.</p>
+    <div class="card-tags">
+      <span class="card-tag">Research</span>
+      <span class="card-tag">Content</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$19</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="skill" data-tags="personal,productivity" data-price="19" data-name="Voice Journal System" data-order="28">
-    <div class="pc-type skill">Skill</div>
-    <div class="pc-name">Voice Journal System</div>
-    <div class="pc-tags"><span class="pc-tag">Personal</span><span class="pc-tag">Productivity</span></div>
-    <div class="pc-price">$19</div>
-    <a class="pc-cta" href="products/voice-journal.html">View Product</a>
-  </div>
+  <a href="products/voice-journal.html" class="card" data-type="skill" data-tags="personal,productivity" data-price="19" data-name="Voice Journal System" data-order="28">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">V</div>
+        <div>
+          <h3 class="card-name">Voice Journal System</h3>
+          <div class="card-cat">Skill</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Voice → transcribe → extract actions → log to memory. Think out loud.</p>
+    <div class="card-tags">
+      <span class="card-tag">Personal</span>
+      <span class="card-tag">Productivity</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$19</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="skill" data-tags="productivity,ops" data-price="19" data-name="Notion Integration Kit" data-order="29">
-    <div class="pc-type skill">Skill</div>
-    <div class="pc-name">Notion Integration Kit</div>
-    <div class="pc-tags"><span class="pc-tag">Productivity</span><span class="pc-tag">Ops</span></div>
-    <div class="pc-price">$19</div>
-    <a class="pc-cta" href="products/notion-kit.html">View Product</a>
-  </div>
+  <a href="products/notion-kit.html" class="card" data-type="skill" data-tags="productivity,ops" data-price="19" data-name="Notion Integration Kit" data-order="29">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">N</div>
+        <div>
+          <h3 class="card-name">Notion Integration Kit</h3>
+          <div class="card-cat">Skill</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Two-way Notion integration. Create pages, update databases, sync notes.</p>
+    <div class="card-tags">
+      <span class="card-tag">Productivity</span>
+      <span class="card-tag">Ops</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$19</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="skill" data-tags="productivity,research" data-price="19" data-name="Obsidian Knowledge Sync" data-order="30">
-    <div class="pc-type skill">Skill</div>
-    <div class="pc-name">Obsidian Knowledge Sync</div>
-    <div class="pc-tags"><span class="pc-tag">Productivity</span><span class="pc-tag">Research</span></div>
-    <div class="pc-price">$19</div>
-    <a class="pc-cta" href="products/obsidian-sync.html">View Product</a>
-  </div>
+  <a href="products/obsidian-sync.html" class="card" data-type="skill" data-tags="productivity,research" data-price="19" data-name="Obsidian Knowledge Sync" data-order="30">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">O</div>
+        <div>
+          <h3 class="card-name">Obsidian Knowledge Sync</h3>
+          <div class="card-cat">Skill</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Bridge Obsidian vault and AI. Read notes, write journals, navigate graph.</p>
+    <div class="card-tags">
+      <span class="card-tag">Productivity</span>
+      <span class="card-tag">Research</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$19</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="skill" data-tags="ops,personal" data-price="9" data-name="Automated Brain Backup" data-order="31">
-    <div class="pc-type skill">Skill</div>
-    <div class="pc-name">Automated Brain Backup</div>
-    <div class="pc-tags"><span class="pc-tag">Ops</span><span class="pc-tag">Personal</span></div>
-    <div class="pc-price">$9</div>
-    <a class="pc-cta" href="products/brain-backup.html">View Product</a>
-  </div>
+  <a href="products/brain-backup.html" class="card" data-type="skill" data-tags="ops,personal" data-price="9" data-name="Automated Brain Backup" data-order="31">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">A</div>
+        <div>
+          <h3 class="card-name">Automated Brain Backup</h3>
+          <div class="card-cat">Skill</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Nightly GitHub backup. Every commit recoverable. Restore to any point.</p>
+    <div class="card-tags">
+      <span class="card-tag">Ops</span>
+      <span class="card-tag">Personal</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$9</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="skill" data-tags="ops" data-price="9" data-name="Gateway Watchdog System" data-order="32">
-    <div class="pc-type skill">Skill</div>
-    <div class="pc-name">Gateway Watchdog System</div>
-    <div class="pc-tags"><span class="pc-tag">Ops</span></div>
-    <div class="pc-price">$9</div>
-    <a class="pc-cta" href="products/gateway-watchdog.html">View Product</a>
-  </div>
+  <a href="products/gateway-watchdog.html" class="card" data-type="skill" data-tags="ops" data-price="9" data-name="Gateway Watchdog System" data-order="32">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">G</div>
+        <div>
+          <h3 class="card-name">Gateway Watchdog System</h3>
+          <div class="card-cat">Skill</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Auto-restart on crash. Health check → doctor → restart. Every 5 min.</p>
+    <div class="card-tags">
+      <span class="card-tag">Ops</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$9</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
   <!-- GUIDES (17) -->
-  <div class="product-card" data-type="guide" data-tags="executive,strategy" data-price="49" data-name="Frontier Operations Handbook" data-order="33">
-    <div class="pc-type guide">Guide</div>
-    <div class="pc-name">Frontier Operations Handbook</div>
-    <div class="pc-tags"><span class="pc-tag">Executive</span><span class="pc-tag">Strategy</span></div>
-    <div class="pc-price">$49</div>
-    <a class="pc-cta" href="products/frontier-ops.html">View Product</a>
-  </div>
+  <a href="products/frontier-ops.html" class="card" data-type="guide" data-tags="executive,strategy" data-price="49" data-name="Frontier Operations Handbook" data-order="33">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">F</div>
+        <div>
+          <h3 class="card-name">Frontier Operations Handbook</h3>
+          <div class="card-cat">Guide</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">5 skills: boundary sensing, seam design, failure model, forecasting, leverage.</p>
+    <div class="card-tags">
+      <span class="card-tag">Executive</span>
+      <span class="card-tag">Strategy</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$49</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="guide" data-tags="security,ops" data-price="49" data-name="Hardening Guide" data-order="34">
-    <div class="pc-type guide">Guide</div>
-    <div class="pc-name">Hardening Guide</div>
-    <div class="pc-tags"><span class="pc-tag">Security</span><span class="pc-tag">Ops</span></div>
-    <div class="pc-price">$49</div>
-    <a class="pc-cta" href="products/hardening-guide.html">View Product</a>
-  </div>
+  <a href="products/hardening-guide.html" class="card" data-type="guide" data-tags="security,ops" data-price="49" data-name="Hardening Guide" data-order="34">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">H</div>
+        <div>
+          <h3 class="card-name">Hardening Guide</h3>
+          <div class="card-cat">Guide</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">13,000-word production security guide. 10 chapters, real attack scenarios.</p>
+    <div class="card-tags">
+      <span class="card-tag">Security</span>
+      <span class="card-tag">Ops</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$49</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="guide" data-tags="executive,strategy" data-price="39" data-name="Intent Engineering for AI Teams" data-order="35">
-    <div class="pc-type guide">Guide</div>
-    <div class="pc-name">Intent Engineering for AI Teams</div>
-    <div class="pc-tags"><span class="pc-tag">Executive</span><span class="pc-tag">Strategy</span></div>
-    <div class="pc-price">$39</div>
-    <a class="pc-cta" href="products/intent-engineering.html">View Product</a>
-  </div>
+  <a href="products/intent-engineering.html" class="card" data-type="guide" data-tags="executive,strategy" data-price="39" data-name="Intent Engineering" data-order="35">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">I</div>
+        <div>
+          <h3 class="card-name">Intent Engineering</h3>
+          <div class="card-cat">Guide</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Values → machine-readable instructions. Trade-off matrices, autonomy ladders.</p>
+    <div class="card-tags">
+      <span class="card-tag">Executive</span>
+      <span class="card-tag">Strategy</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$39</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="guide" data-tags="ops,executive" data-price="39" data-name="Multi-Agent Comms Playbook" data-order="36">
-    <div class="pc-type guide">Guide</div>
-    <div class="pc-name">Multi-Agent Comms Playbook</div>
-    <div class="pc-tags"><span class="pc-tag">Ops</span><span class="pc-tag">Executive</span></div>
-    <div class="pc-price">$39</div>
-    <a class="pc-cta" href="products/multiagent-comms.html">View Product</a>
-  </div>
+  <a href="products/multiagent-comms.html" class="card" data-type="guide" data-tags="ops,executive" data-price="39" data-name="Multi-Agent Comms Playbook" data-order="36">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">M</div>
+        <div>
+          <h3 class="card-name">Multi-Agent Comms Playbook</h3>
+          <div class="card-cat">Guide</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">3 architecture patterns. Token relay tax. Cross-agent coordination.</p>
+    <div class="card-tags">
+      <span class="card-tag">Ops</span>
+      <span class="card-tag">Executive</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$39</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="guide" data-tags="sales,executive" data-price="39" data-name="Client Delivery Playbook" data-order="37">
-    <div class="pc-type guide">Guide</div>
-    <div class="pc-name">Client Delivery Playbook</div>
-    <div class="pc-tags"><span class="pc-tag">Sales</span><span class="pc-tag">Executive</span></div>
-    <div class="pc-price">$39</div>
-    <a class="pc-cta" href="products/client-playbook.html">View Product</a>
-  </div>
+  <a href="products/client-playbook.html" class="card" data-type="guide" data-tags="sales,executive" data-price="39" data-name="Client Delivery Playbook" data-order="37">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">C</div>
+        <div>
+          <h3 class="card-name">Client Delivery Playbook</h3>
+          <div class="card-cat">Guide</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Package AI consulting. Intake, session, roadmap, handoff, retainer.</p>
+    <div class="card-tags">
+      <span class="card-tag">Sales</span>
+      <span class="card-tag">Executive</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$39</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="guide" data-tags="finance,ops" data-price="29" data-name="AI Cost Optimizer" data-order="38">
-    <div class="pc-type guide">Guide</div>
-    <div class="pc-name">AI Cost Optimizer</div>
-    <div class="pc-tags"><span class="pc-tag">Finance</span><span class="pc-tag">Ops</span></div>
-    <div class="pc-price">$29</div>
-    <a class="pc-cta" href="products/cost-optimizer.html">View Product</a>
-  </div>
+  <a href="products/cost-optimizer.html" class="card" data-type="guide" data-tags="finance,ops" data-price="29" data-name="AI Cost Optimizer" data-order="38">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">A</div>
+        <div>
+          <h3 class="card-name">AI Cost Optimizer</h3>
+          <div class="card-cat">Guide</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Cut AI costs 80-97%. Token audit, model routing, flat-rate strategies.</p>
+    <div class="card-tags">
+      <span class="card-tag">Finance</span>
+      <span class="card-tag">Ops</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$29</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="guide" data-tags="executive,strategy" data-price="29" data-name="Agentic Stack Assessment" data-order="39">
-    <div class="pc-type guide">Guide</div>
-    <div class="pc-name">Agentic Stack Assessment</div>
-    <div class="pc-tags"><span class="pc-tag">Executive</span><span class="pc-tag">Strategy</span></div>
-    <div class="pc-price">$29</div>
-    <a class="pc-cta" href="products/stack-assessment.html">View Product</a>
-  </div>
+  <a href="products/stack-assessment.html" class="card" data-type="guide" data-tags="executive,strategy" data-price="29" data-name="Agentic Stack Assessment" data-order="39">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">A</div>
+        <div>
+          <h3 class="card-name">Agentic Stack Assessment</h3>
+          <div class="card-cat">Guide</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">9-layer framework. 104 primitives checklist. Know your gaps.</p>
+    <div class="card-tags">
+      <span class="card-tag">Executive</span>
+      <span class="card-tag">Strategy</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$29</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="guide" data-tags="ops,productivity" data-price="29" data-name="The Telegram Operations Handbook" data-order="40">
-    <div class="pc-type guide">Guide</div>
-    <div class="pc-name">The Telegram Operations Handbook</div>
-    <div class="pc-tags"><span class="pc-tag">Ops</span><span class="pc-tag">Productivity</span></div>
-    <div class="pc-price">$29</div>
-    <a class="pc-cta" href="products/telegram-handbook.html">View Product</a>
-  </div>
+  <a href="products/telegram-handbook.html" class="card" data-type="guide" data-tags="ops,productivity" data-price="29" data-name="Telegram Ops Handbook" data-order="40">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">T</div>
+        <div>
+          <h3 class="card-name">Telegram Ops Handbook</h3>
+          <div class="card-cat">Guide</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Telegram as operations center. Forum topics, cron targeting.</p>
+    <div class="card-tags">
+      <span class="card-tag">Ops</span>
+      <span class="card-tag">Productivity</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$29</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="guide" data-tags="ops,engineering" data-price="29" data-name="Mastery Bundle (10 PDFs)" data-order="41">
-    <div class="pc-type guide">Guide</div>
-    <div class="pc-name">Mastery Bundle (10 PDFs)</div>
-    <div class="pc-tags"><span class="pc-tag">Ops</span><span class="pc-tag">Engineering</span></div>
-    <div class="pc-price">$29</div>
-    <a class="pc-cta" href="products/mastery-bundle.html">View Product</a>
-  </div>
+  <a href="products/mastery-bundle.html" class="card" data-type="guide" data-tags="ops,engineering" data-price="29" data-name="Mastery Bundle (10 PDFs)" data-order="41">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">M</div>
+        <div>
+          <h3 class="card-name">Mastery Bundle (10 PDFs)</h3>
+          <div class="card-cat">Guide</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Zero to production. Memory, security, content, multi-agent.</p>
+    <div class="card-tags">
+      <span class="card-tag">Ops</span>
+      <span class="card-tag">Engineering</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$29</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="guide" data-tags="ops,product" data-price="19" data-name="DIY Agent Setup Guide" data-order="42">
-    <div class="pc-type guide">Guide</div>
-    <div class="pc-name">DIY Agent Setup Guide</div>
-    <div class="pc-tags"><span class="pc-tag">Ops</span><span class="pc-tag">Product</span></div>
-    <div class="pc-price">$19</div>
-    <a class="pc-cta" href="products/diy-setup.html">View Product</a>
-  </div>
+  <a href="products/diy-setup.html" class="card" data-type="guide" data-tags="ops,product" data-price="19" data-name="DIY Agent Setup" data-order="42">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">D</div>
+        <div>
+          <h3 class="card-name">DIY Agent Setup</h3>
+          <div class="card-cat">Guide</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Step-by-step from zero to working agent. Installation to automation.</p>
+    <div class="card-tags">
+      <span class="card-tag">Ops</span>
+      <span class="card-tag">Product</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$19</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="guide" data-tags="engineering,strategy" data-price="19" data-name="Model Selection Guide" data-order="43">
-    <div class="pc-type guide">Guide</div>
-    <div class="pc-name">Model Selection Guide</div>
-    <div class="pc-tags"><span class="pc-tag">Engineering</span><span class="pc-tag">Strategy</span></div>
-    <div class="pc-price">$19</div>
-    <a class="pc-cta" href="products/model-guide.html">View Product</a>
-  </div>
+  <a href="products/model-guide.html" class="card" data-type="guide" data-tags="engineering,finance" data-price="19" data-name="Model Selection Guide" data-order="43">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">M</div>
+        <div>
+          <h3 class="card-name">Model Selection Guide</h3>
+          <div class="card-cat">Guide</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Claude vs GPT vs Gemini. Opus vs Sonnet vs Haiku. Real cost data.</p>
+    <div class="card-tags">
+      <span class="card-tag">Engineering</span>
+      <span class="card-tag">Finance</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$19</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="guide" data-tags="content,marketing" data-price="19" data-name="The Substack Publishing System" data-order="44">
-    <div class="pc-type guide">Guide</div>
-    <div class="pc-name">The Substack Publishing System</div>
-    <div class="pc-tags"><span class="pc-tag">Content</span><span class="pc-tag">Marketing</span></div>
-    <div class="pc-price">$19</div>
-    <a class="pc-cta" href="products/substack-system.html">View Product</a>
-  </div>
+  <a href="products/substack-system.html" class="card" data-type="guide" data-tags="content,marketing" data-price="19" data-name="Substack Publishing System" data-order="44">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">S</div>
+        <div>
+          <h3 class="card-name">Substack Publishing System</h3>
+          <div class="card-cat">Guide</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Publish from AI via API. Cross-posting. 13 articles in 2 weeks.</p>
+    <div class="card-tags">
+      <span class="card-tag">Content</span>
+      <span class="card-tag">Marketing</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$19</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="guide" data-tags="engineering,growth" data-price="19" data-name="Open Source Contribution System" data-order="45">
-    <div class="pc-type guide">Guide</div>
-    <div class="pc-name">Open Source Contribution System</div>
-    <div class="pc-tags"><span class="pc-tag">Engineering</span><span class="pc-tag">Growth</span></div>
-    <div class="pc-price">$19</div>
-    <a class="pc-cta" href="products/opensource-system.html">View Product</a>
-  </div>
+  <a href="products/opensource-system.html" class="card" data-type="guide" data-tags="engineering,growth" data-price="19" data-name="Open Source Contribution" data-order="45">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">O</div>
+        <div>
+          <h3 class="card-name">Open Source Contribution</h3>
+          <div class="card-cat">Guide</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">AI finds and contributes to open source. Issue triage, PRs, reputation.</p>
+    <div class="card-tags">
+      <span class="card-tag">Engineering</span>
+      <span class="card-tag">Growth</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$19</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="guide" data-tags="personal,productivity" data-price="9" data-name="The Weekly Review System" data-order="46">
-    <div class="pc-type guide">Guide</div>
-    <div class="pc-name">The Weekly Review System</div>
-    <div class="pc-tags"><span class="pc-tag">Personal</span><span class="pc-tag">Productivity</span></div>
-    <div class="pc-price">$9</div>
-    <a class="pc-cta" href="products/weekly-review.html">View Product</a>
-  </div>
+  <a href="products/weekly-review.html" class="card" data-type="guide" data-tags="personal,productivity" data-price="9" data-name="Weekly Review System" data-order="46">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">W</div>
+        <div>
+          <h3 class="card-name">Weekly Review System</h3>
+          <div class="card-cat">Guide</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Sunday night auto-review. Patterns, stuck items, next-week priorities.</p>
+    <div class="card-tags">
+      <span class="card-tag">Personal</span>
+      <span class="card-tag">Productivity</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$9</span>
+      <span class="card-btn">Buy</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="guide" data-tags="ops,product" data-price="0" data-name="Agent Quick Start" data-order="47">
-    <div class="pc-type guide">Guide</div>
-    <div class="pc-name">Agent Quick Start</div>
-    <div class="pc-tags"><span class="pc-tag">Ops</span><span class="pc-tag">Product</span></div>
-    <div class="pc-price free">Free</div>
-    <a class="pc-cta" href="products/quick-start.html">View Product</a>
-  </div>
+  <a href="products/quick-start.html" class="card" data-type="guide" data-tags="ops,product" data-price="0" data-name="Agent Quick Start" data-order="47">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">A</div>
+        <div>
+          <h3 class="card-name">Agent Quick Start</h3>
+          <div class="card-cat">Guide</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Zero to working agent in 30 minutes. 12 steps.</p>
+    <div class="card-tags">
+      <span class="card-tag">Ops</span>
+      <span class="card-tag">Product</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">Free</span>
+      <span class="card-btn">View</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="guide" data-tags="security,ops" data-price="0" data-name="Agent Security Checklist" data-order="48">
-    <div class="pc-type guide">Guide</div>
-    <div class="pc-name">Agent Security Checklist</div>
-    <div class="pc-tags"><span class="pc-tag">Security</span><span class="pc-tag">Ops</span></div>
-    <div class="pc-price free">Free</div>
-    <a class="pc-cta" href="products/security-checklist.html">View Product</a>
-  </div>
+  <a href="products/security-checklist.html" class="card" data-type="guide" data-tags="security,ops" data-price="0" data-name="Security Checklist" data-order="48">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">S</div>
+        <div>
+          <h3 class="card-name">Security Checklist</h3>
+          <div class="card-cat">Guide</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">10-point audit in 15 minutes. File permissions, skills, gateway.</p>
+    <div class="card-tags">
+      <span class="card-tag">Security</span>
+      <span class="card-tag">Ops</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">Free</span>
+      <span class="card-btn">View</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="guide" data-tags="other,productivity" data-price="0" data-name="AI Agent Buying Guide" data-order="49">
-    <div class="pc-type guide">Guide</div>
-    <div class="pc-name">AI Agent Buying Guide</div>
-    <div class="pc-tags"><span class="pc-tag">Productivity</span></div>
-    <div class="pc-price free">Free</div>
-    <a class="pc-cta" href="products/buying-guide.html">View Product</a>
-  </div>
+  <a href="products/buying-guide.html" class="card" data-type="guide" data-tags="other,productivity" data-price="0" data-name="AI Agent Buying Guide" data-order="49">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">A</div>
+        <div>
+          <h3 class="card-name">AI Agent Buying Guide</h3>
+          <div class="card-cat">Guide</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">What to look for. Security red flags. Value signals.</p>
+    <div class="card-tags">
+      <span class="card-tag">Productivity</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">Free</span>
+      <span class="card-btn">View</span>
+    </div>
+  </a>
 
   <!-- SERVICES (4) -->
-  <div class="product-card" data-type="service" data-tags="executive" data-price="2000" data-name="Full Operations" data-order="50">
-    <div class="pc-type service">Service</div>
-    <div class="pc-name">Full Operations</div>
-    <div class="pc-tags"><span class="pc-tag">Executive</span></div>
-    <div class="pc-price">$2,000+</div>
-    <a class="pc-cta" href="products/full-ops.html">View Product</a>
-  </div>
+  <a href="products/full-ops.html" class="card" data-type="service" data-tags="executive" data-price="2000" data-name="Full Operations" data-order="50">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">F</div>
+        <div>
+          <h3 class="card-name">Full Operations</h3>
+          <div class="card-cat">Service</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Complete AI ops stack. Built, hosted, improved monthly.</p>
+    <div class="card-tags">
+      <span class="card-tag">Executive</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$2,000+</span>
+      <span class="card-btn">Book</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="service" data-tags="executive" data-price="1000" data-name="Roadmap + Build" data-order="51">
-    <div class="pc-type service">Service</div>
-    <div class="pc-name">Roadmap + Build</div>
-    <div class="pc-tags"><span class="pc-tag">Executive</span></div>
-    <div class="pc-price">$1,000</div>
-    <a class="pc-cta" href="products/roadmap-build.html">View Product</a>
-  </div>
+  <a href="products/roadmap-build.html" class="card" data-type="service" data-tags="executive" data-price="1000" data-name="Roadmap + Build" data-order="51">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">R</div>
+        <div>
+          <h3 class="card-name">Roadmap + Build</h3>
+          <div class="card-cat">Service</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Strategy + we build your highest-priority automation.</p>
+    <div class="card-tags">
+      <span class="card-tag">Executive</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$1,000</span>
+      <span class="card-btn">Book</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="service" data-tags="executive" data-price="500" data-name="Strategy Session" data-order="52">
-    <div class="pc-type service">Service</div>
-    <div class="pc-name">Strategy Session</div>
-    <div class="pc-tags"><span class="pc-tag">Executive</span></div>
-    <div class="pc-price">$500</div>
-    <a class="pc-cta" href="products/roadmap.html">View Product</a>
-  </div>
+  <a href="products/roadmap.html" class="card" data-type="service" data-tags="executive" data-price="500" data-name="Strategy Session" data-order="52">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">S</div>
+        <div>
+          <h3 class="card-name">Strategy Session</h3>
+          <div class="card-cat">Service</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">60-minute strategy call. Custom roadmap in 48 hours.</p>
+    <div class="card-tags">
+      <span class="card-tag">Executive</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$500</span>
+      <span class="card-btn">Book</span>
+    </div>
+  </a>
 
-  <div class="product-card" data-type="service" data-tags="security" data-price="297" data-name="DFY Security Audit" data-order="53">
-    <div class="pc-type service">Service</div>
-    <div class="pc-name">DFY Security Audit</div>
-    <div class="pc-tags"><span class="pc-tag">Security</span></div>
-    <div class="pc-price">$297</div>
-    <a class="pc-cta" href="products/dfy-audit.html">View Product</a>
-  </div>
+  <a href="products/dfy-audit.html" class="card" data-type="service" data-tags="security" data-price="297" data-name="DFY Security Audit" data-order="53">
+    <div class="card-top">
+      <div class="card-info">
+        <div class="card-icon">D</div>
+        <div>
+          <h3 class="card-name">DFY Security Audit</h3>
+          <div class="card-cat">Service</div>
+        </div>
+      </div>
+      <span class="card-creator">AgentOrchard</span>
+    </div>
+    <p class="card-desc">Done-for-you security audit against OWASP standards.</p>
+    <div class="card-tags">
+      <span class="card-tag">Security</span>
+    </div>
+    <div class="card-bottom">
+      <span class="card-price">$297</span>
+      <span class="card-btn">Book</span>
+    </div>
+  </a>
 
   <div class="no-results" id="no-results" style="display:none">No products match your filters.</div>
 </div>
 
-<footer><div class="fi"><div class="fg"><div class="fc"><p class="fb">AgentOrchard</p><nav><a href="browse.html">Browse</a><a href="consulting.html">Consulting</a><a href="blog.html">Blog</a></nav></div><div class="fc"><p class="fb">Connect</p><nav><a href="https://sedim3nt.substack.com" target="_blank">Substack</a><a href="https://x.com/sedim3nt" target="_blank">X / Twitter</a></nav></div></div><div class="fbot"><p>&copy; 2026 Nrvana LLC</p></div></div></footer>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <p class="footer-brand">AgentOrchard</p>
+        <nav>
+          <a href="browse.html">Browse</a>
+          <a href="consulting.html">Consulting</a>
+          <a href="blog.html">Blog</a>
+          <a href="login.html">Login / Sign Up</a>
+        </nav>
+      </div>
+      <div class="footer-col">
+        <p class="footer-brand">Connect</p>
+        <nav>
+          <a href="https://sedim3nt.substack.com" target="_blank">Substack</a>
+          <a href="https://x.com/sedim3nt" target="_blank">X / Twitter</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Nrvana LLC</p>
+    </div>
+  </div>
+</footer>
 
 <script>
 (function(){
-  const cards = Array.from(document.querySelectorAll('.product-card[data-type]'));
+  const cards = Array.from(document.querySelectorAll('.card[data-type]'));
   const countEl = document.getElementById('results-count');
   const noResults = document.getElementById('no-results');
   const searchInput = document.getElementById('search-input');
   const sortSelect = document.getElementById('sort-select');
-  const grid = document.getElementById('product-grid');
+  const grid = document.getElementById('card-grid');
 
   let activeType = 'all';
   let activeTag = 'all';
