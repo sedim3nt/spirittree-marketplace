@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voice Journal System — AgentOrchard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@600&family=Cormorant+Unicase:wght@600&family=Cormorant+Upright:wght@600&display=swap" rel="stylesheet"><style>h1{font-family:'Cormorant Unicase',Georgia,serif;font-weight:600}h2{font-family:'Cormorant Infant',Georgia,serif;font-weight:600}h3{font-family:'Cormorant Upright',Georgia,serif;font-weight:600}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#f6f7f8;color:#1a1a2e}
+a{text-decoration:none;color:inherit}
+:root{--sand-50:#f6f7f8;--white:#fff;--ink-900:#1a1a2e;--ink-700:#2d2d44;--ink-600:#4a4a5a;--ink-500:#6b6b7a;--tide-600:#006ca5;--tide-700:#005a8a;--border-subtle:rgba(26,26,46,0.05);--border-card:rgba(26,26,46,0.1);--tide-light:rgba(13,148,136,0.1);--shadow-card:0 1px 3px rgba(26,26,46,0.08);--radius:4px;--max-w:1152px}
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:#ffffff}
+.nw{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
+@media(min-width:640px){.nw{padding:16px 24px}}
+.nb{font-family:'Cormorant Infant',Georgia,serif;font-size:2.5rem;font-weight:600;color:var(--ink-900)}
+.nl{display:none;align-items:center;gap:24px;font-size:.875rem;font-weight:500;color:var(--ink-700)}
+@media(min-width:768px){.nl{display:flex}}
+.nl a:hover{color:var(--ink-900)}
+.nli{border:1px solid rgba(26,26,46,.4);padding:6px 12px;border-radius:var(--radius);font-size:.875rem;font-weight:600;color:var(--ink-900)}
+.nli:hover{border-color:var(--ink-900)}
+.hb{display:flex;background:none;border:none;color:var(--ink-900);font-size:1.5rem;cursor:pointer}
+@media(min-width:768px){.hb{display:none}}
+.mm{display:none;flex-direction:column;gap:16px;padding:16px 24px;background:var(--sand-50);border-bottom:1px solid var(--border-subtle)}
+.mm.open{display:flex}
+.mm a{font-size:1rem;color:var(--ink-700);font-weight:500}
+.pp{max-width:var(--max-w);margin:0 auto;padding:48px 24px 80px;display:grid;grid-template-columns:1fr 340px;gap:40px;align-items:start}
+.pm h1{font-size:2.75rem;font-weight:800;color:var(--ink-900);margin-bottom:8px}
+.pm .sub{font-size:1.125rem;color:var(--ink-600);margin-bottom:12px}
+.pm .cat{font-size:.8125rem;color:var(--tide-600);font-weight:600;margin-bottom:24px}
+.pm h2{font-size:1.125rem;font-weight:700;color:var(--ink-900);margin:28px 0 12px}
+.pm p{font-size:.9375rem;color:var(--ink-600);line-height:1.7;margin-bottom:16px}
+.pm ul{margin:0 0 16px 20px;color:var(--ink-600);font-size:.9375rem;line-height:1.7}
+.pm li{margin-bottom:6px}
+.caps{list-style:none;margin:0 0 16px 0;display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.caps li{font-size:.9375rem;color:var(--ink-600);padding-left:4px}
+.recs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px}
+.rec-card{background:var(--white);border:1px solid var(--border-card);border-radius:var(--radius);padding:14px 16px}
+.rec-card .rn{font-size:.875rem;font-weight:700;color:var(--ink-900);margin-bottom:4px}
+.rec-card .rd{font-size:.8125rem;color:var(--ink-600)}
+.rec-card a{display:block;margin-top:8px;font-size:.8125rem;color:var(--tide-600);font-weight:600}
+.vh{margin:0 0 8px 0}
+.vh li{font-size:.9375rem;color:var(--ink-600);margin-bottom:4px;list-style:none}
+.pc{position:sticky;top:100px;background:var(--white);border:1px solid var(--border-subtle);border-radius:var(--radius);box-shadow:var(--shadow-card);padding:28px 24px;display:flex;flex-direction:column;gap:16px}
+.pc .price{font-size:2rem;font-weight:800;color:var(--ink-900)}
+.pc .lbl{font-size:.8125rem;color:var(--ink-600)}
+.pbtn{display:block;background:var(--tide-600);color:var(--white);font-weight:600;padding:14px 20px;border-radius:var(--radius);font-size:1rem;text-align:center;transition:background .2s}
+.pbtn:hover{background:var(--tide-700)}
+.pc .cr{font-size:.8125rem;color:var(--ink-500);text-align:center}
+.bl{display:inline-block;font-size:.875rem;color:var(--tide-600);font-weight:500;margin-bottom:20px}
+.bl:hover{color:var(--tide-700)}
+footer{border-top:1px solid var(--border-subtle);background:var(--white)}
+.fi{max-width:var(--max-w);margin:0 auto;padding:40px 24px}
+.fg{display:grid;gap:40px;grid-template-columns:1fr 1fr}
+.fc p.fb{font-size:.875rem;font-weight:700;color:var(--ink-900);margin-bottom:12px}
+.fc nav{display:flex;flex-direction:column;gap:8px}
+.fc nav a{font-size:.875rem;color:var(--ink-600)}
+.fc nav a:hover{color:var(--ink-900)}
+.fbot{margin-top:32px;border-top:1px solid var(--border-subtle);padding-top:24px}
+.fbot p{font-size:.8125rem;color:var(--ink-500)}
+@media(max-width:768px){.pp{grid-template-columns:1fr}.pc{position:static}.caps{grid-template-columns:1fr}.recs{grid-template-columns:1fr}}
+@media(max-width:600px){.fg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="nw"><a class="nb" href="../index.html">Agent Orchard</a><nav class="nl"><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a><a href="../blog.html">Blog</a><a href="../login.html" class="nli">Login / Sign Up</a></nav><button class="hb" onclick="document.querySelector('.mm').classList.toggle('open')" aria-label="Menu">&#9776;</button></div></header>
+<div class="mm"><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a><a href="../blog.html">Blog</a><a href="../login.html">Login / Sign Up</a></div>
+
+<div class="pp">
+  <div class="pm">
+    <a href="../browse.html" class="bl">&larr; Back to Browse</a>
+    <h1>Voice Journal System</h1>
+    <p class="sub">Think out loud, let AI organize</p>
+    <div class="cat">🎙️ Skill &nbsp;·&nbsp; Personal &nbsp;·&nbsp; Productivity &nbsp;·&nbsp; v1.0</div>
+
+    <h2>About</h2>
+    <p>Some people think best by writing. Others think best by talking. If you're the latter, you've probably noticed that most productivity systems are built for writers — structured notes, typed journals, keyboard-first capture. The Voice Journal System is built for thinkers who talk.</p>
+    <p>The workflow is simple: send a voice message to your AI agent in Telegram. OpenClaw's echoTranscript feature handles automatic transcription. The agent then processes the transcript — extracting action items, filing ideas by topic, logging key decisions to your daily memory, and categorizing the entry for retrieval later. You talk. The system organizes.</p>
+    <p>This matters because voice capture is faster than typing, more natural in motion (walking, driving, between meetings), and tends to produce different quality of thinking than written capture. When you talk through a problem, you often reach conclusions you wouldn't reach staring at a blank note. The Voice Journal System captures all of that — and makes it searchable.</p>
+    <p>Action item extraction runs automatically on every voice entry. If you mention something you need to do, it gets flagged and logged separately from the narrative. Decision capture works the same way — if you conclude "I'm going with option B," that decision is filed where you can find it when you need to explain your reasoning later.</p>
+    <p>The weekly voice digest runs every Sunday and surfaces patterns across the week's entries: recurring themes, unresolved questions, topics you've been circling without action. It's like a weekly review, but the review does itself. Project mention linking connects voice entries to your active projects automatically, so nothing falls through the cracks.</p>
+    <p>For people who think better by talking than typing, this closes the loop between verbal thinking and organized knowledge. You keep thinking out loud. The system turns it into a searchable, actionable archive.</p>
+
+    <h2>🎁 What's Included</h2>
+    <ul>
+      <li>voice-journal.sh processing script</li>
+      <li>OpenClaw transcription config (echoTranscript: true)</li>
+      <li>Action item extraction prompt (optimized for voice)</li>
+      <li>Daily memory logging integration</li>
+      <li>Topic classification taxonomy</li>
+      <li>Idea filing workflow by category</li>
+      <li>Weekly voice digest cron (Sunday delivery)</li>
+      <li>Setup guide with Telegram voice config</li>
+    </ul>
+
+    <h2>What Makes This Different</h2>
+    <ul>
+      <li><strong>Built on OpenClaw's native transcription.</strong> No third-party transcription service, no API key, no extra cost.</li>
+      <li><strong>Action item extraction designed for voice.</strong> Spoken language patterns differ from written — the prompts are tuned for how people actually talk.</li>
+      <li><strong>Weekly pattern digest.</strong> Surfaces what your brain keeps returning to across entries — not just a replay of individual notes.</li>
+      <li><strong>Project mention linking.</strong> Voice entries auto-connect to active projects, keeping context intact across conversations.</li>
+      <li><strong>Searchable archive.</strong> Every voice entry ends up as text you can search, grep, or ask your agent about later.</li>
+    </ul>
+
+    <h2>Core Capabilities</h2>
+    <ul class="caps">
+      <li>✓ Voice message transcription</li>
+      <li>✓ Action item extraction</li>
+      <li>✓ Daily memory logging</li>
+      <li>✓ Topic classification</li>
+      <li>✓ Idea filing by category</li>
+      <li>✓ Weekly pattern digest</li>
+      <li>✓ Keyword detection</li>
+      <li>✓ Decision capture</li>
+      <li>✓ Meeting notes from voice</li>
+      <li>✓ Mood/energy tracking</li>
+      <li>✓ Project mention linking</li>
+      <li>✓ Searchable voice archive</li>
+    </ul>
+
+    <h2>Version History</h2>
+    <ul class="vh">
+      <li><strong>v1.0</strong> — March 2026. Initial release. Transcription, action extraction, daily logging, topic classification, weekly digest.</li>
+    </ul>
+
+    <h2>Recommended Products</h2>
+    <div class="recs">
+      <div class="rec-card"><div class="rn">Weekly Review System</div><div class="rd">Structured weekly review workflow that synthesizes your week automatically.</div><a href="weekly-review.html">View →</a></div>
+      <div class="rec-card"><div class="rn">Automated Brain Backup</div><div class="rd">Nightly backup of your entire AI workspace to a private GitHub repo.</div><a href="brain-backup.html">View →</a></div>
+      <div class="rec-card"><div class="rn">Learning Agent</div><div class="rd">Structured learning system with spaced repetition and concept tracking.</div><a href="learning-agent.html">View →</a></div>
+    </div>
+  </div>
+
+  <div class="pc">
+    <div class="price">$19</div>
+    <div class="lbl">One-time payment &middot; Instant delivery</div>
+    <a href="https://buy.stripe.com/5kQaEQ9T6frPe0v84D2Nq0O" class="pbtn" target="_blank">Buy Now — $19</a>
+    <div class="cr">by AgentOrchard</div>
+  </div>
+</div>
+
+<footer><div class="fi"><div class="fg"><div class="fc"><p class="fb">AgentOrchard</p><nav><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a><a href="../blog.html">Blog</a></nav></div><div class="fc"><p class="fb">Connect</p><nav><a href="https://sedim3nt.substack.com" target="_blank">Substack</a><a href="https://x.com/sedim3nt" target="_blank">X / Twitter</a></nav></div></div><div class="fbot"><p>&copy; 2026 Nrvana LLC</p></div></div></footer>
+</body>
+</html>
