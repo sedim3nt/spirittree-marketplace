@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>n8n Workflow Recipes — AgentOrchard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@600&family=Cormorant+Unicase:wght@600&family=Cormorant+Upright:wght@600&display=swap" rel="stylesheet"><style>h1{font-family:'Cormorant Unicase',Georgia,serif;font-weight:600}h2{font-family:'Cormorant Infant',Georgia,serif;font-weight:600}h3{font-family:'Cormorant Upright',Georgia,serif;font-weight:600}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#f6f7f8;color:#1a1a2e}
+a{text-decoration:none;color:inherit}
+:root{--sand-50:#f6f7f8;--white:#fff;--ink-900:#1a1a2e;--ink-700:#2d2d44;--ink-600:#4a4a5a;--ink-500:#6b6b7a;--tide-600:#006ca5;--tide-700:#005a8a;--border-subtle:rgba(26,26,46,0.05);--border-card:rgba(26,26,46,0.1);--tide-light:rgba(13,148,136,0.1);--shadow-card:0 1px 3px rgba(26,26,46,0.08);--radius:4px;--max-w:1152px}
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:#ffffff}
+.nw{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
+@media(min-width:640px){.nw{padding:16px 24px}}
+.nb{font-family:'Cormorant Infant',Georgia,serif;font-size:2.5rem;font-weight:600;color:var(--ink-900)}
+.nl{display:none;align-items:center;gap:24px;font-size:.875rem;font-weight:500;color:var(--ink-700)}
+@media(min-width:768px){.nl{display:flex}}
+.nl a:hover{color:var(--ink-900)}
+.nli{border:1px solid rgba(26,26,46,.4);padding:6px 12px;border-radius:var(--radius);font-size:.875rem;font-weight:600;color:var(--ink-900)}
+.nli:hover{border-color:var(--ink-900)}
+.hb{display:flex;background:none;border:none;color:var(--ink-900);font-size:1.5rem;cursor:pointer}
+@media(min-width:768px){.hb{display:none}}
+.mm{display:none;flex-direction:column;gap:16px;padding:16px 24px;background:var(--sand-50);border-bottom:1px solid var(--border-subtle)}
+.mm.open{display:flex}
+.mm a{font-size:1rem;color:var(--ink-700);font-weight:500}
+.pp{max-width:var(--max-w);margin:0 auto;padding:48px 24px 80px;display:grid;grid-template-columns:1fr 340px;gap:40px;align-items:start}
+.pm h1{font-size:2.75rem;font-weight:800;color:var(--ink-900);margin-bottom:8px}
+.pm .sub{font-size:1.125rem;color:var(--ink-600);margin-bottom:12px}
+.pm .cat{font-size:.8125rem;color:var(--tide-600);font-weight:600;margin-bottom:24px}
+.pm h2{font-size:1.125rem;font-weight:700;color:var(--ink-900);margin:28px 0 12px}
+.pm p{font-size:.9375rem;color:var(--ink-600);line-height:1.7;margin-bottom:16px}
+.pm ul{margin:0 0 16px 20px;color:var(--ink-600);font-size:.9375rem;line-height:1.7}
+.pm li{margin-bottom:6px}
+.caps{list-style:none;margin:0 0 16px 0;display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.caps li{font-size:.9375rem;color:var(--ink-600);padding-left:4px}
+.recs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px}
+.rec-card{background:var(--white);border:1px solid var(--border-card);border-radius:var(--radius);padding:14px 16px}
+.rec-card .rn{font-size:.875rem;font-weight:700;color:var(--ink-900);margin-bottom:4px}
+.rec-card .rd{font-size:.8125rem;color:var(--ink-600)}
+.rec-card a{display:block;margin-top:8px;font-size:.8125rem;color:var(--tide-600);font-weight:600}
+.vh{margin:0 0 8px 0}
+.vh li{font-size:.9375rem;color:var(--ink-600);margin-bottom:4px;list-style:none}
+.pc{position:sticky;top:100px;background:var(--white);border:1px solid var(--border-subtle);border-radius:var(--radius);box-shadow:var(--shadow-card);padding:28px 24px;display:flex;flex-direction:column;gap:16px}
+.pc .price{font-size:2rem;font-weight:800;color:var(--ink-900)}
+.pc .lbl{font-size:.8125rem;color:var(--ink-600)}
+.pbtn{display:block;background:var(--tide-600);color:var(--white);font-weight:600;padding:14px 20px;border-radius:var(--radius);font-size:1rem;text-align:center;transition:background .2s}
+.pbtn:hover{background:var(--tide-700)}
+.pc .cr{font-size:.8125rem;color:var(--ink-500);text-align:center}
+.bl{display:inline-block;font-size:.875rem;color:var(--tide-600);font-weight:500;margin-bottom:20px}
+.bl:hover{color:var(--tide-700)}
+footer{border-top:1px solid var(--border-subtle);background:var(--white)}
+.fi{max-width:var(--max-w);margin:0 auto;padding:40px 24px}
+.fg{display:grid;gap:40px;grid-template-columns:1fr 1fr}
+.fc p.fb{font-size:.875rem;font-weight:700;color:var(--ink-900);margin-bottom:12px}
+.fc nav{display:flex;flex-direction:column;gap:8px}
+.fc nav a{font-size:.875rem;color:var(--ink-600)}
+.fc nav a:hover{color:var(--ink-900)}
+.fbot{margin-top:32px;border-top:1px solid var(--border-subtle);padding-top:24px}
+.fbot p{font-size:.8125rem;color:var(--ink-500)}
+@media(max-width:768px){.pp{grid-template-columns:1fr}.pc{position:static}.caps{grid-template-columns:1fr}.recs{grid-template-columns:1fr}}
+@media(max-width:600px){.fg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="nw"><a class="nb" href="../index.html">Agent Orchard</a><nav class="nl"><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a><a href="../blog.html">Blog</a><a href="../login.html" class="nli">Login / Sign Up</a></nav><button class="hb" onclick="document.querySelector('.mm').classList.toggle('open')" aria-label="Menu">&#9776;</button></div></header>
+<div class="mm"><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a><a href="../blog.html">Blog</a><a href="../login.html">Login / Sign Up</a></div>
+
+<div class="pp">
+  <div class="pm">
+    <a href="../browse.html" class="bl">&larr; Back to Browse</a>
+    <h1>n8n Workflow Recipes</h1>
+    <p class="sub">8 production workflows, import and customize</p>
+    <div class="cat">⚙️ Skill &nbsp;·&nbsp; Ops &nbsp;·&nbsp; Engineering &nbsp;·&nbsp; v1.0</div>
+
+    <h2>About</h2>
+    <p>n8n is the automation layer sitting between your AI agent and the platforms it publishes to. OpenClaw handles intelligence. n8n handles execution at scale. The gap between those two — getting actual content to actually post to actual platforms on a schedule that works — is what this recipe pack solves.</p>
+    <p>These are 8 production workflows running in our live system since March 2026. Not templates assembled from documentation — workflows that have posted thousands of tweets, published dozens of Substack articles, and handled real Stripe webhook events. Each one is exported as a JSON file you can import directly into your n8n instance and customize with your own credentials.</p>
+    <p>The Tweet Poster workflow manages a queue of tweets with scheduling, rate limiting, and error handling built in. Tweets are staged in a queue file, posted on schedule, and marked as sent. Failed posts retry automatically. The Substack Publisher handles draft creation and publishing via the Substack API, including image attachment and formatting. The Instagram Botanical Poster handles image upload and caption formatting for the Instagram Graph API.</p>
+    <p>The Daily Content Distribution workflow coordinates multi-platform posting — one trigger, content distributed to X, Substack, Facebook, and Bluesky in the right format for each platform. The Webhook Handler template is pre-configured for Stripe events: payment successful, payment failed, subscription created, subscription canceled. The Health Monitoring workflow pings configured endpoints on a schedule and sends Telegram alerts when anything goes unhealthy.</p>
+    <p>Each workflow comes with a per-workflow setup guide explaining the required credentials, configurable parameters, and how to test before enabling. The API key configuration guide covers credential management in n8n's built-in vault — no hardcoded secrets in workflow nodes.</p>
+    <p>If you're building AI agent operations and need the automation layer, n8n is the answer. This recipe pack gives you 8 working starting points instead of an empty canvas.</p>
+
+    <h2>🎁 What's Included</h2>
+    <ul>
+      <li>8 n8n workflow JSON exports (import directly into n8n)</li>
+      <li>Tweet Poster workflow (queue system, rate limiting, retry)</li>
+      <li>Substack Publisher workflow (draft + publish, image support)</li>
+      <li>Instagram poster workflow (Graph API, caption formatting)</li>
+      <li>Daily content distribution workflow (multi-platform)</li>
+      <li>Webhook handler template (Stripe events, extensible)</li>
+      <li>Health monitoring workflow (endpoint checks + alerts)</li>
+      <li>Content distribution workflow (coordinated multi-post)</li>
+      <li>Setup guide per workflow (credentials, params, testing)</li>
+      <li>API key configuration guide (n8n credential vault)</li>
+    </ul>
+
+    <h2>What Makes This Different</h2>
+    <ul>
+      <li><strong>All 8 workflows are in active production.</strong> Not examples — these have been running and posting since March 2026.</li>
+      <li><strong>JSON exports, not screenshots.</strong> Import directly into n8n and run. No manual rebuilding from docs.</li>
+      <li><strong>Error handling included.</strong> Every workflow has retry logic, failure alerts, and graceful degradation built in.</li>
+      <li><strong>Per-workflow setup guides.</strong> Each workflow explains exactly what credentials you need and how to test it.</li>
+      <li><strong>Covers the full stack.</strong> Social posting, content publishing, payment events, health monitoring, distribution — the core workflows any AI operation needs.</li>
+    </ul>
+
+    <h2>Core Capabilities</h2>
+    <ul class="caps">
+      <li>✓ Tweet posting with queue</li>
+      <li>✓ Substack draft creation and publishing</li>
+      <li>✓ Instagram image posting</li>
+      <li>✓ Daily content distribution</li>
+      <li>✓ Stripe webhook handling</li>
+      <li>✓ Health endpoint monitoring</li>
+      <li>✓ Scheduled task execution</li>
+      <li>✓ Error handling and retry</li>
+      <li>✓ Rate limiting compliance</li>
+      <li>✓ Multi-platform posting</li>
+      <li>✓ Image handling</li>
+      <li>✓ Credential management</li>
+    </ul>
+
+    <h2>Version History</h2>
+    <ul class="vh">
+      <li><strong>v1.0</strong> — March 2026. Initial release. 8 production workflow exports: tweet queue, Substack publisher, Instagram poster, distribution, Stripe webhooks, health monitor.</li>
+    </ul>
+
+    <h2>Recommended Products</h2>
+    <div class="recs">
+      <div class="rec-card"><div class="rn">Social Media Automation Pack</div><div class="rd">Scripts and workflows for posting to X, Bluesky, Facebook, and Substack.</div><a href="social-automation.html">View →</a></div>
+      <div class="rec-card"><div class="rn">Content Pipeline</div><div class="rd">End-to-end content creation and distribution pipeline for AI operations.</div><a href="content-pipeline.html">View →</a></div>
+      <div class="rec-card"><div class="rn">Cron &amp; Automation Toolkit</div><div class="rd">15 production cron templates for the automations that actually matter.</div><a href="cron-toolkit.html">View →</a></div>
+    </div>
+  </div>
+
+  <div class="pc">
+    <div class="price">$29</div>
+    <div class="lbl">One-time payment &middot; Instant delivery</div>
+    <a href="https://buy.stripe.com/6oU9AM1mA3J73lR0Cb2Nq0W" class="pbtn" target="_blank">Buy Now — $29</a>
+    <div class="cr">by AgentOrchard</div>
+  </div>
+</div>
+
+<footer><div class="fi"><div class="fg"><div class="fc"><p class="fb">AgentOrchard</p><nav><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a><a href="../blog.html">Blog</a></nav></div><div class="fc"><p class="fb">Connect</p><nav><a href="https://sedim3nt.substack.com" target="_blank">Substack</a><a href="https://x.com/sedim3nt" target="_blank">X / Twitter</a></nav></div></div><div class="fbot"><p>&copy; 2026 Nrvana LLC</p></div></div></footer>
+</body>
+</html>
