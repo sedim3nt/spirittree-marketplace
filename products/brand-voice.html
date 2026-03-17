@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Brand Voice Agent — AgentOrchard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@600&family=Cormorant+Unicase:wght@600&family=Cormorant+Upright:wght@600&display=swap" rel="stylesheet"><style>h1{font-family:'Cormorant Unicase',Georgia,serif;font-weight:600}h2{font-family:'Cormorant Infant',Georgia,serif;font-weight:600}h3{font-family:'Cormorant Upright',Georgia,serif;font-weight:600}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#f6f7f8;color:#1a1a2e}
+a{text-decoration:none;color:inherit}
+:root{--sand-50:#f6f7f8;--white:#fff;--ink-900:#1a1a2e;--ink-700:#2d2d44;--ink-600:#4a4a5a;--ink-500:#6b6b7a;--tide-600:#006ca5;--tide-700:#005a8a;--border-subtle:rgba(26,26,46,0.05);--border-card:rgba(26,26,46,0.1);--tide-light:rgba(13,148,136,0.1);--shadow-card:0 1px 3px rgba(26,26,46,0.08);--radius:4px;--max-w:1152px}
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:#ffffff}
+.nw{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
+@media(min-width:640px){.nw{padding:16px 24px}}
+.nb{font-family:'Cormorant Infant',Georgia,serif;font-size:2.5rem;font-weight:600;color:var(--ink-900)}
+.nl{display:none;align-items:center;gap:24px;font-size:.875rem;font-weight:500;color:var(--ink-700)}
+@media(min-width:768px){.nl{display:flex}}
+.nl a:hover{color:var(--ink-900)}
+.nli{border:1px solid rgba(26,26,46,.4);padding:6px 12px;border-radius:var(--radius);font-size:.875rem;font-weight:600;color:var(--ink-900)}
+.nli:hover{border-color:var(--ink-900)}
+.hb{display:flex;background:none;border:none;color:var(--ink-900);font-size:1.5rem;cursor:pointer}
+@media(min-width:768px){.hb{display:none}}
+.mm{display:none;flex-direction:column;gap:16px;padding:16px 24px;background:var(--sand-50);border-bottom:1px solid var(--border-subtle)}
+.mm.open{display:flex}
+.mm a{font-size:1rem;color:var(--ink-700);font-weight:500}
+.pp{max-width:var(--max-w);margin:0 auto;padding:48px 24px 80px;display:grid;grid-template-columns:1fr 340px;gap:40px;align-items:start}
+.pm h1{font-size:2.75rem;font-weight:800;color:var(--ink-900);margin-bottom:8px}
+.pm .subtitle{font-size:1.25rem;color:var(--ink-600);font-style:italic;margin-bottom:16px}
+.pm .cat{font-size:.8125rem;color:var(--tide-600);font-weight:600;margin-bottom:8px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.tag{display:inline-block;background:rgba(0,108,165,0.08);color:var(--tide-600);font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:2px;border:1px solid rgba(0,108,165,0.2)}
+.version-badge{display:inline-block;background:#f0f9f0;color:#2d6a2d;font-size:.75rem;font-weight:600;padding:2px 8px;border-radius:2px;border:1px solid #b8d8b8}
+.pm h2{font-size:1.125rem;font-weight:700;color:var(--ink-900);margin:28px 0 12px}
+.pm p{font-size:.9375rem;color:var(--ink-600);line-height:1.7;margin-bottom:16px}
+.pm ul{margin:0 0 16px 20px;color:var(--ink-600);font-size:.9375rem;line-height:1.7}
+.pm li{margin-bottom:6px}
+.caps-list{margin:0 0 16px 0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.caps-list li{font-size:.9375rem;color:var(--ink-600);padding-left:24px;position:relative}
+.caps-list li::before{content:'✓';position:absolute;left:0;color:#2d6a2d;font-weight:700}
+.diff-list{margin:0 0 16px 0;list-style:none}
+.diff-list li{font-size:.9375rem;color:var(--ink-600);line-height:1.7;margin-bottom:10px;padding-left:20px;position:relative}
+.diff-list li::before{content:'→';position:absolute;left:0;color:var(--tide-600);font-weight:700}
+.pc{position:sticky;top:100px;background:var(--white);border:1px solid var(--border-subtle);border-radius:var(--radius);box-shadow:var(--shadow-card);padding:28px 24px;display:flex;flex-direction:column;gap:16px}
+.pc .price{font-size:2rem;font-weight:800;color:var(--ink-900)}
+.pc .lbl{font-size:.8125rem;color:var(--ink-600)}
+.pbtn{display:block;background:var(--tide-600);color:var(--white);font-weight:600;padding:14px 20px;border-radius:var(--radius);font-size:1rem;text-align:center;transition:background .2s}
+.pbtn:hover{background:var(--tide-700)}
+.pc .cr{font-size:.8125rem;color:var(--ink-500);text-align:center}
+.pc-details{list-style:none;font-size:.8125rem;color:var(--ink-600);display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--border-subtle);padding-top:16px}
+.pc-details li{display:flex;justify-content:space-between}
+.pc-details .dk{color:var(--ink-500)}
+.pc-details .dv{font-weight:600;color:var(--ink-700)}
+.bl{display:inline-block;font-size:.875rem;color:var(--tide-600);font-weight:500;margin-bottom:20px}
+.bl:hover{color:var(--tide-700)}
+.recs{max-width:var(--max-w);margin:0 auto;padding:0 24px 80px}
+.recs h2{font-size:1.125rem;font-weight:700;color:var(--ink-900);margin-bottom:20px}
+.rec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.rec-card{background:var(--white);border:1px solid var(--border-subtle);border-radius:var(--radius);padding:20px;box-shadow:var(--shadow-card);transition:box-shadow .2s}
+.rec-card:hover{box-shadow:0 4px 12px rgba(26,26,46,0.12)}
+.rec-card h3{font-size:1rem;font-weight:700;color:var(--ink-900);margin-bottom:6px}
+.rec-card p{font-size:.875rem;color:var(--ink-600);margin-bottom:12px}
+.rec-link{font-size:.875rem;color:var(--tide-600);font-weight:600}
+footer{border-top:1px solid var(--border-subtle);background:var(--white)}
+.fi{max-width:var(--max-w);margin:0 auto;padding:40px 24px}
+.fg{display:grid;gap:40px;grid-template-columns:1fr 1fr}
+.fc p.fb{font-size:.875rem;font-weight:700;color:var(--ink-900);margin-bottom:12px}
+.fc nav{display:flex;flex-direction:column;gap:8px}
+.fc nav a{font-size:.875rem;color:var(--ink-600)}
+.fc nav a:hover{color:var(--ink-900)}
+.fbot{margin-top:32px;border-top:1px solid var(--border-subtle);padding-top:24px}
+.fbot p{font-size:.8125rem;color:var(--ink-500)}
+@media(max-width:768px){.pp{grid-template-columns:1fr}.pc{position:static}.caps-list{grid-template-columns:1fr}.rec-grid{grid-template-columns:1fr}}
+@media(max-width:600px){.fg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="nw"><a class="nb" href="../index.html">Agent Orchard</a><nav class="nl"><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a><a href="../blog.html">Blog</a><a href="../login.html" class="nli">Login / Sign Up</a></nav><button class="hb" onclick="document.querySelector('.mm').classList.toggle('open')" aria-label="Menu">&#9776;</button></div></header>
+<div class="mm"><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a><a href="../blog.html">Blog</a><a href="../login.html">Login / Sign Up</a></div>
+
+<div class="pp">
+  <div class="pm">
+    <a href="../browse.html" class="bl">&larr; Back to Browse</a>
+    <h1>The Brand Voice Agent</h1>
+    <p class="subtitle">"Writes in YOUR voice, not AI voice"</p>
+    <div class="cat">
+      <span class="tag">Content</span>
+      <span class="tag">Marketing</span>
+      <span class="tag">Persona</span>
+      <span class="version-badge">Version 1</span>
+    </div>
+
+    <h2>About</h2>
+    <p>The single biggest problem with AI-assisted content is that it sounds like AI-assisted content. The same phrases appear in every AI-generated article — "delve into," "comprehensive," "leverage," "in today's rapidly evolving landscape." Readers recognize these patterns. They signal that no human was actually thinking when this was written. The Brand Voice Agent is designed to solve this at the system level, not the prompt level.</p>
+    <p>The setup process starts with your existing writing. Feed it 10 samples — articles, emails, tweets, whatever you have — and the Voice Profile Builder extracts your patterns: how long your sentences tend to run, how often you use questions, your rhythm, your preferred connective phrases, the personality traits that show up consistently across different contexts. The result is a voice DNA profile that lives in the persona config and gets applied to every piece of content the agent produces.</p>
+    <p>Platform-specific voice adaptation is a critical feature that most generic "write in my style" prompts miss. How you write on X is fundamentally different from how you write on Substack — not just length, but register, cadence, the assumptions you make about what the reader already knows. The platform adaptation guide covers X, Substack, LinkedIn, and email, with distinct configurations for each. The agent doesn't just shorten your Substack article for Twitter — it rewrites it for the medium.</p>
+    <p>The De-AI-ify pass is a specific post-processing step that checks every output for the pattern library of robotic AI writing: overused transition phrases, passive constructions that no human naturally uses, vague generalities that pad word count without adding information, the telltale list of three that ChatGPT defaults to. The pattern removal list is maintained and expandable as new AI-isms emerge.</p>
+    <p>This was built and battle-tested during a period of publishing 13 Substack articles in 2 weeks across a multi-platform distribution pipeline. The CONTENT-STANDARD.md quality checklist is the actual 10-point checklist used to gate every piece of content before it went live. Voice consistency was a hard requirement — not a nice-to-have — and this system delivered it at publishing velocity.</p>
+
+    <h2>🎁 What's Included</h2>
+    <ul>
+      <li><strong>ROLE.md</strong> — Agent definition with voice preservation mandate and quality standards</li>
+      <li><strong>Voice Profile Builder</strong> — 10-sample analysis framework that extracts your writing DNA</li>
+      <li><strong>CONTENT-STANDARD.md</strong> — 10-point quality checklist used in production publishing pipelines</li>
+      <li><strong>De-AI-ify pass</strong> — Pattern removal list for robotic AI phrases (updated regularly)</li>
+      <li><strong>Platform voice adaptation guide</strong> — Distinct configurations for X, Substack, LinkedIn, and email</li>
+      <li><strong>Tone calibration matrix</strong> — Adjustable dials from formal to casual, technical to accessible</li>
+      <li><strong>Before/after examples</strong> — 5 rewrites showing AI voice transformed to human voice</li>
+      <li><strong>Brand voice template</strong> — Structured profile format for the agent's persona config</li>
+      <li><strong>Writing sample analysis prompt</strong> — Structured extraction of style traits from existing content</li>
+      <li><strong>Style guide generator</strong> — Automated style guide creation from your voice profile</li>
+    </ul>
+
+    <h2>What Makes This Different</h2>
+    <ul class="diff-list">
+      <li><strong>Voice DNA, not style instructions.</strong> Generic "write like me" prompts degrade over sessions. A voice DNA profile extracted from your actual writing is durable and consistent.</li>
+      <li><strong>De-AI-ify is a systematic pass.</strong> It's not "avoid sounding like AI" in the prompt — it's a specific list of patterns checked against every output before delivery.</li>
+      <li><strong>Platform-specific adaptation is real.</strong> X and Substack are different media with different audiences and different conventions. One adaptation config doesn't cover both.</li>
+      <li><strong>CONTENT-STANDARD.md is battle-tested.</strong> Not a theoretical checklist — the exact criteria used to gate 13 published articles in a real production pipeline.</li>
+      <li><strong>5 before/after examples included.</strong> You can see exactly what transformation the De-AI-ify pass performs before you use it on your own content.</li>
+    </ul>
+
+    <h2>Core Capabilities</h2>
+    <ul class="caps-list">
+      <li>Voice DNA extraction from writing samples</li>
+      <li>Consistent voice across all platforms</li>
+      <li>De-AI-ify automated pass</li>
+      <li>Platform-specific tone adaptation</li>
+      <li>10-point quality checklist enforcement</li>
+      <li>Style guide generation</li>
+      <li>Tone calibration (formal ↔ casual)</li>
+      <li>Writing sample analysis</li>
+      <li>Brand voice enforcement across agents</li>
+      <li>Cliché detection and replacement</li>
+      <li>Reading level targeting</li>
+      <li>Personality trait preservation</li>
+    </ul>
+
+    <h2>Version History</h2>
+    <p><strong>Version 1 · March 2026</strong> — Initial release. Voice extraction framework and De-AI-ify pass developed during a 2-week intensive publishing sprint (13 Substack articles). Platform adaptation guide covers X, Substack, LinkedIn, and email. CONTENT-STANDARD.md reflects the actual quality gate used in production.</p>
+  </div>
+
+  <div class="pc">
+    <div class="price">$49</div>
+    <div class="lbl">One-time purchase · Instant delivery</div>
+    <a href="https://buy.stripe.com/28EbIU0iwcfD3lRfx52Nq0G" class="pbtn" target="_blank">Buy Now — $49</a>
+    <div class="cr">by AgentOrchard</div>
+    <ul class="pc-details">
+      <li><span class="dk">Type</span><span class="dv">Persona</span></li>
+      <li><span class="dk">Category</span><span class="dv">Content / Marketing</span></li>
+      <li><span class="dk">Price</span><span class="dv">$49</span></li>
+      <li><span class="dk">Version</span><span class="dv">1</span></li>
+      <li><span class="dk">License</span><span class="dv">Personal use</span></li>
+    </ul>
+  </div>
+</div>
+
+<div class="recs">
+  <h2>Recommended Products</h2>
+  <div class="rec-grid">
+    <a href="content-engine.html" class="rec-card">
+      <h3>Content Engine</h3>
+      <p>Multi-platform content production system. Brand Voice Agent is the quality layer it needs.</p>
+      <span class="rec-link">View product →</span>
+    </a>
+    <a href="content-pipeline.html" class="rec-card">
+      <h3>Content Pipeline</h3>
+      <p>Automated publishing workflow from draft to live across Substack, X, and LinkedIn.</p>
+      <span class="rec-link">View product →</span>
+    </a>
+    <a href="social-automation.html" class="rec-card">
+      <h3>Social Automation Kit</h3>
+      <p>Scheduled social posting with platform-specific formatting. Pairs with Brand Voice for consistent output.</p>
+      <span class="rec-link">View product →</span>
+    </a>
+  </div>
+</div>
+
+<footer><div class="fi"><div class="fg"><div class="fc"><p class="fb">AgentOrchard</p><nav><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a><a href="../blog.html">Blog</a></nav></div><div class="fc"><p class="fb">Connect</p><nav><a href="https://sedim3nt.substack.com" target="_blank">Substack</a><a href="https://x.com/sedim3nt" target="_blank">X / Twitter</a></nav></div></div><div class="fbot"><p>&copy; 2026 Nrvana LLC</p></div></div></footer>
+</body>
+</html>
