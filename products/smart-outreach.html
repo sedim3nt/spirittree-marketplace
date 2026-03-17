@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Email Outreach — AgentOrchard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@600&family=Cormorant+Unicase:wght@600&family=Cormorant+Upright:wght@600&display=swap" rel="stylesheet"><style>h1{font-family:'Cormorant Unicase',Georgia,serif;font-weight:600}h2{font-family:'Cormorant Infant',Georgia,serif;font-weight:600}h3{font-family:'Cormorant Upright',Georgia,serif;font-weight:600}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#f6f7f8;color:#1a1a2e}
+a{text-decoration:none;color:inherit}
+:root{--sand-50:#f6f7f8;--white:#fff;--ink-900:#1a1a2e;--ink-700:#2d2d44;--ink-600:#4a4a5a;--ink-500:#6b6b7a;--tide-600:#006ca5;--tide-700:#005a8a;--border-subtle:rgba(26,26,46,0.05);--border-card:rgba(26,26,46,0.1);--tide-light:rgba(13,148,136,0.1);--shadow-card:0 1px 3px rgba(26,26,46,0.08);--radius:4px;--max-w:1152px}
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:#ffffff}
+.nw{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
+@media(min-width:640px){.nw{padding:16px 24px}}
+.nb{font-family:'Cormorant Infant',Georgia,serif;font-size:2.5rem;font-weight:600;color:var(--ink-900)}
+.nl{display:none;align-items:center;gap:24px;font-size:.875rem;font-weight:500;color:var(--ink-700)}
+@media(min-width:768px){.nl{display:flex}}
+.nl a:hover{color:var(--ink-900)}
+.nli{border:1px solid rgba(26,26,46,.4);padding:6px 12px;border-radius:var(--radius);font-size:.875rem;font-weight:600;color:var(--ink-900)}
+.nli:hover{border-color:var(--ink-900)}
+.hb{display:flex;background:none;border:none;color:var(--ink-900);font-size:1.5rem;cursor:pointer}
+@media(min-width:768px){.hb{display:none}}
+.mm{display:none;flex-direction:column;gap:16px;padding:16px 24px;background:var(--sand-50);border-bottom:1px solid var(--border-subtle)}
+.mm.open{display:flex}
+.mm a{font-size:1rem;color:var(--ink-700);font-weight:500}
+.pp{max-width:var(--max-w);margin:0 auto;padding:48px 24px 80px;display:grid;grid-template-columns:1fr 340px;gap:40px;align-items:start}
+.pm h1{font-size:2.75rem;font-weight:800;color:var(--ink-900);margin-bottom:8px}
+.pm .sub{font-size:1.125rem;color:var(--ink-600);margin-bottom:12px}
+.pm .cat{font-size:.8125rem;color:var(--tide-600);font-weight:600;margin-bottom:24px}
+.pm h2{font-size:1.125rem;font-weight:700;color:var(--ink-900);margin:28px 0 12px}
+.pm p{font-size:.9375rem;color:var(--ink-600);line-height:1.7;margin-bottom:16px}
+.pm ul{margin:0 0 16px 20px;color:var(--ink-600);font-size:.9375rem;line-height:1.7}
+.pm li{margin-bottom:6px}
+.caps{list-style:none;margin:0 0 16px 0;display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.caps li{font-size:.9375rem;color:var(--ink-600);padding-left:4px}
+.recs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:8px}
+.rec-card{background:var(--white);border:1px solid var(--border-card);border-radius:var(--radius);padding:14px 16px}
+.rec-card .rn{font-size:.875rem;font-weight:700;color:var(--ink-900);margin-bottom:4px}
+.rec-card .rd{font-size:.8125rem;color:var(--ink-600)}
+.rec-card a{display:block;margin-top:8px;font-size:.8125rem;color:var(--tide-600);font-weight:600}
+.vh{margin:0 0 8px 0}
+.vh li{font-size:.9375rem;color:var(--ink-600);margin-bottom:4px;list-style:none}
+.pc{position:sticky;top:100px;background:var(--white);border:1px solid var(--border-subtle);border-radius:var(--radius);box-shadow:var(--shadow-card);padding:28px 24px;display:flex;flex-direction:column;gap:16px}
+.pc .price{font-size:2rem;font-weight:800;color:var(--ink-900)}
+.pc .lbl{font-size:.8125rem;color:var(--ink-600)}
+.pbtn{display:block;background:var(--tide-600);color:var(--white);font-weight:600;padding:14px 20px;border-radius:var(--radius);font-size:1rem;text-align:center;transition:background .2s}
+.pbtn:hover{background:var(--tide-700)}
+.pc .cr{font-size:.8125rem;color:var(--ink-500);text-align:center}
+.bl{display:inline-block;font-size:.875rem;color:var(--tide-600);font-weight:500;margin-bottom:20px}
+.bl:hover{color:var(--tide-700)}
+footer{border-top:1px solid var(--border-subtle);background:var(--white)}
+.fi{max-width:var(--max-w);margin:0 auto;padding:40px 24px}
+.fg{display:grid;gap:40px;grid-template-columns:1fr 1fr}
+.fc p.fb{font-size:.875rem;font-weight:700;color:var(--ink-900);margin-bottom:12px}
+.fc nav{display:flex;flex-direction:column;gap:8px}
+.fc nav a{font-size:.875rem;color:var(--ink-600)}
+.fc nav a:hover{color:var(--ink-900)}
+.fbot{margin-top:32px;border-top:1px solid var(--border-subtle);padding-top:24px}
+.fbot p{font-size:.8125rem;color:var(--ink-500)}
+@media(max-width:768px){.pp{grid-template-columns:1fr}.pc{position:static}.caps{grid-template-columns:1fr}.recs{grid-template-columns:1fr}}
+@media(max-width:600px){.fg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="nw"><a class="nb" href="../index.html">Agent Orchard</a><nav class="nl"><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a><a href="../blog.html">Blog</a><a href="../login.html" class="nli">Login / Sign Up</a></nav><button class="hb" onclick="document.querySelector('.mm').classList.toggle('open')" aria-label="Menu">&#9776;</button></div></header>
+<div class="mm"><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a><a href="../blog.html">Blog</a><a href="../login.html">Login / Sign Up</a></div>
+
+<div class="pp">
+  <div class="pm">
+    <a href="../browse.html" class="bl">&larr; Back to Browse</a>
+    <h1>Smart Email Outreach</h1>
+    <p class="sub">Research-first, not spray-and-pray</p>
+    <div class="cat">📬 Skill &nbsp;·&nbsp; Sales &nbsp;·&nbsp; Marketing &nbsp;·&nbsp; v1.0</div>
+
+    <h2>About</h2>
+    <p>Cold outreach fails for one reason: it's obvious you didn't do your homework. Generic opening lines, wrong role assumptions, irrelevant pitches. Recipients can tell in three seconds whether you researched them or just scraped their email from a list. Smart Email Outreach is built on the premise that research comes first, always.</p>
+    <p>Before writing a single word of outreach, your agent researches the prospect. Company background, funding stage, recent press, the prospect's role history, their public writing, mutual connections or context you share. This research phase takes 2-3 minutes per prospect and produces a brief that informs everything that follows. The agent then writes three angle variations for each prospect — different hooks, different emphasis, different tone — so you can choose or A/B test.</p>
+    <p>Follow-up sequences are one of the highest-leverage activities in outreach, and one of the most neglected. This skill includes a 3-touch follow-up framework with configurable timing and escalating value delivery. Touch 1 is the initial email. Touch 2 adds context or a resource. Touch 3 is a soft close or explicit ask. Reply detection monitors for responses and pauses sequences when someone replies — so you never follow up on an email that already got answered.</p>
+    <p>The pipeline tracker gives you a visual queue of every active outreach sequence with status, stage, and next action. Reply categorization classifies incoming responses: interested, not now, wrong person, unsubscribe, objection. Each category has a response playbook. The objection handling library covers 8 common objections with response frameworks you can adapt.</p>
+    <p>A/B testing infrastructure tracks which subject lines, opening angles, and CTAs get the best reply rates across your campaigns. Over time, the system learns what works for your specific audience and context. Domain reputation monitoring ensures your send patterns stay within safe limits and your domain doesn't end up on spam filters.</p>
+    <p>This is not a mass email tool. It's a precision tool for founders, consultants, and business developers who send fewer emails but want each one to land. Quality over volume, every time.</p>
+
+    <h2>🎁 What's Included</h2>
+    <ul>
+      <li>Prospect research template (company, role, recent activity)</li>
+      <li>Personalization framework with 5 research dimensions</li>
+      <li>Email writing system — 3 angle variations per prospect</li>
+      <li>3-touch follow-up sequence with timing config</li>
+      <li>Reply detection and sequence pause logic</li>
+      <li>Objection handling templates (8 objections covered)</li>
+      <li>Pipeline tracker with status and next-action view</li>
+      <li>A/B testing framework with reply rate tracking</li>
+      <li>Do-not-contact list management</li>
+      <li>Domain reputation monitoring guide</li>
+    </ul>
+
+    <h2>What Makes This Different</h2>
+    <ul>
+      <li><strong>Research before writing, every time.</strong> The framework makes shortcuts impossible — you can't skip research and still use the system.</li>
+      <li><strong>3 angle variations per prospect.</strong> Different hooks for different contexts. Test what lands best without writing from scratch.</li>
+      <li><strong>Reply-aware sequences.</strong> Detection pauses follow-up when someone responds. No more embarrassing double-sends.</li>
+      <li><strong>8 objection templates.</strong> The most common objections, with frameworks for turning them into conversations instead of dead ends.</li>
+      <li><strong>Surgical, not mass.</strong> Designed for 5-20 high-value prospects, not 5,000 scraped emails. Quality-first by design.</li>
+    </ul>
+
+    <h2>Core Capabilities</h2>
+    <ul class="caps">
+      <li>✓ Prospect research before outreach</li>
+      <li>✓ Company background analysis</li>
+      <li>✓ Personalized email writing (3 angles)</li>
+      <li>✓ 3-touch follow-up automation</li>
+      <li>✓ Reply detection and categorization</li>
+      <li>✓ Objection handling</li>
+      <li>✓ Pipeline tracking</li>
+      <li>✓ A/B testing</li>
+      <li>✓ Do-not-contact management</li>
+      <li>✓ Domain reputation monitoring</li>
+      <li>✓ Send-time optimization</li>
+      <li>✓ Template performance tracking</li>
+    </ul>
+
+    <h2>Version History</h2>
+    <ul class="vh">
+      <li><strong>v1.0</strong> — March 2026. Initial release. Research-first workflow, 3-angle writing, 3-touch sequences, objection handling, pipeline tracker, A/B testing.</li>
+    </ul>
+
+    <h2>Recommended Products</h2>
+    <div class="recs">
+      <div class="rec-card"><div class="rn">Client Playbook</div><div class="rd">End-to-end client relationship system from first contact to renewal.</div><a href="client-playbook.html">View →</a></div>
+      <div class="rec-card"><div class="rn">Freelancer Ops Bundle</div><div class="rd">Client tracking, invoicing, and financial ops for solo operators.</div><a href="freelancer-ops.html">View →</a></div>
+      <div class="rec-card"><div class="rn">Brand Voice System</div><div class="rd">Document and enforce your brand voice across all AI-generated content.</div><a href="brand-voice.html">View →</a></div>
+    </div>
+  </div>
+
+  <div class="pc">
+    <div class="price">$29</div>
+    <div class="lbl">One-time payment &middot; Instant delivery</div>
+    <a href="https://buy.stripe.com/7sY3co6GU3J7g8DgB92Nq0Q" class="pbtn" target="_blank">Buy Now — $29</a>
+    <div class="cr">by AgentOrchard</div>
+  </div>
+</div>
+
+<footer><div class="fi"><div class="fg"><div class="fc"><p class="fb">AgentOrchard</p><nav><a href="../browse.html">Browse</a><a href="../consulting.html">Consulting</a><a href="../blog.html">Blog</a></nav></div><div class="fc"><p class="fb">Connect</p><nav><a href="https://sedim3nt.substack.com" target="_blank">Substack</a><a href="https://x.com/sedim3nt" target="_blank">X / Twitter</a></nav></div></div><div class="fbot"><p>&copy; 2026 Nrvana LLC</p></div></div></footer>
+</body>
+</html>
