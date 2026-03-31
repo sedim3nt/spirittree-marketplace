@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The $5 AI Team — AgentOrchard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@600&family=Cormorant+Unicase:wght@600&family=Cormorant+Upright:wght@600&display=swap" rel="stylesheet"><style>h1{font-family:'Cormorant Unicase',Georgia,serif;font-weight:600}h2{font-family:'Cormorant Infant',Georgia,serif;font-weight:600;font-size:1.5rem;margin:32px 0 16px;color:#1a1a2e}h3{font-family:'Cormorant Upright',Georgia,serif;font-weight:600;font-size:1.25rem;margin:24px 0 12px;color:#1a1a2e}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#f6f7f8;color:#1a1a2e}
+a{text-decoration:none;color:inherit}
+:root{--sand-50:#f6f7f8;--white:#ffffff;--ink-900:#1a1a2e;--ink-700:#2d2d44;--ink-600:#4a4a5a;--ink-500:#6b6b7a;--tide-600:#006ca5;--tide-700:#005a8a;--border-subtle:rgba(26,26,46,0.05);--shadow-card:0 1px 3px rgba(26,26,46,0.08);--radius:4px;--max-w:1152px}
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:#ffffff}
+.nav-wrap{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
+@media(min-width:640px){.nav-wrap{padding:16px 24px}}
+.nav-brand{font-family:'Cormorant Infant',Georgia,serif;font-size:2.5rem;font-weight:600;color:var(--ink-900)}
+.nav-links{display:none;align-items:center;gap:24px;font-size:0.875rem;font-weight:500;color:var(--ink-700)}
+@media(min-width:768px){.nav-links{display:flex}}
+.nav-links a:hover{color:var(--ink-900)}
+.nav-login{border:1px solid rgba(26,26,46,0.4);padding:6px 12px;border-radius:var(--radius);font-size:0.875rem;font-weight:600;color:var(--ink-900)}
+.nav-login:hover{border-color:var(--ink-900)}
+.hamburger{display:flex;background:none;border:none;color:var(--ink-900);font-size:1.5rem;cursor:pointer}
+@media(min-width:768px){.hamburger{display:none}}
+.mobile-menu{display:none;flex-direction:column;gap:16px;padding:16px 24px;background:var(--sand-50);border-bottom:1px solid var(--border-subtle)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:1rem;color:var(--ink-700);font-weight:500}
+.post{max-width:720px;margin:0 auto;padding:48px 24px 80px}
+.post-meta{font-size:0.875rem;color:var(--ink-500);margin-bottom:16px}
+.post h1{font-size:clamp(1.75rem,4vw,2.75rem);line-height:1.2;margin-bottom:32px;color:var(--ink-900)}
+.post p{font-size:1.125rem;line-height:1.7;color:var(--ink-600);margin-bottom:20px}
+.post ul,.post ol{margin:0 0 20px 24px;color:var(--ink-600);font-size:1.125rem;line-height:1.7}
+.post li{margin-bottom:8px}
+.post strong{color:var(--ink-900)}
+.post code{background:#1a1a2e;color:#e0e0e0;padding:2px 6px;border-radius:3px;font-size:0.95rem}
+.post pre{background:#1a1a2e;color:#e0e0e0;padding:20px;border-radius:8px;overflow-x:auto;margin-bottom:20px;font-size:0.9rem;line-height:1.6}
+.post pre code{background:none;padding:0}
+.post blockquote{border-left:3px solid var(--tide-600);padding:12px 20px;margin:0 0 20px;background:rgba(0,108,165,0.04);color:var(--ink-700);font-size:1.05rem;line-height:1.7}
+.back-link{display:inline-block;color:var(--tide-600);font-weight:600;font-size:0.875rem;margin-bottom:32px}
+.back-link:hover{color:var(--tide-700)}
+.cta-box{margin-top:48px;padding:32px;background:var(--white);border:1px solid var(--border-subtle);border-radius:var(--radius);box-shadow:var(--shadow-card);text-align:center}
+.cta-box p{font-size:1rem;color:var(--ink-600);margin-bottom:16px}
+.cta-btn{display:inline-block;background:var(--tide-600);color:var(--white);font-weight:600;padding:12px 24px;border-radius:var(--radius);font-size:0.875rem;transition:background 0.2s}
+.cta-btn:hover{background:var(--tide-700)}
+footer{border-top:1px solid var(--border-subtle);background:var(--white)}
+.footer-inner{max-width:var(--max-w);margin:0 auto;padding:40px 24px}
+.footer-grid{display:grid;gap:40px;grid-template-columns:1fr 1fr}
+.footer-col p.footer-brand{font-size:0.875rem;font-weight:700;color:var(--ink-900);margin-bottom:12px}
+.footer-col nav{display:flex;flex-direction:column;gap:8px}
+.footer-col nav a{font-size:0.875rem;color:var(--ink-600);transition:color 0.2s}
+.footer-col nav a:hover{color:var(--ink-900)}
+.footer-bottom{margin-top:32px;border-top:1px solid var(--border-subtle);padding-top:24px}
+.footer-bottom p{font-size:0.8125rem;color:var(--ink-500)}
+@media(max-width:600px){.footer-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav-wrap">
+    <a class="nav-brand" href="../index.html">Agent Orchard</a>
+    <nav class="nav-links">
+      <a href="../browse.html">Browse</a>
+      <a href="../consulting.html">Consulting</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../login.html" class="nav-login">Login / Sign Up</a>
+    </nav>
+    <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+  </div>
+</header>
+<div class="mobile-menu">
+  <a href="../browse.html">Browse</a>
+  <a href="../consulting.html">Consulting</a>
+  <a href="../blog.html">Blog</a>
+  <a href="../login.html">Login / Sign Up</a>
+</div>
+<article class="post">
+  <a href="../blog.html" class="back-link">&larr; Back to Blog</a>
+  <div class="post-meta">March 4, 2026 &middot; 8 min read</div>
+  <h1>The $5 AI Team</h1>
+
+  <p>Most people think running AI agents is expensive. They picture API bills climbing into hundreds of dollars a month, carefully counting tokens, and sweating over every prompt that runs too long. That was true eighteen months ago. It is not true now.</p>
+
+  <p>Today, you can run a team of AI agents, handling real work across multiple domains, for under five dollars a day. Here is how.</p>
+
+  <h2>The Old Model: Death by Token</h2>
+
+  <p>The traditional way to use AI models is through API access. You pay per token: input tokens and output tokens, priced separately. With a capable model like Claude Opus, this adds up fast.</p>
+
+  <p>Consider a typical agent session. Your agent reads a few files (3,000 tokens of input), reasons about a task (2,000 tokens of output), reads more context (4,000 tokens), and produces a result (1,500 tokens). That is one task. A productive agent might run 50-100 tasks per day. At API rates for a frontier model, you are looking at $15-40/day for a single agent. Scale to three agents and you are spending $50-120/day, or $1,500-3,600/month.</p>
+
+  <p>For a business, that might be fine. For an individual developer or small team experimenting with agent workflows, it is a non-starter.</p>
+
+  <h2>The New Model: Flat-Rate CLI Subscriptions</h2>
+
+  <p>The pricing landscape shifted when providers started offering flat-rate access through CLI tools. The key offerings right now:</p>
+
+  <ul>
+    <li><strong>Claude Code</strong> &mdash; $20/month (included with Claude Pro). Flat-rate access to Claude Sonnet through the terminal. No token metering for standard usage.</li>
+    <li><strong>Gemini CLI</strong> &mdash; Free tier available. Generous daily limits for Gemini models through the command line.</li>
+    <li><strong>ChatGPT</strong> &mdash; $20/month for Plus, which includes access to GPT-4o with generous limits.</li>
+  </ul>
+
+  <p>The critical insight: these subscriptions give you access to capable models at a fixed cost, regardless of how many tokens you consume within their fair-use limits. For agent workloads that fit within those limits, the per-token cost effectively drops to zero.</p>
+
+  <h2>How to Split Work Across Agents</h2>
+
+  <p>The strategy is not to use one model for everything. It is to assign different agents to different roles based on what each subscription handles best:</p>
+
+  <h3>Agent 1: The Coder (Claude Code)</h3>
+  <p>Claude Code excels at reading codebases, writing implementations, running tests, and debugging. Assign it your core development tasks. It works directly in your terminal, has file system access, and can execute commands. This is your primary workhorse.</p>
+
+  <h3>Agent 2: The Researcher (Gemini CLI)</h3>
+  <p>Gemini has strong performance on research and summarization tasks, and its free tier is generous. Use it for gathering information, summarizing documentation, analyzing data, and generating reports. Tasks that are read-heavy and do not require file system manipulation.</p>
+
+  <h3>Agent 3: The Reviewer (ChatGPT or Second Claude Instance)</h3>
+  <p>Use a separate agent for code review, documentation writing, and quality checks. Having a different model review work produced by another model catches errors that self-review misses. This is the same principle behind human code review, applied to agents.</p>
+
+  <h2>The Real Monthly Cost Breakdown</h2>
+
+  <p>Here is what a production agent stack actually costs:</p>
+
+  <pre><code>Claude Pro (Claude Code)      $20/month
+Gemini CLI (free tier)          $0/month
+ChatGPT Plus (reviewer)        $20/month
+                              -----------
+Total                          $40/month</code></pre>
+
+  <p>That is $40/month for three capable agents. Divided by 30 days, that is <strong>$1.33/day</strong>. Even if you add a small API budget for overflow tasks that exceed subscription limits, say $3/day for occasional Haiku API calls, you are still under $5/day total.</p>
+
+  <p>Compare this to the API-only approach at $50-120/day. The savings are not marginal. They are an order of magnitude.</p>
+
+  <h2>The Subscription Arbitrage Insight</h2>
+
+  <p>This works because of a fundamental pricing mismatch. CLI subscriptions are priced for interactive human use: one person, typing queries, waiting for responses, maybe running 20-30 interactions per day. But agents can be scripted to work within those same limits more efficiently than a human would.</p>
+
+  <p>An agent does not waste tokens on small talk, repeated context, or exploratory back-and-forth. It sends focused, well-structured prompts and processes the results programmatically. The same subscription that supports a human's casual usage can support an agent's focused work because the agent uses fewer tokens per meaningful task.</p>
+
+  <p>This is not exploitation. It is using the tools as designed, just more efficiently. You are paying for access, and you are using that access productively.</p>
+
+  <h3>Practical Tips for Staying Under Limits</h3>
+
+  <ul>
+    <li><strong>Batch tasks intelligently.</strong> Instead of running 100 small agent calls, combine related work into larger sessions. Fewer sessions means less overhead from context loading.</li>
+    <li><strong>Cache aggressively.</strong> If your agent needs the same context repeatedly, store it in a file rather than re-fetching it through the model each time.</li>
+    <li><strong>Use the right tier.</strong> Do not send simple formatting tasks to Opus. Use Haiku for mechanical work and save the capable models for reasoning.</li>
+    <li><strong>Monitor usage.</strong> Keep a simple log of daily agent runs. If you are consistently hitting limits, it is time to either optimize your prompts or add a small API budget for overflow.</li>
+  </ul>
+
+  <h2>When This Does Not Work</h2>
+
+  <p>This approach has limits. If you need agents running 24/7 with thousands of API calls per day, subscription tiers will not cover it. If you need guaranteed latency for production systems serving end users, you need dedicated API access with proper rate limits.</p>
+
+  <p>But for the vast majority of use cases, internal tooling, development automation, research pipelines, content workflows, the $5/day agent team is not just viable. It is the rational choice. The cost of experimentation drops low enough that you can try ten different agent architectures and keep the three that work.</p>
+
+  <blockquote>The bottleneck is no longer cost. It is knowing what to build. That is the shift worth paying attention to.</blockquote>
+
+  <div class="cta-box">
+    <p>See exactly what a production agent stack costs.</p>
+    <a href="../products/cost-optimizer.html" class="cta-btn">Get the Cost Optimizer Guide &rarr;</a>
+  </div>
+</article>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <p class="footer-brand">AgentOrchard</p>
+        <nav>
+          <a href="../browse.html">Browse</a>
+          <a href="../consulting.html">Consulting</a>
+          <a href="../blog.html">Blog</a>
+          <a href="../login.html">Login / Sign Up</a>
+        </nav>
+      </div>
+      <div class="footer-col">
+        <p class="footer-brand">Connect</p>
+        <nav>
+          <a href="https://sedim3nt.substack.com" target="_blank">Substack</a>
+          <a href="https://x.com/sedim3nt" target="_blank">X / Twitter</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Nrvana LLC</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

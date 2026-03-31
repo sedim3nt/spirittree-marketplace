@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your First Agent in 30 Minutes — AgentOrchard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@600&family=Cormorant+Unicase:wght@600&family=Cormorant+Upright:wght@600&display=swap" rel="stylesheet"><style>h1{font-family:'Cormorant Unicase',Georgia,serif;font-weight:600}h2{font-family:'Cormorant Infant',Georgia,serif;font-weight:600;font-size:1.5rem;margin:32px 0 16px;color:#1a1a2e}h3{font-family:'Cormorant Upright',Georgia,serif;font-weight:600;font-size:1.25rem;margin:24px 0 12px;color:#1a1a2e}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#f6f7f8;color:#1a1a2e}
+a{text-decoration:none;color:inherit}
+:root{--sand-50:#f6f7f8;--white:#ffffff;--ink-900:#1a1a2e;--ink-700:#2d2d44;--ink-600:#4a4a5a;--ink-500:#6b6b7a;--tide-600:#006ca5;--tide-700:#005a8a;--border-subtle:rgba(26,26,46,0.05);--shadow-card:0 1px 3px rgba(26,26,46,0.08);--radius:4px;--max-w:1152px}
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:#ffffff}
+.nav-wrap{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
+@media(min-width:640px){.nav-wrap{padding:16px 24px}}
+.nav-brand{font-family:'Cormorant Infant',Georgia,serif;font-size:2.5rem;font-weight:600;color:var(--ink-900)}
+.nav-links{display:none;align-items:center;gap:24px;font-size:0.875rem;font-weight:500;color:var(--ink-700)}
+@media(min-width:768px){.nav-links{display:flex}}
+.nav-links a:hover{color:var(--ink-900)}
+.nav-login{border:1px solid rgba(26,26,46,0.4);padding:6px 12px;border-radius:var(--radius);font-size:0.875rem;font-weight:600;color:var(--ink-900)}
+.nav-login:hover{border-color:var(--ink-900)}
+.hamburger{display:flex;background:none;border:none;color:var(--ink-900);font-size:1.5rem;cursor:pointer}
+@media(min-width:768px){.hamburger{display:none}}
+.mobile-menu{display:none;flex-direction:column;gap:16px;padding:16px 24px;background:var(--sand-50);border-bottom:1px solid var(--border-subtle)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:1rem;color:var(--ink-700);font-weight:500}
+.post{max-width:720px;margin:0 auto;padding:48px 24px 80px}
+.post-meta{font-size:0.875rem;color:var(--ink-500);margin-bottom:16px}
+.post h1{font-size:clamp(1.75rem,4vw,2.75rem);line-height:1.2;margin-bottom:32px;color:var(--ink-900)}
+.post p{font-size:1.125rem;line-height:1.7;color:var(--ink-600);margin-bottom:20px}
+.post ul,.post ol{margin:0 0 20px 24px;color:var(--ink-600);font-size:1.125rem;line-height:1.7}
+.post li{margin-bottom:8px}
+.post strong{color:var(--ink-900)}
+.post code{background:#1a1a2e;color:#e0e0e0;padding:2px 6px;border-radius:3px;font-size:0.95rem}
+.post pre{background:#1a1a2e;color:#e0e0e0;padding:20px;border-radius:8px;overflow-x:auto;margin-bottom:20px;font-size:0.9rem;line-height:1.6}
+.post pre code{background:none;padding:0}
+.post blockquote{border-left:3px solid var(--tide-600);padding:12px 20px;margin:0 0 20px;background:rgba(0,108,165,0.04);color:var(--ink-700);font-size:1.05rem;line-height:1.7}
+.back-link{display:inline-block;color:var(--tide-600);font-weight:600;font-size:0.875rem;margin-bottom:32px}
+.back-link:hover{color:var(--tide-700)}
+.cta-box{margin-top:48px;padding:32px;background:var(--white);border:1px solid var(--border-subtle);border-radius:var(--radius);box-shadow:var(--shadow-card);text-align:center}
+.cta-box p{font-size:1rem;color:var(--ink-600);margin-bottom:16px}
+.cta-btn{display:inline-block;background:var(--tide-600);color:var(--white);font-weight:600;padding:12px 24px;border-radius:var(--radius);font-size:0.875rem;transition:background 0.2s}
+.cta-btn:hover{background:var(--tide-700)}
+footer{border-top:1px solid var(--border-subtle);background:var(--white)}
+.footer-inner{max-width:var(--max-w);margin:0 auto;padding:40px 24px}
+.footer-grid{display:grid;gap:40px;grid-template-columns:1fr 1fr}
+.footer-col p.footer-brand{font-size:0.875rem;font-weight:700;color:var(--ink-900);margin-bottom:12px}
+.footer-col nav{display:flex;flex-direction:column;gap:8px}
+.footer-col nav a{font-size:0.875rem;color:var(--ink-600);transition:color 0.2s}
+.footer-col nav a:hover{color:var(--ink-900)}
+.footer-bottom{margin-top:32px;border-top:1px solid var(--border-subtle);padding-top:24px}
+.footer-bottom p{font-size:0.8125rem;color:var(--ink-500)}
+@media(max-width:600px){.footer-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav-wrap">
+    <a class="nav-brand" href="../index.html">Agent Orchard</a>
+    <nav class="nav-links">
+      <a href="../browse.html">Browse</a>
+      <a href="../consulting.html">Consulting</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../login.html" class="nav-login">Login / Sign Up</a>
+    </nav>
+    <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+  </div>
+</header>
+<div class="mobile-menu">
+  <a href="../browse.html">Browse</a>
+  <a href="../consulting.html">Consulting</a>
+  <a href="../blog.html">Blog</a>
+  <a href="../login.html">Login / Sign Up</a>
+</div>
+<article class="post">
+  <a href="../blog.html" class="back-link">&larr; Back to Blog</a>
+  <div class="post-meta">March 9, 2026 &middot; 10 min read</div>
+  <h1>Your First Agent in 30 Minutes</h1>
+
+  <p>This is a step-by-step guide. No theory, no philosophy, no "what is an agent" preamble. By the end of this post, you will have a working AI agent that can read files, execute tasks, and produce output in your terminal. Thirty minutes, start to finish.</p>
+
+  <h2>Prerequisites</h2>
+
+  <p>You need two things before we start:</p>
+
+  <ol>
+    <li><strong>A Claude Pro subscription</strong> ($20/month), which gives you access to Claude Code, the CLI agent tool. Alternatively, you can use an Anthropic API key, but the subscription is simpler for getting started.</li>
+    <li><strong>A terminal.</strong> macOS Terminal, iTerm2, or any Linux terminal. Windows users should use WSL.</li>
+  </ol>
+
+  <p>Install Claude Code if you have not already:</p>
+
+  <pre><code>npm install -g @anthropic-ai/claude-code</code></pre>
+
+  <p>Verify it is installed:</p>
+
+  <pre><code>claude --version</code></pre>
+
+  <p>If you see a version number, you are ready.</p>
+
+  <h2>Step 1: Create the Project Directory</h2>
+
+  <p>Every agent needs a workspace. Create a dedicated directory:</p>
+
+  <pre><code>mkdir -p ~/projects/my-first-agent
+cd ~/projects/my-first-agent</code></pre>
+
+  <p>This is where your agent will operate. It will read files from this directory, write files to it, and use it as its working context. Keep things organized from the start.</p>
+
+  <h2>Step 2: Write the CLAUDE.md</h2>
+
+  <p>The <code>CLAUDE.md</code> file is the instruction manual for your agent. It is a markdown file that Claude Code reads automatically when it starts in a directory. Think of it as the system prompt, but version-controlled and editable.</p>
+
+  <p>Create the file:</p>
+
+  <pre><code>touch CLAUDE.md</code></pre>
+
+  <p>Open it in your editor and add the following:</p>
+
+  <pre><code># Agent Instructions
+
+## Role
+You are a research assistant. Your job is to analyze text files
+in this directory and produce concise summaries.
+
+## Rules
+- Read all .txt files in the current directory before responding
+- Summaries should be 3-5 bullet points per file
+- Write output to summaries/ directory as markdown files
+- Use clear, factual language. No opinions or editorializing.
+- If a file is empty or unreadable, skip it and note that in your output.
+
+## Output Format
+For each file, create a summary with this structure:
+- Filename as heading
+- 3-5 bullet points covering key information
+- One sentence stating the main takeaway</code></pre>
+
+  <p>This is a simple, constrained agent. It has a clear role, explicit rules, and a defined output format. These constraints are what turn a general-purpose model into a focused tool.</p>
+
+  <h2>Step 3: Create a Simple Task</h2>
+
+  <p>Your agent needs something to work on. Create a few sample text files:</p>
+
+  <pre><code>mkdir -p summaries
+
+cat > article1.txt << 'EOF'
+Remote work adoption increased 340% between 2019 and 2023.
+Companies with hybrid policies report 12% higher retention
+rates compared to fully in-office mandates. The average
+remote worker saves $6,000 per year in commuting and
+wardrobe costs. Productivity metrics show no significant
+difference between remote and in-office workers for
+knowledge work roles, though collaboration scores drop
+by 8% in fully remote setups.
+EOF
+
+cat > article2.txt << 'EOF'
+Global semiconductor revenue reached $527 billion in 2025,
+a 15% increase from the previous year. The growth was
+driven primarily by AI chip demand, which accounted for
+32% of total industry revenue. TSMC maintained its
+position as the leading foundry with 58% market share.
+Supply chain constraints have largely resolved, with
+average lead times dropping from 26 weeks in 2022 to
+11 weeks in 2025.
+EOF
+
+cat > article3.txt << 'EOF'
+The average American household spends $2,375 per year on
+subscription services, up from $640 in 2019. Streaming
+video accounts for 35% of this spending, followed by
+software subscriptions at 28%. Subscription fatigue is
+measurable: 67% of consumers report having canceled at
+least one subscription in the past six months. Bundling
+strategies are emerging as the primary retention mechanism,
+with bundled subscribers showing 40% lower churn rates.
+EOF</code></pre>
+
+  <p>You now have three text files with factual content and an output directory waiting for summaries.</p>
+
+  <h2>Step 4: Run the Agent</h2>
+
+  <p>This is the step where it all comes together. From your project directory, launch Claude Code:</p>
+
+  <pre><code>claude</code></pre>
+
+  <p>Claude Code will start, automatically read your CLAUDE.md, and present you with an interactive prompt. Now give it a task:</p>
+
+  <pre><code>Summarize all the text files in this directory and write the summaries to the summaries/ folder.</code></pre>
+
+  <p>The agent will:</p>
+
+  <ol>
+    <li>Read the CLAUDE.md to understand its role and rules</li>
+    <li>Scan the directory for .txt files</li>
+    <li>Read each file</li>
+    <li>Generate summaries following the format you specified</li>
+    <li>Write markdown files to the summaries/ directory</li>
+  </ol>
+
+  <p>Watch it work. You will see it list the tools it is using: reading files, writing files, thinking through the summaries. This is not a chat interaction. It is an agent executing a workflow.</p>
+
+  <h2>Step 5: Verify the Output</h2>
+
+  <p>Once the agent finishes, check what it produced:</p>
+
+  <pre><code>ls summaries/</code></pre>
+
+  <p>You should see markdown files corresponding to each text file. Read one:</p>
+
+  <pre><code>cat summaries/article1.md</code></pre>
+
+  <p>Verify that the output follows your specified format: heading, bullet points, takeaway sentence. If it does, your agent is working. If the format is wrong, update your CLAUDE.md with more specific instructions and run it again. This iteration loop, adjusting instructions and re-running, is how you develop agent workflows.</p>
+
+  <h2>Step 6: Run It Non-Interactively</h2>
+
+  <p>An agent you have to babysit is only half-useful. The real power comes from running it without interaction. Claude Code supports this with the <code>-p</code> flag:</p>
+
+  <pre><code>claude -p "Summarize all text files and write summaries to the summaries/ folder"</code></pre>
+
+  <p>This runs the agent in non-interactive mode. It reads the CLAUDE.md, executes the task, and exits. No human in the loop. This is the form you will use when you eventually connect your agent to a cron job or a CI pipeline.</p>
+
+  <h2>What You Just Built</h2>
+
+  <p>In 30 minutes, you have:</p>
+
+  <ul>
+    <li>A project directory that serves as an agent workspace</li>
+    <li>A CLAUDE.md that defines the agent's behavior and constraints</li>
+    <li>Sample data for the agent to process</li>
+    <li>A working agent that reads, reasons, and writes output</li>
+    <li>Both interactive and non-interactive execution modes</li>
+  </ul>
+
+  <p>This is the foundation. Every agent system, from simple file processors to complex multi-agent pipelines, starts with this same structure: a directory, an instruction file, input data, and an execution command.</p>
+
+  <h2>Next Steps</h2>
+
+  <p>From here, the path forward depends on what you want to build:</p>
+
+  <ul>
+    <li><strong>Add memory.</strong> Create a MEMORY.md file so your agent retains context between sessions. See our guide on agent memory architecture.</li>
+    <li><strong>Schedule it.</strong> Add a cron job to run your agent on a schedule. A daily summarizer, an hourly monitor, a weekly report generator.</li>
+    <li><strong>Expand the scope.</strong> Give your agent access to APIs, databases, or web scraping tools by adding more detailed instructions to CLAUDE.md.</li>
+    <li><strong>Add error handling.</strong> Wrap your agent command in a shell script with logging, lock files, and failure notifications.</li>
+  </ul>
+
+  <p>The hard part is not the technology. It is knowing what to automate and writing instructions precise enough that the agent does it reliably. Start small, verify output, and expand gradually. That is how production agent systems get built.</p>
+
+  <blockquote>The best agent setup is the one you actually use every day. Start with something simple enough to trust, then grow it from there.</blockquote>
+
+  <div class="cta-box">
+    <p>Want the complete setup with templates and configs?</p>
+    <a href="../products/quick-start.html" class="cta-btn">Get the Quick Start Kit &rarr;</a>
+  </div>
+</article>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <p class="footer-brand">AgentOrchard</p>
+        <nav>
+          <a href="../browse.html">Browse</a>
+          <a href="../consulting.html">Consulting</a>
+          <a href="../blog.html">Blog</a>
+          <a href="../login.html">Login / Sign Up</a>
+        </nav>
+      </div>
+      <div class="footer-col">
+        <p class="footer-brand">Connect</p>
+        <nav>
+          <a href="https://sedim3nt.substack.com" target="_blank">Substack</a>
+          <a href="https://x.com/sedim3nt" target="_blank">X / Twitter</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Nrvana LLC</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

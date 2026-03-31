@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Cost of Running AI Agents — AgentOrchard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@600&family=Cormorant+Unicase:wght@600&family=Cormorant+Upright:wght@600&display=swap" rel="stylesheet"><style>h1{font-family:'Cormorant Unicase',Georgia,serif;font-weight:600}h2{font-family:'Cormorant Infant',Georgia,serif;font-weight:600;font-size:1.5rem;margin:32px 0 16px;color:#1a1a2e}h3{font-family:'Cormorant Upright',Georgia,serif;font-weight:600;font-size:1.25rem;margin:24px 0 12px;color:#1a1a2e}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#f6f7f8;color:#1a1a2e}
+a{text-decoration:none;color:inherit}
+:root{--sand-50:#f6f7f8;--white:#ffffff;--ink-900:#1a1a2e;--ink-700:#2d2d44;--ink-600:#4a4a5a;--ink-500:#6b6b7a;--tide-600:#006ca5;--tide-700:#005a8a;--border-subtle:rgba(26,26,46,0.05);--shadow-card:0 1px 3px rgba(26,26,46,0.08);--radius:4px;--max-w:1152px}
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:#ffffff}
+.nav-wrap{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
+@media(min-width:640px){.nav-wrap{padding:16px 24px}}
+.nav-brand{font-family:'Cormorant Infant',Georgia,serif;font-size:2.5rem;font-weight:600;color:var(--ink-900)}
+.nav-links{display:none;align-items:center;gap:24px;font-size:0.875rem;font-weight:500;color:var(--ink-700)}
+@media(min-width:768px){.nav-links{display:flex}}
+.nav-links a:hover{color:var(--ink-900)}
+.nav-login{border:1px solid rgba(26,26,46,0.4);padding:6px 12px;border-radius:var(--radius);font-size:0.875rem;font-weight:600;color:var(--ink-900)}
+.nav-login:hover{border-color:var(--ink-900)}
+.hamburger{display:flex;background:none;border:none;color:var(--ink-900);font-size:1.5rem;cursor:pointer}
+@media(min-width:768px){.hamburger{display:none}}
+.mobile-menu{display:none;flex-direction:column;gap:16px;padding:16px 24px;background:var(--sand-50);border-bottom:1px solid var(--border-subtle)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:1rem;color:var(--ink-700);font-weight:500}
+.post{max-width:720px;margin:0 auto;padding:48px 24px 80px}
+.post-meta{font-size:0.875rem;color:var(--ink-500);margin-bottom:16px}
+.post h1{font-size:clamp(1.75rem,4vw,2.75rem);line-height:1.2;margin-bottom:32px;color:var(--ink-900)}
+.post p{font-size:1.125rem;line-height:1.7;color:var(--ink-600);margin-bottom:20px}
+.post ul,.post ol{margin:0 0 20px 24px;color:var(--ink-600);font-size:1.125rem;line-height:1.7}
+.post li{margin-bottom:8px}
+.post strong{color:var(--ink-900)}
+.post code{background:#1a1a2e;color:#e0e0e0;padding:2px 6px;border-radius:3px;font-size:0.95rem}
+.post pre{background:#1a1a2e;color:#e0e0e0;padding:20px;border-radius:8px;overflow-x:auto;margin-bottom:20px;font-size:0.9rem;line-height:1.6}
+.post pre code{background:none;padding:0}
+.post blockquote{border-left:3px solid var(--tide-600);padding:12px 20px;margin:0 0 20px;background:rgba(0,108,165,0.04);color:var(--ink-700);font-size:1.05rem;line-height:1.7}
+.back-link{display:inline-block;color:var(--tide-600);font-weight:600;font-size:0.875rem;margin-bottom:32px}
+.back-link:hover{color:var(--tide-700)}
+.cta-box{margin-top:48px;padding:32px;background:var(--white);border:1px solid var(--border-subtle);border-radius:var(--radius);box-shadow:var(--shadow-card);text-align:center}
+.cta-box p{font-size:1rem;color:var(--ink-600);margin-bottom:16px}
+.cta-btn{display:inline-block;background:var(--tide-600);color:var(--white);font-weight:600;padding:12px 24px;border-radius:var(--radius);font-size:0.875rem;transition:background 0.2s}
+.cta-btn:hover{background:var(--tide-700)}
+footer{border-top:1px solid var(--border-subtle);background:var(--white)}
+.footer-inner{max-width:var(--max-w);margin:0 auto;padding:40px 24px}
+.footer-grid{display:grid;gap:40px;grid-template-columns:1fr 1fr}
+.footer-col p.footer-brand{font-size:0.875rem;font-weight:700;color:var(--ink-900);margin-bottom:12px}
+.footer-col nav{display:flex;flex-direction:column;gap:8px}
+.footer-col nav a{font-size:0.875rem;color:var(--ink-600);transition:color 0.2s}
+.footer-col nav a:hover{color:var(--ink-900)}
+.footer-bottom{margin-top:32px;border-top:1px solid var(--border-subtle);padding-top:24px}
+.footer-bottom p{font-size:0.8125rem;color:var(--ink-500)}
+@media(max-width:600px){.footer-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav-wrap">
+    <a class="nav-brand" href="../index.html">Agent Orchard</a>
+    <nav class="nav-links">
+      <a href="../browse.html">Browse</a>
+      <a href="../consulting.html">Consulting</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../login.html" class="nav-login">Login / Sign Up</a>
+    </nav>
+    <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+  </div>
+</header>
+<div class="mobile-menu">
+  <a href="../browse.html">Browse</a>
+  <a href="../consulting.html">Consulting</a>
+  <a href="../blog.html">Blog</a>
+  <a href="../login.html">Login / Sign Up</a>
+</div>
+<article class="post">
+  <a href="../blog.html" class="back-link">&larr; Back to Blog</a>
+  <div class="post-meta">March 20, 2026 &middot; 8 min read</div>
+  <h1>The Cost of Running AI Agents</h1>
+
+  <p>There is a persistent belief that running AI agents is expensive. People hear "AI infrastructure" and imagine massive cloud bills. The reality, for a solo operator or small team, is far more modest. The math works out to less than most people spend on coffee each month.</p>
+
+  <p>Let me walk through the actual numbers, based on real usage across multiple agent setups running daily tasks.</p>
+
+  <h2>The Monthly Cost Breakdown</h2>
+
+  <p>Here is what a typical solo operator spends to run a productive set of AI agents:</p>
+
+  <h3>LLM Access</h3>
+  <ul>
+    <li><strong>Claude Pro (Claude Code included):</strong> $20/month for heavy daily usage with generous limits</li>
+    <li><strong>Gemini CLI:</strong> Free with a Google account, excellent for lighter tasks</li>
+    <li><strong>API credits for automated agents:</strong> $5-30/month depending on volume</li>
+  </ul>
+
+  <p>Most people overestimate their API costs because they think in terms of enterprise-scale usage. A single agent that runs once per day, processes a few thousand tokens, and produces a structured output costs pennies per run. Even with 10 agents running daily, API costs typically land between $5 and $30 per month.</p>
+
+  <h3>Hosting and Infrastructure</h3>
+  <ul>
+    <li><strong>Local execution:</strong> $0. Most agents run on your existing machine.</li>
+    <li><strong>VPS for scheduled agents:</strong> $5-12/month for a small instance if you need 24/7 uptime</li>
+    <li><strong>Serverless functions:</strong> Free tier covers most agent workloads on Cloudflare Workers, Vercel, or AWS Lambda</li>
+  </ul>
+
+  <p>If your agents run on a schedule (cron jobs), a $5/month VPS handles the workload easily. If you only need agents during working hours, running them locally costs nothing beyond your electricity bill.</p>
+
+  <h3>Tools and Services</h3>
+  <ul>
+    <li><strong>n8n or Make (automation platform):</strong> Free self-hosted, or $20/month for cloud</li>
+    <li><strong>Monitoring and logging:</strong> Free tier of most observability tools is sufficient</li>
+    <li><strong>Domain and DNS:</strong> $10-15/year, which you probably already have</li>
+  </ul>
+
+  <h3>Total Monthly Cost</h3>
+
+  <blockquote>A fully operational agent stack for a solo operator runs between $20 and $60 per month. The low end is achievable by using free tiers and running agents locally.</blockquote>
+
+  <h2>Comparison: Agents vs. Hiring</h2>
+
+  <p>The cost comparison to human labor is not even close. Consider the tasks agents commonly handle: data processing, content drafting, monitoring, report generation, file organization, social media scheduling.</p>
+
+  <p>A part-time virtual assistant for these tasks costs $500 to $2,000 per month depending on location and skill level. A full-time hire in any market costs dramatically more. The agent stack that replaces a significant portion of this work costs 3-10% of the VA price.</p>
+
+  <p>This does not mean agents replace human judgment. It means the routine execution layer, the part of work that is predictable and repeatable, can run for almost nothing.</p>
+
+  <h2>Where Costs Can Creep Up</h2>
+
+  <p>The low baseline costs are real, but there are a few ways spending can escalate if you are not paying attention:</p>
+
+  <ol>
+    <li><strong>API overages from runaway loops.</strong> An agent that retries failed API calls without a backoff limit can burn through credits quickly. Always set maximum retry counts and budget caps on your API keys.</li>
+    <li><strong>Using expensive models for cheap tasks.</strong> Running every task through the most capable model is wasteful. A classification task that a small model handles in 50 tokens does not need a model that costs 10x per token. We cover this in detail in our post on model selection.</li>
+    <li><strong>Unnecessary cloud services.</strong> It is easy to over-provision. Before paying for a managed service, ask whether a cron job on a $5 VPS would do the same thing.</li>
+    <li><strong>Duplicate processing.</strong> If two agents are processing the same data independently, you are paying twice. Centralize shared data operations.</li>
+  </ol>
+
+  <h2>How to Keep Costs Under Control</h2>
+
+  <p>A few straightforward practices keep your agent costs predictable:</p>
+
+  <p><strong>Set hard budget limits on API keys.</strong> Every major LLM provider allows you to set monthly spending caps. Set them. A runaway script at 3 AM should hit a ceiling, not your credit card limit.</p>
+
+  <pre><code># Example: check your OpenAI usage programmatically
+curl https://api.openai.com/v1/usage \
+  -H "Authorization: Bearer $OPENAI_API_KEY" \
+  -d '{"date": "2026-03-20"}'</code></pre>
+
+  <p><strong>Log token usage per agent.</strong> Track which agents consume the most tokens and whether their output justifies the cost. A simple log file works:</p>
+
+  <pre><code># Append usage to a daily log
+echo "$(date),agent_name,$TOKENS_USED,$COST" >> ~/agent-costs.csv</code></pre>
+
+  <p><strong>Use caching aggressively.</strong> If an agent processes the same or similar inputs regularly, cache the results. A simple file-based cache prevents redundant API calls and can cut costs by 30-50% for repetitive workflows.</p>
+
+  <p><strong>Review monthly.</strong> Spend 15 minutes at the end of each month reviewing your agent costs. Identify any agents that cost more than expected and determine whether they are delivering proportional value.</p>
+
+  <h2>The ROI Calculation</h2>
+
+  <p>Cost only matters in relation to value. Here is a simple framework for evaluating whether an agent is worth running:</p>
+
+  <ol>
+    <li><strong>Time saved per month:</strong> How many hours of manual work does this agent eliminate?</li>
+    <li><strong>Value of that time:</strong> What is your hourly rate, or what else could you do with those hours?</li>
+    <li><strong>Agent cost per month:</strong> The actual dollars spent on LLM access, hosting, and tools for this agent.</li>
+    <li><strong>ROI:</strong> (Time saved x hourly value) / Agent cost</li>
+  </ol>
+
+  <p>For most agent setups, the ROI is dramatic. An agent that saves 10 hours per month and costs $15 to run delivers value at a ratio that no other tool category can match. Even at a conservative $25/hour valuation, that is $250 of value for $15 of cost.</p>
+
+  <p>The point is not that AI agents are cheap. It is that for the class of tasks they handle well, the cost-to-value ratio is unlike anything available before. The barrier to running a productive agent stack is not money. It is knowing how to set one up correctly and keeping costs from drifting upward over time.</p>
+
+  <div class="cta-box">
+    <p>Optimize every dollar in your agent stack.</p>
+    <a href="../products/cost-optimizer.html" class="cta-btn">Get the Cost Optimizer Guide &rarr;</a>
+  </div>
+</article>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <p class="footer-brand">AgentOrchard</p>
+        <nav>
+          <a href="../browse.html">Browse</a>
+          <a href="../consulting.html">Consulting</a>
+          <a href="../blog.html">Blog</a>
+          <a href="../login.html">Login / Sign Up</a>
+        </nav>
+      </div>
+      <div class="footer-col">
+        <p class="footer-brand">Connect</p>
+        <nav>
+          <a href="https://sedim3nt.substack.com" target="_blank">Substack</a>
+          <a href="https://x.com/sedim3nt" target="_blank">X / Twitter</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Nrvana LLC</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

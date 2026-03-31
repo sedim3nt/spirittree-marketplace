@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Memory Problem Nobody Talks About — AgentOrchard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@600&family=Cormorant+Unicase:wght@600&family=Cormorant+Upright:wght@600&display=swap" rel="stylesheet"><style>h1{font-family:'Cormorant Unicase',Georgia,serif;font-weight:600}h2{font-family:'Cormorant Infant',Georgia,serif;font-weight:600;font-size:1.5rem;margin:32px 0 16px;color:#1a1a2e}h3{font-family:'Cormorant Upright',Georgia,serif;font-weight:600;font-size:1.25rem;margin:24px 0 12px;color:#1a1a2e}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#f6f7f8;color:#1a1a2e}
+a{text-decoration:none;color:inherit}
+:root{--sand-50:#f6f7f8;--white:#ffffff;--ink-900:#1a1a2e;--ink-700:#2d2d44;--ink-600:#4a4a5a;--ink-500:#6b6b7a;--tide-600:#006ca5;--tide-700:#005a8a;--border-subtle:rgba(26,26,46,0.05);--shadow-card:0 1px 3px rgba(26,26,46,0.08);--radius:4px;--max-w:1152px}
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:#ffffff}
+.nav-wrap{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
+@media(min-width:640px){.nav-wrap{padding:16px 24px}}
+.nav-brand{font-family:'Cormorant Infant',Georgia,serif;font-size:2.5rem;font-weight:600;color:var(--ink-900)}
+.nav-links{display:none;align-items:center;gap:24px;font-size:0.875rem;font-weight:500;color:var(--ink-700)}
+@media(min-width:768px){.nav-links{display:flex}}
+.nav-links a:hover{color:var(--ink-900)}
+.nav-login{border:1px solid rgba(26,26,46,0.4);padding:6px 12px;border-radius:var(--radius);font-size:0.875rem;font-weight:600;color:var(--ink-900)}
+.nav-login:hover{border-color:var(--ink-900)}
+.hamburger{display:flex;background:none;border:none;color:var(--ink-900);font-size:1.5rem;cursor:pointer}
+@media(min-width:768px){.hamburger{display:none}}
+.mobile-menu{display:none;flex-direction:column;gap:16px;padding:16px 24px;background:var(--sand-50);border-bottom:1px solid var(--border-subtle)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:1rem;color:var(--ink-700);font-weight:500}
+.post{max-width:720px;margin:0 auto;padding:48px 24px 80px}
+.post-meta{font-size:0.875rem;color:var(--ink-500);margin-bottom:16px}
+.post h1{font-size:clamp(1.75rem,4vw,2.75rem);line-height:1.2;margin-bottom:32px;color:var(--ink-900)}
+.post p{font-size:1.125rem;line-height:1.7;color:var(--ink-600);margin-bottom:20px}
+.post ul,.post ol{margin:0 0 20px 24px;color:var(--ink-600);font-size:1.125rem;line-height:1.7}
+.post li{margin-bottom:8px}
+.post strong{color:var(--ink-900)}
+.post code{background:#1a1a2e;color:#e0e0e0;padding:2px 6px;border-radius:3px;font-size:0.95rem}
+.post pre{background:#1a1a2e;color:#e0e0e0;padding:20px;border-radius:8px;overflow-x:auto;margin-bottom:20px;font-size:0.9rem;line-height:1.6}
+.post pre code{background:none;padding:0}
+.post blockquote{border-left:3px solid var(--tide-600);padding:12px 20px;margin:0 0 20px;background:rgba(0,108,165,0.04);color:var(--ink-700);font-size:1.05rem;line-height:1.7}
+.back-link{display:inline-block;color:var(--tide-600);font-weight:600;font-size:0.875rem;margin-bottom:32px}
+.back-link:hover{color:var(--tide-700)}
+.cta-box{margin-top:48px;padding:32px;background:var(--white);border:1px solid var(--border-subtle);border-radius:var(--radius);box-shadow:var(--shadow-card);text-align:center}
+.cta-box p{font-size:1rem;color:var(--ink-600);margin-bottom:16px}
+.cta-btn{display:inline-block;background:var(--tide-600);color:var(--white);font-weight:600;padding:12px 24px;border-radius:var(--radius);font-size:0.875rem;transition:background 0.2s}
+.cta-btn:hover{background:var(--tide-700)}
+footer{border-top:1px solid var(--border-subtle);background:var(--white)}
+.footer-inner{max-width:var(--max-w);margin:0 auto;padding:40px 24px}
+.footer-grid{display:grid;gap:40px;grid-template-columns:1fr 1fr}
+.footer-col p.footer-brand{font-size:0.875rem;font-weight:700;color:var(--ink-900);margin-bottom:12px}
+.footer-col nav{display:flex;flex-direction:column;gap:8px}
+.footer-col nav a{font-size:0.875rem;color:var(--ink-600);transition:color 0.2s}
+.footer-col nav a:hover{color:var(--ink-900)}
+.footer-bottom{margin-top:32px;border-top:1px solid var(--border-subtle);padding-top:24px}
+.footer-bottom p{font-size:0.8125rem;color:var(--ink-500)}
+@media(max-width:600px){.footer-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav-wrap">
+    <a class="nav-brand" href="../index.html">Agent Orchard</a>
+    <nav class="nav-links">
+      <a href="../browse.html">Browse</a>
+      <a href="../consulting.html">Consulting</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../login.html" class="nav-login">Login / Sign Up</a>
+    </nav>
+    <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+  </div>
+</header>
+<div class="mobile-menu">
+  <a href="../browse.html">Browse</a>
+  <a href="../consulting.html">Consulting</a>
+  <a href="../blog.html">Blog</a>
+  <a href="../login.html">Login / Sign Up</a>
+</div>
+<article class="post">
+  <a href="../blog.html" class="back-link">&larr; Back to Blog</a>
+  <div class="post-meta">March 15, 2026 &middot; 9 min read</div>
+  <h1>The Memory Problem Nobody Talks About</h1>
+
+  <p>You start a session with an AI agent. It is sharp, accurate, follows your instructions precisely. Two hours later, it contradicts something you told it at the beginning. It forgets a constraint. It starts repeating work it already completed. The agent has not gotten worse. Its context window has gotten full, and the system is quietly discarding information to make room. This is the memory problem, and it affects every long-running agent session in ways most users never notice until something breaks.</p>
+
+  <h2>How Context Windows Actually Work</h2>
+
+  <p>Every AI model processes a fixed amount of text at once. This is the context window: the total number of tokens the model can hold in a single pass. Current models range from 128K to 200K tokens, which sounds enormous until you realize how fast it fills up in a working session.</p>
+
+  <p>A typical coding session generates context quickly. Your system prompt uses 1,000 to 3,000 tokens. Each file the agent reads adds hundreds or thousands more. Every message you send and every response the agent generates stays in the window. Tool outputs, error messages, and intermediate results all accumulate. A productive two-hour session can easily generate 80,000 to 120,000 tokens of conversation history.</p>
+
+  <p>The context window is not a scrolling log. It is a fixed-size container. When it fills up, something has to go.</p>
+
+  <h2>What Happens When Context Fills Up</h2>
+
+  <p>Different systems handle context overflow differently, but the two most common strategies are truncation and compaction.</p>
+
+  <h3>Truncation</h3>
+
+  <p>The simplest approach: drop the oldest messages from the conversation. This preserves recent context but loses early instructions, initial constraints, and foundational decisions made at the start of the session. The system prompt usually survives because it is treated specially, but everything else is fair game.</p>
+
+  <h3>Compaction</h3>
+
+  <p>A more sophisticated approach: summarize older conversation segments into compressed representations. The full detail is lost, replaced by a summary that captures the gist. This preserves more information than truncation but introduces a critical problem: the model decides what is important enough to keep. Subtle constraints, nuanced instructions, and context-dependent decisions are exactly the kind of detail that gets lost in summarization.</p>
+
+  <p>Both approaches share the same fundamental flaw. The agent does not know what it has forgotten. It continues operating with full confidence, unaware that critical context has been dropped. There is no error message. There is no warning. The agent just quietly gets dumber.</p>
+
+  <h2>Why Agents Lose Important Details</h2>
+
+  <p>The details most likely to be lost during compaction are precisely the ones that matter most for consistent agent behavior:</p>
+
+  <ul>
+    <li><strong>Constraints and negative instructions.</strong> "Do not modify files in the /config directory" is easy to summarize away because it is a single sentence about what not to do.</li>
+    <li><strong>Decisions and their rationale.</strong> You discussed three approaches to a problem and chose option B for specific reasons. The compacted summary might retain "chose approach B" but lose the reasoning, which matters when the agent encounters a related decision later.</li>
+    <li><strong>State accumulated over time.</strong> The agent read 15 files and built a mental model of the codebase. That model exists only in the conversation history. When that history gets compressed, the model reverts to working from whatever fragments survive.</li>
+    <li><strong>Corrections and refinements.</strong> You corrected the agent's behavior three times during the session. Those corrections live in the conversation. When they are compacted, the agent may revert to its original incorrect behavior.</li>
+  </ul>
+
+  <h2>Strategies to Mitigate Memory Loss</h2>
+
+  <p>You cannot eliminate the context window constraint, but you can design your workflow to minimize its impact.</p>
+
+  <h3>Structured Memory Files</h3>
+
+  <p>The most effective strategy is externalizing important context into files that persist outside the conversation. Create a <code>MEMORY.md</code> file in your project that the agent reads at the start of each session and updates periodically during long sessions.</p>
+
+  <pre><code># MEMORY.md
+
+## Project State
+- Currently refactoring the authentication module
+- Migration from JWT to session-based auth is 60% complete
+- Do NOT modify /config/legacy-auth.js (needed for backward compat)
+
+## Decisions Made
+- Chose PostgreSQL over Redis for session storage (see ADR-004)
+- Error responses use RFC 7807 format
+- All new endpoints require rate limiting middleware
+
+## Current Task
+- Implementing session cleanup cron job
+- Blocked on: need to decide TTL for inactive sessions</code></pre>
+
+  <p>This file acts as external long-term memory. When the context window compacts, the agent can re-read <code>MEMORY.md</code> to recover critical state.</p>
+
+  <h3>Periodic Checkpoints</h3>
+
+  <p>Every 30 to 45 minutes during a long session, ask the agent to update the memory file with current state, recent decisions, and active constraints. This is the equivalent of saving your game. If context gets compacted, you have a recent checkpoint to restore from.</p>
+
+  <h3>Explicit Memory Saves</h3>
+
+  <p>After any important decision or correction, explicitly instruct the agent to write it to the memory file. Do not rely on the conversation history to preserve it. "Add to MEMORY.md: we decided to use streaming responses for the export endpoint because files can exceed 500MB."</p>
+
+  <h3>Session Segmentation</h3>
+
+  <p>Rather than running one marathon session, break work into focused 45-minute sessions with clear handoff artifacts. At the end of each session, the agent writes a summary of what was accomplished, what is in progress, and what to do next. The next session starts by reading that summary. This approach works with the context window rather than against it.</p>
+
+  <h2>Working Memory vs. Long-Term Memory</h2>
+
+  <p>It helps to think about agent memory in two categories, borrowing from cognitive science.</p>
+
+  <p><strong>Working memory</strong> is the context window itself. It holds what the agent is actively processing: the current conversation, recent file contents, and immediate task context. It is fast and detailed but finite and volatile.</p>
+
+  <p><strong>Long-term memory</strong> is everything stored in files: <code>MEMORY.md</code>, project documentation, previous session summaries, decision logs. It is persistent and unlimited but requires explicit reads to access. The agent does not automatically remember what is in long-term memory. It has to be told to look.</p>
+
+  <p>The practical implication is straightforward. Anything that matters beyond the current session needs to exist in a file. If it only exists in the conversation, it will eventually be lost. Build the habit of externalizing context early, and the memory problem becomes manageable rather than catastrophic.</p>
+
+  <div class="cta-box">
+    <p>Never lose critical agent context again.</p>
+    <a href="../products/brain-backup.html" class="cta-btn">Get Brain Backup &rarr;</a>
+  </div>
+</article>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <p class="footer-brand">AgentOrchard</p>
+        <nav>
+          <a href="../browse.html">Browse</a>
+          <a href="../consulting.html">Consulting</a>
+          <a href="../blog.html">Blog</a>
+          <a href="../login.html">Login / Sign Up</a>
+        </nav>
+      </div>
+      <div class="footer-col">
+        <p class="footer-brand">Connect</p>
+        <nav>
+          <a href="https://sedim3nt.substack.com" target="_blank">Substack</a>
+          <a href="https://x.com/sedim3nt" target="_blank">X / Twitter</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Nrvana LLC</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

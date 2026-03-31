@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cron Jobs Are Your Agent's Heartbeat — AgentOrchard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@600&family=Cormorant+Unicase:wght@600&family=Cormorant+Upright:wght@600&display=swap" rel="stylesheet"><style>h1{font-family:'Cormorant Unicase',Georgia,serif;font-weight:600}h2{font-family:'Cormorant Infant',Georgia,serif;font-weight:600;font-size:1.5rem;margin:32px 0 16px;color:#1a1a2e}h3{font-family:'Cormorant Upright',Georgia,serif;font-weight:600;font-size:1.25rem;margin:24px 0 12px;color:#1a1a2e}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#f6f7f8;color:#1a1a2e}
+a{text-decoration:none;color:inherit}
+:root{--sand-50:#f6f7f8;--white:#ffffff;--ink-900:#1a1a2e;--ink-700:#2d2d44;--ink-600:#4a4a5a;--ink-500:#6b6b7a;--tide-600:#006ca5;--tide-700:#005a8a;--border-subtle:rgba(26,26,46,0.05);--shadow-card:0 1px 3px rgba(26,26,46,0.08);--radius:4px;--max-w:1152px}
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:#ffffff}
+.nav-wrap{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
+@media(min-width:640px){.nav-wrap{padding:16px 24px}}
+.nav-brand{font-family:'Cormorant Infant',Georgia,serif;font-size:2.5rem;font-weight:600;color:var(--ink-900)}
+.nav-links{display:none;align-items:center;gap:24px;font-size:0.875rem;font-weight:500;color:var(--ink-700)}
+@media(min-width:768px){.nav-links{display:flex}}
+.nav-links a:hover{color:var(--ink-900)}
+.nav-login{border:1px solid rgba(26,26,46,0.4);padding:6px 12px;border-radius:var(--radius);font-size:0.875rem;font-weight:600;color:var(--ink-900)}
+.nav-login:hover{border-color:var(--ink-900)}
+.hamburger{display:flex;background:none;border:none;color:var(--ink-900);font-size:1.5rem;cursor:pointer}
+@media(min-width:768px){.hamburger{display:none}}
+.mobile-menu{display:none;flex-direction:column;gap:16px;padding:16px 24px;background:var(--sand-50);border-bottom:1px solid var(--border-subtle)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:1rem;color:var(--ink-700);font-weight:500}
+.post{max-width:720px;margin:0 auto;padding:48px 24px 80px}
+.post-meta{font-size:0.875rem;color:var(--ink-500);margin-bottom:16px}
+.post h1{font-size:clamp(1.75rem,4vw,2.75rem);line-height:1.2;margin-bottom:32px;color:var(--ink-900)}
+.post p{font-size:1.125rem;line-height:1.7;color:var(--ink-600);margin-bottom:20px}
+.post ul,.post ol{margin:0 0 20px 24px;color:var(--ink-600);font-size:1.125rem;line-height:1.7}
+.post li{margin-bottom:8px}
+.post strong{color:var(--ink-900)}
+.post code{background:#1a1a2e;color:#e0e0e0;padding:2px 6px;border-radius:3px;font-size:0.95rem}
+.post pre{background:#1a1a2e;color:#e0e0e0;padding:20px;border-radius:8px;overflow-x:auto;margin-bottom:20px;font-size:0.9rem;line-height:1.6}
+.post pre code{background:none;padding:0}
+.post blockquote{border-left:3px solid var(--tide-600);padding:12px 20px;margin:0 0 20px;background:rgba(0,108,165,0.04);color:var(--ink-700);font-size:1.05rem;line-height:1.7}
+.back-link{display:inline-block;color:var(--tide-600);font-weight:600;font-size:0.875rem;margin-bottom:32px}
+.back-link:hover{color:var(--tide-700)}
+.cta-box{margin-top:48px;padding:32px;background:var(--white);border:1px solid var(--border-subtle);border-radius:var(--radius);box-shadow:var(--shadow-card);text-align:center}
+.cta-box p{font-size:1rem;color:var(--ink-600);margin-bottom:16px}
+.cta-btn{display:inline-block;background:var(--tide-600);color:var(--white);font-weight:600;padding:12px 24px;border-radius:var(--radius);font-size:0.875rem;transition:background 0.2s}
+.cta-btn:hover{background:var(--tide-700)}
+footer{border-top:1px solid var(--border-subtle);background:var(--white)}
+.footer-inner{max-width:var(--max-w);margin:0 auto;padding:40px 24px}
+.footer-grid{display:grid;gap:40px;grid-template-columns:1fr 1fr}
+.footer-col p.footer-brand{font-size:0.875rem;font-weight:700;color:var(--ink-900);margin-bottom:12px}
+.footer-col nav{display:flex;flex-direction:column;gap:8px}
+.footer-col nav a{font-size:0.875rem;color:var(--ink-600);transition:color 0.2s}
+.footer-col nav a:hover{color:var(--ink-900)}
+.footer-bottom{margin-top:32px;border-top:1px solid var(--border-subtle);padding-top:24px}
+.footer-bottom p{font-size:0.8125rem;color:var(--ink-500)}
+@media(max-width:600px){.footer-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav-wrap">
+    <a class="nav-brand" href="../index.html">Agent Orchard</a>
+    <nav class="nav-links">
+      <a href="../browse.html">Browse</a>
+      <a href="../consulting.html">Consulting</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../login.html" class="nav-login">Login / Sign Up</a>
+    </nav>
+    <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+  </div>
+</header>
+<div class="mobile-menu">
+  <a href="../browse.html">Browse</a>
+  <a href="../consulting.html">Consulting</a>
+  <a href="../blog.html">Blog</a>
+  <a href="../login.html">Login / Sign Up</a>
+</div>
+<article class="post">
+  <a href="../blog.html" class="back-link">&larr; Back to Blog</a>
+  <div class="post-meta">March 5, 2026 &middot; 7 min read</div>
+  <h1>Cron Jobs Are Your Agent's Heartbeat</h1>
+
+  <p>The most useful agents are not the ones you interact with. They are the ones that run while you are asleep, while you are in meetings, while you are focused on something else entirely. They check things, summarize things, flag things, and put the results where you will find them. The technology that makes this possible is not new. It is cron.</p>
+
+  <h2>What Cron Gives You</h2>
+
+  <p>Cron is a job scheduler built into every Unix-based system, including macOS and Linux. It runs commands on a schedule you define. That is it. No daemon to install, no service to configure, no infrastructure to manage.</p>
+
+  <p>For agent workflows, cron provides three things that matter:</p>
+
+  <ul>
+    <li><strong>Reliability.</strong> Cron has been running scheduled tasks since 1975. It does not crash, it does not need updates, and it does not lose your schedule when you reboot (on most systems).</li>
+    <li><strong>No babysitting.</strong> Once a cron job is set, it runs whether you are paying attention or not. You do not need to remember to trigger your agent. The schedule handles it.</li>
+    <li><strong>Composability.</strong> Cron runs shell commands. Anything you can do in a terminal, you can schedule with cron. This means any agent that accepts CLI input can be automated.</li>
+  </ul>
+
+  <h2>Example Cron Patterns for Agents</h2>
+
+  <p>Here are practical agent schedules that work well in production:</p>
+
+  <h3>Morning Research Brief (6:00 AM Daily)</h3>
+  <pre><code>0 6 * * * /usr/local/bin/agent-research --topics "ai,startups" --output ~/briefs/$(date +\%Y-\%m-\%d).md</code></pre>
+  <p>The agent scans your configured sources, pulls relevant articles and updates, and writes a markdown summary to your briefs folder. By the time you sit down with coffee, your daily briefing is waiting.</p>
+
+  <h3>Hourly Uptime Monitoring</h3>
+  <pre><code>0 * * * * /usr/local/bin/agent-monitor --urls ~/config/watch-urls.txt --alert slack</code></pre>
+  <p>Every hour, the agent checks your list of URLs, verifies they return 200 status codes, measures response times, and posts to Slack if anything is down or slow. Simple, effective, and it replaces a paid monitoring service.</p>
+
+  <h3>Weekly Report Generation (Sunday 8 PM)</h3>
+  <pre><code>0 20 * * 0 /usr/local/bin/agent-report --source ~/logs/ --period 7d --output ~/reports/week-$(date +\%U).md</code></pre>
+  <p>The agent reads your daily logs from the past week, synthesizes them into a weekly summary, highlights completed tasks, flags blockers, and estimates progress against goals. This is the report you never want to write manually.</p>
+
+  <h3>Git Repository Digest (Every Weekday at 9 AM)</h3>
+  <pre><code>0 9 * * 1-5 /usr/local/bin/agent-git-digest --repos ~/projects/ --since yesterday --output ~/digests/$(date +\%Y-\%m-\%d).md</code></pre>
+  <p>The agent reviews commits across all your repositories from the previous day, summarizes changes, and flags anything that looks unusual, like large diffs, deleted files, or changes to critical paths.</p>
+
+  <h2>Setting Up Agent Cron Jobs</h2>
+
+  <p>The setup is straightforward on both macOS and Linux. Open your crontab for editing:</p>
+
+  <pre><code>crontab -e</code></pre>
+
+  <p>Add your job using the standard five-field format:</p>
+
+  <pre><code># minute  hour  day-of-month  month  day-of-week  command
+# ------  ----  ------------  -----  -----------  -------
+  30      8     *             *      1-5          /path/to/your/agent-script.sh</code></pre>
+
+  <p>A few things to get right from the start:</p>
+
+  <ul>
+    <li><strong>Use absolute paths.</strong> Cron does not run in your shell environment. It does not know about your PATH, aliases, or shell config. Use full paths to every binary and file.</li>
+    <li><strong>Set environment variables explicitly.</strong> If your agent needs API keys or config values, either source them from a file or set them in the crontab itself:
+      <pre><code>ANTHROPIC_API_KEY=sk-ant-xxx
+0 6 * * * /usr/local/bin/agent-research --topics "ai"</code></pre>
+    </li>
+    <li><strong>Wrap agents in a shell script.</strong> Rather than putting complex commands directly in crontab, write a wrapper script that handles setup, runs the agent, and cleans up.</li>
+  </ul>
+
+  <h2>Error Handling and Logging</h2>
+
+  <p>Cron jobs fail silently by default. If your agent crashes at 3 AM, you will not know unless you set up logging. Always redirect output:</p>
+
+  <pre><code>0 6 * * * /path/to/agent.sh >> /var/log/agent-research.log 2>&1</code></pre>
+
+  <p>For more robust setups, add these to your wrapper script:</p>
+
+  <ul>
+    <li><strong>Timestamps on every run.</strong> Prepend each log entry with the date so you can trace when failures occurred.</li>
+    <li><strong>Exit code checks.</strong> After the agent runs, check <code>$?</code> and log whether it succeeded or failed.</li>
+    <li><strong>Lock files.</strong> Prevent overlapping runs if a job takes longer than expected:
+      <pre><code>LOCKFILE=/tmp/agent-research.lock
+if [ -f "$LOCKFILE" ]; then
+  echo "Previous run still active, skipping"
+  exit 0
+fi
+touch "$LOCKFILE"
+trap "rm -f $LOCKFILE" EXIT
+# ... run agent ...</code></pre>
+    </li>
+    <li><strong>Failure notifications.</strong> If a job fails, send a notification. A simple curl to a Slack webhook or an email via <code>mail</code> is enough.</li>
+  </ul>
+
+  <h2>Reactive vs. Proactive Agents</h2>
+
+  <p>Most people build reactive agents: you ask a question, the agent answers. You give a task, the agent executes. The agent does nothing unless prompted.</p>
+
+  <p>Cron turns agents proactive. A proactive agent does not wait for instructions. It operates on a schedule, performing tasks you have predefined, surfacing information you need before you ask for it.</p>
+
+  <p>The difference is significant:</p>
+
+  <ul>
+    <li><strong>Reactive:</strong> "Hey agent, check if the server is down." (You had to notice something was wrong first.)</li>
+    <li><strong>Proactive:</strong> Agent checks every hour and tells you when something is wrong. (You find out within 60 minutes, even if you were not looking.)</li>
+  </ul>
+
+  <p>The most effective agent setups combine both. You interact with agents reactively during your working hours and rely on cron-scheduled proactive agents to cover everything else. The cron jobs are the heartbeat: steady, reliable, always running. They are what turn a collection of AI tools into an actual system.</p>
+
+  <blockquote>An agent you have to remember to run is just a fancy script. An agent on a schedule is infrastructure.</blockquote>
+
+  <div class="cta-box">
+    <p>Get production-ready cron templates for every agent pattern.</p>
+    <a href="../products/cron-toolkit.html" class="cta-btn">Get the Cron Toolkit &rarr;</a>
+  </div>
+</article>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <p class="footer-brand">AgentOrchard</p>
+        <nav>
+          <a href="../browse.html">Browse</a>
+          <a href="../consulting.html">Consulting</a>
+          <a href="../blog.html">Blog</a>
+          <a href="../login.html">Login / Sign Up</a>
+        </nav>
+      </div>
+      <div class="footer-col">
+        <p class="footer-brand">Connect</p>
+        <nav>
+          <a href="https://sedim3nt.substack.com" target="_blank">Substack</a>
+          <a href="https://x.com/sedim3nt" target="_blank">X / Twitter</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Nrvana LLC</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

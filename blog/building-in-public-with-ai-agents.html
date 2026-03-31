@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Building in Public with AI Agents — AgentOrchard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@600&family=Cormorant+Unicase:wght@600&family=Cormorant+Upright:wght@600&display=swap" rel="stylesheet"><style>h1{font-family:'Cormorant Unicase',Georgia,serif;font-weight:600}h2{font-family:'Cormorant Infant',Georgia,serif;font-weight:600;font-size:1.5rem;margin:32px 0 16px;color:#1a1a2e}h3{font-family:'Cormorant Upright',Georgia,serif;font-weight:600;font-size:1.25rem;margin:24px 0 12px;color:#1a1a2e}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#f6f7f8;color:#1a1a2e}
+a{text-decoration:none;color:inherit}
+:root{--sand-50:#f6f7f8;--white:#ffffff;--ink-900:#1a1a2e;--ink-700:#2d2d44;--ink-600:#4a4a5a;--ink-500:#6b6b7a;--tide-600:#006ca5;--tide-700:#005a8a;--border-subtle:rgba(26,26,46,0.05);--shadow-card:0 1px 3px rgba(26,26,46,0.08);--radius:4px;--max-w:1152px}
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:#ffffff}
+.nav-wrap{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
+@media(min-width:640px){.nav-wrap{padding:16px 24px}}
+.nav-brand{font-family:'Cormorant Infant',Georgia,serif;font-size:2.5rem;font-weight:600;color:var(--ink-900)}
+.nav-links{display:none;align-items:center;gap:24px;font-size:0.875rem;font-weight:500;color:var(--ink-700)}
+@media(min-width:768px){.nav-links{display:flex}}
+.nav-links a:hover{color:var(--ink-900)}
+.nav-login{border:1px solid rgba(26,26,46,0.4);padding:6px 12px;border-radius:var(--radius);font-size:0.875rem;font-weight:600;color:var(--ink-900)}
+.nav-login:hover{border-color:var(--ink-900)}
+.hamburger{display:flex;background:none;border:none;color:var(--ink-900);font-size:1.5rem;cursor:pointer}
+@media(min-width:768px){.hamburger{display:none}}
+.mobile-menu{display:none;flex-direction:column;gap:16px;padding:16px 24px;background:var(--sand-50);border-bottom:1px solid var(--border-subtle)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:1rem;color:var(--ink-700);font-weight:500}
+.post{max-width:720px;margin:0 auto;padding:48px 24px 80px}
+.post-meta{font-size:0.875rem;color:var(--ink-500);margin-bottom:16px}
+.post h1{font-size:clamp(1.75rem,4vw,2.75rem);line-height:1.2;margin-bottom:32px;color:var(--ink-900)}
+.post p{font-size:1.125rem;line-height:1.7;color:var(--ink-600);margin-bottom:20px}
+.post ul,.post ol{margin:0 0 20px 24px;color:var(--ink-600);font-size:1.125rem;line-height:1.7}
+.post li{margin-bottom:8px}
+.post strong{color:var(--ink-900)}
+.post code{background:#1a1a2e;color:#e0e0e0;padding:2px 6px;border-radius:3px;font-size:0.95rem}
+.post pre{background:#1a1a2e;color:#e0e0e0;padding:20px;border-radius:8px;overflow-x:auto;margin-bottom:20px;font-size:0.9rem;line-height:1.6}
+.post pre code{background:none;padding:0}
+.post blockquote{border-left:3px solid var(--tide-600);padding:12px 20px;margin:0 0 20px;background:rgba(0,108,165,0.04);color:var(--ink-700);font-size:1.05rem;line-height:1.7}
+.back-link{display:inline-block;color:var(--tide-600);font-weight:600;font-size:0.875rem;margin-bottom:32px}
+.back-link:hover{color:var(--tide-700)}
+.cta-box{margin-top:48px;padding:32px;background:var(--white);border:1px solid var(--border-subtle);border-radius:var(--radius);box-shadow:var(--shadow-card);text-align:center}
+.cta-box p{font-size:1rem;color:var(--ink-600);margin-bottom:16px}
+.cta-btn{display:inline-block;background:var(--tide-600);color:var(--white);font-weight:600;padding:12px 24px;border-radius:var(--radius);font-size:0.875rem;transition:background 0.2s}
+.cta-btn:hover{background:var(--tide-700)}
+footer{border-top:1px solid var(--border-subtle);background:var(--white)}
+.footer-inner{max-width:var(--max-w);margin:0 auto;padding:40px 24px}
+.footer-grid{display:grid;gap:40px;grid-template-columns:1fr 1fr}
+.footer-col p.footer-brand{font-size:0.875rem;font-weight:700;color:var(--ink-900);margin-bottom:12px}
+.footer-col nav{display:flex;flex-direction:column;gap:8px}
+.footer-col nav a{font-size:0.875rem;color:var(--ink-600);transition:color 0.2s}
+.footer-col nav a:hover{color:var(--ink-900)}
+.footer-bottom{margin-top:32px;border-top:1px solid var(--border-subtle);padding-top:24px}
+.footer-bottom p{font-size:0.8125rem;color:var(--ink-500)}
+@media(max-width:600px){.footer-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav-wrap">
+    <a class="nav-brand" href="../index.html">Agent Orchard</a>
+    <nav class="nav-links">
+      <a href="../browse.html">Browse</a>
+      <a href="../consulting.html">Consulting</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../login.html" class="nav-login">Login / Sign Up</a>
+    </nav>
+    <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+  </div>
+</header>
+<div class="mobile-menu">
+  <a href="../browse.html">Browse</a>
+  <a href="../consulting.html">Consulting</a>
+  <a href="../blog.html">Blog</a>
+  <a href="../login.html">Login / Sign Up</a>
+</div>
+<article class="post">
+  <a href="../blog.html" class="back-link">&larr; Back to Blog</a>
+  <div class="post-meta">March 19, 2026 &middot; 8 min read</div>
+  <h1>Building in Public with AI Agents</h1>
+
+  <p>Building in public has always been a time trade-off. You want to share your progress, grow an audience, and attract customers, but every hour spent crafting a tweet or writing a newsletter is an hour not spent building. For solo operators and small teams, this tension is real. AI agents change the math entirely.</p>
+
+  <p>The core idea is not to automate your voice away. It is to build a system where agents handle the production work of content while you retain creative direction and editorial control. The result is consistent output without the grind.</p>
+
+  <h2>How Agents Change the Economics of Content</h2>
+
+  <p>The bottleneck in building in public was never strategy. Most founders know what they should post about. The bottleneck is execution: writing the thread, formatting the newsletter, finding the right screenshot, scheduling the post, doing it again tomorrow.</p>
+
+  <p>An agent can handle most of that execution layer. The economics shift from "one hour of your time per piece of content" to "five minutes of review per piece of content." At that rate, you can maintain a daily presence across multiple platforms without it consuming your schedule.</p>
+
+  <p>Here is what a realistic weekly output looks like with agent assistance:</p>
+  <ul>
+    <li><strong>5-7 social posts per week</strong> drafted from your commit history, project notes, or voice memos</li>
+    <li><strong>1 newsletter per week</strong> synthesized from your recent work and industry developments</li>
+    <li><strong>2-3 engagement replies</strong> drafted in response to relevant conversations in your space</li>
+  </ul>
+
+  <p>That volume would take 8-10 hours per week to produce manually. With agents, it takes about 2 hours of review and light editing.</p>
+
+  <h2>The Automated Social Posting Pipeline</h2>
+
+  <p>A social posting pipeline has three stages: input collection, draft generation, and review-then-publish. Here is how to wire each stage.</p>
+
+  <h3>Input Collection</h3>
+
+  <p>Your agents need raw material. The best inputs come from work you are already doing:</p>
+  <ul>
+    <li><strong>Git commits and pull requests</strong> provide a log of what you built and why</li>
+    <li><strong>Voice memos</strong> captured during your workday, transcribed automatically</li>
+    <li><strong>Project documentation</strong> and internal notes you write for yourself</li>
+    <li><strong>Customer conversations</strong> (anonymized) that reveal what problems people face</li>
+  </ul>
+
+  <p>Set up a simple ingestion step that copies these inputs into a designated folder or feeds them into your agent's context each day.</p>
+
+  <h3>Draft Generation</h3>
+
+  <p>The agent takes the raw inputs and produces platform-specific drafts. A prompt that works well for this:</p>
+
+  <pre><code>You are a social media writer for a solo developer building
+[project description]. Write a Twitter post based on the
+following work log. Tone: direct, practical, no hype.
+Focus on what was built and what was learned.
+
+Work log:
+{input}</code></pre>
+
+  <p>Generate drafts for each platform separately. A good Twitter post does not make a good LinkedIn post. Let the agent adapt tone and format per channel.</p>
+
+  <h3>Review and Publish</h3>
+
+  <p>This is where you stay in the loop. Review every draft before it goes live. Your job at this stage is to add the details only you know: the nuance, the specific frustration, the unexpected insight. This takes two to three minutes per post. Use a scheduling tool like Buffer or Typefully to queue approved posts.</p>
+
+  <h2>Newsletter Generation Workflows</h2>
+
+  <p>Weekly newsletters are one of the highest-leverage content formats, and one of the most time-consuming to produce. Agents handle the heavy lifting while you provide the editorial angle.</p>
+
+  <p>A practical newsletter workflow:</p>
+  <ol>
+    <li><strong>Monday:</strong> Agent collects your week's work log, recent bookmarks, and any notes you flagged</li>
+    <li><strong>Tuesday:</strong> Agent produces a structured draft with sections: what you shipped, what you learned, one useful resource</li>
+    <li><strong>Wednesday:</strong> You spend 20 minutes editing. Add your perspective. Cut anything that feels generic.</li>
+    <li><strong>Thursday:</strong> Newsletter goes out</li>
+  </ol>
+
+  <p>The key is that the agent handles structure and first-draft prose while you handle voice and insight. This division works because structure is formulaic but voice is not.</p>
+
+  <h2>The Human-Agent Content Model</h2>
+
+  <p>The model that works is not "agents write, humans publish." It is more nuanced than that.</p>
+
+  <blockquote>Agents produce. Humans curate. The audience gets consistency without losing authenticity.</blockquote>
+
+  <p>In practice, this means:</p>
+  <ul>
+    <li><strong>Agents draft</strong> based on your real work, your notes, and your established voice guidelines</li>
+    <li><strong>You review</strong> every piece before it publishes, adding or removing as needed</li>
+    <li><strong>You write the important posts yourself</strong> when the topic is personal, strategic, or requires lived experience</li>
+    <li><strong>Agents handle the consistent rhythm</strong> of updates, progress reports, and informational content</li>
+  </ul>
+
+  <p>Think of it like having a writing assistant who prepares your talking points. You still decide what to say and how to say it.</p>
+
+  <h2>Maintaining Authenticity at Scale</h2>
+
+  <p>The obvious concern is that agent-assisted content will feel robotic or generic. This is a real risk, but it is manageable with a few practices.</p>
+
+  <p><strong>Create a voice document.</strong> Write a one-page description of how you communicate. Include examples of posts you have written that felt right. Include phrases you use and phrases you avoid. Feed this to your agent as part of its system prompt.</p>
+
+  <p><strong>Never publish without reading.</strong> The five-second rule: if you read a draft and nothing stands out as uniquely yours, either rewrite it or add a sentence that is. Every post should contain at least one thought that only you would have.</p>
+
+  <p><strong>Be transparent about your process.</strong> Many builders in public are open about using agents in their workflow. This honesty actually strengthens trust rather than undermining it. Your audience cares about the insights, not whether you typed every word manually.</p>
+
+  <p><strong>Reserve certain formats for yourself.</strong> Personal reflections, hard-won lessons, and opinionated takes should come from you directly. Let agents handle the progress updates, resource roundups, and structured content.</p>
+
+  <p>The goal is not to fake a presence. It is to sustain a real one. Agents handle the production cost so that your ideas reach people consistently, even when you are deep in building mode.</p>
+
+  <div class="cta-box">
+    <p>Automate your social presence without losing your voice.</p>
+    <a href="../products/social-automation.html" class="cta-btn">Get the Social Automation Kit &rarr;</a>
+  </div>
+</article>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <p class="footer-brand">AgentOrchard</p>
+        <nav>
+          <a href="../browse.html">Browse</a>
+          <a href="../consulting.html">Consulting</a>
+          <a href="../blog.html">Blog</a>
+          <a href="../login.html">Login / Sign Up</a>
+        </nav>
+      </div>
+      <div class="footer-col">
+        <p class="footer-brand">Connect</p>
+        <nav>
+          <a href="https://sedim3nt.substack.com" target="_blank">Substack</a>
+          <a href="https://x.com/sedim3nt" target="_blank">X / Twitter</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Nrvana LLC</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

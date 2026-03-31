@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Designing Agent Handoffs — AgentOrchard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@600&family=Cormorant+Unicase:wght@600&family=Cormorant+Upright:wght@600&display=swap" rel="stylesheet"><style>h1{font-family:'Cormorant Unicase',Georgia,serif;font-weight:600}h2{font-family:'Cormorant Infant',Georgia,serif;font-weight:600;font-size:1.5rem;margin:32px 0 16px;color:#1a1a2e}h3{font-family:'Cormorant Upright',Georgia,serif;font-weight:600;font-size:1.25rem;margin:24px 0 12px;color:#1a1a2e}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#f6f7f8;color:#1a1a2e}
+a{text-decoration:none;color:inherit}
+:root{--sand-50:#f6f7f8;--white:#ffffff;--ink-900:#1a1a2e;--ink-700:#2d2d44;--ink-600:#4a4a5a;--ink-500:#6b6b7a;--tide-600:#006ca5;--tide-700:#005a8a;--border-subtle:rgba(26,26,46,0.05);--shadow-card:0 1px 3px rgba(26,26,46,0.08);--radius:4px;--max-w:1152px}
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:#ffffff}
+.nav-wrap{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
+@media(min-width:640px){.nav-wrap{padding:16px 24px}}
+.nav-brand{font-family:'Cormorant Infant',Georgia,serif;font-size:2.5rem;font-weight:600;color:var(--ink-900)}
+.nav-links{display:none;align-items:center;gap:24px;font-size:0.875rem;font-weight:500;color:var(--ink-700)}
+@media(min-width:768px){.nav-links{display:flex}}
+.nav-links a:hover{color:var(--ink-900)}
+.nav-login{border:1px solid rgba(26,26,46,0.4);padding:6px 12px;border-radius:var(--radius);font-size:0.875rem;font-weight:600;color:var(--ink-900)}
+.nav-login:hover{border-color:var(--ink-900)}
+.hamburger{display:flex;background:none;border:none;color:var(--ink-900);font-size:1.5rem;cursor:pointer}
+@media(min-width:768px){.hamburger{display:none}}
+.mobile-menu{display:none;flex-direction:column;gap:16px;padding:16px 24px;background:var(--sand-50);border-bottom:1px solid var(--border-subtle)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:1rem;color:var(--ink-700);font-weight:500}
+.post{max-width:720px;margin:0 auto;padding:48px 24px 80px}
+.post-meta{font-size:0.875rem;color:var(--ink-500);margin-bottom:16px}
+.post h1{font-size:clamp(1.75rem,4vw,2.75rem);line-height:1.2;margin-bottom:32px;color:var(--ink-900)}
+.post p{font-size:1.125rem;line-height:1.7;color:var(--ink-600);margin-bottom:20px}
+.post ul,.post ol{margin:0 0 20px 24px;color:var(--ink-600);font-size:1.125rem;line-height:1.7}
+.post li{margin-bottom:8px}
+.post strong{color:var(--ink-900)}
+.post code{background:#1a1a2e;color:#e0e0e0;padding:2px 6px;border-radius:3px;font-size:0.95rem}
+.post pre{background:#1a1a2e;color:#e0e0e0;padding:20px;border-radius:8px;overflow-x:auto;margin-bottom:20px;font-size:0.9rem;line-height:1.6}
+.post pre code{background:none;padding:0}
+.post blockquote{border-left:3px solid var(--tide-600);padding:12px 20px;margin:0 0 20px;background:rgba(0,108,165,0.04);color:var(--ink-700);font-size:1.05rem;line-height:1.7}
+.back-link{display:inline-block;color:var(--tide-600);font-weight:600;font-size:0.875rem;margin-bottom:32px}
+.back-link:hover{color:var(--tide-700)}
+.cta-box{margin-top:48px;padding:32px;background:var(--white);border:1px solid var(--border-subtle);border-radius:var(--radius);box-shadow:var(--shadow-card);text-align:center}
+.cta-box p{font-size:1rem;color:var(--ink-600);margin-bottom:16px}
+.cta-btn{display:inline-block;background:var(--tide-600);color:var(--white);font-weight:600;padding:12px 24px;border-radius:var(--radius);font-size:0.875rem;transition:background 0.2s}
+.cta-btn:hover{background:var(--tide-700)}
+footer{border-top:1px solid var(--border-subtle);background:var(--white)}
+.footer-inner{max-width:var(--max-w);margin:0 auto;padding:40px 24px}
+.footer-grid{display:grid;gap:40px;grid-template-columns:1fr 1fr}
+.footer-col p.footer-brand{font-size:0.875rem;font-weight:700;color:var(--ink-900);margin-bottom:12px}
+.footer-col nav{display:flex;flex-direction:column;gap:8px}
+.footer-col nav a{font-size:0.875rem;color:var(--ink-600);transition:color 0.2s}
+.footer-col nav a:hover{color:var(--ink-900)}
+.footer-bottom{margin-top:32px;border-top:1px solid var(--border-subtle);padding-top:24px}
+.footer-bottom p{font-size:0.8125rem;color:var(--ink-500)}
+@media(max-width:600px){.footer-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav-wrap">
+    <a class="nav-brand" href="../index.html">Agent Orchard</a>
+    <nav class="nav-links">
+      <a href="../browse.html">Browse</a>
+      <a href="../consulting.html">Consulting</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../login.html" class="nav-login">Login / Sign Up</a>
+    </nav>
+    <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+  </div>
+</header>
+<div class="mobile-menu">
+  <a href="../browse.html">Browse</a>
+  <a href="../consulting.html">Consulting</a>
+  <a href="../blog.html">Blog</a>
+  <a href="../login.html">Login / Sign Up</a>
+</div>
+<article class="post">
+  <a href="../blog.html" class="back-link">&larr; Back to Blog</a>
+  <div class="post-meta">March 24, 2026 &middot; 8 min read</div>
+  <h1>Designing Agent Handoffs</h1>
+
+  <p>The most dangerous idea in AI automation is that the goal is 100% automation. It sounds efficient. It sounds like progress. But in practice, removing humans entirely from a workflow creates brittle systems that fail in spectacular and expensive ways. The real skill is designing the seam between what agents do and what humans decide.</p>
+
+  <p>Agent handoffs are the moments where an automated process pauses, surfaces its work to a person, and waits for a decision before continuing. Getting these right is the difference between an agent that saves you hours and one that costs you clients.</p>
+
+  <h2>Why Full Automation Is the Wrong Goal</h2>
+
+  <p>Agents are pattern-completion machines. They excel at tasks with clear inputs, predictable outputs, and low ambiguity. But business work is full of situations that don't fit that description: a client email with an unusual tone, a contract clause that seems standard but isn't, a data anomaly that could be noise or could be fraud.</p>
+
+  <p>When you automate these edge cases, you don't eliminate risk. You hide it. The agent processes the ambiguous input with false confidence, and you don't find out something went wrong until the damage is done. The better approach is to automate the 80% that's routine and design clean handoffs for the 20% that requires judgment.</p>
+
+  <h2>Identifying Handoff Points</h2>
+
+  <p>Not every task needs human review. The key is identifying where human judgment actually adds value. There are three categories worth examining:</p>
+
+  <h3>High-Stakes Decisions</h3>
+  <p>Any action that's expensive, irreversible, or public-facing deserves a handoff. Sending a proposal to a client, publishing content, making a purchase over a threshold, deleting data. The cost of a mistake here outweighs the time saved by automation.</p>
+
+  <h3>Ambiguous Situations</h3>
+  <p>When the agent encounters inputs that don't match its training patterns well, it should escalate rather than guess. Examples include customer complaints with emotional subtext, requests that could be interpreted multiple ways, or data that falls outside normal ranges. A practical rule: if the agent's confidence score on a classification is below 85%, hand it off.</p>
+
+  <h3>Creative Judgment</h3>
+  <p>Strategy, prioritization, tone, and relationship management are areas where human intuition still outperforms agents. Your agent can draft the email, but you should decide whether this is the right time to send it and whether the tone matches the relationship.</p>
+
+  <h2>Designing Clean Handoff Interfaces</h2>
+
+  <p>A bad handoff dumps raw output on a human and says "review this." A good handoff presents structured information that enables a fast, informed decision. Here's what a clean handoff includes:</p>
+
+  <ul>
+    <li><strong>Context summary</strong> — what the agent was doing and why it stopped</li>
+    <li><strong>The agent's recommendation</strong> — what it would do if allowed to continue</li>
+    <li><strong>Confidence level</strong> — how certain it is about that recommendation</li>
+    <li><strong>Key factors</strong> — what data points influenced the recommendation</li>
+    <li><strong>Action options</strong> — approve, modify, reject, or escalate further</li>
+  </ul>
+
+  <p>In practice, this looks like a structured JSON or markdown block that feeds into a notification system:</p>
+
+  <pre><code>{
+  "task": "respond_to_client_inquiry",
+  "client": "Acme Corp",
+  "summary": "Client asked about custom pricing for 50+ seats",
+  "draft_response": "...",
+  "confidence": 0.72,
+  "flags": ["non-standard request", "high-value account"],
+  "recommended_action": "send_with_modifications",
+  "options": ["approve", "edit", "reject", "escalate_to_sales"]
+}</code></pre>
+
+  <p>The human sees exactly what they need to decide, without digging through logs or re-reading the original input.</p>
+
+  <h2>The Draft and Review Pattern</h2>
+
+  <p>The most practical handoff pattern for most teams is "draft and review." The agent does the work. A human reviews and approves before the result goes anywhere external. This pattern works for:</p>
+
+  <ul>
+    <li>Email responses — agent drafts, human sends</li>
+    <li>Content creation — agent writes, human edits and publishes</li>
+    <li>Data analysis — agent generates insights, human validates conclusions</li>
+    <li>Code changes — agent writes the PR, human reviews and merges</li>
+  </ul>
+
+  <p>The key detail: the review step should be as frictionless as possible. If reviewing the agent's work takes almost as long as doing it from scratch, the automation isn't saving anything. Design your drafts so that approval is a quick scan, not a deep read. Highlight what changed, flag anything unusual, and make the approve button one click.</p>
+
+  <h2>Escalation Protocols</h2>
+
+  <p>Handoffs need clear escalation paths. When an agent encounters something outside its scope, it should know exactly where to route it. Build a simple escalation matrix:</p>
+
+  <ol>
+    <li><strong>Level 1</strong> — Agent handles autonomously (routine tasks)</li>
+    <li><strong>Level 2</strong> — Agent drafts, human approves (standard handoff)</li>
+    <li><strong>Level 3</strong> — Agent flags and stops, human takes over entirely (edge cases)</li>
+    <li><strong>Level 4</strong> — Agent alerts immediately, no action taken (critical issues)</li>
+  </ol>
+
+  <p>Every task type in your system should be assigned a default level. As you gather data on agent performance, you can adjust levels up or down.</p>
+
+  <h2>Extending Automation Boundaries Over Time</h2>
+
+  <p>The handoff points you set on day one should not be the same ones you have six months later. As you build confidence in the agent's judgment for specific task types, you gradually extend its autonomy. The process looks like this:</p>
+
+  <ol>
+    <li>Start with everything at Level 2 (draft and review)</li>
+    <li>Track approval rates per task type — if you approve 95% of drafts without changes, that task is a candidate for Level 1</li>
+    <li>Move one task type at a time to full autonomy</li>
+    <li>Monitor for a defined period after each change</li>
+    <li>Roll back immediately if error rates increase</li>
+  </ol>
+
+  <blockquote>The goal isn't to remove humans from the loop. It's to put them in the right part of the loop, where their judgment has the highest leverage.</blockquote>
+
+  <p>This gradual expansion is safer than trying to launch with full automation and more sustainable than keeping everything in manual review forever. You're building trust through evidence, not assumption.</p>
+
+  <p>Design your handoffs well from the start, and you'll have a system that gets more autonomous naturally over time, without the catastrophic failures that come from premature full automation.</p>
+
+  <div class="cta-box">
+    <p>Master the art of human-agent coordination.</p>
+    <a href="../products/multiagent-comms.html" class="cta-btn">Get the Multi-Agent Comms Guide &rarr;</a>
+  </div>
+</article>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <p class="footer-brand">AgentOrchard</p>
+        <nav>
+          <a href="../browse.html">Browse</a>
+          <a href="../consulting.html">Consulting</a>
+          <a href="../blog.html">Blog</a>
+          <a href="../login.html">Login / Sign Up</a>
+        </nav>
+      </div>
+      <div class="footer-col">
+        <p class="footer-brand">Connect</p>
+        <nav>
+          <a href="https://sedim3nt.substack.com" target="_blank">Substack</a>
+          <a href="https://x.com/sedim3nt" target="_blank">X / Twitter</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Nrvana LLC</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

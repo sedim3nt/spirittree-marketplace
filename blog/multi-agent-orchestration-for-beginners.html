@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Multi-Agent Orchestration for Beginners — AgentOrchard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@600&family=Cormorant+Unicase:wght@600&family=Cormorant+Upright:wght@600&display=swap" rel="stylesheet"><style>h1{font-family:'Cormorant Unicase',Georgia,serif;font-weight:600}h2{font-family:'Cormorant Infant',Georgia,serif;font-weight:600;font-size:1.5rem;margin:32px 0 16px;color:#1a1a2e}h3{font-family:'Cormorant Upright',Georgia,serif;font-weight:600;font-size:1.25rem;margin:24px 0 12px;color:#1a1a2e}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#f6f7f8;color:#1a1a2e}
+a{text-decoration:none;color:inherit}
+:root{--sand-50:#f6f7f8;--white:#ffffff;--ink-900:#1a1a2e;--ink-700:#2d2d44;--ink-600:#4a4a5a;--ink-500:#6b6b7a;--tide-600:#006ca5;--tide-700:#005a8a;--border-subtle:rgba(26,26,46,0.05);--shadow-card:0 1px 3px rgba(26,26,46,0.08);--radius:4px;--max-w:1152px}
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:#ffffff}
+.nav-wrap{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
+@media(min-width:640px){.nav-wrap{padding:16px 24px}}
+.nav-brand{font-family:'Cormorant Infant',Georgia,serif;font-size:2.5rem;font-weight:600;color:var(--ink-900)}
+.nav-links{display:none;align-items:center;gap:24px;font-size:0.875rem;font-weight:500;color:var(--ink-700)}
+@media(min-width:768px){.nav-links{display:flex}}
+.nav-links a:hover{color:var(--ink-900)}
+.nav-login{border:1px solid rgba(26,26,46,0.4);padding:6px 12px;border-radius:var(--radius);font-size:0.875rem;font-weight:600;color:var(--ink-900)}
+.nav-login:hover{border-color:var(--ink-900)}
+.hamburger{display:flex;background:none;border:none;color:var(--ink-900);font-size:1.5rem;cursor:pointer}
+@media(min-width:768px){.hamburger{display:none}}
+.mobile-menu{display:none;flex-direction:column;gap:16px;padding:16px 24px;background:var(--sand-50);border-bottom:1px solid var(--border-subtle)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:1rem;color:var(--ink-700);font-weight:500}
+.post{max-width:720px;margin:0 auto;padding:48px 24px 80px}
+.post-meta{font-size:0.875rem;color:var(--ink-500);margin-bottom:16px}
+.post h1{font-size:clamp(1.75rem,4vw,2.75rem);line-height:1.2;margin-bottom:32px;color:var(--ink-900)}
+.post p{font-size:1.125rem;line-height:1.7;color:var(--ink-600);margin-bottom:20px}
+.post ul,.post ol{margin:0 0 20px 24px;color:var(--ink-600);font-size:1.125rem;line-height:1.7}
+.post li{margin-bottom:8px}
+.post strong{color:var(--ink-900)}
+.post code{background:#1a1a2e;color:#e0e0e0;padding:2px 6px;border-radius:3px;font-size:0.95rem}
+.post pre{background:#1a1a2e;color:#e0e0e0;padding:20px;border-radius:8px;overflow-x:auto;margin-bottom:20px;font-size:0.9rem;line-height:1.6}
+.post pre code{background:none;padding:0}
+.post blockquote{border-left:3px solid var(--tide-600);padding:12px 20px;margin:0 0 20px;background:rgba(0,108,165,0.04);color:var(--ink-700);font-size:1.05rem;line-height:1.7}
+.back-link{display:inline-block;color:var(--tide-600);font-weight:600;font-size:0.875rem;margin-bottom:32px}
+.back-link:hover{color:var(--tide-700)}
+.cta-box{margin-top:48px;padding:32px;background:var(--white);border:1px solid var(--border-subtle);border-radius:var(--radius);box-shadow:var(--shadow-card);text-align:center}
+.cta-box p{font-size:1rem;color:var(--ink-600);margin-bottom:16px}
+.cta-btn{display:inline-block;background:var(--tide-600);color:var(--white);font-weight:600;padding:12px 24px;border-radius:var(--radius);font-size:0.875rem;transition:background 0.2s}
+.cta-btn:hover{background:var(--tide-700)}
+footer{border-top:1px solid var(--border-subtle);background:var(--white)}
+.footer-inner{max-width:var(--max-w);margin:0 auto;padding:40px 24px}
+.footer-grid{display:grid;gap:40px;grid-template-columns:1fr 1fr}
+.footer-col p.footer-brand{font-size:0.875rem;font-weight:700;color:var(--ink-900);margin-bottom:12px}
+.footer-col nav{display:flex;flex-direction:column;gap:8px}
+.footer-col nav a{font-size:0.875rem;color:var(--ink-600);transition:color 0.2s}
+.footer-col nav a:hover{color:var(--ink-900)}
+.footer-bottom{margin-top:32px;border-top:1px solid var(--border-subtle);padding-top:24px}
+.footer-bottom p{font-size:0.8125rem;color:var(--ink-500)}
+@media(max-width:600px){.footer-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav-wrap">
+    <a class="nav-brand" href="../index.html">Agent Orchard</a>
+    <nav class="nav-links">
+      <a href="../browse.html">Browse</a>
+      <a href="../consulting.html">Consulting</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../login.html" class="nav-login">Login / Sign Up</a>
+    </nav>
+    <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+  </div>
+</header>
+<div class="mobile-menu">
+  <a href="../browse.html">Browse</a>
+  <a href="../consulting.html">Consulting</a>
+  <a href="../blog.html">Blog</a>
+  <a href="../login.html">Login / Sign Up</a>
+</div>
+<article class="post">
+  <a href="../blog.html" class="back-link">&larr; Back to Blog</a>
+  <div class="post-meta">March 13, 2026 &middot; 10 min read</div>
+  <h1>Multi-Agent Orchestration for Beginners</h1>
+
+  <p>A single AI agent can handle a surprising range of tasks. But at a certain point, you hit a wall. The context window fills up. The agent starts losing track of earlier instructions. The task requires conflicting expertise: meticulous code review and creative copywriting in the same session. This is where multi-agent orchestration enters the picture. Instead of one agent doing everything, you coordinate multiple specialized agents, each responsible for a defined piece of work.</p>
+
+  <h2>Why Single Agents Hit Limits</h2>
+
+  <p>The fundamental constraint is context. Every AI agent operates within a finite context window. The more you load into that window, the less attention the model can give to any single piece of information. A single agent handling research, analysis, writing, and editing simultaneously is juggling all of those instructions and accumulated context at once.</p>
+
+  <p>The result is predictable. Quality degrades as complexity increases. The agent forgets constraints you set at the beginning. It conflates details from different subtasks. It produces output that is adequate everywhere and excellent nowhere. Multi-agent orchestration solves this by giving each agent a narrow scope, a focused context, and a single job.</p>
+
+  <h2>The CEO/Worker Pattern</h2>
+
+  <p>The most practical orchestration pattern for beginners is the CEO/worker model. One agent acts as the coordinator. It receives the high-level task, breaks it into subtasks, delegates each subtask to a specialized worker agent, and assembles the final output from their results.</p>
+
+  <p>The CEO agent does not do the actual work. Its job is planning, delegation, and quality assessment. This separation matters because coordination and execution require different prompting strategies. The CEO prompt emphasizes decomposition, sequencing, and evaluation. Worker prompts emphasize depth, accuracy, and format compliance.</p>
+
+  <p>Here is a simplified orchestration script that demonstrates the pattern:</p>
+
+  <pre><code>#!/bin/bash
+# CEO agent decomposes the task
+claude --prompt-file prompts/ceo-plan.md \
+  --input "task-brief.md" \
+  --output "plan.json"
+
+# Worker agents execute subtasks from the plan
+for task in $(jq -r '.subtasks[].id' plan.json); do
+  PROMPT=$(jq -r ".subtasks[] | select(.id==\"$task\") | .prompt_file" plan.json)
+  INPUT=$(jq -r ".subtasks[] | select(.id==\"$task\") | .input_file" plan.json)
+
+  claude --prompt-file "prompts/$PROMPT" \
+    --input "$INPUT" \
+    --output "results/$task.md"
+done
+
+# CEO agent assembles and reviews results
+claude --prompt-file prompts/ceo-review.md \
+  --input "results/" \
+  --output "final-output.md"</code></pre>
+
+  <h2>Defining Agent Roles</h2>
+
+  <p>Each worker agent needs a clear role definition. This is not about giving agents cute names. It is about constraining their behavior so they excel at one thing. A role definition includes four elements:</p>
+
+  <ul>
+    <li><strong>Scope:</strong> What this agent is responsible for. "You analyze code for security vulnerabilities. You do not fix them, suggest fixes, or comment on code style."</li>
+    <li><strong>Input format:</strong> What the agent receives and how it is structured. "You will receive a JSON file containing file paths and code snippets."</li>
+    <li><strong>Output format:</strong> What the agent produces and how it must be structured. "Produce a markdown report with one H2 section per finding."</li>
+    <li><strong>Constraints:</strong> What the agent must not do. "Do not access external URLs. Do not execute code. Report only what you can determine from static analysis."</li>
+  </ul>
+
+  <p>The tighter these definitions, the better the output. Vague roles produce agents that overlap, duplicate work, or leave gaps.</p>
+
+  <h2>Communication Between Agents</h2>
+
+  <p>Agents in a multi-agent system need to pass information to each other. There are two practical approaches for most setups.</p>
+
+  <h3>File-Based Communication</h3>
+
+  <p>The simplest method. Each agent reads from and writes to files in a shared directory. The CEO agent orchestrates the sequence, ensuring that Agent B does not run until Agent A has written its output file. This approach is transparent and debuggable: you can inspect every intermediate artifact.</p>
+
+  <pre><code>output/
+  01-research.md      # Written by research agent
+  02-analysis.md      # Written by analysis agent, reads 01
+  03-draft.md         # Written by writing agent, reads 02
+  04-review.md        # Written by review agent, reads 03</code></pre>
+
+  <h3>Message Passing</h3>
+
+  <p>For more complex orchestration, agents can communicate through structured messages, typically JSON objects passed via stdin/stdout or a lightweight message queue. This enables branching workflows where the CEO agent can route different subtasks to different workers based on intermediate results.</p>
+
+  <p>Start with file-based communication. It is easier to build, easier to debug, and sufficient for most workflows. Move to message passing only when you need dynamic routing or parallel execution of dependent tasks.</p>
+
+  <h2>Avoiding Conflicts</h2>
+
+  <p>The most common orchestration failure is agents working at cross purposes. This happens when roles overlap or when agents lack context about what other agents have done. Three rules prevent most conflicts:</p>
+
+  <ol>
+    <li><strong>No shared write targets.</strong> Two agents should never write to the same file. Each agent owns its output location exclusively.</li>
+    <li><strong>Explicit handoff points.</strong> Define clearly where one agent's work ends and another's begins. The research agent produces facts. The analysis agent interprets them. There is no gray area.</li>
+    <li><strong>CEO as single source of truth.</strong> Only the CEO agent makes decisions about task flow. Worker agents do not call other worker agents directly. All communication routes through the coordinator.</li>
+  </ol>
+
+  <h2>Start with Two Agents</h2>
+
+  <p>The biggest mistake beginners make is designing a five-agent system on day one. Start with two: a writer and a reviewer. The writer produces a draft. The reviewer critiques it. You manually handle the coordination by running the scripts in sequence.</p>
+
+  <p>This teaches you the fundamentals: how to define roles, how to structure handoff artifacts, and how to evaluate whether multi-agent output actually improves on single-agent output. Once the two-agent system produces reliably better results, add a third agent. Then a fourth. Scale incrementally based on demonstrated need, not theoretical elegance.</p>
+
+  <h2>Common Orchestration Mistakes</h2>
+
+  <p>After working with dozens of multi-agent setups, the same failure patterns recur:</p>
+
+  <ul>
+    <li><strong>Over-engineering the coordinator.</strong> The CEO agent's prompt should be short and focused on decomposition. Long, complex coordinator prompts produce confused task plans.</li>
+    <li><strong>Insufficient output formatting.</strong> If worker agents produce loosely formatted output, downstream agents struggle to parse it. Enforce strict output schemas from the start.</li>
+    <li><strong>No error handling.</strong> When a worker agent produces bad output, the pipeline should stop, not propagate garbage downstream. Add validation checks between stages.</li>
+    <li><strong>Too many agents too soon.</strong> Every additional agent adds coordination overhead. Three focused agents outperform seven poorly defined ones.</li>
+    <li><strong>Ignoring cost.</strong> Multi-agent systems multiply API costs by the number of agents. Monitor token usage per stage and optimize the most expensive ones first.</li>
+  </ul>
+
+  <p>Multi-agent orchestration is powerful, but it is not inherently better than a single well-prompted agent. Use it when you have a clear reason: the task exceeds context limits, requires conflicting expertise, or benefits from separation of concerns. Start simple, validate the improvement, and scale deliberately.</p>
+
+  <div class="cta-box">
+    <p>Get battle-tested orchestration patterns and templates.</p>
+    <a href="../products/orchestration-kit.html" class="cta-btn">Get the Orchestration Kit &rarr;</a>
+  </div>
+</article>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <p class="footer-brand">AgentOrchard</p>
+        <nav>
+          <a href="../browse.html">Browse</a>
+          <a href="../consulting.html">Consulting</a>
+          <a href="../blog.html">Blog</a>
+          <a href="../login.html">Login / Sign Up</a>
+        </nav>
+      </div>
+      <div class="footer-col">
+        <p class="footer-brand">Connect</p>
+        <nav>
+          <a href="https://sedim3nt.substack.com" target="_blank">Substack</a>
+          <a href="https://x.com/sedim3nt" target="_blank">X / Twitter</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Nrvana LLC</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agents Don't Need to Be Smart — AgentOrchard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@600&family=Cormorant+Unicase:wght@600&family=Cormorant+Upright:wght@600&display=swap" rel="stylesheet"><style>h1{font-family:'Cormorant Unicase',Georgia,serif;font-weight:600}h2{font-family:'Cormorant Infant',Georgia,serif;font-weight:600;font-size:1.5rem;margin:32px 0 16px;color:#1a1a2e}h3{font-family:'Cormorant Upright',Georgia,serif;font-weight:600;font-size:1.25rem;margin:24px 0 12px;color:#1a1a2e}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#f6f7f8;color:#1a1a2e}
+a{text-decoration:none;color:inherit}
+:root{--sand-50:#f6f7f8;--white:#ffffff;--ink-900:#1a1a2e;--ink-700:#2d2d44;--ink-600:#4a4a5a;--ink-500:#6b6b7a;--tide-600:#006ca5;--tide-700:#005a8a;--border-subtle:rgba(26,26,46,0.05);--shadow-card:0 1px 3px rgba(26,26,46,0.08);--radius:4px;--max-w:1152px}
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:#ffffff}
+.nav-wrap{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
+@media(min-width:640px){.nav-wrap{padding:16px 24px}}
+.nav-brand{font-family:'Cormorant Infant',Georgia,serif;font-size:2.5rem;font-weight:600;color:var(--ink-900)}
+.nav-links{display:none;align-items:center;gap:24px;font-size:0.875rem;font-weight:500;color:var(--ink-700)}
+@media(min-width:768px){.nav-links{display:flex}}
+.nav-links a:hover{color:var(--ink-900)}
+.nav-login{border:1px solid rgba(26,26,46,0.4);padding:6px 12px;border-radius:var(--radius);font-size:0.875rem;font-weight:600;color:var(--ink-900)}
+.nav-login:hover{border-color:var(--ink-900)}
+.hamburger{display:flex;background:none;border:none;color:var(--ink-900);font-size:1.5rem;cursor:pointer}
+@media(min-width:768px){.hamburger{display:none}}
+.mobile-menu{display:none;flex-direction:column;gap:16px;padding:16px 24px;background:var(--sand-50);border-bottom:1px solid var(--border-subtle)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:1rem;color:var(--ink-700);font-weight:500}
+.post{max-width:720px;margin:0 auto;padding:48px 24px 80px}
+.post-meta{font-size:0.875rem;color:var(--ink-500);margin-bottom:16px}
+.post h1{font-size:clamp(1.75rem,4vw,2.75rem);line-height:1.2;margin-bottom:32px;color:var(--ink-900)}
+.post p{font-size:1.125rem;line-height:1.7;color:var(--ink-600);margin-bottom:20px}
+.post ul,.post ol{margin:0 0 20px 24px;color:var(--ink-600);font-size:1.125rem;line-height:1.7}
+.post li{margin-bottom:8px}
+.post strong{color:var(--ink-900)}
+.post code{background:#1a1a2e;color:#e0e0e0;padding:2px 6px;border-radius:3px;font-size:0.95rem}
+.post pre{background:#1a1a2e;color:#e0e0e0;padding:20px;border-radius:8px;overflow-x:auto;margin-bottom:20px;font-size:0.9rem;line-height:1.6}
+.post pre code{background:none;padding:0}
+.post blockquote{border-left:3px solid var(--tide-600);padding:12px 20px;margin:0 0 20px;background:rgba(0,108,165,0.04);color:var(--ink-700);font-size:1.05rem;line-height:1.7}
+.back-link{display:inline-block;color:var(--tide-600);font-weight:600;font-size:0.875rem;margin-bottom:32px}
+.back-link:hover{color:var(--tide-700)}
+.cta-box{margin-top:48px;padding:32px;background:var(--white);border:1px solid var(--border-subtle);border-radius:var(--radius);box-shadow:var(--shadow-card);text-align:center}
+.cta-box p{font-size:1rem;color:var(--ink-600);margin-bottom:16px}
+.cta-btn{display:inline-block;background:var(--tide-600);color:var(--white);font-weight:600;padding:12px 24px;border-radius:var(--radius);font-size:0.875rem;transition:background 0.2s}
+.cta-btn:hover{background:var(--tide-700)}
+footer{border-top:1px solid var(--border-subtle);background:var(--white)}
+.footer-inner{max-width:var(--max-w);margin:0 auto;padding:40px 24px}
+.footer-grid{display:grid;gap:40px;grid-template-columns:1fr 1fr}
+.footer-col p.footer-brand{font-size:0.875rem;font-weight:700;color:var(--ink-900);margin-bottom:12px}
+.footer-col nav{display:flex;flex-direction:column;gap:8px}
+.footer-col nav a{font-size:0.875rem;color:var(--ink-600);transition:color 0.2s}
+.footer-col nav a:hover{color:var(--ink-900)}
+.footer-bottom{margin-top:32px;border-top:1px solid var(--border-subtle);padding-top:24px}
+.footer-bottom p{font-size:0.8125rem;color:var(--ink-500)}
+@media(max-width:600px){.footer-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav-wrap">
+    <a class="nav-brand" href="../index.html">Agent Orchard</a>
+    <nav class="nav-links">
+      <a href="../browse.html">Browse</a>
+      <a href="../consulting.html">Consulting</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../login.html" class="nav-login">Login / Sign Up</a>
+    </nav>
+    <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+  </div>
+</header>
+<div class="mobile-menu">
+  <a href="../browse.html">Browse</a>
+  <a href="../consulting.html">Consulting</a>
+  <a href="../blog.html">Blog</a>
+  <a href="../login.html">Login / Sign Up</a>
+</div>
+<article class="post">
+  <a href="../blog.html" class="back-link">&larr; Back to Blog</a>
+  <div class="post-meta">March 22, 2026 &middot; 7 min read</div>
+  <h1>Agents Don't Need to Be Smart</h1>
+
+  <p>The default instinct when building an AI agent is to reach for the most powerful model available. If Claude Opus exists, why would you use anything less? This instinct is understandable, but it is also the single most expensive mistake in agent design.</p>
+
+  <p>The truth is that the vast majority of agent tasks do not require frontier intelligence. They require reliable execution of well-defined operations. And for that, small models are not just adequate. They are better.</p>
+
+  <h2>The "Bigger Is Better" Fallacy</h2>
+
+  <p>Large models are extraordinary at complex reasoning, nuanced writing, and multi-step problem solving. But most agent tasks are none of those things. Most agent tasks look like this:</p>
+
+  <ul>
+    <li>Extract the date and amount from this invoice PDF</li>
+    <li>Classify this email as urgent, normal, or spam</li>
+    <li>Reformat this JSON into a markdown table</li>
+    <li>Summarize this article in three bullet points</li>
+    <li>Check if this text contains any of these keywords</li>
+  </ul>
+
+  <p>These are pattern matching and formatting tasks. A small, fast model handles them with the same accuracy as a large model, at a fraction of the cost and latency. Using Opus for email classification is like hiring an architect to hang a picture frame.</p>
+
+  <h2>What Small Models Excel At</h2>
+
+  <p>Small and mid-tier models (Haiku-class, GPT-4o-mini, Gemini Flash) are genuinely good at a wide range of practical tasks:</p>
+
+  <ul>
+    <li><strong>Text formatting and conversion:</strong> Markdown to HTML, JSON restructuring, CSV generation</li>
+    <li><strong>Data extraction:</strong> Pulling structured fields from unstructured text</li>
+    <li><strong>Classification:</strong> Sorting items into predefined categories</li>
+    <li><strong>Simple generation:</strong> Short descriptions, metadata, tags, summaries</li>
+    <li><strong>Template filling:</strong> Populating templates with provided data</li>
+    <li><strong>Translation between formats:</strong> Converting between data schemas</li>
+  </ul>
+
+  <p>For these tasks, small models run 5-10x faster and cost 10-30x less per token than frontier models. When your agent runs these operations hundreds of times per day, the savings compound significantly.</p>
+
+  <h2>What Actually Requires Large Models</h2>
+
+  <p>Reserve your most capable model for tasks that genuinely demand it:</p>
+
+  <ul>
+    <li><strong>Complex multi-step reasoning:</strong> Tasks where the model must hold multiple constraints in mind and work through them logically</li>
+    <li><strong>Long-form strategic writing:</strong> Blog posts, reports, or analyses that require coherent structure across many paragraphs</li>
+    <li><strong>Nuanced judgment calls:</strong> Deciding whether a piece of content is appropriate, evaluating the quality of a proposal, or assessing risk</li>
+    <li><strong>Code generation with complex logic:</strong> Writing functions that involve algorithmic thinking, not just boilerplate</li>
+    <li><strong>Synthesis across many sources:</strong> Combining information from multiple documents into a coherent whole</li>
+  </ul>
+
+  <p>These tasks represent, in a typical agent workflow, about 10% of total operations.</p>
+
+  <h2>The 90% Rule</h2>
+
+  <blockquote>90% of agent tasks can run on the cheapest model available. The remaining 10% justify the cost of a frontier model. The mistake is running everything on the expensive one.</blockquote>
+
+  <p>This is not a theoretical estimate. Look at any agent workflow and categorize each step by the intelligence it actually requires. A research agent, for example, might have this breakdown:</p>
+
+  <ol>
+    <li><strong>Fetch and parse web pages</strong> - no LLM needed, just HTTP and HTML parsing</li>
+    <li><strong>Extract key facts from each page</strong> - small model, extraction task</li>
+    <li><strong>Classify relevance to the research topic</strong> - small model, classification task</li>
+    <li><strong>Summarize each relevant source</strong> - small model, summarization task</li>
+    <li><strong>Synthesize findings into a coherent briefing</strong> - large model, complex synthesis</li>
+  </ol>
+
+  <p>Only step 5 needs the frontier model. Steps 2-4 run perfectly well on a model that costs a fraction as much.</p>
+
+  <h2>How to Test If a Smaller Model Works</h2>
+
+  <p>Before committing to a model for an agent task, run a simple comparison:</p>
+
+  <ol>
+    <li><strong>Prepare 20 representative inputs</strong> for the task your agent will perform</li>
+    <li><strong>Run them through both the large and small model</strong> with identical prompts</li>
+    <li><strong>Compare outputs side by side.</strong> For most structured tasks, the outputs will be functionally identical</li>
+    <li><strong>Check edge cases.</strong> If the small model fails on unusual inputs, you can route just those cases to the larger model</li>
+  </ol>
+
+  <pre><code># Quick comparison script
+for input in test_inputs/*.txt; do
+  echo "=== $(basename $input) ==="
+  echo "--- Haiku ---"
+  cat "$input" | llm -m haiku "$PROMPT"
+  echo "--- Opus ---"
+  cat "$input" | llm -m opus "$PROMPT"
+  echo ""
+done</code></pre>
+
+  <p>If the small model produces acceptable output on 18 of 20 test cases, it is the right choice. Handle the edge cases with a fallback to the larger model, or accept the occasional imperfection for the massive cost savings.</p>
+
+  <h2>Practical Model-Task Matching</h2>
+
+  <p>Here is a reference table for common agent tasks and the model tier they actually need:</p>
+
+  <ul>
+    <li><strong>Email triage and classification:</strong> Small model (Haiku, Flash)</li>
+    <li><strong>Data extraction from documents:</strong> Small model</li>
+    <li><strong>Social media post drafting:</strong> Mid-tier model (Sonnet, GPT-4o)</li>
+    <li><strong>Code review comments:</strong> Mid-tier model</li>
+    <li><strong>Research synthesis and analysis:</strong> Large model (Opus)</li>
+    <li><strong>Strategic planning documents:</strong> Large model</li>
+    <li><strong>JSON/CSV reformatting:</strong> Small model</li>
+    <li><strong>Notification summaries:</strong> Small model</li>
+    <li><strong>Meeting notes structuring:</strong> Small model</li>
+    <li><strong>Content quality assessment:</strong> Mid-tier to large model</li>
+  </ul>
+
+  <p>The pattern is clear: the more a task resembles pattern matching or format conversion, the less intelligence it needs. The more it resembles judgment, reasoning, or creative synthesis, the more it benefits from a larger model.</p>
+
+  <p>Build your agents with model routing from the start. Default to the smallest viable model, and escalate only when the task demands it. Your cost per agent run will drop dramatically, your latency will improve, and the quality of output on the tasks that matter will stay exactly where it is.</p>
+
+  <div class="cta-box">
+    <p>Learn exactly which model to use for every agent task.</p>
+    <a href="../products/model-guide.html" class="cta-btn">Get the Model Selection Guide &rarr;</a>
+  </div>
+</article>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <p class="footer-brand">AgentOrchard</p>
+        <nav>
+          <a href="../browse.html">Browse</a>
+          <a href="../consulting.html">Consulting</a>
+          <a href="../blog.html">Blog</a>
+          <a href="../login.html">Login / Sign Up</a>
+        </nav>
+      </div>
+      <div class="footer-col">
+        <p class="footer-brand">Connect</p>
+        <nav>
+          <a href="https://sedim3nt.substack.com" target="_blank">Substack</a>
+          <a href="https://x.com/sedim3nt" target="_blank">X / Twitter</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Nrvana LLC</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

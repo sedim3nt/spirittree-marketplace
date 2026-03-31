@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Agents vs AI Chatbots — AgentOrchard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@600&family=Cormorant+Unicase:wght@600&family=Cormorant+Upright:wght@600&display=swap" rel="stylesheet"><style>h1{font-family:'Cormorant Unicase',Georgia,serif;font-weight:600}h2{font-family:'Cormorant Infant',Georgia,serif;font-weight:600;font-size:1.5rem;margin:32px 0 16px;color:#1a1a2e}h3{font-family:'Cormorant Upright',Georgia,serif;font-weight:600;font-size:1.25rem;margin:24px 0 12px;color:#1a1a2e}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#f6f7f8;color:#1a1a2e}
+a{text-decoration:none;color:inherit}
+:root{--sand-50:#f6f7f8;--white:#ffffff;--ink-900:#1a1a2e;--ink-700:#2d2d44;--ink-600:#4a4a5a;--ink-500:#6b6b7a;--tide-600:#006ca5;--tide-700:#005a8a;--border-subtle:rgba(26,26,46,0.05);--shadow-card:0 1px 3px rgba(26,26,46,0.08);--radius:4px;--max-w:1152px}
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:#ffffff}
+.nav-wrap{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
+@media(min-width:640px){.nav-wrap{padding:16px 24px}}
+.nav-brand{font-family:'Cormorant Infant',Georgia,serif;font-size:2.5rem;font-weight:600;color:var(--ink-900)}
+.nav-links{display:none;align-items:center;gap:24px;font-size:0.875rem;font-weight:500;color:var(--ink-700)}
+@media(min-width:768px){.nav-links{display:flex}}
+.nav-links a:hover{color:var(--ink-900)}
+.nav-login{border:1px solid rgba(26,26,46,0.4);padding:6px 12px;border-radius:var(--radius);font-size:0.875rem;font-weight:600;color:var(--ink-900)}
+.nav-login:hover{border-color:var(--ink-900)}
+.hamburger{display:flex;background:none;border:none;color:var(--ink-900);font-size:1.5rem;cursor:pointer}
+@media(min-width:768px){.hamburger{display:none}}
+.mobile-menu{display:none;flex-direction:column;gap:16px;padding:16px 24px;background:var(--sand-50);border-bottom:1px solid var(--border-subtle)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:1rem;color:var(--ink-700);font-weight:500}
+.post{max-width:720px;margin:0 auto;padding:48px 24px 80px}
+.post-meta{font-size:0.875rem;color:var(--ink-500);margin-bottom:16px}
+.post h1{font-size:clamp(1.75rem,4vw,2.75rem);line-height:1.2;margin-bottom:32px;color:var(--ink-900)}
+.post p{font-size:1.125rem;line-height:1.7;color:var(--ink-600);margin-bottom:20px}
+.post ul,.post ol{margin:0 0 20px 24px;color:var(--ink-600);font-size:1.125rem;line-height:1.7}
+.post li{margin-bottom:8px}
+.post strong{color:var(--ink-900)}
+.post code{background:#1a1a2e;color:#e0e0e0;padding:2px 6px;border-radius:3px;font-size:0.95rem}
+.post pre{background:#1a1a2e;color:#e0e0e0;padding:20px;border-radius:8px;overflow-x:auto;margin-bottom:20px;font-size:0.9rem;line-height:1.6}
+.post pre code{background:none;padding:0}
+.post blockquote{border-left:3px solid var(--tide-600);padding:12px 20px;margin:0 0 20px;background:rgba(0,108,165,0.04);color:var(--ink-700);font-size:1.05rem;line-height:1.7}
+.back-link{display:inline-block;color:var(--tide-600);font-weight:600;font-size:0.875rem;margin-bottom:32px}
+.back-link:hover{color:var(--tide-700)}
+.cta-box{margin-top:48px;padding:32px;background:var(--white);border:1px solid var(--border-subtle);border-radius:var(--radius);box-shadow:var(--shadow-card);text-align:center}
+.cta-box p{font-size:1rem;color:var(--ink-600);margin-bottom:16px}
+.cta-btn{display:inline-block;background:var(--tide-600);color:var(--white);font-weight:600;padding:12px 24px;border-radius:var(--radius);font-size:0.875rem;transition:background 0.2s}
+.cta-btn:hover{background:var(--tide-700)}
+footer{border-top:1px solid var(--border-subtle);background:var(--white)}
+.footer-inner{max-width:var(--max-w);margin:0 auto;padding:40px 24px}
+.footer-grid{display:grid;gap:40px;grid-template-columns:1fr 1fr}
+.footer-col p.footer-brand{font-size:0.875rem;font-weight:700;color:var(--ink-900);margin-bottom:12px}
+.footer-col nav{display:flex;flex-direction:column;gap:8px}
+.footer-col nav a{font-size:0.875rem;color:var(--ink-600);transition:color 0.2s}
+.footer-col nav a:hover{color:var(--ink-900)}
+.footer-bottom{margin-top:32px;border-top:1px solid var(--border-subtle);padding-top:24px}
+.footer-bottom p{font-size:0.8125rem;color:var(--ink-500)}
+@media(max-width:600px){.footer-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav-wrap">
+    <a class="nav-brand" href="../index.html">Agent Orchard</a>
+    <nav class="nav-links">
+      <a href="../browse.html">Browse</a>
+      <a href="../consulting.html">Consulting</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../login.html" class="nav-login">Login / Sign Up</a>
+    </nav>
+    <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+  </div>
+</header>
+<div class="mobile-menu">
+  <a href="../browse.html">Browse</a>
+  <a href="../consulting.html">Consulting</a>
+  <a href="../blog.html">Blog</a>
+  <a href="../login.html">Login / Sign Up</a>
+</div>
+<article class="post">
+  <a href="../blog.html" class="back-link">&larr; Back to Blog</a>
+  <div class="post-meta">March 16, 2026 &middot; 7 min read</div>
+  <h1>AI Agents vs AI Chatbots</h1>
+
+  <p>People use "AI agent" and "AI chatbot" interchangeably. They are not the same thing. The difference is not marketing terminology. It is a fundamental distinction in capability, architecture, and what you can expect the system to do for you. Understanding where chatbots end and agents begin will change how you think about automating your work.</p>
+
+  <h2>What Is a Chatbot</h2>
+
+  <p>A chatbot is a reactive system. It waits for your input, processes it, and returns a response. When the conversation ends, the chatbot retains nothing. The next session starts from zero. ChatGPT in its default mode, Claude in a single conversation, Google Gemini in a browser tab: these are chatbots.</p>
+
+  <p>Chatbots have several defining characteristics:</p>
+
+  <ul>
+    <li><strong>Reactive.</strong> They respond only when prompted. They never initiate action on their own.</li>
+    <li><strong>Single-turn oriented.</strong> Each exchange is essentially independent, even within a conversation. The chatbot processes your latest message in context of the conversation history, but it does not plan ahead or maintain ongoing tasks.</li>
+    <li><strong>Stateless between sessions.</strong> Close the tab, lose the context. Some platforms now offer conversation history, but this is retrieval, not memory. The chatbot does not carry forward understanding from one session to the next in a meaningful way.</li>
+    <li><strong>No tool access by default.</strong> A chatbot generates text. It does not read files, execute code, call APIs, or interact with external systems unless those capabilities are explicitly added.</li>
+  </ul>
+
+  <p>A chatbot is a tool you talk to. You do the thinking, the planning, the sequencing. The chatbot helps with individual steps when asked.</p>
+
+  <h2>What Is an Agent</h2>
+
+  <p>An agent is a proactive system. You give it a goal, and it figures out the steps, executes them, handles errors, and delivers a result. It operates over time, across sessions, and interacts with external tools and services. Claude Code, Devin, and custom agent frameworks built on tool-using LLMs are agents.</p>
+
+  <p>Agents have their own defining characteristics:</p>
+
+  <ul>
+    <li><strong>Proactive.</strong> Given a goal, an agent decomposes it into subtasks and executes them without being told each step. You say "refactor this module to use dependency injection." The agent reads the code, plans the changes, implements them, runs the tests, and reports back.</li>
+    <li><strong>Persistent.</strong> Agents maintain state across actions. They remember what they have done, what files they have read, what decisions they have made during a task. Some agents persist state across sessions through memory files or databases.</li>
+    <li><strong>Tool-using.</strong> Agents interact with the world. They read and write files, execute shell commands, make API calls, query databases, and use browser automation. This is what makes them agents rather than conversational interfaces.</li>
+    <li><strong>Schedulable.</strong> Because agents can operate without real-time human input, they can be triggered by cron jobs, webhooks, or events. A chatbot needs you at the keyboard. An agent can run at 3 AM.</li>
+  </ul>
+
+  <p>An agent is a system that works for you. You define the objective. The agent handles execution.</p>
+
+  <h2>The Key Differences</h2>
+
+  <p>The differences cluster around five dimensions:</p>
+
+  <ol>
+    <li><strong>Memory.</strong> Chatbots have conversation history within a session. Agents have structured memory that persists across sessions and informs future behavior.</li>
+    <li><strong>Tools.</strong> Chatbots generate text. Agents use tools: file systems, APIs, command lines, databases. The ability to act on the world, not just describe actions, is the critical dividing line.</li>
+    <li><strong>Scheduling.</strong> Chatbots require a human at the keyboard to initiate every interaction. Agents can be triggered by schedules, events, or other agents.</li>
+    <li><strong>Autonomy.</strong> Chatbots execute one instruction at a time. Agents decompose goals into plans and execute multi-step workflows with minimal supervision.</li>
+    <li><strong>Persistence.</strong> Chatbots exist for the duration of a conversation. Agents exist for the duration of a task, which might span hours, days, or indefinitely for monitoring agents.</li>
+  </ol>
+
+  <h2>When Chatbots Are Fine</h2>
+
+  <p>Chatbots are the right tool for many tasks. If you need a quick answer, want to brainstorm ideas, need help drafting an email, or want to understand a concept, a chatbot is fast, simple, and sufficient. The overhead of configuring an agent is not justified when the task takes one prompt and one response.</p>
+
+  <p>Chatbots also work well for tasks that require tight human-in-the-loop control. If you want to review and approve every step, a chatbot's reactive nature is a feature, not a limitation. You stay in the driver's seat. The chatbot handles the cognitive heavy lifting for each individual step while you maintain full control over direction and sequencing.</p>
+
+  <h2>When You Need Agents</h2>
+
+  <p>You need an agent when the task has more than three sequential steps, requires interaction with external systems, benefits from running unattended, or needs to maintain context over an extended period. Specific indicators:</p>
+
+  <ul>
+    <li>You find yourself copy-pasting chatbot output into files, terminals, or other tools. That manual glue work is what agents automate.</li>
+    <li>You are running the same multi-step workflow repeatedly. An agent can be configured once and triggered as needed.</li>
+    <li>The task takes longer than 15 minutes of active chatbot interaction. Long tasks benefit from agent autonomy and tool use.</li>
+    <li>You want work to happen while you are away. Chatbots stop when you stop. Agents keep going.</li>
+  </ul>
+
+  <h2>The Spectrum Between the Two</h2>
+
+  <p>In practice, the boundary is not binary. There is a spectrum. A chatbot with web search is slightly more agent-like. A chatbot with code execution capabilities is further along the spectrum. A fully autonomous agent with persistent memory, scheduled triggers, and multi-tool access is at the other end.</p>
+
+  <p>Most people start at the chatbot end and gradually move toward agents as their needs become more complex. This is the right approach. Start with a chatbot for a task. When you notice yourself doing repetitive manual work around the chatbot's output, that is the signal to explore an agent-based approach for that specific workflow.</p>
+
+  <h2>How to Upgrade from Chatbot to Agent Usage</h2>
+
+  <p>The transition is practical, not theoretical. Start by identifying one workflow where you repeatedly use a chatbot in multiple steps with manual work in between. Then:</p>
+
+  <ol>
+    <li><strong>Document the workflow.</strong> Write down every step, including the manual parts: the file you open, the command you run, the place you paste the output.</li>
+    <li><strong>Identify the tools needed.</strong> What external systems does the workflow touch? File system, APIs, databases, command line?</li>
+    <li><strong>Write the agent prompt.</strong> Convert your multi-step chatbot interaction into a single goal-oriented prompt that describes the desired end state.</li>
+    <li><strong>Add tool access.</strong> Configure the agent with access to the specific tools your workflow requires. No more, no less.</li>
+    <li><strong>Test with supervision.</strong> Run the agent on the workflow while watching. Verify each step produces the expected result. Refine the prompt based on where the agent diverges from your manual process.</li>
+  </ol>
+
+  <p>The goal is not to replace every chatbot interaction with an agent. It is to identify the workflows where the upgrade from reactive to proactive delivers meaningful time savings. One well-configured agent handling a daily workflow saves more time than ten theoretical agent architectures that never get built.</p>
+
+  <div class="cta-box">
+    <p>Find the right agent setup for your workflow.</p>
+    <a href="../products/buying-guide.html" class="cta-btn">Read the Buying Guide &rarr;</a>
+  </div>
+</article>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <p class="footer-brand">AgentOrchard</p>
+        <nav>
+          <a href="../browse.html">Browse</a>
+          <a href="../consulting.html">Consulting</a>
+          <a href="../blog.html">Blog</a>
+          <a href="../login.html">Login / Sign Up</a>
+        </nav>
+      </div>
+      <div class="footer-col">
+        <p class="footer-brand">Connect</p>
+        <nav>
+          <a href="https://sedim3nt.substack.com" target="_blank">Substack</a>
+          <a href="https://x.com/sedim3nt" target="_blank">X / Twitter</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Nrvana LLC</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

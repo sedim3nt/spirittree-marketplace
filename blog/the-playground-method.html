@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Playground Method — AgentOrchard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@600&family=Cormorant+Unicase:wght@600&family=Cormorant+Upright:wght@600&display=swap" rel="stylesheet"><style>h1{font-family:'Cormorant Unicase',Georgia,serif;font-weight:600}h2{font-family:'Cormorant Infant',Georgia,serif;font-weight:600;font-size:1.5rem;margin:32px 0 16px;color:#1a1a2e}h3{font-family:'Cormorant Upright',Georgia,serif;font-weight:600;font-size:1.25rem;margin:24px 0 12px;color:#1a1a2e}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#f6f7f8;color:#1a1a2e}
+a{text-decoration:none;color:inherit}
+:root{--sand-50:#f6f7f8;--white:#ffffff;--ink-900:#1a1a2e;--ink-700:#2d2d44;--ink-600:#4a4a5a;--ink-500:#6b6b7a;--tide-600:#006ca5;--tide-700:#005a8a;--border-subtle:rgba(26,26,46,0.05);--shadow-card:0 1px 3px rgba(26,26,46,0.08);--radius:4px;--max-w:1152px}
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:#ffffff}
+.nav-wrap{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
+@media(min-width:640px){.nav-wrap{padding:16px 24px}}
+.nav-brand{font-family:'Cormorant Infant',Georgia,serif;font-size:2.5rem;font-weight:600;color:var(--ink-900)}
+.nav-links{display:none;align-items:center;gap:24px;font-size:0.875rem;font-weight:500;color:var(--ink-700)}
+@media(min-width:768px){.nav-links{display:flex}}
+.nav-links a:hover{color:var(--ink-900)}
+.nav-login{border:1px solid rgba(26,26,46,0.4);padding:6px 12px;border-radius:var(--radius);font-size:0.875rem;font-weight:600;color:var(--ink-900)}
+.nav-login:hover{border-color:var(--ink-900)}
+.hamburger{display:flex;background:none;border:none;color:var(--ink-900);font-size:1.5rem;cursor:pointer}
+@media(min-width:768px){.hamburger{display:none}}
+.mobile-menu{display:none;flex-direction:column;gap:16px;padding:16px 24px;background:var(--sand-50);border-bottom:1px solid var(--border-subtle)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:1rem;color:var(--ink-700);font-weight:500}
+.post{max-width:720px;margin:0 auto;padding:48px 24px 80px}
+.post-meta{font-size:0.875rem;color:var(--ink-500);margin-bottom:16px}
+.post h1{font-size:clamp(1.75rem,4vw,2.75rem);line-height:1.2;margin-bottom:32px;color:var(--ink-900)}
+.post p{font-size:1.125rem;line-height:1.7;color:var(--ink-600);margin-bottom:20px}
+.post ul,.post ol{margin:0 0 20px 24px;color:var(--ink-600);font-size:1.125rem;line-height:1.7}
+.post li{margin-bottom:8px}
+.post strong{color:var(--ink-900)}
+.post code{background:#1a1a2e;color:#e0e0e0;padding:2px 6px;border-radius:3px;font-size:0.95rem}
+.post pre{background:#1a1a2e;color:#e0e0e0;padding:20px;border-radius:8px;overflow-x:auto;margin-bottom:20px;font-size:0.9rem;line-height:1.6}
+.post pre code{background:none;padding:0}
+.post blockquote{border-left:3px solid var(--tide-600);padding:12px 20px;margin:0 0 20px;background:rgba(0,108,165,0.04);color:var(--ink-700);font-size:1.05rem;line-height:1.7}
+.back-link{display:inline-block;color:var(--tide-600);font-weight:600;font-size:0.875rem;margin-bottom:32px}
+.back-link:hover{color:var(--tide-700)}
+.cta-box{margin-top:48px;padding:32px;background:var(--white);border:1px solid var(--border-subtle);border-radius:var(--radius);box-shadow:var(--shadow-card);text-align:center}
+.cta-box p{font-size:1rem;color:var(--ink-600);margin-bottom:16px}
+.cta-btn{display:inline-block;background:var(--tide-600);color:var(--white);font-weight:600;padding:12px 24px;border-radius:var(--radius);font-size:0.875rem;transition:background 0.2s}
+.cta-btn:hover{background:var(--tide-700)}
+footer{border-top:1px solid var(--border-subtle);background:var(--white)}
+.footer-inner{max-width:var(--max-w);margin:0 auto;padding:40px 24px}
+.footer-grid{display:grid;gap:40px;grid-template-columns:1fr 1fr}
+.footer-col p.footer-brand{font-size:0.875rem;font-weight:700;color:var(--ink-900);margin-bottom:12px}
+.footer-col nav{display:flex;flex-direction:column;gap:8px}
+.footer-col nav a{font-size:0.875rem;color:var(--ink-600);transition:color 0.2s}
+.footer-col nav a:hover{color:var(--ink-900)}
+.footer-bottom{margin-top:32px;border-top:1px solid var(--border-subtle);padding-top:24px}
+.footer-bottom p{font-size:0.8125rem;color:var(--ink-500)}
+@media(max-width:600px){.footer-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav-wrap">
+    <a class="nav-brand" href="../index.html">Agent Orchard</a>
+    <nav class="nav-links">
+      <a href="../browse.html">Browse</a>
+      <a href="../consulting.html">Consulting</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../login.html" class="nav-login">Login / Sign Up</a>
+    </nav>
+    <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+  </div>
+</header>
+<div class="mobile-menu">
+  <a href="../browse.html">Browse</a>
+  <a href="../consulting.html">Consulting</a>
+  <a href="../blog.html">Blog</a>
+  <a href="../login.html">Login / Sign Up</a>
+</div>
+<article class="post">
+  <a href="../blog.html" class="back-link">&larr; Back to Blog</a>
+  <div class="post-meta">March 28, 2026 &middot; 7 min read</div>
+  <h1>The Playground Method</h1>
+
+  <p>The instinct when starting with AI agents is to plan. Draw architecture diagrams. Map out every workflow. Choose the perfect tools, the perfect model, the perfect framework. Spend weeks designing the system before writing a single prompt.</p>
+
+  <p>This instinct is wrong. Not because planning is bad, but because you don't have enough information to plan well. Agents are unpredictable. They fail in ways you can't anticipate. They succeed at things you assumed they couldn't do. The gap between what you imagine and what actually happens is too large for upfront planning to bridge.</p>
+
+  <p>The playground method is the alternative: start tiny, observe, adapt, expand. It's the fastest path from zero to a working agent in production.</p>
+
+  <h2>Why Over-Planning Fails</h2>
+
+  <p>Traditional software development rewards planning because the building blocks are predictable. A database query either works or it doesn't. An API returns a defined schema. Functions behave the same way every time you call them.</p>
+
+  <p>Agents break this assumption. The same prompt with the same input can produce different outputs. Tool use is probabilistic — the agent might call the right tool in the right order, or it might hallucinate a tool that doesn't exist. Context window limits mean that a workflow that works with 10 items might fail with 100. Edge cases aren't edge cases; they're the norm.</p>
+
+  <p>When you spend weeks planning a multi-agent architecture without running a single experiment, you're designing around assumptions that are almost certainly wrong. You'll build elaborate error handling for problems that never occur and miss the failure modes that actually matter.</p>
+
+  <h2>Step 1: Pick One Task</h2>
+
+  <p>Choose a single, concrete task from your daily work. Not the most important task. Not the most complex. Pick something that:</p>
+
+  <ul>
+    <li>You do at least weekly</li>
+    <li>Takes 15-60 minutes each time</li>
+    <li>Has clear inputs and outputs</li>
+    <li>Is low-stakes if the agent gets it wrong</li>
+  </ul>
+
+  <p>Good examples: summarizing meeting notes, drafting standard email responses, reformatting data between systems, generating social media posts from longer content, reviewing pull requests for common issues.</p>
+
+  <p>Bad examples for a first experiment: anything involving money, anything public-facing, anything that requires complex multi-step reasoning, anything where a mistake would be embarrassing or expensive.</p>
+
+  <h2>Step 2: Build the Simplest Possible Agent</h2>
+
+  <p>Resist every urge to over-engineer. Your first version should be embarrassingly simple. A single prompt, one or two tools, no error handling beyond what the framework provides by default.</p>
+
+  <pre><code># Your first agent. Really. This simple.
+task: "Summarize meeting notes"
+input: "Raw transcript from today's standup"
+tools: [read_file]
+output: "Structured summary with action items"
+prompt: |
+  Read the meeting transcript and produce:
+  1. Key decisions made
+  2. Action items with owners
+  3. Open questions
+  Keep it under 200 words.</code></pre>
+
+  <p>That's it. No retry logic. No fallback models. No elaborate system prompts. The goal of version one is to see what happens when the agent tries to do this task, not to build a production system.</p>
+
+  <h2>Step 3: Run It and Watch</h2>
+
+  <p>This is the most important step, and the one most people skip. Don't just run the agent and check the output. Watch the process. If your tool provides logs or traces, read them. Pay attention to:</p>
+
+  <ul>
+    <li><strong>What the agent does well</strong> — note these, because they tell you where to expand scope</li>
+    <li><strong>Where it struggles</strong> — these are your real requirements, found through observation rather than speculation</li>
+    <li><strong>What it does that you didn't expect</strong> — both good surprises and bad ones</li>
+    <li><strong>How long it takes</strong> — if it's slower than doing it yourself, that's important information</li>
+  </ul>
+
+  <p>Run the agent on five to ten real examples from your actual work. Not test data — real inputs with real messiness. This is where your planning assumptions would have been wrong, and it's where you learn what actually matters.</p>
+
+  <h2>Step 4: Fix What Breaks</h2>
+
+  <p>After watching the agent work on real data, you'll have a list of concrete problems. Not hypothetical problems you imagined during planning, but real failures you observed. Fix them one at a time.</p>
+
+  <p>Common fixes at this stage:</p>
+
+  <ul>
+    <li>Adding more specific instructions to the prompt for cases the agent mishandled</li>
+    <li>Giving the agent an additional tool it needed but didn't have</li>
+    <li>Adding a validation step for outputs that were formatted incorrectly</li>
+    <li>Breaking a complex task into two simpler sequential tasks</li>
+  </ul>
+
+  <p>Each fix should be minimal. Change one thing, run the agent again, observe. If you change five things at once, you won't know which fix helped and which one introduced a new problem.</p>
+
+  <h2>Step 5: Expand Scope</h2>
+
+  <p>Once your agent reliably handles the original task, you have two options: make it handle more variations of the same task, or give it an adjacent task. Choose based on where you saw the most potential during Step 3.</p>
+
+  <blockquote>The playground method works because it converts unknowns into knowns as fast as possible. Every run gives you data. Every failure teaches you something that no amount of planning could have revealed.</blockquote>
+
+  <p>Expansion follows the same cycle: add one thing, run it on real data, watch, fix, repeat. The agent grows incrementally, and each increment is grounded in observed behavior rather than anticipated behavior.</p>
+
+  <h2>From Playground to Production</h2>
+
+  <p>A playground experiment becomes a production system not through a rewrite, but through gradual hardening. After enough cycles of observe-fix-expand, you'll naturally have added error handling for the failures you actually encountered, validation for the outputs that actually mattered, and monitoring for the metrics that actually indicated problems.</p>
+
+  <p>Teams that use the playground method typically go from zero to a useful production agent in one to two weeks. Teams that spend weeks planning first often take months — and then discover that their carefully designed system doesn't match reality.</p>
+
+  <p>The fastest path to a working agent isn't a plan. It's a playground. Pick a task, build something simple, run it, watch it, fix it, and expand. The system you end up with will be better than anything you could have designed from scratch, because it was shaped by reality instead of imagination.</p>
+
+  <div class="cta-box">
+    <p>Start your first agent experiment today.</p>
+    <a href="../products/quick-start.html" class="cta-btn">Get the Quick Start Kit &rarr;</a>
+  </div>
+</article>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <p class="footer-brand">AgentOrchard</p>
+        <nav>
+          <a href="../browse.html">Browse</a>
+          <a href="../consulting.html">Consulting</a>
+          <a href="../blog.html">Blog</a>
+          <a href="../login.html">Login / Sign Up</a>
+        </nav>
+      </div>
+      <div class="footer-col">
+        <p class="footer-brand">Connect</p>
+        <nav>
+          <a href="https://sedim3nt.substack.com" target="_blank">Substack</a>
+          <a href="https://x.com/sedim3nt" target="_blank">X / Twitter</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Nrvana LLC</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

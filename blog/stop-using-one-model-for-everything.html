@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stop Using One Model for Everything — AgentOrchard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@600&family=Cormorant+Unicase:wght@600&family=Cormorant+Upright:wght@600&display=swap" rel="stylesheet"><style>h1{font-family:'Cormorant Unicase',Georgia,serif;font-weight:600}h2{font-family:'Cormorant Infant',Georgia,serif;font-weight:600;font-size:1.5rem;margin:32px 0 16px;color:#1a1a2e}h3{font-family:'Cormorant Upright',Georgia,serif;font-weight:600;font-size:1.25rem;margin:24px 0 12px;color:#1a1a2e}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#f6f7f8;color:#1a1a2e}
+a{text-decoration:none;color:inherit}
+:root{--sand-50:#f6f7f8;--white:#ffffff;--ink-900:#1a1a2e;--ink-700:#2d2d44;--ink-600:#4a4a5a;--ink-500:#6b6b7a;--tide-600:#006ca5;--tide-700:#005a8a;--border-subtle:rgba(26,26,46,0.05);--shadow-card:0 1px 3px rgba(26,26,46,0.08);--radius:4px;--max-w:1152px}
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:#ffffff}
+.nav-wrap{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
+@media(min-width:640px){.nav-wrap{padding:16px 24px}}
+.nav-brand{font-family:'Cormorant Infant',Georgia,serif;font-size:2.5rem;font-weight:600;color:var(--ink-900)}
+.nav-links{display:none;align-items:center;gap:24px;font-size:0.875rem;font-weight:500;color:var(--ink-700)}
+@media(min-width:768px){.nav-links{display:flex}}
+.nav-links a:hover{color:var(--ink-900)}
+.nav-login{border:1px solid rgba(26,26,46,0.4);padding:6px 12px;border-radius:var(--radius);font-size:0.875rem;font-weight:600;color:var(--ink-900)}
+.nav-login:hover{border-color:var(--ink-900)}
+.hamburger{display:flex;background:none;border:none;color:var(--ink-900);font-size:1.5rem;cursor:pointer}
+@media(min-width:768px){.hamburger{display:none}}
+.mobile-menu{display:none;flex-direction:column;gap:16px;padding:16px 24px;background:var(--sand-50);border-bottom:1px solid var(--border-subtle)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:1rem;color:var(--ink-700);font-weight:500}
+.post{max-width:720px;margin:0 auto;padding:48px 24px 80px}
+.post-meta{font-size:0.875rem;color:var(--ink-500);margin-bottom:16px}
+.post h1{font-size:clamp(1.75rem,4vw,2.75rem);line-height:1.2;margin-bottom:32px;color:var(--ink-900)}
+.post p{font-size:1.125rem;line-height:1.7;color:var(--ink-600);margin-bottom:20px}
+.post ul,.post ol{margin:0 0 20px 24px;color:var(--ink-600);font-size:1.125rem;line-height:1.7}
+.post li{margin-bottom:8px}
+.post strong{color:var(--ink-900)}
+.post code{background:#1a1a2e;color:#e0e0e0;padding:2px 6px;border-radius:3px;font-size:0.95rem}
+.post pre{background:#1a1a2e;color:#e0e0e0;padding:20px;border-radius:8px;overflow-x:auto;margin-bottom:20px;font-size:0.9rem;line-height:1.6}
+.post pre code{background:none;padding:0}
+.post blockquote{border-left:3px solid var(--tide-600);padding:12px 20px;margin:0 0 20px;background:rgba(0,108,165,0.04);color:var(--ink-700);font-size:1.05rem;line-height:1.7}
+.back-link{display:inline-block;color:var(--tide-600);font-weight:600;font-size:0.875rem;margin-bottom:32px}
+.back-link:hover{color:var(--tide-700)}
+.cta-box{margin-top:48px;padding:32px;background:var(--white);border:1px solid var(--border-subtle);border-radius:var(--radius);box-shadow:var(--shadow-card);text-align:center}
+.cta-box p{font-size:1rem;color:var(--ink-600);margin-bottom:16px}
+.cta-btn{display:inline-block;background:var(--tide-600);color:var(--white);font-weight:600;padding:12px 24px;border-radius:var(--radius);font-size:0.875rem;transition:background 0.2s}
+.cta-btn:hover{background:var(--tide-700)}
+footer{border-top:1px solid var(--border-subtle);background:var(--white)}
+.footer-inner{max-width:var(--max-w);margin:0 auto;padding:40px 24px}
+.footer-grid{display:grid;gap:40px;grid-template-columns:1fr 1fr}
+.footer-col p.footer-brand{font-size:0.875rem;font-weight:700;color:var(--ink-900);margin-bottom:12px}
+.footer-col nav{display:flex;flex-direction:column;gap:8px}
+.footer-col nav a{font-size:0.875rem;color:var(--ink-600);transition:color 0.2s}
+.footer-col nav a:hover{color:var(--ink-900)}
+.footer-bottom{margin-top:32px;border-top:1px solid var(--border-subtle);padding-top:24px}
+.footer-bottom p{font-size:0.8125rem;color:var(--ink-500)}
+@media(max-width:600px){.footer-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav-wrap">
+    <a class="nav-brand" href="../index.html">Agent Orchard</a>
+    <nav class="nav-links">
+      <a href="../browse.html">Browse</a>
+      <a href="../consulting.html">Consulting</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../login.html" class="nav-login">Login / Sign Up</a>
+    </nav>
+    <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+  </div>
+</header>
+<div class="mobile-menu">
+  <a href="../browse.html">Browse</a>
+  <a href="../consulting.html">Consulting</a>
+  <a href="../blog.html">Blog</a>
+  <a href="../login.html">Login / Sign Up</a>
+</div>
+<article class="post">
+  <a href="../blog.html" class="back-link">&larr; Back to Blog</a>
+  <div class="post-meta">March 7, 2026 &middot; 8 min read</div>
+  <h1>Stop Using One Model for Everything</h1>
+
+  <p>There is a default behavior in the AI space that costs people significant money and delivers worse results: using the same model for every task. Someone discovers Claude Opus or GPT-4o, it works well, and they route everything through it. Research tasks, formatting jobs, code review, data extraction, simple Q&A. All of it goes to the most expensive, most capable model available.</p>
+
+  <p>This is like hiring a senior engineer to update README files. It works, but it is a waste of capacity and budget. The better approach is model routing: matching each task to the cheapest model that can handle it reliably.</p>
+
+  <h2>Why People Default to the Biggest Model</h2>
+
+  <p>The reasons are understandable:</p>
+
+  <ul>
+    <li><strong>It is simpler.</strong> One API key, one model name, one set of quirks to learn. Adding routing logic means more code and more decisions.</li>
+    <li><strong>Quality anxiety.</strong> People worry that a smaller model will produce bad output, so they avoid the risk by always using the best.</li>
+    <li><strong>Lack of benchmarks.</strong> Without testing models against your specific tasks, you cannot know where the quality threshold actually is. So you default to overkill.</li>
+  </ul>
+
+  <p>These are reasonable instincts, but they do not hold up under examination. Most agent workloads are not uniformly hard. They are a mix of trivial tasks and complex ones, and the ratio is heavily skewed toward trivial.</p>
+
+  <h2>The 75/20/5 Rule</h2>
+
+  <p>After analyzing hundreds of agent task logs, a consistent pattern emerges. For a typical production agent workload:</p>
+
+  <ul>
+    <li><strong>75% of tasks</strong> can be handled by a fast, cheap model (Haiku-class)</li>
+    <li><strong>20% of tasks</strong> need a mid-tier model (Sonnet-class)</li>
+    <li><strong>5% of tasks</strong> require a frontier model (Opus-class)</li>
+  </ul>
+
+  <p>If you are sending 100% of tasks to an Opus-class model, you are overpaying by roughly 10-15x on three-quarters of your workload.</p>
+
+  <h2>What Each Tier Is Good At</h2>
+
+  <h3>Haiku-Class (Fast, Cheap)</h3>
+  <p>These models are optimized for speed and cost. They handle structured, well-defined tasks with high reliability:</p>
+  <ul>
+    <li>Extracting specific fields from text (names, dates, amounts)</li>
+    <li>Classifying inputs into predefined categories</li>
+    <li>Reformatting data (JSON to CSV, markdown to HTML)</li>
+    <li>Simple text generation from templates</li>
+    <li>Yes/no decisions with clear criteria</li>
+    <li>Summarizing short documents (under 2,000 words)</li>
+  </ul>
+  <p>Cost: roughly $0.25 per million input tokens, $1.25 per million output tokens.</p>
+
+  <h3>Sonnet-Class (Balanced)</h3>
+  <p>The middle tier handles tasks that require more reasoning but are not pushing the frontier of model capability:</p>
+  <ul>
+    <li>Code generation for well-defined functions</li>
+    <li>Multi-step analysis with 2-3 reasoning steps</li>
+    <li>Writing that needs to match a specific style or tone</li>
+    <li>Comparing multiple options and making recommendations</li>
+    <li>Debugging straightforward issues</li>
+    <li>Summarizing long or complex documents</li>
+  </ul>
+  <p>Cost: roughly $3 per million input tokens, $15 per million output tokens.</p>
+
+  <h3>Opus-Class (Maximum Capability)</h3>
+  <p>Reserve the frontier model for tasks where quality genuinely matters and where smaller models demonstrably fall short:</p>
+  <ul>
+    <li>Complex architectural decisions involving multiple tradeoffs</li>
+    <li>Novel code design where there is no obvious pattern to follow</li>
+    <li>Multi-file refactoring that requires understanding system-wide implications</li>
+    <li>Nuanced writing that requires deep understanding of context</li>
+    <li>Tasks where a wrong answer has significant consequences</li>
+  </ul>
+  <p>Cost: roughly $15 per million input tokens, $75 per million output tokens.</p>
+
+  <h2>Concrete Cost Savings</h2>
+
+  <p>Let us work through a real example. Suppose your agent processes 1,000 tasks per day, averaging 2,000 input tokens and 500 output tokens per task.</p>
+
+  <pre><code>All-Opus approach:
+  Input:  1000 * 2000 * $15/1M  = $30.00/day
+  Output: 1000 * 500  * $75/1M  = $37.50/day
+  Total: $67.50/day = $2,025/month
+
+Routed approach (75/20/5 split):
+  Haiku:  750 tasks  → $0.38 + $0.47  = $0.85/day
+  Sonnet: 200 tasks  → $1.20 + $1.50  = $2.70/day
+  Opus:    50 tasks  → $1.50 + $1.88  = $3.38/day
+  Total: $6.93/day = $207.90/month</code></pre>
+
+  <p>That is a <strong>90% cost reduction</strong> with the same output quality, because 95% of your tasks never needed Opus in the first place.</p>
+
+  <h2>How to Implement Routing Logic</h2>
+
+  <p>Routing does not need to be complicated. Start with a simple rule-based system:</p>
+
+  <pre><code>def select_model(task):
+    # Tier 1: Simple, structured tasks
+    if task.type in ["extract", "classify", "format", "template"]:
+        return "claude-haiku"
+
+    # Tier 2: Moderate reasoning tasks
+    if task.type in ["code_gen", "analyze", "compare", "debug"]:
+        return "claude-sonnet"
+
+    # Tier 3: Complex reasoning tasks
+    if task.type in ["architect", "refactor", "novel_design"]:
+        return "claude-opus"
+
+    # Default to middle tier for unknown tasks
+    return "claude-sonnet"</code></pre>
+
+  <p>Start coarse and refine over time. Log the model used, the task type, and the output quality for each request. After a week of data, you will see clearly where you can downgrade models without affecting quality, and where you need to upgrade.</p>
+
+  <h3>The Fallback Pattern</h3>
+
+  <p>A more robust approach is to start with the cheapest model and escalate on failure:</p>
+
+  <ol>
+    <li>Send the task to Haiku</li>
+    <li>Check the output against a quality heuristic (length, format, confidence score)</li>
+    <li>If it passes, use it. If not, retry with Sonnet</li>
+    <li>If Sonnet fails the check, escalate to Opus</li>
+  </ol>
+
+  <p>This guarantees you always use the cheapest model that produces acceptable output. The overhead of occasional retries is far less than the cost of always using the most expensive model.</p>
+
+  <blockquote>The question is not "which model is best?" It is "what is the cheapest model that is good enough for this specific task?" That reframing changes everything about how you build agent systems.</blockquote>
+
+  <div class="cta-box">
+    <p>Master model selection with real benchmarks and routing rules.</p>
+    <a href="../products/model-guide.html" class="cta-btn">Get the Model Selection Guide &rarr;</a>
+  </div>
+</article>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <p class="footer-brand">AgentOrchard</p>
+        <nav>
+          <a href="../browse.html">Browse</a>
+          <a href="../consulting.html">Consulting</a>
+          <a href="../blog.html">Blog</a>
+          <a href="../login.html">Login / Sign Up</a>
+        </nav>
+      </div>
+      <div class="footer-col">
+        <p class="footer-brand">Connect</p>
+        <nav>
+          <a href="https://sedim3nt.substack.com" target="_blank">Substack</a>
+          <a href="https://x.com/sedim3nt" target="_blank">X / Twitter</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Nrvana LLC</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

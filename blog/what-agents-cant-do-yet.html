@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Agents Can't Do Yet — AgentOrchard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@600&family=Cormorant+Unicase:wght@600&family=Cormorant+Upright:wght@600&display=swap" rel="stylesheet"><style>h1{font-family:'Cormorant Unicase',Georgia,serif;font-weight:600}h2{font-family:'Cormorant Infant',Georgia,serif;font-weight:600;font-size:1.5rem;margin:32px 0 16px;color:#1a1a2e}h3{font-family:'Cormorant Upright',Georgia,serif;font-weight:600;font-size:1.25rem;margin:24px 0 12px;color:#1a1a2e}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#f6f7f8;color:#1a1a2e}
+a{text-decoration:none;color:inherit}
+:root{--sand-50:#f6f7f8;--white:#ffffff;--ink-900:#1a1a2e;--ink-700:#2d2d44;--ink-600:#4a4a5a;--ink-500:#6b6b7a;--tide-600:#006ca5;--tide-700:#005a8a;--border-subtle:rgba(26,26,46,0.05);--shadow-card:0 1px 3px rgba(26,26,46,0.08);--radius:4px;--max-w:1152px}
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:#ffffff}
+.nav-wrap{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
+@media(min-width:640px){.nav-wrap{padding:16px 24px}}
+.nav-brand{font-family:'Cormorant Infant',Georgia,serif;font-size:2.5rem;font-weight:600;color:var(--ink-900)}
+.nav-links{display:none;align-items:center;gap:24px;font-size:0.875rem;font-weight:500;color:var(--ink-700)}
+@media(min-width:768px){.nav-links{display:flex}}
+.nav-links a:hover{color:var(--ink-900)}
+.nav-login{border:1px solid rgba(26,26,46,0.4);padding:6px 12px;border-radius:var(--radius);font-size:0.875rem;font-weight:600;color:var(--ink-900)}
+.nav-login:hover{border-color:var(--ink-900)}
+.hamburger{display:flex;background:none;border:none;color:var(--ink-900);font-size:1.5rem;cursor:pointer}
+@media(min-width:768px){.hamburger{display:none}}
+.mobile-menu{display:none;flex-direction:column;gap:16px;padding:16px 24px;background:var(--sand-50);border-bottom:1px solid var(--border-subtle)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:1rem;color:var(--ink-700);font-weight:500}
+.post{max-width:720px;margin:0 auto;padding:48px 24px 80px}
+.post-meta{font-size:0.875rem;color:var(--ink-500);margin-bottom:16px}
+.post h1{font-size:clamp(1.75rem,4vw,2.75rem);line-height:1.2;margin-bottom:32px;color:var(--ink-900)}
+.post p{font-size:1.125rem;line-height:1.7;color:var(--ink-600);margin-bottom:20px}
+.post ul,.post ol{margin:0 0 20px 24px;color:var(--ink-600);font-size:1.125rem;line-height:1.7}
+.post li{margin-bottom:8px}
+.post strong{color:var(--ink-900)}
+.post code{background:#1a1a2e;color:#e0e0e0;padding:2px 6px;border-radius:3px;font-size:0.95rem}
+.post pre{background:#1a1a2e;color:#e0e0e0;padding:20px;border-radius:8px;overflow-x:auto;margin-bottom:20px;font-size:0.9rem;line-height:1.6}
+.post pre code{background:none;padding:0}
+.post blockquote{border-left:3px solid var(--tide-600);padding:12px 20px;margin:0 0 20px;background:rgba(0,108,165,0.04);color:var(--ink-700);font-size:1.05rem;line-height:1.7}
+.back-link{display:inline-block;color:var(--tide-600);font-weight:600;font-size:0.875rem;margin-bottom:32px}
+.back-link:hover{color:var(--tide-700)}
+.cta-box{margin-top:48px;padding:32px;background:var(--white);border:1px solid var(--border-subtle);border-radius:var(--radius);box-shadow:var(--shadow-card);text-align:center}
+.cta-box p{font-size:1rem;color:var(--ink-600);margin-bottom:16px}
+.cta-btn{display:inline-block;background:var(--tide-600);color:var(--white);font-weight:600;padding:12px 24px;border-radius:var(--radius);font-size:0.875rem;transition:background 0.2s}
+.cta-btn:hover{background:var(--tide-700)}
+footer{border-top:1px solid var(--border-subtle);background:var(--white)}
+.footer-inner{max-width:var(--max-w);margin:0 auto;padding:40px 24px}
+.footer-grid{display:grid;gap:40px;grid-template-columns:1fr 1fr}
+.footer-col p.footer-brand{font-size:0.875rem;font-weight:700;color:var(--ink-900);margin-bottom:12px}
+.footer-col nav{display:flex;flex-direction:column;gap:8px}
+.footer-col nav a{font-size:0.875rem;color:var(--ink-600);transition:color 0.2s}
+.footer-col nav a:hover{color:var(--ink-900)}
+.footer-bottom{margin-top:32px;border-top:1px solid var(--border-subtle);padding-top:24px}
+.footer-bottom p{font-size:0.8125rem;color:var(--ink-500)}
+@media(max-width:600px){.footer-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav-wrap">
+    <a class="nav-brand" href="../index.html">Agent Orchard</a>
+    <nav class="nav-links">
+      <a href="../browse.html">Browse</a>
+      <a href="../consulting.html">Consulting</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../login.html" class="nav-login">Login / Sign Up</a>
+    </nav>
+    <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+  </div>
+</header>
+<div class="mobile-menu">
+  <a href="../browse.html">Browse</a>
+  <a href="../consulting.html">Consulting</a>
+  <a href="../blog.html">Blog</a>
+  <a href="../login.html">Login / Sign Up</a>
+</div>
+<article class="post">
+  <a href="../blog.html" class="back-link">&larr; Back to Blog</a>
+  <div class="post-meta">March 30, 2026 &middot; 10 min read</div>
+  <h1>What Agents Can't Do Yet</h1>
+
+  <p>The demos are impressive. An agent that builds a full application in minutes. Another that researches a topic and writes a comprehensive report. A third that manages your calendar, drafts emails, and coordinates meetings. Watching these demonstrations, you'd be forgiven for thinking agents can do almost anything.</p>
+
+  <p>Then you try to use one in production, and reality intervenes. The gap between a polished demo and a reliable daily workflow is significant. Understanding where agents actually struggle — not where they might struggle someday, but where they consistently fail right now — is essential for building systems that work.</p>
+
+  <h2>Browser Automation</h2>
+
+  <p>Agents that control web browsers are among the most impressive demos and the most fragile production tools. An agent navigating a website looks like magic the first time. By the tenth time, after it's clicked the wrong button, failed to find a form field that moved, or gotten stuck on a CAPTCHA, the magic wears off.</p>
+
+  <p>The core problem is that websites are designed for humans, not machines. Layouts change without notice. Elements load asynchronously. Pop-ups, cookie banners, and A/B tests alter the page structure between visits. An agent that worked perfectly yesterday can break today because a site moved a button 20 pixels to the left.</p>
+
+  <p><strong>Workaround:</strong> Use APIs whenever they exist. If you must automate a browser, target sites with stable structures and build in explicit wait conditions and retry logic. Accept that browser automation will require ongoing maintenance. Budget 20-30% of your initial build time for monthly upkeep.</p>
+
+  <h2>Complex Multi-Step Reasoning</h2>
+
+  <p>Agents can follow instructions. They can execute multi-step plans. But when a workflow requires genuine reasoning across many steps — where the output of step 3 changes what step 7 should be, and the combination of steps 4 and 6 creates a constraint on step 9 — accuracy degrades. The longer the chain of reasoning, the more likely the agent is to lose track of a constraint or make an error that compounds through subsequent steps.</p>
+
+  <p><strong>Workaround:</strong> Break complex workflows into shorter segments with human or programmatic checkpoints. Instead of one agent executing a 15-step process, use three agents each handling 5 steps, with validation between them. Keep individual reasoning chains under 5-7 steps for reliability.</p>
+
+  <h2>Maintaining Context Over Long Sessions</h2>
+
+  <p>Every model has a context window, and every context window has practical limits that are well below its theoretical maximum. An agent working on a task for an extended session gradually loses coherence. It forgets instructions from earlier in the conversation. It contradicts decisions it made 30 minutes ago. It starts repeating itself or drifting from the original objective.</p>
+
+  <p>This isn't just about token limits. Even within the context window, models pay less attention to information in the middle of a long conversation than to information at the beginning or end. Your carefully crafted system prompt can be effectively forgotten during a long session, even though it's technically still in context.</p>
+
+  <p><strong>Workaround:</strong> Design workflows with explicit state management. At the end of each major step, have the agent summarize its progress and decisions into a structured format. Feed that summary back at the start of the next step. Think of it as giving the agent a notebook rather than relying on its memory.</p>
+
+  <pre><code># State management pattern
+after_each_step:
+  agent.summarize(
+    decisions_made: [...],
+    current_state: {...},
+    remaining_tasks: [...],
+    constraints: [...]
+  )
+  # Feed this summary as context for the next step
+  # instead of relying on full conversation history</code></pre>
+
+  <h2>Reliable Tool Use</h2>
+
+  <p>Agents with tool access are powerful, but tool calls are probabilistic. An agent might call the right function with the wrong parameters. It might hallucinate a tool that doesn't exist. It might call tools in the wrong order, or skip a necessary tool call entirely. The more tools you give an agent, the more likely it is to get confused about which one to use.</p>
+
+  <p><strong>Workaround:</strong> Keep tool sets small and focused. An agent with 5 well-defined tools outperforms one with 30. Use clear, descriptive tool names and parameter descriptions. Validate tool call parameters before execution. When a tool call fails, provide clear error messages that help the agent self-correct rather than generic exceptions.</p>
+
+  <h2>Understanding Images and Screenshots</h2>
+
+  <p>Vision capabilities have improved dramatically, but agents still struggle with consistent screenshot interpretation. They can describe what's in an image, but reliably extracting specific data — reading a table from a screenshot, identifying the exact location of a UI element, or comparing two visually similar screens — remains inconsistent. The same screenshot analyzed twice might produce different readings of the same number.</p>
+
+  <p><strong>Workaround:</strong> When possible, get data from the source rather than from screenshots. If you need to extract data from a visual, use OCR tools first and feed the text to the agent. For UI testing, use accessibility APIs rather than visual comparison. When vision is the only option, run the analysis multiple times and compare results.</p>
+
+  <h2>Real-Time Collaboration</h2>
+
+  <p>Agents work asynchronously. They process a request, generate a response, and wait for the next input. They don't participate in real-time back-and-forth the way a human collaborator does. If you need an agent to monitor a Slack channel and respond contextually to a rapidly evolving conversation, the latency and lack of real-time awareness create awkward interactions.</p>
+
+  <p><strong>Workaround:</strong> Use agents for preparation and follow-up rather than real-time participation. Have an agent prepare briefing materials before a meeting rather than participating in it. Have it process action items after a conversation rather than during. For chat monitoring, batch processing with short intervals (every 2-5 minutes) works better than attempting real-time responses.</p>
+
+  <h2>Knowing When They're Wrong</h2>
+
+  <p>This is perhaps the most fundamental limitation. Agents don't have reliable self-awareness about the quality of their own output. They can produce a completely wrong answer with the same confident tone as a correct one. They don't experience uncertainty the way humans do — there's no internal signal that says "I'm not sure about this."</p>
+
+  <p>Confidence scores and hedging language ("I think," "It's possible that") are generated by the same process that generates the content. They correlate roughly with accuracy but are not reliable indicators. An agent saying "I'm 90% confident" is not actually measuring its probability of being correct.</p>
+
+  <p><strong>Workaround:</strong> Build external validation into every workflow that matters. Use a second agent to check the first agent's work. Compare outputs against known-good examples. For factual claims, require citations. For code, require tests. Never use agent confidence as a substitute for verification.</p>
+
+  <h2>The Demo-to-Production Gap</h2>
+
+  <p>Demos showcase best-case scenarios with carefully chosen inputs. Production handles worst-case scenarios with messy, unexpected inputs. This gap is wider with agents than with traditional software because agents fail in non-deterministic ways. A function that works 95% of the time in a demo will fail on the exact 5% of cases your users encounter most.</p>
+
+  <blockquote>The honest assessment: agents are extremely capable within well-defined boundaries and increasingly unreliable as those boundaries expand. The skill isn't knowing what agents can do — it's knowing exactly where to draw the line.</blockquote>
+
+  <h2>What's Likely to Improve Soon</h2>
+
+  <p>Some limitations are engineering problems that are actively being solved:</p>
+
+  <ul>
+    <li><strong>Context windows</strong> — getting larger and more efficient every few months</li>
+    <li><strong>Tool use reliability</strong> — improving with better training and tool descriptions</li>
+    <li><strong>Vision accuracy</strong> — steady gains with each model generation</li>
+    <li><strong>Reasoning chains</strong> — structured reasoning approaches are showing measurable improvement</li>
+  </ul>
+
+  <p>Other limitations are more fundamental:</p>
+
+  <ul>
+    <li><strong>Self-knowledge of accuracy</strong> — remains an open research problem</li>
+    <li><strong>Browser automation fragility</strong> — limited by the inherent instability of web interfaces</li>
+    <li><strong>Real-time interaction</strong> — bounded by inference latency and architectural constraints</li>
+  </ul>
+
+  <p>Build your agent systems around what works today. Design them so that as limitations improve, you can gradually extend automation boundaries. But don't build on the assumption that next quarter's model will solve your current problems. If your workflow only works with a model that doesn't exist yet, it doesn't work.</p>
+
+  <div class="cta-box">
+    <p>Navigate the real capabilities and limitations of AI agents.</p>
+    <a href="../products/buying-guide.html" class="cta-btn">Read the Buying Guide &rarr;</a>
+  </div>
+</article>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <p class="footer-brand">AgentOrchard</p>
+        <nav>
+          <a href="../browse.html">Browse</a>
+          <a href="../consulting.html">Consulting</a>
+          <a href="../blog.html">Blog</a>
+          <a href="../login.html">Login / Sign Up</a>
+        </nav>
+      </div>
+      <div class="footer-col">
+        <p class="footer-brand">Connect</p>
+        <nav>
+          <a href="https://sedim3nt.substack.com" target="_blank">Substack</a>
+          <a href="https://x.com/sedim3nt" target="_blank">X / Twitter</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Nrvana LLC</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

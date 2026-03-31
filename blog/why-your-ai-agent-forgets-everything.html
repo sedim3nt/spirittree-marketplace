@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Your AI Agent Forgets Everything — AgentOrchard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@600&family=Cormorant+Unicase:wght@600&family=Cormorant+Upright:wght@600&display=swap" rel="stylesheet"><style>h1{font-family:'Cormorant Unicase',Georgia,serif;font-weight:600}h2{font-family:'Cormorant Infant',Georgia,serif;font-weight:600;font-size:1.5rem;margin:32px 0 16px;color:#1a1a2e}h3{font-family:'Cormorant Upright',Georgia,serif;font-weight:600;font-size:1.25rem;margin:24px 0 12px;color:#1a1a2e}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#f6f7f8;color:#1a1a2e}
+a{text-decoration:none;color:inherit}
+:root{--sand-50:#f6f7f8;--white:#ffffff;--ink-900:#1a1a2e;--ink-700:#2d2d44;--ink-600:#4a4a5a;--ink-500:#6b6b7a;--tide-600:#006ca5;--tide-700:#005a8a;--border-subtle:rgba(26,26,46,0.05);--shadow-card:0 1px 3px rgba(26,26,46,0.08);--radius:4px;--max-w:1152px}
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:#ffffff}
+.nav-wrap{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
+@media(min-width:640px){.nav-wrap{padding:16px 24px}}
+.nav-brand{font-family:'Cormorant Infant',Georgia,serif;font-size:2.5rem;font-weight:600;color:var(--ink-900)}
+.nav-links{display:none;align-items:center;gap:24px;font-size:0.875rem;font-weight:500;color:var(--ink-700)}
+@media(min-width:768px){.nav-links{display:flex}}
+.nav-links a:hover{color:var(--ink-900)}
+.nav-login{border:1px solid rgba(26,26,46,0.4);padding:6px 12px;border-radius:var(--radius);font-size:0.875rem;font-weight:600;color:var(--ink-900)}
+.nav-login:hover{border-color:var(--ink-900)}
+.hamburger{display:flex;background:none;border:none;color:var(--ink-900);font-size:1.5rem;cursor:pointer}
+@media(min-width:768px){.hamburger{display:none}}
+.mobile-menu{display:none;flex-direction:column;gap:16px;padding:16px 24px;background:var(--sand-50);border-bottom:1px solid var(--border-subtle)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:1rem;color:var(--ink-700);font-weight:500}
+.post{max-width:720px;margin:0 auto;padding:48px 24px 80px}
+.post-meta{font-size:0.875rem;color:var(--ink-500);margin-bottom:16px}
+.post h1{font-size:clamp(1.75rem,4vw,2.75rem);line-height:1.2;margin-bottom:32px;color:var(--ink-900)}
+.post p{font-size:1.125rem;line-height:1.7;color:var(--ink-600);margin-bottom:20px}
+.post ul,.post ol{margin:0 0 20px 24px;color:var(--ink-600);font-size:1.125rem;line-height:1.7}
+.post li{margin-bottom:8px}
+.post strong{color:var(--ink-900)}
+.post code{background:#1a1a2e;color:#e0e0e0;padding:2px 6px;border-radius:3px;font-size:0.95rem}
+.post pre{background:#1a1a2e;color:#e0e0e0;padding:20px;border-radius:8px;overflow-x:auto;margin-bottom:20px;font-size:0.9rem;line-height:1.6}
+.post pre code{background:none;padding:0}
+.post blockquote{border-left:3px solid var(--tide-600);padding:12px 20px;margin:0 0 20px;background:rgba(0,108,165,0.04);color:var(--ink-700);font-size:1.05rem;line-height:1.7}
+.back-link{display:inline-block;color:var(--tide-600);font-weight:600;font-size:0.875rem;margin-bottom:32px}
+.back-link:hover{color:var(--tide-700)}
+.cta-box{margin-top:48px;padding:32px;background:var(--white);border:1px solid var(--border-subtle);border-radius:var(--radius);box-shadow:var(--shadow-card);text-align:center}
+.cta-box p{font-size:1rem;color:var(--ink-600);margin-bottom:16px}
+.cta-btn{display:inline-block;background:var(--tide-600);color:var(--white);font-weight:600;padding:12px 24px;border-radius:var(--radius);font-size:0.875rem;transition:background 0.2s}
+.cta-btn:hover{background:var(--tide-700)}
+footer{border-top:1px solid var(--border-subtle);background:var(--white)}
+.footer-inner{max-width:var(--max-w);margin:0 auto;padding:40px 24px}
+.footer-grid{display:grid;gap:40px;grid-template-columns:1fr 1fr}
+.footer-col p.footer-brand{font-size:0.875rem;font-weight:700;color:var(--ink-900);margin-bottom:12px}
+.footer-col nav{display:flex;flex-direction:column;gap:8px}
+.footer-col nav a{font-size:0.875rem;color:var(--ink-600);transition:color 0.2s}
+.footer-col nav a:hover{color:var(--ink-900)}
+.footer-bottom{margin-top:32px;border-top:1px solid var(--border-subtle);padding-top:24px}
+.footer-bottom p{font-size:0.8125rem;color:var(--ink-500)}
+@media(max-width:600px){.footer-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav-wrap">
+    <a class="nav-brand" href="../index.html">Agent Orchard</a>
+    <nav class="nav-links">
+      <a href="../browse.html">Browse</a>
+      <a href="../consulting.html">Consulting</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../login.html" class="nav-login">Login / Sign Up</a>
+    </nav>
+    <button class="hamburger" onclick="document.querySelector('.mobile-menu').classList.toggle('open')" aria-label="Menu">&#9776;</button>
+  </div>
+</header>
+<div class="mobile-menu">
+  <a href="../browse.html">Browse</a>
+  <a href="../consulting.html">Consulting</a>
+  <a href="../blog.html">Blog</a>
+  <a href="../login.html">Login / Sign Up</a>
+</div>
+<article class="post">
+  <a href="../blog.html" class="back-link">&larr; Back to Blog</a>
+  <div class="post-meta">March 2, 2026 &middot; 9 min read</div>
+  <h1>Why Your AI Agent Forgets Everything</h1>
+
+  <p>You spend an hour getting your AI agent up to speed. It learns your codebase, understands your conventions, knows the state of your project. Then you close the terminal. The next morning, it knows nothing. You start over from zero.</p>
+
+  <p>This is the single biggest frustration people have with AI agents, and it is completely solvable. The problem is not the models. The problem is that most people never build a memory layer.</p>
+
+  <h2>The Problem: Ephemeral Context Windows</h2>
+
+  <p>Every AI model operates within a context window. Whether it is 128K tokens or 200K tokens, that window exists only for the duration of a single session. When the session ends, everything inside that window disappears. There is no automatic persistence, no save state, no carry-over.</p>
+
+  <p>This means that every piece of context you provided, every correction you made, every preference you expressed, is gone. The model does not "remember" your last conversation any more than a calculator remembers your last equation.</p>
+
+  <h2>Why Chat History Is Not Memory</h2>
+
+  <p>Some tools let you scroll back through previous conversations. That is chat history, not memory. There is an important distinction:</p>
+
+  <ul>
+    <li><strong>Chat history</strong> is a log of what was said. It is append-only, unstructured, and grows without bound.</li>
+    <li><strong>Memory</strong> is a curated, structured representation of what matters. It is updated, pruned, and organized for retrieval.</li>
+  </ul>
+
+  <p>Feeding raw chat history back into a context window wastes tokens on irrelevant exchanges and buries important facts in noise. What you need is a system that extracts the signal from each session and stores it in a form the agent can use efficiently.</p>
+
+  <h2>The MEMORY.md Pattern</h2>
+
+  <p>The simplest and most effective memory system starts with a single file: <code>MEMORY.md</code>. This is a persistent markdown file that lives in your project root. Your agent reads it at the start of every session and writes updates to it at the end.</p>
+
+  <p>A well-structured MEMORY.md contains:</p>
+
+  <ul>
+    <li><strong>Project context</strong> &mdash; what this project is, its current state, key decisions made</li>
+    <li><strong>Conventions</strong> &mdash; coding style, naming patterns, file organization rules</li>
+    <li><strong>Current priorities</strong> &mdash; what is being worked on right now, what is blocked</li>
+    <li><strong>Known issues</strong> &mdash; bugs, workarounds, things to avoid</li>
+  </ul>
+
+  <p>Here is a minimal example:</p>
+
+  <pre><code># MEMORY.md
+
+## Project
+E-commerce API built with FastAPI. Postgres DB. Deployed on Railway.
+
+## Conventions
+- All endpoints return JSON with {data, error, meta} envelope
+- Use SQLAlchemy ORM, never raw SQL
+- Tests go in tests/ mirroring src/ structure
+
+## Current Sprint
+- Building order refund endpoint (started March 1)
+- Waiting on Stripe webhook signature fix from @sarah
+
+## Known Issues
+- Rate limiter middleware breaks on websocket routes (skip for now)
+- Don't touch migrations/ without running alembic check first</code></pre>
+
+  <p>The instruction to the agent is straightforward: "Read MEMORY.md before doing anything. Update it when you learn something important or when priorities change." This single file eliminates 80% of the context-loss problem.</p>
+
+  <h2>Daily Logs for Episodic Memory</h2>
+
+  <p>MEMORY.md handles persistent facts, but it cannot capture everything. For that, you need episodic memory: a record of what happened during each session. This is where daily log files come in.</p>
+
+  <p>Create a <code>logs/</code> directory and write one file per day:</p>
+
+  <pre><code>logs/
+  2026-03-01.md
+  2026-03-02.md
+  2026-03-03.md</code></pre>
+
+  <p>Each daily log captures:</p>
+
+  <ul>
+    <li>What tasks were attempted</li>
+    <li>What succeeded and what failed</li>
+    <li>Decisions made and their reasoning</li>
+    <li>Open questions for the next session</li>
+  </ul>
+
+  <p>The agent does not need to read every log file at startup. It reads MEMORY.md for current state, and only dips into recent logs if it needs context about what happened yesterday or last week. This keeps token usage efficient while preserving a full audit trail.</p>
+
+  <h2>The Three-Tier Memory Architecture</h2>
+
+  <p>The pattern that works in production is a three-tier system:</p>
+
+  <h3>Tier 1: Session Memory (Context Window)</h3>
+  <p>This is the working memory. Everything the agent is actively reasoning about. It exists only during the current session and is the most expensive in terms of tokens. Keep it focused on the immediate task.</p>
+
+  <h3>Tier 2: Daily Logs (Episodic Memory)</h3>
+  <p>These are the session summaries written at the end of each work period. They answer "what happened recently?" and are useful for continuity across sessions. Retention: keep 7-14 days of logs accessible, archive older ones.</p>
+
+  <h3>Tier 3: MEMORY.md (Permanent Memory)</h3>
+  <p>This is the curated knowledge base. It is updated as facts change, not appended to. It answers "what do I need to know right now?" and should stay under 2,000 words to remain token-efficient. Prune aggressively.</p>
+
+  <p>The flow between tiers is straightforward:</p>
+
+  <ol>
+    <li>Session starts: agent reads MEMORY.md (Tier 3) and optionally the last daily log (Tier 2)</li>
+    <li>Session runs: agent works within its context window (Tier 1)</li>
+    <li>Session ends: agent writes a daily log entry (Tier 2) and updates MEMORY.md if anything permanent changed (Tier 3)</li>
+  </ol>
+
+  <h2>Implementation Steps</h2>
+
+  <p>Getting this running takes about fifteen minutes:</p>
+
+  <ol>
+    <li><strong>Create MEMORY.md</strong> in your project root. Write the initial project context yourself. Be concise.</li>
+    <li><strong>Create the logs/ directory</strong> and add it to your project structure.</li>
+    <li><strong>Add instructions to your CLAUDE.md</strong> (or system prompt) telling the agent to read MEMORY.md at session start and write a log entry at session end.</li>
+    <li><strong>Add an update rule:</strong> instruct the agent to update MEMORY.md whenever a project fact changes, a decision is made, or a new convention is established.</li>
+    <li><strong>Set a size budget:</strong> tell the agent to keep MEMORY.md under a specific word count. This forces pruning and keeps the file useful.</li>
+  </ol>
+
+  <blockquote>The goal is not to remember everything. It is to remember the right things in a form that is cheap to load and easy to act on.</blockquote>
+
+  <p>Once this system is in place, you will notice something immediately: your agent stops asking the same questions twice. It picks up where it left off. It respects decisions you made three days ago. It feels less like a tool and more like a collaborator with continuity.</p>
+
+  <p>Memory is not a feature you wait for a vendor to ship. It is a pattern you implement with markdown files and clear instructions. The models are already capable. They just need somewhere to write things down.</p>
+
+  <div class="cta-box">
+    <p>Build a bulletproof memory system for your agents.</p>
+    <a href="../products/memory-guide.html" class="cta-btn">Get the Memory Architecture Guide &rarr;</a>
+  </div>
+</article>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <p class="footer-brand">AgentOrchard</p>
+        <nav>
+          <a href="../browse.html">Browse</a>
+          <a href="../consulting.html">Consulting</a>
+          <a href="../blog.html">Blog</a>
+          <a href="../login.html">Login / Sign Up</a>
+        </nav>
+      </div>
+      <div class="footer-col">
+        <p class="footer-brand">Connect</p>
+        <nav>
+          <a href="https://sedim3nt.substack.com" target="_blank">Substack</a>
+          <a href="https://x.com/sedim3nt" target="_blank">X / Twitter</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Nrvana LLC</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
