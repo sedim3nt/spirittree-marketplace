@@ -4,19 +4,33 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>How to Audit Your Agent's Security — AgentOrchard</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@600&family=Cormorant+Unicase:wght@600&family=Cormorant+Upright:wght@600&display=swap" rel="stylesheet"><style>h1{font-family:'Cormorant Unicase',Georgia,serif;font-weight:600}h2{font-family:'Cormorant Infant',Georgia,serif;font-weight:600;font-size:1.5rem;margin:32px 0 16px;color:#1a1a2e}h3{font-family:'Cormorant Upright',Georgia,serif;font-weight:600;font-size:1.25rem;margin:24px 0 12px;color:#1a1a2e}
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@600&family=Cormorant+Unicase:wght@600&family=Cormorant+Upright:wght@600&display=swap" rel="stylesheet"><style>h1{font-family:'Cormorant Unicase',Georgia,serif;font-weight:600}h2{font-family:'Cormorant Infant',Georgia,serif;font-weight:600;font-size:1.5rem;margin:32px 0 16px;color:#3A2E20}h3{font-family:'Cormorant Upright',Georgia,serif;font-weight:600;font-size:1.25rem;margin:24px 0 12px;color:#3A2E20}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#f6f7f8;color:#1a1a2e}
+body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#F4EFE6;color:#3A2E20}
 a{text-decoration:none;color:inherit}
-:root{--sand-50:#f6f7f8;--white:#ffffff;--ink-900:#1a1a2e;--ink-700:#2d2d44;--ink-600:#4a4a5a;--ink-500:#6b6b7a;--tide-600:#006ca5;--tide-700:#005a8a;--border-subtle:rgba(26,26,46,0.05);--shadow-card:0 1px 3px rgba(26,26,46,0.08);--radius:4px;--max-w:1152px}
-header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:#ffffff}
+:root{
+  /* ── Aesop Design System ── */
+  --aesop-parchment:#F4EFE6;
+  --aesop-ivory:#EEE8DC;
+  --aesop-stone:#D8CEBC;
+  --aesop-limestone:#B8AD98;
+  --aesop-bark:#7A6A52;
+  --aesop-umber:#3A2E20;
+  --aesop-dark-earth:#1E1810;
+  --aesop-amber:#8B5E3C;
+  --aesop-amber-deep:#6B4428;
+  --aesop-amber-light:#C89060;
+  --aesop-amber-wash:rgba(139,94,60,0.08);
+  --font-display:'Cormorant Infant',Georgia,'Times New Roman',serif;
+  --font-ui:'Inter',system-ui,-apple-system,sans-serif;--sand-50:#F4EFE6;--white:#F4EFE6;--ink-900:#3A2E20;--ink-700:#3A2E20;--ink-600:#7A6A52;--ink-500:#B8AD98;--tide-600:#8B5E3C;--tide-700:#6B4428;--border-subtle:rgba(216,206,188,0.6);--shadow-card:0 2px 12px rgba(58,46,32,0.06);--radius:4px;--max-w:1152px}
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:#F4EFE6}
 .nav-wrap{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
 @media(min-width:640px){.nav-wrap{padding:16px 24px}}
-.nav-brand{font-family:'Cormorant Infant',Georgia,serif;font-size:2.5rem;font-weight:600;color:var(--ink-900)}
-.nav-links{display:none;align-items:center;gap:24px;font-size:0.875rem;font-weight:500;color:var(--ink-700)}
+.nav-brand{font-family:'Cormorant Infant',Georgia,serif;font-size:2.5rem;font-weight:400;letter-spacing:-0.01em;color:var(--ink-900)}
+.nav-links{display:none;align-items:center;gap:24px;font-size:0.75rem;font-weight:400;color:var(--ink-700);text-transform:uppercase;letter-spacing:0.15em}
 @media(min-width:768px){.nav-links{display:flex}}
 .nav-links a:hover{color:var(--ink-900)}
-.nav-login{border:1px solid rgba(26,26,46,0.4);padding:6px 12px;border-radius:var(--radius);font-size:0.875rem;font-weight:600;color:var(--ink-900)}
+.nav-login{border:1px solid rgba(58,46,32,0.5);padding:6px 12px;border-radius:var(--radius);font-size:0.875rem;font-weight:600;color:var(--ink-900)}
 .nav-login:hover{border-color:var(--ink-900)}
 .hamburger{display:flex;background:none;border:none;color:var(--ink-900);font-size:1.5rem;cursor:pointer}
 @media(min-width:768px){.hamburger{display:none}}
@@ -30,8 +44,8 @@ header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-sub
 .post ul,.post ol{margin:0 0 20px 24px;color:var(--ink-600);font-size:1.125rem;line-height:1.7}
 .post li{margin-bottom:8px}
 .post strong{color:var(--ink-900)}
-.post code{background:#1a1a2e;color:#e0e0e0;padding:2px 6px;border-radius:3px;font-size:0.95rem}
-.post pre{background:#1a1a2e;color:#e0e0e0;padding:20px;border-radius:8px;overflow-x:auto;margin-bottom:20px;font-size:0.9rem;line-height:1.6}
+.post code{background:#3A2E20;color:#e0e0e0;padding:2px 6px;border-radius:3px;font-size:0.95rem}
+.post pre{background:#3A2E20;color:#e0e0e0;padding:20px;border-radius:8px;overflow-x:auto;margin-bottom:20px;font-size:0.9rem;line-height:1.6}
 .post pre code{background:none;padding:0}
 .post blockquote{border-left:3px solid var(--tide-600);padding:12px 20px;margin:0 0 20px;background:rgba(0,108,165,0.04);color:var(--ink-700);font-size:1.05rem;line-height:1.7}
 .back-link{display:inline-block;color:var(--tide-600);font-weight:600;font-size:0.875rem;margin-bottom:32px}
@@ -43,13 +57,48 @@ header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-sub
 footer{border-top:1px solid var(--border-subtle);background:var(--white)}
 .footer-inner{max-width:var(--max-w);margin:0 auto;padding:40px 24px}
 .footer-grid{display:grid;gap:40px;grid-template-columns:1fr 1fr}
-.footer-col p.footer-brand{font-size:0.875rem;font-weight:700;color:var(--ink-900);margin-bottom:12px}
+.footer-col p.footer-brand{font-size:0.875rem;font-weight:400;color:var(--ink-900);margin-bottom:12px}
 .footer-col nav{display:flex;flex-direction:column;gap:8px}
 .footer-col nav a{font-size:0.875rem;color:var(--ink-600);transition:color 0.2s}
 .footer-col nav a:hover{color:var(--ink-900)}
 .footer-bottom{margin-top:32px;border-top:1px solid var(--border-subtle);padding-top:24px}
 .footer-bottom p{font-size:0.8125rem;color:var(--ink-500)}
 @media(max-width:600px){.footer-grid{grid-template-columns:1fr}}
+
+/* Aesop Global Overrides */
+body{background:#F4EFE6;color:#3A2E20;font-family:'Inter',system-ui,-apple-system,sans-serif;line-height:1.8}
+h1,h2,h3,h4,h5,h6{font-family:'Cormorant Infant',Georgia,serif;font-weight:400;color:#3A2E20;text-transform:lowercase;letter-spacing:-0.01em;line-height:1.2}
+header{background:rgba(244,239,230,0.97) !important;border-bottom:1px solid #D8CEBC !important;backdrop-filter:blur(8px)}
+.mobile-menu,.mm{background:#F4EFE6 !important}
+.card,.pc{background:#EEE8DC !important;border:1px solid #D8CEBC !important}
+.card:hover{background:#EEE8DC !important;box-shadow:0 4px 20px rgba(58,46,32,0.10) !important}
+.card-tag{background:rgba(244,239,230,0.8) !important;border-color:#D8CEBC !important;color:#7A6A52 !important}
+.btn-primary,.card-btn,.pbtn,.nl-btn{background:#8B5E3C !important;color:#F4EFE6 !important;border-radius:4px !important;letter-spacing:0.05em}
+.btn-primary:hover,.card-btn:hover,.pbtn:hover,.nl-btn:hover{background:#6B4428 !important}
+.btn-outline{border:1px solid #D8CEBC !important;color:#3A2E20 !important;border-radius:4px !important}
+.btn-outline:hover{background:#EEE8DC !important;border-color:#B8AD98 !important}
+.nav-login,.nli{background:#8B5E3C !important;color:#F4EFE6 !important;border:none !important;border-radius:4px !important}
+.nav-login:hover,.nli:hover{background:#6B4428 !important}
+.nl-input{background:#F4EFE6 !important;border-color:#D8CEBC !important;color:#3A2E20 !important}
+.nl-input:focus{border-color:#8B5E3C !important;outline:none}
+.step-num{background:rgba(139,94,60,0.10) !important;color:#8B5E3C !important}
+.products,.how,.stats{background:#F4EFE6 !important}
+.hero,.newsletter{background:#F4EFE6 !important}
+.cat,.card-cat,.pm .cat,.bl{color:#8B5E3C !important}
+.stat h2{color:#3A2E20 !important}
+.hero h1,.section-head h2,.how h2,.newsletter h2,.pm h1,.step h3,.stat h2{font-family:'Cormorant Infant',Georgia,serif !important;font-weight:300 !important;text-transform:lowercase !important}
+.nav-brand,.nb{font-family:'Cormorant Infant',Georgia,serif !important;font-weight:400 !important;color:#3A2E20 !important;letter-spacing:-0.01em}
+select,input,textarea{background:#F4EFE6 !important;border-color:#D8CEBC !important;color:#3A2E20 !important}
+select:focus,input:focus,textarea:focus{border-color:#8B5E3C !important;outline:none}
+
+/* Aesop footer dark */
+footer{background:#1E1810 !important;border-top:none !important}
+footer *,.fi,.footer-inner,.fbot,.footer-bottom,.fc,.footer-col{color:#EEE8DC !important}
+footer a,.fc nav a,.footer-col nav a{color:#B8AD98 !important}
+footer a:hover,.fc nav a:hover,.footer-col nav a:hover{color:#EEE8DC !important}
+.footer-bottom p,.fbot p{color:#7A6A52 !important;border-top-color:rgba(216,206,188,0.15) !important}
+.fbot{border-top-color:rgba(216,206,188,0.15) !important}
+.footer-bottom{border-top-color:rgba(216,206,188,0.15) !important}
 </style>
 </head>
 <body>

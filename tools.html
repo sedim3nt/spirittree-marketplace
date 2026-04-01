@@ -6,22 +6,36 @@
 <title>Free Tools — AgentOrchard</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:wght@600&family=Cormorant+Unicase:wght@600&family=Cormorant+Upright:wght@600&display=swap" rel="stylesheet"><style>h1{font-family:'Cormorant Unicase',Georgia,serif;font-weight:600;font-size:clamp(3.125rem,7.5vw,5.5rem)}h2{font-family:'Cormorant Infant',Georgia,serif;font-weight:600;font-size:2.35rem}h3{font-family:'Cormorant Upright',Georgia,serif;font-weight:600;font-size:1.72rem}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#f6f7f8;color:#1a1a2e}
+body{font-family:ui-sans-serif,system-ui,-apple-system,sans-serif;background:#F4EFE6;color:#3A2E20}
 a{text-decoration:none;color:inherit}
 :root{
-  --sand-50:#f6f7f8;--white:#ffffff;--ink-900:#1a1a2e;--ink-700:#2d2d44;--ink-600:#4a4a5a;--ink-500:#6b6b7a;
-  --tide-600:#006ca5;--tide-700:#005a8a;--border-subtle:rgba(26,26,46,0.05);--border-card:rgba(26,26,46,0.1);
-  --tide-light:rgba(13,148,136,0.1);--shadow-card:0 1px 3px rgba(26,26,46,0.08);
-  --shadow-card-hover:0 4px 16px rgba(26,26,46,0.12);--radius:4px;--max-w:1152px;
+  /* ── Aesop Design System ── */
+  --aesop-parchment:#F4EFE6;
+  --aesop-ivory:#EEE8DC;
+  --aesop-stone:#D8CEBC;
+  --aesop-limestone:#B8AD98;
+  --aesop-bark:#7A6A52;
+  --aesop-umber:#3A2E20;
+  --aesop-dark-earth:#1E1810;
+  --aesop-amber:#8B5E3C;
+  --aesop-amber-deep:#6B4428;
+  --aesop-amber-light:#C89060;
+  --aesop-amber-wash:rgba(139,94,60,0.08);
+  --font-display:'Cormorant Infant',Georgia,'Times New Roman',serif;
+  --font-ui:'Inter',system-ui,-apple-system,sans-serif;
+  --sand-50:#F4EFE6;--white:#F4EFE6;--ink-900:#3A2E20;--ink-700:#3A2E20;--ink-600:#7A6A52;--ink-500:#B8AD98;
+  --tide-600:#8B5E3C;--tide-700:#6B4428;--border-subtle:rgba(216,206,188,0.6);--border-card:#D8CEBC;
+  --tide-light:rgba(139,94,60,0.10);--shadow-card:0 2px 12px rgba(58,46,32,0.06);
+  --shadow-card-hover:0 4px 20px rgba(58,46,32,0.10);--radius:4px;--max-w:1152px;
 }
-header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:#ffffff}
+header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-subtle);background:#F4EFE6}
 .nav-wrap{max-width:var(--max-w);margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 24px}
 @media(min-width:640px){.nav-wrap{padding:16px 24px}}
-.nav-brand{font-family:'Cormorant Infant',Georgia,serif;font-size:2.5rem;font-weight:600;color:var(--ink-900)}
-.nav-links{display:none;align-items:center;gap:24px;font-size:0.875rem;font-weight:500;color:var(--ink-700)}
+.nav-brand{font-family:'Cormorant Infant',Georgia,serif;font-size:2.5rem;font-weight:400;letter-spacing:-0.01em;color:var(--ink-900)}
+.nav-links{display:none;align-items:center;gap:24px;font-size:0.75rem;font-weight:400;color:var(--ink-700);text-transform:uppercase;letter-spacing:0.15em}
 @media(min-width:768px){.nav-links{display:flex}}
 .nav-links a:hover{color:var(--ink-900)}
-.nav-login{border:1px solid rgba(26,26,46,0.4);padding:6px 12px;border-radius:var(--radius);font-size:0.875rem;font-weight:600;color:var(--ink-900)}
+.nav-login{border:1px solid rgba(58,46,32,0.5);padding:6px 12px;border-radius:var(--radius);font-size:0.875rem;font-weight:600;color:var(--ink-900)}
 .nav-login:hover{border-color:var(--ink-900)}
 .hamburger{display:flex;background:none;border:none;color:var(--ink-900);font-size:1.5rem;cursor:pointer}
 @media(min-width:768px){.hamburger{display:none}}
@@ -31,7 +45,7 @@ header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-sub
 
 /* PAGE HEADER */
 .page-header{padding:48px 24px 40px;background:var(--white);text-align:center;border-bottom:1px solid var(--border-subtle)}
-.page-header h1{font-size:clamp(1.5rem,4vw,2.5rem);font-weight:800;color:var(--ink-900);margin-bottom:8px}
+.page-header h1{font-size:clamp(1.5rem,4vw,2.5rem);font-weight:300;color:var(--ink-900);margin-bottom:8px}
 .page-header p{color:var(--ink-600);font-size:0.9375rem}
 
 /* TOOLS */
@@ -41,7 +55,7 @@ header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-sub
 .tool-card{background:var(--white);border:1px solid var(--border-subtle);box-shadow:var(--shadow-card);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:12px;transition:box-shadow 0.2s}
 .tool-card:hover{box-shadow:var(--shadow-card-hover)}
 .tool-free{font-size:0.75rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--tide-600)}
-.tool-title{font-size:1.125rem;font-weight:700;color:var(--ink-900)}
+.tool-title{font-size:1.125rem;font-weight:400;color:var(--ink-900)}
 .tool-badge{display:inline-block;background:var(--tide-light);color:var(--tide-700);font-size:0.75rem;font-weight:600;padding:3px 8px;border-radius:var(--radius);width:fit-content}
 .tool-desc{font-size:0.875rem;color:var(--ink-600);line-height:1.6;flex:1}
 .tool-btn{display:inline-block;background:var(--tide-600);color:var(--white);font-weight:600;padding:10px 20px;border-radius:var(--radius);font-size:0.875rem;text-align:center;transition:background 0.2s;margin-top:4px}
@@ -51,7 +65,7 @@ header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--border-sub
 footer{border-top:1px solid var(--border-subtle);background:var(--white)}
 .footer-inner{max-width:var(--max-w);margin:0 auto;padding:40px 24px}
 .footer-grid{display:grid;gap:40px;grid-template-columns:1fr 1fr}
-.footer-col p.footer-brand{font-size:0.875rem;font-weight:700;color:var(--ink-900);margin-bottom:12px}
+.footer-col p.footer-brand{font-size:0.875rem;font-weight:400;color:var(--ink-900);margin-bottom:12px}
 .footer-col nav{display:flex;flex-direction:column;gap:8px}
 .footer-col nav a{font-size:0.875rem;color:var(--ink-600);transition:color 0.2s}
 .footer-col nav a:hover{color:var(--ink-900)}
@@ -60,6 +74,41 @@ footer{border-top:1px solid var(--border-subtle);background:var(--white)}
 
 @media(max-width:900px){.tool-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.tool-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}}
+
+/* Aesop Global Overrides */
+body{background:#F4EFE6;color:#3A2E20;font-family:'Inter',system-ui,-apple-system,sans-serif;line-height:1.8}
+h1,h2,h3,h4,h5,h6{font-family:'Cormorant Infant',Georgia,serif;font-weight:400;color:#3A2E20;text-transform:lowercase;letter-spacing:-0.01em;line-height:1.2}
+header{background:rgba(244,239,230,0.97) !important;border-bottom:1px solid #D8CEBC !important;backdrop-filter:blur(8px)}
+.mobile-menu,.mm{background:#F4EFE6 !important}
+.card,.pc{background:#EEE8DC !important;border:1px solid #D8CEBC !important}
+.card:hover{background:#EEE8DC !important;box-shadow:0 4px 20px rgba(58,46,32,0.10) !important}
+.card-tag{background:rgba(244,239,230,0.8) !important;border-color:#D8CEBC !important;color:#7A6A52 !important}
+.btn-primary,.card-btn,.pbtn,.nl-btn{background:#8B5E3C !important;color:#F4EFE6 !important;border-radius:4px !important;letter-spacing:0.05em}
+.btn-primary:hover,.card-btn:hover,.pbtn:hover,.nl-btn:hover{background:#6B4428 !important}
+.btn-outline{border:1px solid #D8CEBC !important;color:#3A2E20 !important;border-radius:4px !important}
+.btn-outline:hover{background:#EEE8DC !important;border-color:#B8AD98 !important}
+.nav-login,.nli{background:#8B5E3C !important;color:#F4EFE6 !important;border:none !important;border-radius:4px !important}
+.nav-login:hover,.nli:hover{background:#6B4428 !important}
+.nl-input{background:#F4EFE6 !important;border-color:#D8CEBC !important;color:#3A2E20 !important}
+.nl-input:focus{border-color:#8B5E3C !important;outline:none}
+.step-num{background:rgba(139,94,60,0.10) !important;color:#8B5E3C !important}
+.products,.how,.stats{background:#F4EFE6 !important}
+.hero,.newsletter{background:#F4EFE6 !important}
+.cat,.card-cat,.pm .cat,.bl{color:#8B5E3C !important}
+.stat h2{color:#3A2E20 !important}
+.hero h1,.section-head h2,.how h2,.newsletter h2,.pm h1,.step h3,.stat h2{font-family:'Cormorant Infant',Georgia,serif !important;font-weight:300 !important;text-transform:lowercase !important}
+.nav-brand,.nb{font-family:'Cormorant Infant',Georgia,serif !important;font-weight:400 !important;color:#3A2E20 !important;letter-spacing:-0.01em}
+select,input,textarea{background:#F4EFE6 !important;border-color:#D8CEBC !important;color:#3A2E20 !important}
+select:focus,input:focus,textarea:focus{border-color:#8B5E3C !important;outline:none}
+
+/* Aesop footer dark */
+footer{background:#1E1810 !important;border-top:none !important}
+footer *,.fi,.footer-inner,.fbot,.footer-bottom,.fc,.footer-col{color:#EEE8DC !important}
+footer a,.fc nav a,.footer-col nav a{color:#B8AD98 !important}
+footer a:hover,.fc nav a:hover,.footer-col nav a:hover{color:#EEE8DC !important}
+.footer-bottom p,.fbot p{color:#7A6A52 !important;border-top-color:rgba(216,206,188,0.15) !important}
+.fbot{border-top-color:rgba(216,206,188,0.15) !important}
+.footer-bottom{border-top-color:rgba(216,206,188,0.15) !important}
 </style>
 </head>
 <body>
